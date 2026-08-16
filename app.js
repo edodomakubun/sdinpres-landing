@@ -163,7 +163,7 @@ function renderNews(posts) {
 
   if (!State.posts.news.length) {
     container.innerHTML =
-      '<div class="loading-card">Belum ada berita dengan label Berita.</div>';
+      '<div class="loading-state">Belum ada berita terbaru saat ini.</div>';
     return;
   }
 
@@ -196,7 +196,7 @@ function renderStory(posts) {
 
   if (!State.posts.story.length) {
     container.innerHTML =
-      '<div class="loading-card dark-loading">Belum ada kegiatan publik.</div>';
+      '<div class="loading-state dark">Belum ada dokumentasi kegiatan publik saat ini.</div>';
     return;
   }
 
@@ -292,7 +292,7 @@ async function loadLandingContent() {
     const newsContainer = $('#news-container');
     if (newsContainer) {
       newsContainer.innerHTML =
-        '<div class="loading-card">Berita belum dapat dimuat. Periksa koneksi ke Blogger.</div>';
+        '<div class="loading-state">Berita belum dapat dimuat. Silakan kunjungi website utama.</div>';
     }
   }
 
@@ -302,7 +302,7 @@ async function loadLandingContent() {
     const storyContainer = $('#story-container');
     if (storyContainer) {
       storyContainer.innerHTML =
-        '<div class="loading-card dark-loading">Kegiatan belum dapat dimuat.</div>';
+        '<div class="loading-state dark">Kegiatan belum dapat dimuat saat ini.</div>';
     }
   }
 
