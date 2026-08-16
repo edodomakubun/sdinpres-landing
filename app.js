@@ -1,6 +1,7 @@
 /* SD INPRES LELINGLUAN — Cloudflare Landing Page v2 */
 const CONFIG = {
   bloggerBase: 'https://blog.sdinpreslelingluan.com',
+  brandLogo: 'assets/logo.png',
   newsLabel: 'Berita',
   storyLabel: 'Story',
   galleryLabel: 'Galeri',
@@ -255,24 +256,18 @@ function renderHeroVisuals() {
 }
 
 function renderBrandLogo() {
-  const logoUrl = firstImage(State.posts.gallery[0]) ||
-                  firstImage(State.posts.story[0]) ||
-                  firstImage(State.posts.news[0]);
-
-  /*
-   * Tidak memakai logo palsu dari asset lokal.
-   * Jika ingin logo resmi di header, masukkan URL logo Blogger ke CONFIG.brandLogo.
-   * Saat CONFIG.brandLogo kosong, landing page tetap memakai wordmark teks.
-   */
-  const configuredLogo = CONFIG.brandLogo || '';
-
-  if (!configuredLogo) return;
+  const logoUrl = CONFIG.brandLogo || 'assets/logo.png';
 
   ['#brand-logo', '#footer-logo'].forEach(selector => {
     const image = $(selector);
     if (!image) return;
-    image.src = configuredLogo;
+    image.src = logoUrl;
     image.hidden = false;
+    image.onerror = () => {
+      if (!image.src.endsWith('assets/logo.png')) {
+        image.src = 'assets/logo.png';
+      }
+    };
   });
 }
 
