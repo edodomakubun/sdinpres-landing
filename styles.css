@@ -988,6 +988,15 @@ button {
   font-weight: 600;
 }
 
+.principal-nip {
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--accent-amber);
+  margin-top: 3px;
+  display: block;
+  letter-spacing: 0.04em;
+}
+
 .principal-loc {
   font-size: 11px;
   color: #94A3B8;
@@ -1035,6 +1044,18 @@ button {
 
 .speech-body strong {
   color: #FFFFFF;
+}
+
+.speech-salutation {
+  color: var(--accent-amber);
+  font-weight: 700;
+  font-size: 15.5px;
+}
+
+.speech-closing {
+  border-left: 2px solid rgba(245, 158, 11, 0.6);
+  padding-left: 14px;
+  color: #E2E8F0;
 }
 
 .speech-features {
