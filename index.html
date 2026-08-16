@@ -1,209 +1,200 @@
 <!doctype html>
 <html lang="id">
-
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width,initial-scale=1">
-  <meta name="theme-color" content="#070b1e">
-  <meta name="description"
-    content="Website Resmi SD Inpres Lelingluan, Tanimbar Utara. Portal informasi sekolah, layanan digital guru & siswa, SPMB, dan berita terbaru.">
+  <meta name="theme-color" content="#080d21">
+  <meta name="description" content="Website Resmi SD Inpres Lelingluan, Kecamatan Tanimbar Utara, Kabupaten Kepulauan Tanimbar. Portal informasi sekolah, layanan digital guru & siswa, SPMB, dan berita sekolah.">
   <meta property="og:type" content="website">
   <meta property="og:title" content="SD Inpres Lelingluan — Portal Resmi Sekolah">
-  <meta property="og:description" content="Mewujudkan generasi cerdas, berkarakter mulia, dan unggul di era digital.">
+  <meta property="og:description" content="Mewujudkan generasi cerdas, berkarakter mulia, dan adaptif di era digital.">
   <meta property="og:url" content="https://sdinpreslelingluan.com/">
   <title>SD Inpres Lelingluan — Portal Resmi Sekolah</title>
 
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
 
-  <!-- Google Fonts: Outfit & Plus Jakarta Sans -->
+  <!-- Google Fonts: Outfit (Headings) & Plus Jakarta Sans (Body) -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap"
-    rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
 
   <link rel="stylesheet" href="styles.css">
 </head>
-
 <body>
-  <!-- Ambient background glow lights -->
-  <div class="ambient-lights" aria-hidden="true">
-    <div class="light-orb orb-1"></div>
-    <div class="light-orb orb-2"></div>
-    <div class="light-orb orb-3"></div>
+  <!-- Ambient background glow elements -->
+  <div class="ambient-glow-wrapper" aria-hidden="true">
+    <div class="glow-orb orb-primary"></div>
+    <div class="glow-orb orb-secondary"></div>
+    <div class="glow-orb orb-accent"></div>
   </div>
 
-  <!-- Announcement & Status Bar -->
-  <aside class="top-announcement">
-    <div class="container announcement-inner">
-      <div class="announcement-left">
-        <span class="status-badge"><span class="pulse-dot"></span> Info Sekolah</span>
-        <span class="announcement-text">Tahun Ajaran 2025/2026 • Kurikulum Merdeka • Kec. Tanimbar Utara</span>
+  <!-- Announcement & Official Info Bar -->
+  <div class="top-announcement-bar">
+    <div class="container announcement-content">
+      <div class="announcement-meta">
+        <span class="badge-status"><span class="pulse-dot"></span> RESMI</span>
+        <span class="announcement-label">SD Inpres Lelingluan &bull; Kab. Kepulauan Tanimbar &bull; Akreditasi B &bull; Kurikulum Merdeka</span>
       </div>
-      <div class="announcement-right">
-        <a href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener" class="top-link">
-          <span>Pendaftaran SPMB Online</span> <span class="arrow">↗</span>
+      <div class="announcement-action">
+        <a href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener" class="announcement-link">
+          <span>SPMB 2026 Online</span> <span class="arrow">↗</span>
         </a>
       </div>
     </div>
-  </aside>
+  </div>
 
-  <!-- Modern Floating Header -->
+  <!-- Floating Executive Header -->
   <header class="site-header" id="site-header">
-    <div class="container header-container">
-      <a class="brand" href="#top" aria-label="SD Inpres Lelingluan">
-        <div class="brand-logo-frame">
+    <div class="container header-inner">
+      <a class="brand-link" href="#top" aria-label="Beranda SD Inpres Lelingluan">
+        <div class="brand-emblem">
           <img id="brand-logo" src="assets/logo.png" alt="Logo SD Inpres Lelingluan" width="38" height="38">
         </div>
-        <div class="brand-text">
-          <b>SD INPRES</b>
-          <small>LELINGLUAN</small>
+        <div class="brand-info">
+          <span class="brand-title">SD INPRES</span>
+          <span class="brand-subtitle">LELINGLUAN</span>
         </div>
       </a>
 
-      <nav class="desktop-nav" aria-label="Navigasi Utama">
-        <a href="#layanan" class="nav-item"><span>Layanan Digital</span></a>
-        <a href="#sambutan" class="nav-item"><span>Sambutan</span></a>
-        <a href="#profil" class="nav-item"><span>Profil</span></a>
-        <a href="#berita" class="nav-item"><span>Berita</span></a>
-        <a href="#kegiatan" class="nav-item"><span>Kegiatan</span></a>
+      <nav class="desktop-navigation" aria-label="Navigasi Utama">
+        <a href="#layanan" class="nav-link">Layanan Digital</a>
+        <a href="#sambutan" class="nav-link">Kata Sambutan</a>
+        <a href="#profil" class="nav-link">Pilar Pendidikan</a>
+        <a href="#identitas" class="nav-link">Profil Sekolah</a>
+        <a href="#berita" class="nav-link">Berita</a>
+        <a href="#kegiatan" class="nav-link">Kegiatan</a>
       </nav>
 
-      <div class="header-actions">
-        <a class="btn-portal" href="https://blog.sdinpreslelingluan.com" target="_blank" rel="noopener">
+      <div class="header-cta-wrapper">
+        <a class="btn-header-cta" href="https://blog.sdinpreslelingluan.com" target="_blank" rel="noopener">
           <span>Website Utama</span>
-          <svg class="btn-arrow" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5">
-            <path d="M7 17L17 7M17 7H7M17 7V17" />
-          </svg>
+          <svg class="icon-arrow-out" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><path d="M7 17L17 7M17 7H7M17 7V17"/></svg>
         </a>
-        <button class="menu-toggle" id="menu-btn" aria-label="Menu navigasi" aria-expanded="false" type="button">
-          <span class="bar bar-1"></span>
-          <span class="bar bar-2"></span>
-          <span class="bar bar-3"></span>
+        <button class="mobile-toggle-btn" id="menu-btn" aria-label="Buka Menu" aria-expanded="false" type="button">
+          <span class="line line-1"></span>
+          <span class="line line-2"></span>
+          <span class="line line-3"></span>
         </button>
       </div>
     </div>
   </header>
 
-  <!-- Mobile Overlay Navigation -->
-  <div class="mobile-nav-panel" id="mobile-menu" aria-hidden="true">
-    <div class="mobile-nav-links">
-      <a href="#layanan" class="mobile-link"><span class="link-icon">⚡</span> Layanan Digital</a>
-      <a href="#sambutan" class="mobile-link"><span class="link-icon">🎙️</span> Sambutan Kepala Sekolah</a>
-      <a href="#profil" class="mobile-link"><span class="link-icon">🏛️</span> Profil &amp; Keunggulan</a>
-      <a href="#berita" class="mobile-link"><span class="link-icon">📰</span> Berita &amp; Informasi</a>
-      <a href="#kegiatan" class="mobile-link"><span class="link-icon">🌟</span> Kegiatan Siswa</a>
-      <a href="#faq" class="mobile-link"><span class="link-icon">❓</span> Tanya Jawab (FAQ)</a>
-    </div>
-    <div class="mobile-nav-footer">
-      <a class="btn-portal full-width" href="https://blog.sdinpreslelingluan.com" target="_blank" rel="noopener">
-        <span>Buka Website Blogger</span> ↗
-      </a>
+  <!-- Mobile Drawer Menu -->
+  <div class="mobile-drawer" id="mobile-menu" aria-hidden="true">
+    <div class="mobile-drawer-inner">
+      <div class="mobile-nav-group">
+        <a href="#layanan" class="mobile-nav-item"><span class="item-icon">⚡</span> Layanan Digital</a>
+        <a href="#sambutan" class="mobile-nav-item"><span class="item-icon">🎙️</span> Sambutan Kepala Sekolah</a>
+        <a href="#profil" class="mobile-nav-item"><span class="item-icon">🏛️</span> Pilar Pendidikan</a>
+        <a href="#identitas" class="mobile-nav-item"><span class="item-icon">📋</span> Profil &amp; Data Sekolah</a>
+        <a href="#berita" class="mobile-nav-item"><span class="item-icon">📰</span> Berita Sekolah</a>
+        <a href="#kegiatan" class="mobile-nav-item"><span class="item-icon">🌟</span> Kegiatan Siswa</a>
+        <a href="#faq" class="mobile-nav-item"><span class="item-icon">❓</span> Tanya Jawab</a>
+      </div>
+      <div class="mobile-drawer-bottom">
+        <a class="btn-main primary full-width" href="https://blog.sdinpreslelingluan.com" target="_blank" rel="noopener">
+          <span>Kunjungi Website Utama</span> ↗
+        </a>
+      </div>
     </div>
   </div>
 
   <!-- Page Loader -->
   <div class="page-loader" id="page-loader" aria-hidden="true">
-    <div class="loader-box">
-      <div class="loader-logo-ring">
-        <img src="assets/logo.png" alt="SD Inpres Lelingluan" class="loader-logo">
+    <div class="loader-content-box">
+      <div class="loader-emblem">
+        <img src="assets/logo.png" alt="Logo SD Inpres Lelingluan" class="loader-logo-img">
       </div>
-      <p class="loader-title">SD INPRES LELINGLUAN</p>
-      <div class="loader-bar">
-        <div class="loader-progress"></div>
+      <h2 class="loader-text">SD INPRES LELINGLUAN</h2>
+      <div class="loader-progress-track">
+        <div class="loader-progress-bar"></div>
       </div>
     </div>
   </div>
 
   <main id="top">
     <!-- =========================================================
-         HERO SECTION: Modern Bento & Cinematic Visual
+         1. HERO SECTION: Executive Educational Banner
          ========================================================= -->
     <section class="hero-section">
-      <div class="container hero-grid">
-        <div class="hero-content reveal">
-          <div class="hero-pill-badge">
-            <span class="pill-dot"></span>
-            <span>SEKOLAH DASAR &bull; KAB. KEPULAUAN TANIMBAR</span>
+      <div class="container hero-container-grid">
+        <div class="hero-text-block reveal">
+          <div class="official-tag">
+            <span class="tag-icon-dot"></span>
+            <span>SEKOLAH DASAR NEGERI &bull; KABUPATEN KEPULAUAN TANIMBAR</span>
           </div>
 
-          <h1 class="hero-title">
+          <h1 class="hero-heading">
             Membentuk Karakter,<br>
-            <span class="text-gradient">Menginspirasi Prestasi.</span>
+            <span class="gradient-text">Menginspirasi Prestasi.</span>
           </h1>
 
-          <p class="hero-subtitle">
-            Selamat datang di Portal Resmi <strong>SD Inpres Lelingluan</strong>. Ruang edukasi ramah anak yang
-            mengintegrasikan nilai budi pekerti luhur, kreativitas tanpa batas, serta ekosistem layanan pendidikan
-            digital modern.
+          <p class="hero-lead">
+            Selamat datang di Portal Resmi <strong>SD Inpres Lelingluan</strong>. Lembaga pendidikan dasar yang berkomitmen menumbuhkan integritas budi pekerti luhur, kreativitas eksploratif, serta layanan digital terpadu bagi seluruh civitas sekolah.
           </p>
 
-          <div class="hero-cta-group">
+          <div class="hero-actions-row">
             <a href="#layanan" class="btn-main primary">
               <span class="btn-icon">⚡</span>
               <span>Akses Portal Layanan</span>
             </a>
             <a href="#sambutan" class="btn-main secondary">
               <span>Sambutan Kepala Sekolah</span>
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                <path d="M5 12h14M12 5l7 7-7 7" />
-              </svg>
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
             </a>
           </div>
 
-          <!-- Hero Metrics Bar -->
-          <div class="hero-stats-bar">
-            <div class="stat-pill">
-              <span class="stat-num">B</span>
-              <span class="stat-lbl">Kurikulum Merdeka</span>
+          <!-- Key Metrics Badges -->
+          <div class="hero-stats-panel">
+            <div class="stat-item">
+              <span class="stat-number">B</span>
+              <span class="stat-label">Akreditasi Sekolah</span>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat-pill">
-              <span class="stat-num">100%</span>
-              <span class="stat-lbl">Pendidikan Karakter</span>
+            <div class="stat-sep"></div>
+            <div class="stat-item">
+              <span class="stat-number">100%</span>
+              <span class="stat-label">Kurikulum Merdeka</span>
             </div>
-            <div class="stat-divider"></div>
-            <div class="stat-pill">
-              <span class="stat-num">7+</span>
-              <span class="stat-lbl">Layanan Digital Terintegrasi</span>
+            <div class="stat-sep"></div>
+            <div class="stat-item">
+              <span class="stat-number">7</span>
+              <span class="stat-label">Portal Terpadu</span>
             </div>
           </div>
         </div>
 
-        <div class="hero-visual-col reveal delay-1">
-          <div class="hero-image-card">
-            <div class="hero-img-container">
-              <img
-                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg"
-                alt="SD Inpres Lelingluan Banner" class="hero-img" loading="eager">
-              <div class="hero-img-glow-overlay"></div>
+        <div class="hero-visual-block reveal delay-1">
+          <div class="hero-visual-frame">
+            <div class="hero-image-wrapper">
+              <img 
+                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg" 
+                alt="SD Inpres Lelingluan Hero Visual" 
+                class="hero-img-element" 
+                loading="eager"
+              >
+              <div class="hero-overlay-shadow"></div>
             </div>
 
-            <!-- Floating Smart Badge 1 -->
-            <div class="floating-card float-top-right">
-              <div class="float-icon-box blue">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5" />
-                </svg>
+            <!-- Floating Badge Top Right -->
+            <div class="floating-badge badge-top-right">
+              <div class="badge-icon-square blue">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"/></svg>
               </div>
-              <div class="float-text">
-                <strong>Smart Digital School</strong>
-                <span>Layanan Berbasis Web</span>
+              <div class="badge-content">
+                <strong>Digital Smart School</strong>
+                <span>Layanan Pendidikan Terpadu</span>
               </div>
             </div>
 
-            <!-- Floating Smart Badge 2 -->
-            <div class="floating-card float-bottom-left">
-              <div class="float-icon-box gold">
-                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                  <path
-                    d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z" />
-                </svg>
+            <!-- Floating Badge Bottom Left -->
+            <div class="floating-badge badge-bottom-left">
+              <div class="badge-icon-square amber">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"/></svg>
               </div>
-              <div class="float-text">
-                <strong>Ramah &amp; Berkarakter</strong>
-                <span>Tanimbar Utara, Maluku</span>
+              <div class="badge-content">
+                <strong>Pendidikan Karakter</strong>
+                <span>Kec. Tanimbar Utara, Maluku</span>
               </div>
             </div>
           </div>
@@ -212,164 +203,133 @@
     </section>
 
     <!-- =========================================================
-         PORTAL & LAYANAN DIGITAL: Bento Compact Launcher
+         2. PORTAL & LAYANAN DIGITAL: Executive 7-Portal Grid
          ========================================================= -->
-    <section class="section-portal" id="layanan">
+    <section class="section-portals" id="layanan">
       <div class="container">
-        <div class="section-header-center reveal">
-          <span class="sub-eyebrow">AKSES CEPAT</span>
-          <h2 class="section-title">Portal &amp; Layanan Digital</h2>
-          <p class="section-desc">Pusat akses terpadu bagi guru, tenaga pendidik, peserta didik, dan orang tua murid.
-          </p>
+        <div class="section-title-center reveal">
+          <span class="section-eyebrow">LAYANAN DIGITAL TERPADU</span>
+          <h2 class="section-main-heading">Pusat Layanan &amp; Portal Sekolah</h2>
+          <p class="section-sub-heading">Akses instan bagi tenaga pendidik, peserta didik, orang tua, dan masyarakat.</p>
         </div>
 
-        <div class="portal-grid reveal delay-1">
+        <div class="portal-cards-grid reveal delay-1">
           <!-- 1. PORTAL GURU -->
-          <a class="portal-card" href="https://portalguru.sdinpreslelingluan.com" target="_blank" rel="noopener">
-            <div class="card-glow"></div>
-            <div class="portal-icon-wrapper icon-blue">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2" />
-                <circle cx="9" cy="7" r="4" />
-                <path d="M23 21v-2a4 4 0 0 0-3-3.87" />
-                <path d="M16 3.13a4 4 0 0 1 0 7.75" />
+          <a class="service-portal-card" href="https://portalguru.sdinpreslelingluan.com" target="_blank" rel="noopener">
+            <div class="portal-icon-box box-blue">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>
               </svg>
             </div>
-            <div class="portal-card-body">
-              <div class="portal-header-line">
-                <span class="portal-tag">PENDIDIK</span>
-                <span class="ext-arrow">↗</span>
+            <div class="portal-card-text">
+              <div class="portal-meta-top">
+                <span class="portal-role-tag">TENAGA PENDIDIK</span>
+                <span class="portal-arrow-out">↗</span>
               </div>
-              <h3 class="portal-name">PORTAL GURU</h3>
-              <p class="portal-domain">portalguru.sdinpreslelingluan.com</p>
+              <h3 class="portal-title">PORTAL GURU</h3>
+              <p class="portal-url">portalguru.sdinpreslelingluan.com</p>
             </div>
           </a>
 
           <!-- 2. PORTAL SISWA -->
-          <a class="portal-card" href="https://portalsiswa.sdinpreslelingluan.com" target="_blank" rel="noopener">
-            <div class="card-glow"></div>
-            <div class="portal-icon-wrapper icon-cyan">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M22 10v6M2 10l10-5 10 5-10 5z" />
-                <path d="M6 12v5c3 3 9 3 12 0v-5" />
+          <a class="service-portal-card" href="https://portalsiswa.sdinpreslelingluan.com" target="_blank" rel="noopener">
+            <div class="portal-icon-box box-cyan">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M22 10v6M2 10l10-5 10 5-10 5z"/><path d="M6 12v5c3 3 9 3 12 0v-5"/>
               </svg>
             </div>
-            <div class="portal-card-body">
-              <div class="portal-header-line">
-                <span class="portal-tag">PESERTA DIDIK</span>
-                <span class="ext-arrow">↗</span>
+            <div class="portal-card-text">
+              <div class="portal-meta-top">
+                <span class="portal-role-tag">PESERTA DIDIK</span>
+                <span class="portal-arrow-out">↗</span>
               </div>
-              <h3 class="portal-name">PORTAL SISWA</h3>
-              <p class="portal-domain">portalsiswa.sdinpreslelingluan.com</p>
+              <h3 class="portal-title">PORTAL SISWA</h3>
+              <p class="portal-url">portalsiswa.sdinpreslelingluan.com</p>
             </div>
           </a>
 
           <!-- 3. SPMB 2026 -->
-          <a class="portal-card highlight-card" href="https://spmb2026.sdinpreslelingluan.com" target="_blank"
-            rel="noopener">
-            <div class="card-glow"></div>
-            <div class="portal-icon-wrapper icon-amber">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
-                <polyline points="14 2 14 8 20 8" />
-                <line x1="16" y1="13" x2="8" y2="13" />
-                <line x1="16" y1="17" x2="8" y2="17" />
+          <a class="service-portal-card card-featured" href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener">
+            <div class="portal-icon-box box-amber">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"/><polyline points="14 2 14 8 20 8"/><line x1="16" y1="13" x2="8" y2="13"/><line x1="16" y1="17" x2="8" y2="17"/>
               </svg>
             </div>
-            <div class="portal-card-body">
-              <div class="portal-header-line">
-                <span class="portal-tag tag-featured">PENDAFTARAN</span>
-                <span class="ext-arrow">↗</span>
+            <div class="portal-card-text">
+              <div class="portal-meta-top">
+                <span class="portal-role-tag tag-gold">PENDAFTARAN BARU</span>
+                <span class="portal-arrow-out">↗</span>
               </div>
-              <h3 class="portal-name">SPMB 2026</h3>
-              <p class="portal-domain">spmb2026.sdinpreslelingluan.com</p>
+              <h3 class="portal-title">SPMB 2026</h3>
+              <p class="portal-url">spmb2026.sdinpreslelingluan.com</p>
             </div>
           </a>
 
           <!-- 4. ARSIP DIGITAL -->
-          <a class="portal-card" href="https://archive-sdinleling.blogspot.com" target="_blank" rel="noopener">
-            <div class="card-glow"></div>
-            <div class="portal-icon-wrapper icon-indigo">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M21 8v13H3V8" />
-                <path d="M1 3h22v5H1z" />
-                <path d="M10 12h4" />
+          <a class="service-portal-card" href="https://archive-sdinleling.blogspot.com" target="_blank" rel="noopener">
+            <div class="portal-icon-box box-indigo">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21 8v13H3V8"/><path d="M1 3h22v5H1z"/><path d="M10 12h4"/>
               </svg>
             </div>
-            <div class="portal-card-body">
-              <div class="portal-header-line">
-                <span class="portal-tag">DOKUMEN</span>
-                <span class="ext-arrow">↗</span>
+            <div class="portal-card-text">
+              <div class="portal-meta-top">
+                <span class="portal-role-tag">ARSIP &amp; DATA</span>
+                <span class="portal-arrow-out">↗</span>
               </div>
-              <h3 class="portal-name">ARSIP DIGITAL</h3>
-              <p class="portal-domain">archive-sdinleling.blogspot.com</p>
+              <h3 class="portal-title">ARSIP DIGITAL</h3>
+              <p class="portal-url">archive-sdinleling.blogspot.com</p>
             </div>
           </a>
 
           <!-- 5. POSTING ARTIKEL -->
-          <a class="portal-card" href="https://postartikel.sdinpreslelingluan.com" target="_blank" rel="noopener">
-            <div class="card-glow"></div>
-            <div class="portal-icon-wrapper icon-purple">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M12 20h9" />
-                <path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z" />
+          <a class="service-portal-card" href="https://postartikel.sdinpreslelingluan.com" target="_blank" rel="noopener">
+            <div class="portal-icon-box box-purple">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 20h9"/><path d="M16.5 3.5a2.121 2.121 0 0 1 3 3L7 19l-4 1 1-4L16.5 3.5z"/>
               </svg>
             </div>
-            <div class="portal-card-body">
-              <div class="portal-header-line">
-                <span class="portal-tag">PUBLIKASI</span>
-                <span class="ext-arrow">↗</span>
+            <div class="portal-card-text">
+              <div class="portal-meta-top">
+                <span class="portal-role-tag">PUBLIKASI KARYA</span>
+                <span class="portal-arrow-out">↗</span>
               </div>
-              <h3 class="portal-name">POSTING ARTIKEL</h3>
-              <p class="portal-domain">postartikel.sdinpreslelingluan.com</p>
+              <h3 class="portal-title">POSTING ARTIKEL</h3>
+              <p class="portal-url">postartikel.sdinpreslelingluan.com</p>
             </div>
           </a>
 
           <!-- 6. JURNAL GURU -->
-          <a class="portal-card" href="https://jurnal.sdinpreslelingluan.com" target="_blank" rel="noopener">
-            <div class="card-glow"></div>
-            <div class="portal-icon-wrapper icon-rose">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z" />
-                <path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z" />
+          <a class="service-portal-card" href="https://jurnal.sdinpreslelingluan.com" target="_blank" rel="noopener">
+            <div class="portal-icon-box box-rose">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"/><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"/>
               </svg>
             </div>
-            <div class="portal-card-body">
-              <div class="portal-header-line">
-                <span class="portal-tag">ADMINISTRASI</span>
-                <span class="ext-arrow">↗</span>
+            <div class="portal-card-text">
+              <div class="portal-meta-top">
+                <span class="portal-role-tag">ADMINISTRASI KBM</span>
+                <span class="portal-arrow-out">↗</span>
               </div>
-              <h3 class="portal-name">JURNAL GURU</h3>
-              <p class="portal-domain">jurnal.sdinpreslelingluan.com</p>
+              <h3 class="portal-title">JURNAL GURU</h3>
+              <p class="portal-url">jurnal.sdinpreslelingluan.com</p>
             </div>
           </a>
 
-          <!-- 7. PRESENSI GURU -->
-          <a class="portal-card" href="https://siakad.sdinpreslelingluan.com" target="_blank" rel="noopener">
-            <div class="card-glow"></div>
-            <div class="portal-icon-wrapper icon-emerald">
-              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
-                stroke-linejoin="round">
-                <rect x="3" y="4" width="18" height="18" rx="2" ry="2" />
-                <line x1="16" y1="2" x2="16" y2="6" />
-                <line x1="8" y1="2" x2="8" y2="6" />
-                <line x1="3" y1="10" x2="21" y2="10" />
-                <path d="m9 16 2 2 4-4" />
+          <!-- 7. PRESENSI GURU (SIAKAD) -->
+          <a class="service-portal-card" href="https://siakad.sdinpreslelingluan.com" target="_blank" rel="noopener">
+            <div class="portal-icon-box box-emerald">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/><path d="m9 16 2 2 4-4"/>
               </svg>
             </div>
-            <div class="portal-card-body">
-              <div class="portal-header-line">
-                <span class="portal-tag">SIAKAD &amp; ABSENSI</span>
-                <span class="ext-arrow">↗</span>
+            <div class="portal-card-text">
+              <div class="portal-meta-top">
+                <span class="portal-role-tag">SIAKAD &amp; ABSENSI</span>
+                <span class="portal-arrow-out">↗</span>
               </div>
-              <h3 class="portal-name">PRESENSI GURU</h3>
-              <p class="portal-domain">siakad.sdinpreslelingluan.com</p>
+              <h3 class="portal-title">PRESENSI GURU</h3>
+              <p class="portal-url">siakad.sdinpreslelingluan.com</p>
             </div>
           </a>
         </div>
@@ -377,83 +337,78 @@
     </section>
 
     <!-- =========================================================
-         KATA SAMBUTAN KEPALA SEKOLAH (BAGIAN KHUSUS EKSKLUSIF)
+         3. KATA SAMBUTAN KEPALA SEKOLAH (EXECUTIVE SPEECH SECTION)
          ========================================================= -->
-    <section class="section-principal" id="sambutan">
+    <section class="section-principal-speech" id="sambutan">
       <div class="container">
-        <div class="principal-card reveal">
-          <div class="principal-layout">
-
-            <!-- Principal Photo Card -->
-            <div class="principal-media">
-              <div class="principal-frame">
-                <img
-                  src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgW7IiFIUu8cuaou0hWMfGSJCmQ7SdVPLQufa9nxHzm9z8bHS7KLIX-dLr2tzjxvET-eNKUI1J3c5GRkjbIevD2amgKAh_G3ps3u-vC4vepVkNLTe_YYpAvdh7vBa2u7wZhkn6PinxZN8LQ5z4uxxm4LiVxlYn8yyh_0Ft6pjUtke9aUhyphenhyphenyz0XNZxoXWAvW/s251/IMG-20251212-WA0017.jpg"
-                  alt="Kepala Sekolah SD Inpres Lelingluan" class="principal-photo">
-                <div class="principal-badge-tag">
-                  <span class="badge-icon">🎖️</span>
+        <div class="speech-executive-card reveal">
+          <div class="speech-grid-layout">
+            
+            <!-- Left: Principal Portrait & Verified Credentials -->
+            <div class="principal-profile-column">
+              <div class="principal-photo-frame">
+                <img 
+                  src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgW7IiFIUu8cuaou0hWMfGSJCmQ7SdVPLQufa9nxHzm9z8bHS7KLIX-dLr2tzjxvET-eNKUI1J3c5GRkjbIevD2amgKAh_G3ps3u-vC4vepVkNLTe_YYpAvdh7vBa2u7wZhkn6PinxZN8LQ5z4uxxm4LiVxlYn8yyh_0Ft6pjUtke9aUhyphenhyphenyz0XNZxoXWAvW/s251/IMG-20251212-WA0017.jpg" 
+                  alt="Kepala Sekolah SD Inpres Lelingluan" 
+                  class="principal-image-el"
+                >
+                <div class="principal-official-badge">
+                  <span class="badge-icon-star">🎖️</span>
                   <span>Kepala Sekolah</span>
                 </div>
               </div>
-              <div class="principal-info-box">
-                <h3 class="principal-name">SOFERET SEFATJA DOMAKUBUN, S.Pd</h3>
-                <p class="principal-role">Kepala SD Inpres Lelingluan</p>
-                <span class="principal-nip">NIP. 19680606 199111 1 001</span>
-                <span class="principal-loc">Kec. Tanimbar Utara, Maluku</span>
+              
+              <div class="principal-credential-block">
+                <h3 class="principal-full-name">SOFERET SEFATJA DOMAKUBUN, S.Pd</h3>
+                <p class="principal-designation">Kepala SD Inpres Lelingluan</p>
+                <div class="principal-nip-pill">NIP. 19680606 199111 1 001</div>
+                <span class="principal-location-tag">📍 Kec. Tanimbar Utara, Maluku</span>
               </div>
             </div>
 
-            <!-- Principal Speech Text -->
-            <div class="principal-text-col">
-              <div class="speech-quote-icon">“</div>
-              <span class="sub-eyebrow speech-eyebrow">KATA SAMBUTAN KEPALA SEKOLAH</span>
-              <h2 class="speech-heading">Mewujudkan Sekolah Menyenangkan &amp; Generasi Berkarakter Kuat.</h2>
-
-              <div class="speech-body">
-                <p class="speech-salutation">
+            <!-- Right: Official Welcome Speech -->
+            <div class="principal-speech-column">
+              <div class="speech-quote-mark" aria-hidden="true">“</div>
+              <span class="speech-eyebrow-tag">KATA SAMBUTAN RESMI</span>
+              <h2 class="speech-title">Mewujudkan Sekolah Menyenangkan &amp; Generasi Berkarakter Kuat.</h2>
+              
+              <div class="speech-text-paragraphs">
+                <p class="salutation-text">
                   <em>Syalom, Assalamualaikum Warahmatullahi Wabarakatuh.</em>
                 </p>
                 <p>
-                  Selamat datang di ruang digital resmi <strong>SD Inpres Lelingluan</strong>. Ruang digital ini kami
-                  hadirkan sebagai jendela informasi, wadah publikasi karya, serta jembatan komunikasi interaktif antara
-                  pihak sekolah, orang tua, dan masyarakat.
+                  Selamat datang di ruang digital resmi <strong>SD Inpres Lelingluan</strong>. Ruang digital ini kami hadirkan sebagai jendela informasi, wadah publikasi karya, serta jembatan komunikasi interaktif antara pihak sekolah, orang tua, dan masyarakat.
                 </p>
                 <p>
-                  SD Inpres Lelingluan terus berkomitmen memberikan layanan pendidikan terbaik demi mewujudkan sekolah
-                  yang menyenangkan, serta membentuk generasi unggul yang berkarakter kuat dan berempati terhadap
-                  sesama.
+                  SD Inpres Lelingluan terus berkomitmen memberikan layanan pendidikan terbaik demi mewujudkan sekolah yang menyenangkan, serta membentuk generasi unggul yang berkarakter kuat dan berempati terhadap sesama.
                 </p>
-                <p class="speech-closing">
-                  Terima kasih telah berkunjung. Mari berkolaborasi melahirkan agen-agen perubahan masa depan. <em>Tuhan
-                    memberkati kita sekalian.</em>
+                <p class="closing-blessing">
+                  Terima kasih telah berkunjung. Mari berkolaborasi melahirkan agen-agen perubahan masa depan. <em>Tuhan memberkati kita sekalian.</em>
                 </p>
               </div>
 
-              <!-- Key Leadership Vision Points -->
-              <div class="speech-features">
-                <div class="feat-item">
-                  <div class="feat-icon">🎯</div>
-                  <div>
+              <!-- Leadership Pillars -->
+              <div class="speech-vision-cards">
+                <div class="vision-card-item">
+                  <div class="vision-icon">🎯</div>
+                  <div class="vision-text">
                     <strong>Pendidikan Karakter &amp; Empati</strong>
-                    <span>Membentuk generasi unggul yang berkarakter kuat dan peduli sesama.</span>
+                    <span>Membentuk generasi unggul yang berkarakter kuat dan berempati terhadap sesama.</span>
                   </div>
                 </div>
-                <div class="feat-item">
-                  <div class="feat-icon">🤝</div>
-                  <div>
+                <div class="vision-card-item">
+                  <div class="vision-icon">🤝</div>
+                  <div class="vision-text">
                     <strong>Kolaborasi Masa Depan</strong>
-                    <span>Jembatan komunikasi interaktif sekolah, orang tua, dan masyarakat.</span>
+                    <span>Membangun jembatan komunikasi interaktif antara sekolah, keluarga, dan masyarakat.</span>
                   </div>
                 </div>
               </div>
 
-              <div class="speech-footer">
-                <a href="https://blog.sdinpreslelingluan.com/p/profil.html" target="_blank" rel="noopener"
-                  class="btn-main primary speech-btn">
-                  <span>Pelajari Profil Sekolah Lengkap</span>
-                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2">
-                    <path d="M5 12h14M12 5l7 7-7 7" />
-                  </svg>
+              <div class="speech-cta-row">
+                <a href="https://blog.sdinpreslelingluan.com/p/profil.html" target="_blank" rel="noopener" class="btn-main primary">
+                  <span>Profil &amp; Struktur Sekolah</span>
+                  <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14M12 5l7 7-7 7"/></svg>
                 </a>
               </div>
             </div>
@@ -464,140 +419,175 @@
     </section>
 
     <!-- =========================================================
-         PROFIL & PILAR KEUNGGULAN SEKOLAH
+         4. PROFIL & IDENTITAS SEKOLAH (EXECUTIVE DATA SUMMARY)
+         ========================================================= -->
+    <section class="section-identity" id="identitas">
+      <div class="container">
+        <div class="identity-card-box reveal">
+          <div class="identity-header">
+            <div>
+              <span class="section-eyebrow">IDENTITAS RESMI</span>
+              <h2 class="identity-title">Data Pokok SD Inpres Lelingluan</h2>
+            </div>
+            <a href="https://blog.sdinpreslelingluan.com/p/profil.html" target="_blank" rel="noopener" class="identity-link">
+              <span>Halaman Profil Lengkap</span> ↗
+            </a>
+          </div>
+
+          <div class="identity-items-grid">
+            <div class="ident-chip">
+              <span class="chip-label">Nama Satuan Pendidikan</span>
+              <strong class="chip-val">SD Inpres Lelingluan</strong>
+            </div>
+            <div class="ident-chip">
+              <span class="chip-label">Status Sekolah</span>
+              <strong class="chip-val">Negeri</strong>
+            </div>
+            <div class="ident-chip">
+              <span class="chip-label">Bentuk Pendidikan</span>
+              <strong class="chip-val">Sekolah Dasar (SD)</strong>
+            </div>
+            <div class="ident-chip">
+              <span class="chip-label">Status Akreditasi</span>
+              <strong class="chip-val highlight-gold">Akreditasi B</strong>
+            </div>
+            <div class="ident-chip">
+              <span class="chip-label">Kurikulum</span>
+              <strong class="chip-val highlight-blue">Kurikulum Merdeka</strong>
+            </div>
+            <div class="ident-chip">
+              <span class="chip-label">Wilayah Administrasi</span>
+              <strong class="chip-val">Kec. Tanimbar Utara, Maluku</strong>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- =========================================================
+         5. PILAR KEUNGGULAN PENDIDIKAN
          ========================================================= -->
     <section class="section-pillars" id="profil">
       <div class="container">
-        <div class="section-header-center reveal">
-          <span class="sub-eyebrow">NILAI &amp; KEUNGGULAN</span>
-          <h2 class="section-title">Pilar Pendidikan SD Inpres Lelingluan</h2>
-          <p class="section-desc">Empat fondasi utama dalam mendampingi tumbuh kembang setiap peserta didik.</p>
+        <div class="section-title-center reveal">
+          <span class="section-eyebrow">NILAI &amp; KOMITMEN</span>
+          <h2 class="section-main-heading">4 Pilar Pendidikan Sekolah</h2>
+          <p class="section-sub-heading">Landasan kokoh kami dalam mendidik generasi penerus bangsa.</p>
         </div>
 
-        <div class="pillars-grid reveal delay-1">
-          <div class="pillar-card">
-            <div class="pillar-num">01</div>
-            <div class="pillar-icon">🌱</div>
-            <h3>Pendidikan Karakter</h3>
-            <p>Membiasakan nilai gotong royong, kejujuran, religiusitas, dan saling menghormati dalam setiap aktivitas
-              belajar.</p>
+        <div class="pillars-container-grid reveal delay-1">
+          <div class="pillar-card-box">
+            <span class="pillar-badge-num">PILAR 01</span>
+            <div class="pillar-card-icon">🌱</div>
+            <h3 class="pillar-title">Karakter &amp; Budi Pekerti</h3>
+            <p class="pillar-desc">Menanamkan nilai-nilai religiusitas, kejujuran, disiplin, toleransi, dan gotong royong dalam keseharian siswa.</p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-num">02</div>
-            <div class="pillar-icon">📚</div>
-            <h3>Literasi &amp; Numerasi</h3>
-            <p>Penguatan kemampuan berpikir kritis, pemahaman bacaan, dan eksplorasi sains dasar yang kontekstual.</p>
+          <div class="pillar-card-box">
+            <span class="pillar-badge-num">PILAR 02</span>
+            <div class="pillar-card-icon">📚</div>
+            <h3 class="pillar-title">Literasi &amp; Numerasi</h3>
+            <p class="pillar-desc">Meningkatkan kemampuan pemahaman bacaan, penalaran matematika terapan, dan daya nalar kritis peserta didik.</p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-num">03</div>
-            <div class="pillar-icon">💡</div>
-            <h3>Kreativitas &amp; Seni</h3>
-            <p>Ruang berekspresi melalui kesenian daerah Tanimbar, prakarya, musik, dan ragam bakat peserta didik.</p>
+          <div class="pillar-card-box">
+            <span class="pillar-badge-num">PILAR 03</span>
+            <div class="pillar-card-icon">🎭</div>
+            <h3 class="pillar-title">Kearifan Lokal Tanimbar</h3>
+            <p class="pillar-desc">Melestarikan nilai budaya luhur, seni tradisi, prakarya daerah, dan kebersamaan masyarakat Kepulauan Tanimbar.</p>
           </div>
 
-          <div class="pillar-card">
-            <div class="pillar-num">04</div>
-            <div class="pillar-icon">🤝</div>
-            <h3>Kolaborasi Harmonis</h3>
-            <p>Kemitraan yang erat antara pendidik, orang tua, dan masyarakat demi ekosistem belajar yang aman dan
-              kondusif.</p>
+          <div class="pillar-card-box">
+            <span class="pillar-badge-num">PILAR 04</span>
+            <div class="pillar-card-icon">💻</div>
+            <h3 class="pillar-title">Adaptasi &amp; Inovasi Digital</h3>
+            <p class="pillar-desc">Memanfaatkan teknologi informasi secara bijak dalam pembelajaran serta pengelolaan administrasi sekolah yang transparan.</p>
           </div>
         </div>
       </div>
     </section>
 
     <!-- =========================================================
-         BERITA & INFORMASI TERBARU (EDITORIAL CLEAN)
+         6. BERITA & INFORMASI TERBARU (CLEAN EDITORIAL)
          ========================================================= -->
-    <section class="section-news" id="berita">
+    <section class="section-news-feed" id="berita">
       <div class="container">
-        <div class="section-header-flex reveal">
+        <div class="section-header-split reveal">
           <div>
-            <span class="sub-eyebrow">KABAR TERKINI</span>
-            <h2 class="section-title">Berita &amp; Informasi Sekolah</h2>
+            <span class="section-eyebrow">INFORMASI RESMI</span>
+            <h2 class="section-main-heading">Berita &amp; Kabar Sekolah</h2>
           </div>
-          <a class="link-more" href="https://blog.sdinpreslelingluan.com/search/label/Berita" target="_blank"
-            rel="noopener">
-            <span>Lihat Semua Berita</span> ↗
+          <a class="view-all-link" href="https://blog.sdinpreslelingluan.com/search/label/Berita" target="_blank" rel="noopener">
+            <span>Arsip Berita Lengkap</span> ↗
           </a>
         </div>
 
-        <div class="news-grid" id="news-container">
-          <div class="loading-state"><span class="spinner"></span> Memuat berita terbaru dari sekolah...</div>
+        <div class="news-cards-container" id="news-container">
+          <div class="loading-placeholder-box"><span class="spinner-icon"></span> Memuat berita terbaru sekolah...</div>
         </div>
       </div>
     </section>
 
     <!-- =========================================================
-         KEGIATAN & ARSIP AKTIVITAS SISWA
+         7. KEGIATAN & DOKUMENTASI SISWA
          ========================================================= -->
-    <section class="section-activities" id="kegiatan">
+    <section class="section-activity-feed" id="kegiatan">
       <div class="container">
-        <div class="section-header-flex reveal">
+        <div class="section-header-split reveal">
           <div>
-            <span class="sub-eyebrow">DOKUMENTASI &amp; CERITA</span>
-            <h2 class="section-title">Kegiatan &amp; Dinamika Sekolah</h2>
+            <span class="section-eyebrow">DOKUMENTASI SEKOLAH</span>
+            <h2 class="section-main-heading dark-title">Kegiatan &amp; Dinamika Belajar</h2>
           </div>
-          <a class="link-more light" href="https://blog.sdinpreslelingluan.com/search/label/Story" target="_blank"
-            rel="noopener">
+          <a class="view-all-link gold" href="https://blog.sdinpreslelingluan.com/search/label/Story" target="_blank" rel="noopener">
             <span>Lihat Semua Kegiatan</span> ↗
           </a>
         </div>
 
-        <div class="activity-cards-grid" id="story-container">
-          <div class="loading-state dark"><span class="spinner"></span> Memuat dokumentasi kegiatan...</div>
+        <div class="activity-cards-container" id="story-container">
+          <div class="loading-placeholder-box dark"><span class="spinner-icon"></span> Memuat dokumentasi kegiatan...</div>
         </div>
       </div>
     </section>
 
     <!-- =========================================================
-         FAQ: TANYA JAWAB UMUM
+         8. TANYA JAWAB (FAQ)
          ========================================================= -->
     <section class="section-faq" id="faq">
       <div class="container">
-        <div class="section-header-center reveal">
-          <span class="sub-eyebrow">INFORMASI PENTING</span>
-          <h2 class="section-title">Tanya Jawab Seputar Sekolah</h2>
-          <p class="section-desc">Pertanyaan yang sering diajukan mengenai SPMB, portal digital, dan kegiatan belajar.
-          </p>
+        <div class="section-title-center reveal">
+          <span class="section-eyebrow">PUSAT BANTUAN</span>
+          <h2 class="section-main-heading">Pertanyaan yang Sering Diajukan (FAQ)</h2>
+          <p class="section-sub-heading">Informasi praktis seputar pendaftaran siswa baru, portal digital, dan layanan sekolah.</p>
         </div>
 
-        <div class="faq-accordion reveal delay-1">
-          <details class="faq-item" open>
-            <summary class="faq-question">
-              <span>Bagaimana cara mendaftar peserta didik baru (SPMB Online)?</span>
-              <span class="faq-icon">+</span>
+        <div class="faq-accordion-list reveal delay-1">
+          <details class="faq-card" open>
+            <summary class="faq-summary">
+              <span>Bagaimana alur pendaftaran peserta didik baru (SPMB Online)?</span>
+              <span class="faq-arrow-indicator">+</span>
             </summary>
-            <div class="faq-answer">
-              <p>Pendaftaran dapat dilakukan secara online melalui tombol <strong>SPMB 2026</strong> di portal ini (<a
-                  href="https://spmb2026.sdinpreslelingluan.com" target="_blank"
-                  rel="noopener">spmb2026.sdinpreslelingluan.com</a>) atau langsung datang ke bagian tata usaha sekolah
-                pada jam kerja.</p>
+            <div class="faq-body-content">
+              <p>Pendaftaran dapat dilakukan secara praktis melalui portal <strong>SPMB 2026</strong> di <a href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener">spmb2026.sdinpreslelingluan.com</a> atau dengan mengunjungi langsung loket sekretariat sekolah di SD Inpres Lelingluan pada hari dan jam kerja.</p>
             </div>
           </details>
 
-          <details class="faq-item">
-            <summary class="faq-question">
-              <span>Siapa saja yang dapat mengakses Portal Guru dan Portal Siswa?</span>
-              <span class="faq-icon">+</span>
+          <details class="faq-card">
+            <summary class="faq-summary">
+              <span>Bagaimana cara mengakses Portal Guru dan Portal Siswa?</span>
+              <span class="faq-arrow-indicator">+</span>
             </summary>
-            <div class="faq-answer">
-              <p>Portal Guru diperuntukkan bagi pendidik dan staf untuk pengelolaan perangkat ajar serta administrasi.
-                Portal Siswa diperuntukkan bagi murid dan orang tua untuk melihat informasi belajar, jadwal, dan
-                kegiatan.</p>
+            <div class="faq-body-content">
+              <p>Bapak/Ibu Guru dapat mengakses <strong>Portal Guru</strong> di <a href="https://portalguru.sdinpreslelingluan.com" target="_blank" rel="noopener">portalguru.sdinpreslelingluan.com</a> untuk perangkat ajar dan jurnal. Siswa dan orang tua dapat mengakses <strong>Portal Siswa</strong> di <a href="https://portalsiswa.sdinpreslelingluan.com" target="_blank" rel="noopener">portalsiswa.sdinpreslelingluan.com</a> untuk melihat informasi akademik.</p>
             </div>
           </details>
 
-          <details class="faq-item">
-            <summary class="faq-question">
-              <span>Di mana lokasi SD Inpres Lelingluan?</span>
-              <span class="faq-icon">+</span>
+          <details class="faq-card">
+            <summary class="faq-summary">
+              <span>Di mana lokasi tepat SD Inpres Lelingluan?</span>
+              <span class="faq-arrow-indicator">+</span>
             </summary>
-            <div class="faq-answer">
-              <p>SD Inpres Lelingluan berlokasi di Desa Lelingluan, Kecamatan Tanimbar Utara, Kabupaten Kepulauan
-                Tanimbar, Provinsi Maluku.</p>
+            <div class="faq-body-content">
+              <p>SD Inpres Lelingluan berlokasi di Desa Lelingluan, Kecamatan Tanimbar Utara, Kabupaten Kepulauan Tanimbar, Provinsi Maluku.</p>
             </div>
           </details>
         </div>
@@ -605,24 +595,22 @@
     </section>
 
     <!-- =========================================================
-         CALL TO ACTION BANNER
+         9. CTA BANNER
          ========================================================= -->
-    <section class="section-cta" id="kontak">
+    <section class="section-cta-banner">
       <div class="container">
-        <div class="cta-banner reveal">
-          <div class="cta-glow-mesh"></div>
-          <div class="cta-content">
-            <span class="cta-pill">SD INPRES LELINGLUAN</span>
-            <h2 class="cta-title">Siap Bertumbuh Bersama Kami?</h2>
-            <p class="cta-desc">Jelajahi seluruh dokumentasi, profil guru, berita terkini, dan galeri karya di website
-              utama sekolah.</p>
-            <div class="cta-buttons">
+        <div class="cta-executive-box reveal">
+          <div class="cta-mesh-light"></div>
+          <div class="cta-inner-text">
+            <span class="cta-badge-tag">SD INPRES LELINGLUAN</span>
+            <h2 class="cta-heading">Mari Mengenal &amp; Berkolaborasi Bersama Kami.</h2>
+            <p class="cta-paragraph">Kunjungi website utama sekolah untuk membaca artikel lengkap, galeri dokumentasi momen, serta pengumuman akademik terbaru.</p>
+            <div class="cta-actions-group">
               <a href="https://blog.sdinpreslelingluan.com" target="_blank" rel="noopener" class="btn-main primary">
                 <span>Kunjungi Website Utama</span> ↗
               </a>
-              <a href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener"
-                class="btn-main secondary light">
-                <span>Info SPMB 2026</span>
+              <a href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener" class="btn-main secondary light-border">
+                <span>Pendaftaran SPMB 2026</span>
               </a>
             </div>
           </div>
@@ -632,58 +620,59 @@
   </main>
 
   <!-- =========================================================
-       FOOTER
+       10. INSTITUTIONAL EXECUTIVE FOOTER
        ========================================================= -->
   <footer class="site-footer">
-    <div class="container footer-main">
-      <div class="footer-brand-col">
-        <a class="brand footer-brand" href="#top">
-          <div class="brand-logo-frame">
-            <img id="footer-logo" src="assets/logo.png" alt="Logo SD Inpres Lelingluan" width="40" height="40">
+    <div class="container footer-grid-container">
+      <!-- School Identity Column -->
+      <div class="footer-identity-column">
+        <a class="brand-link footer-brand" href="#top">
+          <div class="brand-emblem">
+            <img id="footer-logo" src="assets/logo.png" alt="Logo SD Inpres Lelingluan" width="38" height="38">
           </div>
-          <div class="brand-text">
-            <b>SD INPRES</b>
-            <small>LELINGLUAN</small>
+          <div class="brand-info">
+            <span class="brand-title">SD INPRES</span>
+            <span class="brand-subtitle">LELINGLUAN</span>
           </div>
         </a>
-        <p class="footer-tagline">
+        <p class="footer-mission-text">
           Mewujudkan peserta didik yang berkarakter luhur, berwawasan luas, cerdas, dan adaptif di era digital.
         </p>
-        <div class="footer-location">
-          <span>📍 Kec. Tanimbar Utara, Kab. Kepulauan Tanimbar, Maluku</span>
+        <div class="footer-location-info">
+          <span>📍 Desa Lelingluan, Kec. Tanimbar Utara, Kab. Kepulauan Tanimbar, Maluku</span>
         </div>
       </div>
 
-      <div class="footer-links-col">
-        <h4 class="footer-heading">Navigasi Halaman</h4>
-        <ul class="footer-links-list">
+      <!-- Navigation Links -->
+      <div class="footer-links-column">
+        <h4 class="footer-block-heading">Navigasi Halaman</h4>
+        <ul class="footer-menu-list">
           <li><a href="#layanan">Layanan Digital</a></li>
           <li><a href="#sambutan">Sambutan Kepala Sekolah</a></li>
+          <li><a href="#identitas">Profil &amp; Data Pokok</a></li>
           <li><a href="#profil">Pilar Pendidikan</a></li>
-          <li><a href="#berita">Berita Terbaru</a></li>
+          <li><a href="#berita">Berita Sekolah</a></li>
           <li><a href="#kegiatan">Kegiatan Siswa</a></li>
           <li><a href="#faq">Tanya Jawab</a></li>
         </ul>
       </div>
 
-      <div class="footer-links-col">
-        <h4 class="footer-heading">7 Portal Layanan</h4>
-        <ul class="footer-links-list">
-          <li><a href="https://portal.sdinpreslelingluan.com" target="_blank" rel="noopener">Portal Guru ↗</a></li>
-          <li><a href="https://portalsiswa.sdinpreslelingluan.com" target="_blank" rel="noopener">Portal Siswa ↗</a>
-          </li>
+      <!-- 7 Portals Direct Links -->
+      <div class="footer-links-column">
+        <h4 class="footer-block-heading">7 Portal Layanan Digital</h4>
+        <ul class="footer-menu-list">
+          <li><a href="https://portalguru.sdinpreslelingluan.com" target="_blank" rel="noopener">Portal Guru ↗</a></li>
+          <li><a href="https://portalsiswa.sdinpreslelingluan.com" target="_blank" rel="noopener">Portal Siswa ↗</a></li>
           <li><a href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener">SPMB 2026 ↗</a></li>
           <li><a href="https://archive-sdinleling.blogspot.com" target="_blank" rel="noopener">Arsip Digital ↗</a></li>
-          <li><a href="https://postartikel.sdinpreslelingluan.com" target="_blank" rel="noopener">Posting Artikel ↗</a>
-          </li>
+          <li><a href="https://postartikel.sdinpreslelingluan.com" target="_blank" rel="noopener">Posting Artikel ↗</a></li>
           <li><a href="https://jurnal.sdinpreslelingluan.com" target="_blank" rel="noopener">Jurnal Guru ↗</a></li>
-          <li><a href="https://siakad.sdinpreslelingluan.com" target="_blank" rel="noopener">Presensi Guru (Siakad)
-              ↗</a></li>
+          <li><a href="https://siakad.sdinpreslelingluan.com" target="_blank" rel="noopener">Presensi Guru (Siakad) ↗</a></li>
         </ul>
       </div>
     </div>
 
-    <div class="container footer-bottom-bar">
+    <div class="container footer-copyright-row">
       <span>&copy; 2026 SD Inpres Lelingluan. Hak Cipta Dilindungi.</span>
       <span>Made by Edward Domakubun</span>
     </div>
@@ -691,5 +680,4 @@
 
   <script src="app.js"></script>
 </body>
-
 </html>

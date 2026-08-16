@@ -14,7 +14,7 @@ const CONFIG = {
     story: 'https://blog.sdinpreslelingluan.com/search/label/Story',
     galeri: 'https://blog.sdinpreslelingluan.com/search/label/Galeri',
     download: 'https://blog.sdinpreslelingluan.com/p/download.html',
-    portalGuru: 'https://portal.sdinpreslelingluan.com',
+    portalGuru: 'https://portalguru.sdinpreslelingluan.com',
     portalSiswa: 'https://portalsiswa.sdinpreslelingluan.com',
     spmb: 'https://spmb2026.sdinpreslelingluan.com',
     archive: 'https://archive-sdinleling.blogspot.com',
@@ -163,7 +163,7 @@ function renderNews(posts) {
 
   if (!State.posts.news.length) {
     container.innerHTML =
-      '<div class="loading-state">Belum ada berita terbaru saat ini.</div>';
+      '<div class="loading-placeholder-box">Belum ada berita terbaru saat ini. Kunjungi arsip berita untuk informasi lengkap.</div>';
     return;
   }
 
@@ -196,7 +196,7 @@ function renderStory(posts) {
 
   if (!State.posts.story.length) {
     container.innerHTML =
-      '<div class="loading-state dark">Belum ada dokumentasi kegiatan publik saat ini.</div>';
+      '<div class="loading-placeholder-box dark">Belum ada dokumentasi kegiatan publik saat ini.</div>';
     return;
   }
 
@@ -292,7 +292,7 @@ async function loadLandingContent() {
     const newsContainer = $('#news-container');
     if (newsContainer) {
       newsContainer.innerHTML =
-        '<div class="loading-state">Berita belum dapat dimuat. Silakan kunjungi website utama.</div>';
+        '<div class="loading-placeholder-box">Berita belum dapat dimuat saat ini. Silakan kunjungi website utama sekolah.</div>';
     }
   }
 
@@ -302,7 +302,7 @@ async function loadLandingContent() {
     const storyContainer = $('#story-container');
     if (storyContainer) {
       storyContainer.innerHTML =
-        '<div class="loading-state dark">Kegiatan belum dapat dimuat saat ini.</div>';
+        '<div class="loading-placeholder-box dark">Dokumentasi kegiatan belum dapat dimuat saat ini.</div>';
     }
   }
 
