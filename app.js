@@ -141,17 +141,11 @@ function jsonpFeed(label, limit) {
 
 function renderBrandLogo() {
   const logoUrl = CONFIG.brandLogo || 'assets/logo.png';
-
   ['#brand-logo', '#footer-logo'].forEach(selector => {
     const image = $(selector);
     if (!image) return;
     image.src = logoUrl;
-    image.hidden = false;
-    image.onerror = () => {
-      if (!image.src.endsWith('assets/logo.png')) {
-        image.src = 'assets/logo.png';
-      }
-    };
+    image.onerror = () => { image.src = 'assets/logo.png'; };
   });
 }
 
@@ -167,22 +161,18 @@ function renderNews(posts) {
     return;
   }
 
-  container.innerHTML = State.posts.news.map((post, index) => {
+  container.innerHTML = State.posts.news.map(post => {
     const title = escapeHTML(postTitle(post));
     const href = escapeHTML(postUrl(post));
     const date = escapeHTML(postDate(post));
     const desc = escapeHTML(excerpt(post));
-
     return `
-      <a class="news-card-editorial${index === 0 ? ' news-card-featured' : ''}"
-         href="${href}" target="_blank" rel="noopener">
+      <a class="news-card-editorial" href="${href}" target="_blank" rel="noopener">
         <div class="news-card-badge">BERITA SEKOLAH</div>
-        <div class="news-card-content">
-          <small class="news-card-date">📅 ${date}</small>
-          <b class="news-card-title">${title}</b>
-          <p class="news-card-desc">${desc}</p>
-          <span class="news-card-link">Baca Selengkapnya ↗</span>
-        </div>
+        <div class="news-card-date">${date}</div>
+        <b class="news-card-title">${title}</b>
+        <p class="news-card-desc">${desc}</p>
+        <span class="news-card-link">Baca Selengkapnya ↗</span>
       </a>
     `;
   }).join('');
@@ -208,13 +198,11 @@ function renderStory(posts) {
 
     return `
       <a class="activity-card-modern" href="${href}" target="_blank" rel="noopener">
-        <div class="activity-card-inner">
-          <span class="activity-tag">KEGIATAN</span>
-          <small class="activity-date">📅 ${date}</small>
-          <b class="activity-title">${title}</b>
-          <p class="activity-desc">${desc}</p>
-          <span class="activity-read-more">Lihat Kegiatan ↗</span>
-        </div>
+        <span class="activity-tag">KEGIATAN</span>
+        <span class="activity-date">${date}</span>
+        <b class="activity-title">${title}</b>
+        <p class="activity-desc">${desc}</p>
+        <span class="activity-read-more">Lihat Kegiatan ↗</span>
       </a>
     `;
   }).join('');
@@ -235,6 +223,8 @@ function initHeader() {
 function initMobileMenu() {
   const btn = $('#menu-btn');
   const menu = $('#mobile-menu');
+  const iconMenu  = $('#icon-menu');
+  const iconClose = $('#icon-close');
 
   if (!btn || !menu) return;
 
@@ -242,14 +232,12 @@ function initMobileMenu() {
     menu.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     menu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    document.body.style.overflow = open ? 'hidden' : '';
+    if (iconMenu)  iconMenu.style.display  = open ? 'none'  : 'block';
+    if (iconClose) iconClose.style.display = open ? 'block' : 'none';
   };
 
   btn.addEventListener('click', () => toggle());
-
-  $$('a', menu).forEach(link => {
-    link.addEventListener('click', () => toggle(false));
-  });
+  $$('a', menu).forEach(link => link.addEventListener('click', () => toggle(false)));
 }
 
 function initReveal() {
@@ -270,12 +258,8 @@ function initReveal() {
 function finishLoader() {
   const loader = $('#page-loader');
   if (!loader) return;
-
   loader.classList.add('loaded');
-
-  setTimeout(() => {
-    loader.remove();
-  }, 600);
+  setTimeout(() => loader.remove(), 500);
 }
 
 async function loadLandingContent() {
