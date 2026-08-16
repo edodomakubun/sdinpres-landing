@@ -18,9 +18,13 @@ const CONFIG = {
     story: 'https://blog.sdinpreslelingluan.com/search/label/Story',
     galeri: 'https://blog.sdinpreslelingluan.com/search/label/Galeri',
     download: 'https://blog.sdinpreslelingluan.com/p/download.html',
-    spmb: 'https://spmb2026.sdinpreslelingluan.com',
+    portalGuru: 'https://portal.sdinpreslelingluan.com',
     portalSiswa: 'https://portalsiswa.sdinpreslelingluan.com',
-    archive: 'https://archive-sdinleling.blogspot.com'
+    spmb: 'https://spmb2026.sdinpreslelingluan.com',
+    archive: 'https://archive-sdinleling.blogspot.com',
+    postArtikel: 'https://postartikel.sdinpreslelingluan.com',
+    jurnalGuru: 'https://jurnal.sdinpreslelingluan.com',
+    presensiGuru: 'https://siakad.sdinpreslelingluan.com'
   }
 };
 
