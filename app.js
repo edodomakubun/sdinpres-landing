@@ -4,12 +4,8 @@ const CONFIG = {
   brandLogo: 'assets/logo.png',
   newsLabel: 'Berita',
   storyLabel: 'Story',
-  galleryLabel: 'Galeri',
   newsLimit: 4,
   storyLimit: 4,
-  galleryPosts: 6,
-  galleryImagesPerPost: 4,
-  imageSize: 's1200',
   timeout: 15000,
   schoolLinks: {
     main: 'https://blog.sdinpreslelingluan.com',
@@ -34,11 +30,8 @@ const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
 const State = {
   posts: {
     news: [],
-    story: [],
-    gallery: []
-  },
-  galleryItems: [],
-  lightboxIndex: 0
+    story: []
+  }
 };
 
 function escapeHTML(value = '') {
@@ -81,55 +74,7 @@ function postDate(post) {
     : 'Info terbaru';
 }
 
-function normalizeImageUrl(url, size = CONFIG.imageSize) {
-  if (!url) return '';
-
-  return String(url)
-    .replace(/\/s\d+(?:-[a-zA-Z0-9-]+)?\//, `/${size}/`)
-    .replace(/\/w\d+-h\d+(?:-[a-zA-Z0-9-]+)?\//, `/${size}/`);
-}
-
-function extractImagesFromHtml(html = '') {
-  if (!html) return [];
-
-  const doc = new DOMParser().parseFromString(html, 'text/html');
-
-  return [...doc.querySelectorAll('img')]
-    .map(img => ({
-      src: normalizeImageUrl(img.getAttribute('src') || img.getAttribute('data-src')),
-      alt: img.getAttribute('alt') || ''
-    }))
-    .filter(item => item.src);
-}
-
-function extractPostImages(post) {
-  const images = [];
-
-  if (post?.media$thumbnail?.url) {
-    images.push({
-      src: normalizeImageUrl(post.media$thumbnail.url),
-      alt: postTitle(post)
-    });
-  }
-
-  const htmlImages = extractImagesFromHtml(
-    post?.content?.$t || post?.summary?.$t || ''
-  );
-
-  htmlImages.forEach(item => {
-    if (!images.some(existing => existing.src === item.src)) {
-      images.push(item);
-    }
-  });
-
-  return images;
-}
-
-function firstImage(post) {
-  return extractPostImages(post)[0]?.src || '';
-}
-
-function excerpt(post, max = 125) {
+function excerpt(post, max = 130) {
   const html = post?.summary?.$t || post?.content?.$t || '';
   const doc = new DOMParser().parseFromString(html, 'text/html');
   const text = (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
@@ -194,71 +139,6 @@ function jsonpFeed(label, limit) {
   });
 }
 
-function setDynamicImage(container, imageUrl, alt = '') {
-  if (!container || !imageUrl) return false;
-
-  const current = container.querySelector('img.dynamic-img');
-
-  if (current) {
-    current.src = imageUrl;
-    current.alt = alt;
-  } else {
-    const image = document.createElement('img');
-    image.className = 'dynamic-img';
-    image.src = imageUrl;
-    image.alt = alt;
-    image.loading = 'eager';
-    image.decoding = 'async';
-
-    image.addEventListener('error', () => {
-      image.remove();
-      container.classList.add('image-failed');
-    }, { once: true });
-
-    container.appendChild(image);
-  }
-
-  container.classList.add('image-ready');
-  const loading = $('.image-loading', container);
-  if (loading) loading.remove();
-
-  const fallback = $('.photo-fallback', container);
-  if (fallback) fallback.hidden = true;
-
-  return true;
-}
-
-function chooseVisualImages() {
-  const all = [
-    ...State.posts.gallery.flatMap(post => extractPostImages(post)),
-    ...State.posts.story.flatMap(post => extractPostImages(post)),
-    ...State.posts.news.flatMap(post => extractPostImages(post))
-  ];
-
-  const unique = [];
-  all.forEach(item => {
-    if (item.src && !unique.some(current => current.src === item.src)) {
-      unique.push(item);
-    }
-  });
-
-  return unique;
-}
-
-function renderHeroVisuals() {
-  const images = chooseVisualImages();
-
-  const hero = images[0]?.src || '';
-  const about = images[1]?.src || hero;
-  const program1 = images[2]?.src || about;
-  const program2 = images[3]?.src || program1;
-
-  setDynamicImage($('#hero-photo'), hero, 'SD Inpres Lelingluan');
-  setDynamicImage($('#about-photo'), about, 'Kegiatan SD Inpres Lelingluan');
-  setDynamicImage($('#program-photo-1'), program1, 'Kegiatan SD Inpres Lelingluan');
-  setDynamicImage($('#program-photo-2'), program2, 'Kegiatan SD Inpres Lelingluan');
-}
-
 function renderBrandLogo() {
   const logoUrl = CONFIG.brandLogo || 'assets/logo.png';
 
@@ -288,22 +168,20 @@ function renderNews(posts) {
   }
 
   container.innerHTML = State.posts.news.map((post, index) => {
-    const image = firstImage(post);
     const title = escapeHTML(postTitle(post));
     const href = escapeHTML(postUrl(post));
+    const date = escapeHTML(postDate(post));
+    const desc = escapeHTML(excerpt(post));
 
     return `
-      <a class="news-card${index === 0 ? ' news-card-featured' : ''}"
+      <a class="news-card-editorial${index === 0 ? ' news-card-featured' : ''}"
          href="${href}" target="_blank" rel="noopener">
-        ${image
-          ? `<img src="${escapeHTML(image)}" alt="${title}" loading="${index === 0 ? 'eager' : 'lazy'}">`
-          : '<div class="feed-fallback">BERITA</div>'}
-        <div class="news-overlay">
-          <small>${escapeHTML(postDate(post))} · BERITA</small>
-          <b>${title}</b>
-          ${index === 0
-            ? `<span class="news-excerpt">${escapeHTML(excerpt(post, 135))}</span>`
-            : ''}
+        <div class="news-card-badge">BERITA SEKOLAH</div>
+        <div class="news-card-content">
+          <small class="news-card-date">📅 ${date}</small>
+          <b class="news-card-title">${title}</b>
+          <p class="news-card-desc">${desc}</p>
+          <span class="news-card-link">Baca Selengkapnya ↗</span>
         </div>
       </a>
     `;
@@ -318,190 +196,73 @@ function renderStory(posts) {
 
   if (!State.posts.story.length) {
     container.innerHTML =
-      '<div class="loading-card dark-loading">Belum ada kegiatan dengan label Story.</div>';
+      '<div class="loading-card dark-loading">Belum ada kegiatan publik.</div>';
     return;
   }
 
   container.innerHTML = State.posts.story.map(post => {
-    const image = firstImage(post);
     const title = escapeHTML(postTitle(post));
     const href = escapeHTML(postUrl(post));
+    const date = escapeHTML(postDate(post));
+    const desc = escapeHTML(excerpt(post, 100));
 
     return `
-      <a class="activity-card" href="${href}" target="_blank" rel="noopener">
-        ${image
-          ? `<img src="${escapeHTML(image)}" alt="${title}" loading="lazy">`
-          : '<div class="activity-fallback">STORY</div>'}
-        <div>
-          <small>${escapeHTML(postDate(post))}</small>
-          <b>${title}</b>
+      <a class="activity-card-modern" href="${href}" target="_blank" rel="noopener">
+        <div class="activity-card-inner">
+          <span class="activity-tag">KEGIATAN</span>
+          <small class="activity-date">📅 ${date}</small>
+          <b class="activity-title">${title}</b>
+          <p class="activity-desc">${desc}</p>
+          <span class="activity-read-more">Lihat Kegiatan ↗</span>
         </div>
       </a>
     `;
   }).join('');
 }
 
-function renderGallery(posts) {
-  const container = $('#gallery-container');
-  if (!container) return;
-
-  State.posts.gallery = posts.slice(0, CONFIG.galleryPosts);
-  State.galleryItems = [];
-
-  State.posts.gallery.forEach(post => {
-    const images = extractPostImages(post).slice(0, CONFIG.galleryImagesPerPost);
-
-    images.forEach(image => {
-      State.galleryItems.push({
-        src: image.src,
-        alt: image.alt || postTitle(post),
-        title: postTitle(post),
-        date: postDate(post),
-        url: postUrl(post)
-      });
-    });
-  });
-
-  if (!State.galleryItems.length) {
-    container.innerHTML =
-      '<div class="loading-card">Belum ada foto dengan label Galeri.</div>';
-    return;
-  }
-
-  /*
-   * Maksimum 8 visual pada homepage.
-   * Semua gambar tetap berasal dari posting Blogger.
-   */
-  State.galleryItems = State.galleryItems.slice(0, 8);
-
-  container.innerHTML = State.galleryItems.map((item, index) => `
-    <button
-      class="gallery-item"
-      type="button"
-      data-gallery-index="${index}"
-      aria-label="Buka ${escapeHTML(item.title)}"
-    >
-      <img
-        src="${escapeHTML(item.src)}"
-        alt="${escapeHTML(item.alt)}"
-        loading="${index < 3 ? 'eager' : 'lazy'}"
-      >
-      <span>${escapeHTML(item.title)}</span>
-    </button>
-  `).join('');
-
-  $$('.gallery-item', container).forEach(button => {
-    button.addEventListener('click', () => {
-      openLightbox(Number(button.dataset.galleryIndex) || 0);
-    });
-  });
-}
-
-function openLightbox(index) {
-  if (!State.galleryItems.length) return;
-
-  State.lightboxIndex =
-    (index + State.galleryItems.length) % State.galleryItems.length;
-
-  const item = State.galleryItems[State.lightboxIndex];
-  const lightbox = $('#lightbox');
-  const image = $('#lightbox-image');
-  const caption = $('#lightbox-caption');
-
-  if (!lightbox || !image || !caption) return;
-
-  image.src = item.src;
-  image.alt = item.alt || item.title;
-  caption.textContent = `${item.title} · ${item.date}`;
-
-  lightbox.classList.add('open');
-  lightbox.setAttribute('aria-hidden', 'false');
-  document.body.classList.add('lightbox-open');
-}
-
-function closeLightbox() {
-  const lightbox = $('#lightbox');
-  if (!lightbox) return;
-
-  lightbox.classList.remove('open');
-  lightbox.setAttribute('aria-hidden', 'true');
-  document.body.classList.remove('lightbox-open');
-}
-
-function nextLightbox() {
-  openLightbox(State.lightboxIndex + 1);
-}
-
-function previousLightbox() {
-  openLightbox(State.lightboxIndex - 1);
-}
-
-function initLightbox() {
-  $('#lightbox-close')?.addEventListener('click', closeLightbox);
-  $('#lightbox-next')?.addEventListener('click', nextLightbox);
-  $('#lightbox-prev')?.addEventListener('click', previousLightbox);
-
-  $('#lightbox')?.addEventListener('click', event => {
-    if (event.target.id === 'lightbox') closeLightbox();
-  });
-
-  document.addEventListener('keydown', event => {
-    if (!$('#lightbox')?.classList.contains('open')) return;
-
-    if (event.key === 'Escape') closeLightbox();
-    if (event.key === 'ArrowRight') nextLightbox();
-    if (event.key === 'ArrowLeft') previousLightbox();
-  });
-}
-
-function initMobileMenu() {
-  const button = $('#menu-btn');
-  const menu = $('#mobile-menu');
-
-  if (!button || !menu) return;
-
-  button.addEventListener('click', () => {
-    const open = menu.classList.toggle('open');
-    button.setAttribute('aria-expanded', String(open));
-    menu.setAttribute('aria-hidden', String(!open));
-  });
-
-  $$('#mobile-menu a').forEach(link => {
-    link.addEventListener('click', () => {
-      menu.classList.remove('open');
-      button.setAttribute('aria-expanded', 'false');
-      menu.setAttribute('aria-hidden', 'true');
-    });
-  });
-}
-
 function initHeader() {
   const header = $('#site-header');
   if (!header) return;
 
-  const update = () => {
+  const onScroll = () => {
     header.classList.toggle('scrolled', window.scrollY > 20);
   };
 
-  update();
-  window.addEventListener('scroll', update, { passive: true });
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+}
+
+function initMobileMenu() {
+  const btn = $('#menu-btn');
+  const menu = $('#mobile-menu');
+
+  if (!btn || !menu) return;
+
+  const toggle = (open = !menu.classList.contains('open')) => {
+    menu.classList.toggle('open', open);
+    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
+    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
+    document.body.style.overflow = open ? 'hidden' : '';
+  };
+
+  btn.addEventListener('click', () => toggle());
+
+  $$('a', menu).forEach(link => {
+    link.addEventListener('click', () => toggle(false));
+  });
 }
 
 function initReveal() {
   const elements = $$('.reveal:not(.visible)');
+  if (!elements.length) return;
 
-  if (!('IntersectionObserver' in window)) {
-    elements.forEach(element => element.classList.add('visible'));
-    return;
-  }
-
-  const observer = new IntersectionObserver(entries => {
+  const observer = new IntersectionObserver((entries) => {
     entries.forEach(entry => {
       if (!entry.isIntersecting) return;
       entry.target.classList.add('visible');
       observer.unobserve(entry.target);
     });
-  }, { threshold: 0.12 });
+  }, { threshold: 0.1 });
 
   elements.forEach(element => observer.observe(element));
 }
@@ -514,47 +275,43 @@ function finishLoader() {
 
   setTimeout(() => {
     loader.remove();
-  }, 700);
+  }, 600);
 }
 
 async function loadLandingContent() {
   const results = await Promise.allSettled([
     jsonpFeed(CONFIG.newsLabel, CONFIG.newsLimit),
-    jsonpFeed(CONFIG.storyLabel, CONFIG.storyLimit),
-    jsonpFeed(CONFIG.galleryLabel, CONFIG.galleryPosts)
+    jsonpFeed(CONFIG.storyLabel, CONFIG.storyLimit)
   ]);
 
-  const [news, story, gallery] = results;
+  const [news, story] = results;
 
   if (news.status === 'fulfilled') {
     renderNews(news.value);
   } else {
-    $('#news-container').innerHTML =
-      '<div class="loading-card">Berita belum dapat dimuat. Periksa koneksi ke Blogger.</div>';
+    const newsContainer = $('#news-container');
+    if (newsContainer) {
+      newsContainer.innerHTML =
+        '<div class="loading-card">Berita belum dapat dimuat. Periksa koneksi ke Blogger.</div>';
+    }
   }
 
   if (story.status === 'fulfilled') {
     renderStory(story.value);
   } else {
-    $('#story-container').innerHTML =
-      '<div class="loading-card dark-loading">Kegiatan belum dapat dimuat.</div>';
+    const storyContainer = $('#story-container');
+    if (storyContainer) {
+      storyContainer.innerHTML =
+        '<div class="loading-card dark-loading">Kegiatan belum dapat dimuat.</div>';
+    }
   }
 
-  if (gallery.status === 'fulfilled') {
-    renderGallery(gallery.value);
-  } else {
-    $('#gallery-container').innerHTML =
-      '<div class="loading-card">Galeri belum dapat dimuat.</div>';
-  }
-
-  renderHeroVisuals();
   renderBrandLogo();
 }
 
 async function init() {
   initHeader();
   initMobileMenu();
-  initLightbox();
   initReveal();
 
   try {
