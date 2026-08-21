@@ -232,16 +232,11 @@ function initMobileMenu() {
     menu.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     menu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    
-    // Disable body scroll when menu is open
-    document.body.style.overflow = open ? 'hidden' : '';
+    if (iconMenu)  iconMenu.style.display  = open ? 'none'  : 'block';
+    if (iconClose) iconClose.style.display = open ? 'block' : 'none';
   };
 
   btn.addEventListener('click', () => toggle());
-  
-  const closeBtn = $('#mobile-menu-close');
-  if (closeBtn) closeBtn.addEventListener('click', () => toggle(false));
-
   $$('a', menu).forEach(link => link.addEventListener('click', () => toggle(false)));
 }
 
