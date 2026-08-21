@@ -297,6 +297,7 @@ async function init() {
   initHeader();
   initMobileMenu();
   initReveal();
+  initVisitorTracking();
 
   try {
     await loadLandingContent();
@@ -310,4 +311,75 @@ if (document.readyState === 'loading') {
   document.addEventListener('DOMContentLoaded', init, { once: true });
 } else {
   init();
+}
+
+// ── Firebase Realtime Visitor Tracking ────────────────────
+function initVisitorTracking() {
+  const widget = $('#visitor-widget');
+  const onlineEl = $('#online-count');
+  const totalEl = $('#total-visits');
+  if (!widget || !onlineEl || !totalEl || typeof firebase === 'undefined') return;
+
+  // Placeholder Config - Gantilah dengan konfigurasi Firebase Anda
+  // Anda wajib memasukkan firebaseConfig Anda dari Firebase Console di bawah ini
+  const firebaseConfig = {
+    apiKey: "AIzaSyBFt6boJNvB1oV0eusQZPlvybr_OXd_dSI",
+    authDomain: "attendez-2k0ks.firebaseapp.com",
+    databaseURL: "https://attendez-2k0ks-default-rtdb.firebaseio.com",
+    projectId: "attendez-2k0ks",
+    storageBucket: "attendez-2k0ks.firebasestorage.app",
+    messagingSenderId: "1082706342744",
+    appId: "1:1082706342744:web:2a5988aa01351bc715ab2d"
+  };
+
+  try {
+    if (!firebase.apps.length) {
+      firebase.initializeApp(firebaseConfig);
+    }
+
+    const db = firebase.database();
+    const onlineRef = db.ref('stats/onlineUsers');
+    const totalRef = db.ref('stats/totalVisits');
+    const connectedRef = db.ref('.info/connected');
+
+    // 1. Hitung Pengunjung Online
+    connectedRef.on('value', (snap) => {
+      if (snap.val() === true) {
+        const sessionRef = onlineRef.push();
+        
+        // Ketika user disconnect, hapus sesi dari Firebase
+        sessionRef.onDisconnect().remove();
+        
+        // Tandai user ini sebagai online
+        sessionRef.set(true);
+      }
+    });
+
+    onlineRef.on('value', (snap) => {
+      const activeSessions = snap.numChildren();
+      // Selalu minimal 1 (karena user yang sedang membuka web ini juga online)
+      onlineEl.textContent = activeSessions > 0 ? activeSessions : 1;
+      widget.setAttribute('aria-hidden', 'false');
+    });
+
+    // 2. Hitung Total Kunjungan
+    // Cek sessionStorage agar tidak bertambah saat tab di-refresh di sesi yang sama
+    const hasVisited = sessionStorage.getItem('hasVisited');
+    if (!hasVisited) {
+      totalRef.transaction((currentTotal) => {
+        return (currentTotal || 0) + 1;
+      });
+      sessionStorage.setItem('hasVisited', 'true');
+    }
+
+    totalRef.on('value', (snap) => {
+      const total = snap.val() || 0;
+      totalEl.textContent = total.toLocaleString('id-ID');
+    });
+
+  } catch (error) {
+    console.error('Firebase tracking error:', error);
+    // Sembunyikan widget jika terjadi error inisialisasi
+    if (widget) widget.style.display = 'none';
+  }
 }
