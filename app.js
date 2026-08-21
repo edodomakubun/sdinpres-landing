@@ -232,9 +232,6 @@ function initMobileMenu() {
     menu.classList.toggle('open', open);
     btn.setAttribute('aria-expanded', open ? 'true' : 'false');
     menu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    // We can keep the icon toggle for the header button if we want, but usually it's fine.
-    if (iconMenu)  iconMenu.style.display  = open ? 'none'  : 'block';
-    if (iconClose) iconClose.style.display = open ? 'block' : 'none';
     
     // Disable body scroll when menu is open
     document.body.style.overflow = open ? 'hidden' : '';
