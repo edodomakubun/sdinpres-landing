@@ -325,7 +325,7 @@ function initVisitorTracking() {
   const firebaseConfig = {
     apiKey: "AIzaSyBFt6boJNvB1oV0eusQZPlvybr_OXd_dSI",
     authDomain: "attendez-2k0ks.firebaseapp.com",
-    databaseURL: "https://attendez-2k0ks-default-rtdb.firebaseio.com",
+    databaseURL: "https://attendez-2k0ks-default-rtdb.asia-southeast1.firebasedatabase.app",
     projectId: "attendez-2k0ks",
     storageBucket: "attendez-2k0ks.firebasestorage.app",
     messagingSenderId: "1082706342744",
