@@ -204,48 +204,48 @@
       
       <!-- Unified Hero Layout (Mobile & Desktop) matching reference -->
       <div class="flex flex-col w-full">
-        <!-- Photo Container at the Top with Smooth Bottom Fade -->
-        <div class="w-full h-[330px] sm:h-[420px] md:h-[480px] lg:h-[520px] xl:h-[560px] overflow-hidden relative bg-surface-bright">
+        <!-- Photo Container at the Top with Adjusted Height & Positioning -->
+        <div class="w-full h-[360px] sm:h-[460px] md:h-[540px] lg:h-[620px] xl:h-[680px] overflow-hidden relative bg-surface-bright">
           <img alt="Dewan Guru dan Gedung SD Inpres Lelingluan"
-            class="w-full h-full object-cover object-top [mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_60%,transparent_100%)]"
+            class="w-full h-full object-cover object-[center_32%] sm:object-[center_40%] md:object-[center_45%] lg:object-[center_48%] [mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_80%,transparent_100%)]"
             src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
           <!-- Ambient Bottom Gradient Overlay for Seamless Blending -->
-          <div class="absolute inset-x-0 bottom-0 h-32 sm:h-44 md:h-56 lg:h-64 bg-gradient-to-t from-surface-bright via-surface-bright/70 to-transparent pointer-events-none"></div>
+          <div class="absolute inset-x-0 bottom-0 h-24 sm:h-28 md:h-36 bg-gradient-to-t from-surface-bright via-surface-bright/50 to-transparent pointer-events-none"></div>
         </div>
 
         <!-- Overlapping Card & Stats Flow -->
-        <div class="relative -mt-12 sm:-mt-16 md:-mt-20 lg:-mt-24 z-10 w-full px-4 sm:px-6">
+        <div class="relative -mt-14 sm:-mt-20 md:-mt-24 lg:-mt-28 xl:-mt-32 z-10 w-full px-4 sm:px-6">
           
-          <!-- White Floating Card -->
-          <div class="bg-white rounded-3xl shadow-xl lg:shadow-2xl p-6 sm:p-8 md:p-10 border border-slate-100 max-w-lg sm:max-w-xl md:max-w-2xl mx-auto text-left">
+          <!-- White Floating Card (Wide Responsive Card) -->
+          <div class="bg-white rounded-3xl shadow-xl lg:shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 border border-slate-100 max-w-lg sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto text-left">
             
             <!-- Top Yellow Dash + Label -->
-            <div class="flex items-center gap-2 mb-2">
-              <span class="w-6 h-1.5 bg-[#F59E0B] rounded-full inline-block shrink-0"></span>
-              <span class="font-label-md text-[11px] sm:text-xs font-bold text-[#00288e] tracking-wider uppercase">
+            <div class="flex items-center gap-2 mb-2 sm:mb-3">
+              <span class="w-6 sm:w-8 h-1.5 bg-[#F59E0B] rounded-full inline-block shrink-0"></span>
+              <span class="font-label-md text-[11px] sm:text-xs md:text-sm font-bold text-[#00288e] tracking-wider uppercase">
                 WEBSITE RESMI SEKOLAH DASAR INPRES LELINGLUAN
               </span>
             </div>
 
             <!-- Headline -->
-            <h1 class="text-[25px] sm:text-[32px] md:text-[36px] lg:text-[38px] font-extrabold text-[#0f172a] tracking-tight leading-[1.2] mt-3 mb-2.5">
+            <h1 class="text-[25px] sm:text-[32px] md:text-[38px] lg:text-[44px] font-extrabold text-[#0f172a] tracking-tight leading-[1.15] mt-2 mb-3">
               Selamat Datang di<br>
               <span class="text-[#00288e]">SD INPRES LELINGLUAN</span>
             </h1>
 
             <!-- Description -->
-            <p class="font-body-md text-[13px] sm:text-[14px] md:text-[15px] text-slate-600 leading-relaxed mb-6">
+            <p class="font-body-md text-[13px] sm:text-[15px] md:text-[16px] text-slate-600 leading-relaxed mb-6 sm:mb-8 max-w-3xl">
               Mewujudkan Generasi Cerdas, Berkarakter, dan Berwawasan Global melalui lingkungan belajar yang inspiratif dan berstandar nasional.
             </p>
 
             <!-- Buttons Group -->
-            <div class="flex flex-col gap-3">
-              <a class="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-4 rounded-xl bg-[#00288e] hover:bg-primary-container text-white font-bold text-[13px] sm:text-[14px] uppercase tracking-wide shadow-md hover:shadow-lg active:scale-[0.98] transition-all text-center"
+            <div class="flex flex-col sm:flex-row items-stretch sm:items-center gap-3.5 sm:gap-4">
+              <a class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl bg-[#00288e] hover:bg-primary-container text-white font-bold text-[13px] sm:text-sm uppercase tracking-wide shadow-md hover:shadow-lg active:scale-[0.98] transition-all text-center w-full sm:w-auto"
                 href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener">
-                <span class="material-symbols-outlined text-[18px]">school</span>
+                <span class="material-symbols-outlined text-[18px] sm:text-[20px]">school</span>
                 <span>DAFTAR SEKARANG!</span>
               </a>
-              <a class="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 sm:py-4 rounded-xl border-2 border-[#00288e] text-[#00288e] hover:bg-blue-50 font-bold text-[13px] sm:text-[14px] uppercase tracking-wide active:scale-[0.98] transition-all text-center"
+              <a class="inline-flex items-center justify-center gap-2 px-6 sm:px-8 py-3.5 sm:py-4 rounded-xl border-2 border-[#00288e] text-[#00288e] hover:bg-blue-50 font-bold text-[13px] sm:text-sm uppercase tracking-wide active:scale-[0.98] transition-all text-center w-full sm:w-auto"
                 href="#portal">
                 <span>PORTAL AKADEMIK</span>
               </a>
@@ -254,7 +254,7 @@
           </div>
 
           <!-- Badges & Stats Block Directly Beneath Card -->
-          <div class="pt-6 pb-8 sm:pb-12 lg:pb-16 max-w-lg sm:max-w-xl md:max-w-2xl mx-auto flex flex-col items-center">
+          <div class="pt-6 pb-8 sm:pb-12 lg:pb-16 max-w-lg sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto flex flex-col items-center">
             
             <!-- Row 1: Akreditasi Badge (Centered) -->
             <div class="flex justify-center mb-2.5">
@@ -277,7 +277,7 @@
             </div>
 
             <!-- Row 3: 3 Quick Stats with Dividers -->
-            <div class="grid grid-cols-3 divide-x divide-slate-200 w-full max-w-sm sm:max-w-md mx-auto text-center">
+            <div class="grid grid-cols-3 divide-x divide-slate-200 w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto text-center">
               <div class="px-2 sm:px-4">
                 <span class="text-xl sm:text-2xl font-extrabold text-[#00288e] block leading-tight">7</span>
                 <span class="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 block">Portal Aktif</span>
