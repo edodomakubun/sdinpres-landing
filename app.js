@@ -1,38 +1,14 @@
-/* SD INPRES LELINGLUAN — Cloudflare Landing Page v2 */
+/* SD INPRES LELINGLUAN — Portal Resmi & Layanan Digital Terpadu */
 const CONFIG = {
   bloggerBase: 'https://blog.sdinpreslelingluan.com',
-  brandLogo: 'assets/logo.png',
   newsLabel: 'Berita',
   storyLabel: 'Story',
   newsLimit: 4,
-  storyLimit: 4,
-  timeout: 15000,
-  schoolLinks: {
-    main: 'https://blog.sdinpreslelingluan.com',
-    profil: 'https://blog.sdinpreslelingluan.com/p/profil.html',
-    berita: 'https://blog.sdinpreslelingluan.com/search/label/Berita',
-    story: 'https://blog.sdinpreslelingluan.com/search/label/Story',
-    galeri: 'https://blog.sdinpreslelingluan.com/search/label/Galeri',
-    download: 'https://blog.sdinpreslelingluan.com/p/download.html',
-    portalGuru: 'https://portalguru.sdinpreslelingluan.com',
-    portalSiswa: 'https://portalsiswa.sdinpreslelingluan.com',
-    spmb: 'https://spmb2026.sdinpreslelingluan.com',
-    archive: 'https://archive-sdinleling.blogspot.com',
-    postArtikel: 'https://postartikel.sdinpreslelingluan.com',
-    jurnalGuru: 'https://jurnal.sdinpreslelingluan.com',
-    presensiGuru: 'https://siakad.sdinpreslelingluan.com'
-  }
+  timeout: 10000
 };
 
 const $ = (selector, root = document) => root.querySelector(selector);
 const $$ = (selector, root = document) => [...root.querySelectorAll(selector)];
-
-const State = {
-  posts: {
-    news: [],
-    story: []
-  }
-};
 
 function escapeHTML(value = '') {
   return String(value).replace(/[&<>'"]/g, char => ({
@@ -53,40 +29,47 @@ function postUrl(post) {
   const alternate = Array.isArray(post?.link)
     ? post.link.find(link => link.rel === 'alternate')
     : null;
-
   return safeUrl(alternate?.href || CONFIG.bloggerBase);
 }
 
 function postTitle(post) {
-  return post?.title?.$t || 'Tanpa judul';
+  return post?.title?.$t || 'Informasi Sekolah';
 }
 
 function postDate(post) {
   const raw = post?.published?.$t || post?.updated?.$t;
   const date = raw ? new Date(raw) : null;
-
   return date && !Number.isNaN(date.getTime())
     ? date.toLocaleDateString('id-ID', {
         day: 'numeric',
         month: 'short',
         year: 'numeric'
       })
-    : 'Info terbaru';
+    : 'Terkini';
 }
 
-function excerpt(post, max = 130) {
+function postThumbnail(post) {
+  if (post?.media$thumbnail?.url) {
+    return post.media$thumbnail.url.replace(/\/s[0-9]+(-c)?\//, '/w600-h360-p-k-no-nu/');
+  }
+  const content = post?.content?.$t || post?.summary?.$t || '';
+  const match = content.match(/<img[^>]+src=["']([^"']+)["']/i);
+  if (match && match[1]) {
+    return match[1];
+  }
+  return 'https://lh3.googleusercontent.com/aida-public/AB6AXuAgfeEr4EpMs6Q7BAdxhvRz_Lo4mAd2xKjeAgj-tJKxv2unXfeEddr2APY0w-diyLGCCdWjcQUSnDllKo1X93Um73RbPrsYan5my3a80APIko7iHDqxFVkoyKRxrWwjnHtKgMXGnBYR7bKT49b6sxPiTMA9DNX6Xed8oDYLS-24DdDcaOHaaAn65o501a9tzYDID2oW0ZO-TcSFKHnHWeHSdXzlBlU7YF1fxsAm_kU8';
+}
+
+function excerpt(post, max = 110) {
   const html = post?.summary?.$t || post?.content?.$t || '';
   const doc = new DOMParser().parseFromString(html, 'text/html');
   const text = (doc.body.textContent || '').replace(/\s+/g, ' ').trim();
-
   return text.length > max ? `${text.slice(0, max).trim()}…` : text;
 }
 
 function jsonpFeed(label, limit) {
   return new Promise((resolve, reject) => {
-    const callbackName =
-      `__sdinpres_${Date.now()}_${Math.random().toString(36).slice(2)}`;
-
+    const callbackName = `__sdinpres_${Date.now()}_${Math.random().toString(36).slice(2)}`;
     const script = document.createElement('script');
     let settled = false;
 
@@ -113,14 +96,9 @@ function jsonpFeed(label, limit) {
 
     window[callbackName] = payload => {
       if (settled) return;
-
       settled = true;
       cleanup();
-
-      const entries = Array.isArray(payload?.feed?.entry)
-        ? payload.feed.entry
-        : [];
-
+      const entries = Array.isArray(payload?.feed?.entry) ? payload.feed.entry : [];
       resolve(entries);
     };
 
@@ -128,200 +106,157 @@ function jsonpFeed(label, limit) {
       fail(new Error(`Feed ${label} gagal dimuat`));
     };
 
-    const endpoint =
-      `${CONFIG.bloggerBase}/feeds/posts/default/-/${encodeURIComponent(label)}` +
-      `?alt=json-in-script&max-results=${Number(limit) || 4}` +
-      `&orderby=published&callback=${callbackName}`;
-
+    const endpoint = `${CONFIG.bloggerBase}/feeds/posts/default/-/${encodeURIComponent(label)}?alt=json-in-script&max-results=${Number(limit) || 4}&orderby=published&callback=${callbackName}`;
     script.async = true;
     script.src = endpoint;
     document.body.appendChild(script);
   });
 }
 
-function renderBrandLogo() {
-  const logoUrl = CONFIG.brandLogo || 'assets/logo.png';
-  ['#brand-logo', '#footer-logo'].forEach(selector => {
-    const image = $(selector);
-    if (!image) return;
-    image.src = logoUrl;
-    image.onerror = () => { image.src = 'assets/logo.png'; };
-  });
-}
-
 function renderNews(posts) {
   const container = $('#news-container');
-  if (!container) return;
+  if (!container || !posts || !posts.length) return;
 
-  State.posts.news = posts.slice(0, CONFIG.newsLimit);
-
-  if (!State.posts.news.length) {
-    container.innerHTML =
-      '<div class="loading-placeholder-box">Belum ada berita terbaru saat ini. Kunjungi arsip berita untuk informasi lengkap.</div>';
-    return;
-  }
-
-  container.innerHTML = State.posts.news.map(post => {
+  const validPosts = posts.slice(0, CONFIG.newsLimit);
+  container.innerHTML = validPosts.map((post, idx) => {
     const title = escapeHTML(postTitle(post));
     const href = escapeHTML(postUrl(post));
     const date = escapeHTML(postDate(post));
     const desc = escapeHTML(excerpt(post));
+    const thumb = escapeHTML(postThumbnail(post));
+
+    const categoryThemes = [
+      { bg: 'bg-[#EFF6FF]', text: 'text-primary', label: 'Kesehatan' },
+      { bg: 'bg-[#FEF3C7]', text: 'text-[#B45309]', label: 'Seni & Budaya' },
+      { bg: 'bg-[#ECFDF5]', text: 'text-[#047857]', label: 'Guru & KBM' },
+      { bg: 'bg-[#F5F3FF]', text: 'text-[#6D28D9]', label: 'Kesiswaan' }
+    ];
+    const cat = categoryThemes[idx % categoryThemes.length];
+
     return `
-      <a class="news-card-editorial" href="${href}" target="_blank" rel="noopener">
-        <div class="news-card-badge">BERITA SEKOLAH</div>
-        <div class="news-card-date">${date}</div>
-        <b class="news-card-title">${title}</b>
-        <p class="news-card-desc">${desc}</p>
-        <span class="news-card-link">Baca Selengkapnya ↗</span>
-      </a>
+      <article class="bg-surface-container-lowest border border-outline-variant rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
+        <div>
+          <div class="h-32 sm:h-36 md:h-44 w-full bg-surface-container overflow-hidden relative">
+            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="${thumb}" alt="${title}" loading="lazy">
+            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full ${cat.bg} ${cat.text} text-[10px] font-bold shadow-xs">
+              ${cat.label}
+            </span>
+          </div>
+          <div class="p-3.5 sm:p-4">
+            <div class="flex items-center gap-1.5 text-outline text-[11px] mb-1.5">
+              <span class="material-symbols-outlined text-[14px]">calendar_today</span>
+              <span>${date}</span>
+            </div>
+            <h3 class="font-headline-sm text-[13px] sm:text-[14px] md:text-[15px] leading-tight text-on-surface font-bold line-clamp-2 group-hover:text-primary transition-colors">
+              ${title}
+            </h3>
+            <p class="font-body-sm text-[11px] sm:text-[12px] text-on-surface-variant mt-1.5 line-clamp-2 leading-relaxed">
+              ${desc}
+            </p>
+          </div>
+        </div>
+        <div class="p-3.5 sm:p-4 pt-0">
+          <a class="inline-flex items-center gap-1 text-[11px] sm:text-label-sm text-primary font-bold hover:underline" href="${href}" target="_blank" rel="noopener">
+            <span>Baca Selengkapnya</span>
+            <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
+          </a>
+        </div>
+      </article>
     `;
   }).join('');
 }
 
-function renderStory(posts) {
-  const container = $('#story-container');
-  if (!container) return;
-
-  State.posts.story = posts.slice(0, CONFIG.storyLimit);
-
-  if (!State.posts.story.length) {
-    container.innerHTML =
-      '<div class="loading-placeholder-box dark">Belum ada dokumentasi kegiatan publik saat ini.</div>';
-    return;
-  }
-
-  container.innerHTML = State.posts.story.map(post => {
-    const title = escapeHTML(postTitle(post));
-    const href = escapeHTML(postUrl(post));
-    const date = escapeHTML(postDate(post));
-    const desc = escapeHTML(excerpt(post, 100));
-
-    return `
-      <a class="activity-card-modern" href="${href}" target="_blank" rel="noopener">
-        <span class="activity-tag">KEGIATAN</span>
-        <span class="activity-date">${date}</span>
-        <b class="activity-title">${title}</b>
-        <p class="activity-desc">${desc}</p>
-        <span class="activity-read-more">Lihat Kegiatan ↗</span>
-      </a>
-    `;
-  }).join('');
-}
-
-function initHeader() {
-  const header = $('#site-header');
-  if (!header) return;
-
-  const onScroll = () => {
-    header.classList.toggle('scrolled', window.scrollY > 20);
-  };
-
-  window.addEventListener('scroll', onScroll, { passive: true });
-  onScroll();
-}
-
-function initMobileMenu() {
-  const btn = $('#menu-btn');
-  const menu = $('#mobile-menu');
-  const iconMenu  = $('#icon-menu');
-  const iconClose = $('#icon-close');
-
-  if (!btn || !menu) return;
-
-  const toggle = (open = !menu.classList.contains('open')) => {
-    menu.classList.toggle('open', open);
-    btn.setAttribute('aria-expanded', open ? 'true' : 'false');
-    menu.setAttribute('aria-hidden', open ? 'false' : 'true');
-    if (iconMenu)  iconMenu.style.display  = open ? 'none'  : 'block';
-    if (iconClose) iconClose.style.display = open ? 'block' : 'none';
-  };
-
-  btn.addEventListener('click', () => toggle());
-  $$('a', menu).forEach(link => link.addEventListener('click', () => toggle(false)));
-}
-
-function initReveal() {
-  const elements = $$('.reveal:not(.visible)');
-  if (!elements.length) return;
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (!entry.isIntersecting) return;
-      entry.target.classList.add('visible');
-      observer.unobserve(entry.target);
-    });
-  }, { threshold: 0.1 });
-
-  elements.forEach(element => observer.observe(element));
-}
-
-function finishLoader() {
-  const loader = $('#page-loader');
-  if (!loader) return;
-  loader.classList.add('loaded');
-  setTimeout(() => loader.remove(), 500);
-}
-
-async function loadLandingContent() {
-  const results = await Promise.allSettled([
-    jsonpFeed(CONFIG.newsLabel, CONFIG.newsLimit),
-    jsonpFeed(CONFIG.storyLabel, CONFIG.storyLimit)
-  ]);
-
-  const [news, story] = results;
-
-  if (news.status === 'fulfilled') {
-    renderNews(news.value);
-  } else {
-    const newsContainer = $('#news-container');
-    if (newsContainer) {
-      newsContainer.innerHTML =
-        '<div class="loading-placeholder-box">Berita belum dapat dimuat saat ini. Silakan kunjungi website utama sekolah.</div>';
-    }
-  }
-
-  if (story.status === 'fulfilled') {
-    renderStory(story.value);
-  } else {
-    const storyContainer = $('#story-container');
-    if (storyContainer) {
-      storyContainer.innerHTML =
-        '<div class="loading-placeholder-box dark">Dokumentasi kegiatan belum dapat dimuat saat ini.</div>';
-    }
-  }
-
-  renderBrandLogo();
-}
-
-async function init() {
-  initHeader();
-  initMobileMenu();
-  initReveal();
-  initVisitorTracking();
-
+async function loadLandingNews() {
   try {
-    await loadLandingContent();
-  } finally {
-    finishLoader();
-    initReveal();
+    const news = await jsonpFeed(CONFIG.newsLabel, CONFIG.newsLimit);
+    if (news && news.length > 0) {
+      renderNews(news);
+    }
+  } catch (err) {
+    // Keep the pre-rendered non-dummy news cards in HTML untouched
+    console.warn('Menggunakan berita pre-rendered lokal:', err.message);
   }
 }
 
-if (document.readyState === 'loading') {
-  document.addEventListener('DOMContentLoaded', init, { once: true });
-} else {
-  init();
+// ── Mobile Bottom Navigation & Scrollspy ──────────────────
+function initScrollspy() {
+  const sections = ['beranda', 'portal', 'berita', 'profil'];
+  const navTabs = $$('nav.md\\:hidden a[data-tab]');
+
+  if (!navTabs.length) return;
+
+  const updateActiveTab = () => {
+    const scrollPos = window.scrollY + 180;
+    let currentId = 'beranda';
+
+    sections.forEach(id => {
+      const el = document.getElementById(id);
+      if (el && el.offsetTop <= scrollPos) {
+        currentId = id;
+      }
+    });
+
+    navTabs.forEach(tab => {
+      const tabTarget = tab.getAttribute('data-tab');
+      const icon = tab.querySelector('.material-symbols-outlined');
+      const text = tab.querySelector('span:not(.material-symbols-outlined)');
+
+      if (tabTarget === currentId) {
+        tab.className = 'flex flex-col items-center justify-center text-primary font-bold py-1 px-3 active:scale-95 transition-transform duration-100';
+        if (icon) icon.style.fontVariationSettings = "'FILL' 1, 'wght' 500";
+        if (text) text.classList.add('font-bold');
+      } else {
+        tab.className = 'flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary active:scale-95 transition-transform duration-100';
+        if (icon) icon.style.fontVariationSettings = "'FILL' 0, 'wght' 400";
+        if (text) text.classList.remove('font-bold');
+      }
+    });
+  };
+
+  window.addEventListener('scroll', updateActiveTab, { passive: true });
+  updateActiveTab();
 }
 
-// ── Firebase Realtime Visitor Tracking ────────────────────
-function initVisitorTracking() {
-  const widget = $('#visitor-widget');
-  const onlineEl = $('#online-count');
-  const totalEl = $('#total-visits');
-  if (!widget || !onlineEl || !totalEl || typeof firebase === 'undefined') return;
+// ── Smooth Anchor Scrolling ──────────────────────────────
+function initSmoothScroll() {
+  const anchors = $$('a[href^="#"]');
+  anchors.forEach(anchor => {
+    anchor.addEventListener('click', function (e) {
+      const href = this.getAttribute('href');
+      if (!href || href === '#') return;
+      const target = $(href);
+      if (target) {
+        e.preventDefault();
+        target.scrollIntoView({ behavior: 'smooth' });
+      }
+    });
+  });
+}
 
-  // Placeholder Config - Gantilah dengan konfigurasi Firebase Anda
-  // Anda wajib memasukkan firebaseConfig Anda dari Firebase Console di bawah ini
+// ── FAQ Accordion Toggle Helper ──────────────────────────
+function initFaqAccordion() {
+  const faqItems = $$('#faq details');
+  faqItems.forEach(item => {
+    item.addEventListener('toggle', () => {
+      if (item.open) {
+        // Optional: close other items for an accordion experience
+        faqItems.forEach(other => {
+          if (other !== item && other.open) {
+            other.removeAttribute('open');
+          }
+        });
+      }
+    });
+  });
+}
+
+// ── Firebase Realtime Visitor Tracking ───────────────────
+function initVisitorTracking() {
+  const onlineElements = $$('.live-online-count');
+  const totalElements = $$('.live-total-visits');
+
+  if (typeof firebase === 'undefined') return;
+
   const firebaseConfig = {
     apiKey: "AIzaSyBFt6boJNvB1oV0eusQZPlvybr_OXd_dSI",
     authDomain: "attendez-2k0ks.firebaseapp.com",
@@ -342,44 +277,53 @@ function initVisitorTracking() {
     const totalRef = db.ref('stats/totalVisits');
     const connectedRef = db.ref('.info/connected');
 
-    // 1. Hitung Pengunjung Online
-    connectedRef.on('value', (snap) => {
+    // 1. Online Users
+    connectedRef.on('value', snap => {
       if (snap.val() === true) {
         const sessionRef = onlineRef.push();
-        
-        // Ketika user disconnect, hapus sesi dari Firebase
         sessionRef.onDisconnect().remove();
-        
-        // Tandai user ini sebagai online
         sessionRef.set(true);
       }
     });
 
-    onlineRef.on('value', (snap) => {
+    onlineRef.on('value', snap => {
       const activeSessions = snap.numChildren();
-      // Selalu minimal 1 (karena user yang sedang membuka web ini juga online)
-      onlineEl.textContent = activeSessions > 0 ? activeSessions : 1;
-      widget.setAttribute('aria-hidden', 'false');
+      const count = activeSessions > 0 ? activeSessions : 1;
+      onlineElements.forEach(el => {
+        el.textContent = `${count} Online`;
+      });
     });
 
-    // 2. Hitung Total Kunjungan
-    // Cek sessionStorage agar tidak bertambah saat tab di-refresh di sesi yang sama
+    // 2. Total Visits
     const hasVisited = sessionStorage.getItem('hasVisited');
     if (!hasVisited) {
-      totalRef.transaction((currentTotal) => {
-        return (currentTotal || 0) + 1;
-      });
+      totalRef.transaction(currentTotal => (currentTotal || 0) + 1);
       sessionStorage.setItem('hasVisited', 'true');
     }
 
-    totalRef.on('value', (snap) => {
+    totalRef.on('value', snap => {
       const total = snap.val() || 0;
-      totalEl.textContent = total.toLocaleString('id-ID');
+      const formatted = total.toLocaleString('id-ID');
+      totalElements.forEach(el => {
+        el.textContent = `${formatted} Kunjungan`;
+      });
     });
-
   } catch (error) {
     console.error('Firebase tracking error:', error);
-    // Sembunyikan widget jika terjadi error inisialisasi
-    if (widget) widget.style.display = 'none';
   }
+}
+
+// ── Application Bootstrap ────────────────────────────────
+function init() {
+  initSmoothScroll();
+  initScrollspy();
+  initFaqAccordion();
+  initVisitorTracking();
+  loadLandingNews();
+}
+
+if (document.readyState === 'loading') {
+  document.addEventListener('DOMContentLoaded', init, { once: true });
+} else {
+  init();
 }
