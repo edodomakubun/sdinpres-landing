@@ -233,10 +233,10 @@
           </div>
         </div>
 
-        <!-- Overlapping Card & Stats Flow -->
-        <div class="relative -mt-14 sm:-mt-20 md:-mt-24 lg:-mt-28 xl:-mt-32 z-10 w-full px-4 sm:px-6">
+        <!-- Overlapping Card Flow -->
+        <div class="relative -mt-14 sm:-mt-20 md:-mt-24 lg:-mt-28 xl:-mt-32 z-10 w-full px-4 sm:px-6 pb-12 sm:pb-16 lg:pb-20">
 
-          <!-- White Floating Card (Wide Responsive Card) -->
+          <!-- White Floating Card (Wide Responsive Card with Integrated Badges & Stats) -->
           <div
             class="bg-white rounded-3xl shadow-xl lg:shadow-2xl p-6 sm:p-8 md:p-10 lg:p-12 border border-slate-100 max-w-lg sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto text-left">
 
@@ -276,57 +276,63 @@
               </a>
             </div>
 
-          </div>
+            <!-- Integrated Badges & Stats Inside Card -->
+            <div class="mt-8 pt-6 sm:pt-8 border-t border-slate-100 flex flex-col lg:flex-row lg:items-center justify-between gap-6">
 
-          <!-- Badges & Stats Block Directly Beneath Card -->
-          <div
-            class="pt-6 pb-8 sm:pb-12 lg:pb-16 max-w-lg sm:max-w-2xl md:max-w-4xl lg:max-w-5xl xl:max-w-6xl mx-auto flex flex-col items-center">
-
-            <!-- Row 1: Akreditasi Badge (Centered) -->
-            <div class="flex justify-center mb-2.5">
-              <span
-                class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-full bg-[#ECFDF5] text-[#047857] border border-[#10B981]/30 text-[11px] sm:text-xs font-bold shadow-2xs">
-                <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-                Akreditasi B · Kurikulum Merdeka
-              </span>
-            </div>
-
-            <!-- Row 2: Location & NPSN Badges (Centered side by side) -->
-            <div class="flex flex-wrap items-center justify-center gap-2 mb-6">
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#EEF2FF] text-[#4338CA] border border-[#C7D2FE] text-[11px] sm:text-xs font-medium">
-                <span class="material-symbols-outlined text-[15px] sm:text-[16px] text-[#4F46E5]">location_on</span>
-                Kec. Tanimbar Utara, Maluku
-              </span>
-              <span
-                class="inline-flex items-center gap-1.5 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-[#EFF6FF] text-[#1E40AF] border border-[#BFDBFE] text-[11px] sm:text-xs font-medium">
-                <span class="material-symbols-outlined text-[15px] sm:text-[16px]">school</span>
-                NPSN: 60101905
-              </span>
-            </div>
-
-            <!-- Row 3: 3 Quick Stats with Dividers -->
-            <div
-              class="grid grid-cols-3 divide-x divide-slate-200 w-full max-w-sm sm:max-w-md md:max-w-lg mx-auto text-center">
-              <div class="px-2 sm:px-4">
-                <span class="text-xl sm:text-2xl font-extrabold text-[#00288e] block leading-tight">7</span>
-                <span class="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 block">Portal Aktif</span>
-              </div>
-              <div class="px-2 sm:px-4">
-                <span class="text-xl sm:text-2xl font-extrabold text-slate-900 block leading-tight">2026/27</span>
-                <span class="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 block">Tahun Ajaran</span>
-              </div>
-              <div class="px-2 sm:px-4">
+              <!-- Badges Group -->
+              <div class="flex flex-wrap items-center gap-2 sm:gap-2.5">
+                <!-- Akreditasi B · Kurikulum Merdeka -->
                 <span
-                  class="text-xl sm:text-2xl font-extrabold text-[#047857] inline-flex items-center justify-center gap-1 leading-tight">
-                  <span>Aktif</span>
-                  <span class="material-symbols-outlined text-[16px] sm:text-[18px] text-[#047857]">verified</span>
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#ECFDF5] text-[#047857] border border-[#10B981]/30 text-[11px] sm:text-xs font-bold shadow-2xs">
+                  <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+                  Akreditasi B · Kurikulum Merdeka
                 </span>
-                <span class="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 block">Sekolah Negeri</span>
+
+                <!-- location_on Kec. Tanimbar Utara, Maluku -->
+                <span
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EEF2FF] text-[#4338CA] border border-[#C7D2FE] text-[11px] sm:text-xs font-medium">
+                  <span class="material-symbols-outlined text-[15px] sm:text-[16px] text-[#4F46E5]">location_on</span>
+                  Kec. Tanimbar Utara, Maluku
+                </span>
+
+                <!-- school NPSN: 60101905 -->
+                <span
+                  class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#EFF6FF] text-[#1E40AF] border border-[#BFDBFE] text-[11px] sm:text-xs font-medium">
+                  <span class="material-symbols-outlined text-[15px] sm:text-[16px]">school</span>
+                  NPSN: 60101905
+                </span>
               </div>
+
+              <!-- Stats Group (3 Quick Stats with Dividers) -->
+              <div
+                class="grid grid-cols-3 divide-x divide-slate-200 text-center shrink-0 w-full sm:w-auto border sm:border-0 border-slate-100 rounded-xl sm:rounded-none py-3 sm:py-0 bg-slate-50/50 sm:bg-transparent">
+                <!-- Stat 1: 7 Portal Aktif -->
+                <div class="px-3 sm:px-4">
+                  <span class="text-xl sm:text-2xl font-extrabold text-[#00288e] block leading-tight">7</span>
+                  <span class="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 block">Portal Aktif</span>
+                </div>
+
+                <!-- Stat 2: 2026/27 Tahun Ajaran -->
+                <div class="px-3 sm:px-4">
+                  <span class="text-xl sm:text-2xl font-extrabold text-slate-900 block leading-tight">2026/27</span>
+                  <span class="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 block">Tahun Ajaran</span>
+                </div>
+
+                <!-- Stat 3: Aktif verified Sekolah Negeri -->
+                <div class="px-3 sm:px-4">
+                  <span
+                    class="text-xl sm:text-2xl font-extrabold text-[#047857] inline-flex items-center justify-center gap-1 leading-tight">
+                    <span>Aktif</span>
+                    <span class="material-symbols-outlined text-[16px] sm:text-[18px] text-[#047857]">verified</span>
+                  </span>
+                  <span class="text-[11px] sm:text-xs text-slate-500 font-medium mt-0.5 block">Sekolah Negeri</span>
+                </div>
+              </div>
+
             </div>
 
           </div>
+
         </div>
       </div>
 
