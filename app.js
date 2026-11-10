@@ -156,7 +156,7 @@ function renderNews(posts) {
           </div>
         </div>
         <div class="p-3.5 sm:p-4 pt-0">
-          <a class="inline-flex items-center gap-1 text-[11px] sm:text-label-sm text-primary font-bold hover:underline" href="${href}" target="_blank" rel="noopener">
+          <a class="inline-flex items-center gap-1 text-[11px] sm:text-label-sm text-primary font-bold hover:underline" href="${href}">
             <span>Baca Selengkapnya</span>
             <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
           </a>
@@ -231,6 +231,17 @@ function initSmoothScroll() {
       }
     });
   });
+}
+
+// ── Blog Links Same-Tab Navigation ───────────────────────
+function initBlogLinks() {
+  document.addEventListener('click', e => {
+    const link = e.target.closest('a');
+    if (link && link.href && link.href.includes('blog.sdinpreslelingluan.com')) {
+      link.removeAttribute('target');
+      link.removeAttribute('rel');
+    }
+  }, { capture: true });
 }
 
 // ── FAQ Accordion Toggle Helper ──────────────────────────
@@ -439,6 +450,7 @@ function initVisiMisiSlider() {
 // ── Application Bootstrap ────────────────────────────────
 function init() {
   initSmoothScroll();
+  initBlogLinks();
   initScrollspy();
   initFaqAccordion();
   initVisitorTracking();
