@@ -219,6 +219,62 @@
     <!-- ========================================== -->
     <section class="relative bg-surface-bright border-b border-outline-variant overflow-hidden" id="beranda">
 
+      <!-- ========================================== -->
+      <!-- TOP VISI & MISI SLIDE BAR (Desktop Only)    -->
+      <!-- ========================================== -->
+      <div id="visi-misi-slider"
+        class="hidden lg:block bg-surface-container-lowest border-b border-outline-variant py-2.5 px-4 sm:px-6 relative z-20 transition-colors">
+        <div class="max-w-7xl mx-auto flex items-center justify-between gap-4">
+
+          <!-- Leading Label & Current Badge -->
+          <div class="flex items-center gap-2.5 shrink-0">
+            <span
+              class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EEF2FF] text-[#00288e] border border-[#C7D2FE] text-[11px] font-bold uppercase tracking-wider">
+              <span class="material-symbols-outlined text-[15px] text-[#4F46E5]">flag</span>
+              Visi &amp; Misi
+            </span>
+            <span id="visi-misi-badge"
+              class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider shrink-0 transition-colors duration-200 shadow-2xs bg-[#F59E0B] text-slate-900">
+              VISI
+            </span>
+          </div>
+
+          <!-- Slide Text Content -->
+          <div class="flex-1 overflow-hidden min-w-0 px-2">
+            <p id="visi-misi-text"
+              class="text-[13px] font-medium text-slate-800 transition-all duration-300 leading-snug"
+              title="“Menjadi sekolah unggul yang melahirkan generasi penerus bangsa yang literat, cerdas, berkarakter mulia, dan tangguh dalam menghadapi berbagai tantangan, serta menciptakan lingkungan belajar yang aman, nyaman, inklusif dan Religius.”">
+              &ldquo;Menjadi sekolah unggul yang melahirkan generasi penerus bangsa yang literat, cerdas, berkarakter mulia, dan tangguh dalam menghadapi berbagai tantangan, serta menciptakan lingkungan belajar yang aman, nyaman, inklusif dan Religius.&rdquo;
+            </p>
+          </div>
+
+          <!-- Trailing Controls: Dots & Navigation Arrows -->
+          <div class="flex items-center gap-3 shrink-0">
+            <!-- Indicator Dots -->
+            <div id="visi-misi-dots" class="flex items-center gap-1.5" aria-label="Navigasi slide Visi dan Misi">
+              <button type="button" aria-label="Pindah ke slide VISI" class="w-6 h-2 rounded-full bg-[#00288e] transition-all duration-300"></button>
+              <button type="button" aria-label="Pindah ke slide MISI 1" class="w-2 h-2 rounded-full bg-slate-300 transition-all duration-300"></button>
+              <button type="button" aria-label="Pindah ke slide MISI 2" class="w-2 h-2 rounded-full bg-slate-300 transition-all duration-300"></button>
+              <button type="button" aria-label="Pindah ke slide MISI 3" class="w-2 h-2 rounded-full bg-slate-300 transition-all duration-300"></button>
+              <button type="button" aria-label="Pindah ke slide MISI 4" class="w-2 h-2 rounded-full bg-slate-300 transition-all duration-300"></button>
+            </div>
+
+            <!-- Prev / Next Arrows -->
+            <div class="flex items-center gap-0.5 border-l border-slate-200 pl-2">
+              <button id="visi-misi-prev" type="button" aria-label="Slide Sebelumnya"
+                class="w-7 h-7 rounded-full flex items-center justify-center text-slate-500 hover:text-[#00288e] hover:bg-surface-container active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[18px]">chevron_left</span>
+              </button>
+              <button id="visi-misi-next" type="button" aria-label="Slide Selanjutnya"
+                class="w-7 h-7 rounded-full flex items-center justify-center text-slate-500 hover:text-[#00288e] hover:bg-surface-container active:scale-95 transition-all">
+                <span class="material-symbols-outlined text-[18px]">chevron_right</span>
+              </button>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
       <!-- Unified Hero Layout (Mobile & Desktop) matching reference -->
       <div class="flex flex-col w-full">
         <!-- Photo Container at the Top with Adjusted Height & Positioning -->

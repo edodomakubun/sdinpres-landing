@@ -313,12 +313,136 @@ function initVisitorTracking() {
   }
 }
 
+// ── Desktop Visi & Misi Slide Bar ────────────────────────
+function initVisiMisiSlider() {
+  const slides = [
+    {
+      badgeLabel: 'VISI',
+      badgeClass: 'bg-[#F59E0B] text-slate-900',
+      text: '“Menjadi sekolah unggul yang melahirkan generasi penerus bangsa yang literat, cerdas, berkarakter mulia, dan tangguh dalam menghadapi berbagai tantangan, serta menciptakan lingkungan belajar yang aman, nyaman, inklusif dan Religius.”'
+    },
+    {
+      badgeLabel: 'MISI 1',
+      badgeClass: 'bg-[#00288e] text-white',
+      text: '1. Meningkatkan skor literasi siswa melalui program pembinaan minat baca dan literasi secara berkelanjutan.'
+    },
+    {
+      badgeLabel: 'MISI 2',
+      badgeClass: 'bg-[#00288e] text-white',
+      text: '2. Menanamkan nilai-nilai moral dan budi pekerti luhur melalui pembinaan karakter dan akhlak mulia.'
+    },
+    {
+      badgeLabel: 'MISI 3',
+      badgeClass: 'bg-[#00288e] text-white',
+      text: '3. Meningkatkan kompetensi guru dalam merancang pembelajaran inovatif melalui pelatihan berkala.'
+    },
+    {
+      badgeLabel: 'MISI 4',
+      badgeClass: 'bg-[#00288e] text-white',
+      text: '4. Mewujudkan sekolah yang aman dan nyaman melalui program anti-bullying dan penanggulangan kekerasan.'
+    }
+  ];
+
+  let currentIndex = 0;
+  let timer = null;
+  const container = document.getElementById('visi-misi-slider');
+  const badgeEl = document.getElementById('visi-misi-badge');
+  const textEl = document.getElementById('visi-misi-text');
+  const dotsContainer = document.getElementById('visi-misi-dots');
+  const prevBtn = document.getElementById('visi-misi-prev');
+  const nextBtn = document.getElementById('visi-misi-next');
+
+  if (!container || !badgeEl || !textEl) return;
+
+  function updateDots(activeIdx) {
+    if (!dotsContainer) return;
+    const dots = dotsContainer.querySelectorAll('button');
+    dots.forEach((dot, idx) => {
+      if (idx === activeIdx) {
+        dot.className = 'w-6 h-2 rounded-full bg-[#00288e] transition-all duration-300';
+      } else {
+        dot.className = 'w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300';
+      }
+    });
+  }
+
+  function renderSlide(index) {
+    const item = slides[index];
+    textEl.style.opacity = '0';
+    textEl.style.transform = 'translateY(-4px)';
+
+    setTimeout(() => {
+      badgeEl.className = `px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider shrink-0 transition-colors duration-200 shadow-2xs ${item.badgeClass}`;
+      badgeEl.textContent = item.badgeLabel;
+      textEl.textContent = item.text;
+      textEl.setAttribute('title', item.text);
+      updateDots(index);
+
+      textEl.style.transform = 'translateY(4px)';
+      requestAnimationFrame(() => {
+        textEl.style.opacity = '1';
+        textEl.style.transform = 'translateY(0)';
+      });
+    }, 180);
+  }
+
+  function nextSlide() {
+    currentIndex = (currentIndex + 1) % slides.length;
+    renderSlide(currentIndex);
+  }
+
+  function prevSlide() {
+    currentIndex = (currentIndex - 1 + slides.length) % slides.length;
+    renderSlide(currentIndex);
+  }
+
+  function startAutoplay() {
+    stopAutoplay();
+    timer = setInterval(nextSlide, 6000);
+  }
+
+  function stopAutoplay() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  // Generate indicator dots
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    slides.forEach((slide, idx) => {
+      const dot = document.createElement('button');
+      dot.setAttribute('type', 'button');
+      dot.setAttribute('aria-label', `Pindah ke slide ${slide.badgeLabel}`);
+      dot.className = idx === 0
+        ? 'w-6 h-2 rounded-full bg-[#00288e] transition-all duration-300'
+        : 'w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300';
+      dot.addEventListener('click', () => {
+        currentIndex = idx;
+        renderSlide(currentIndex);
+        startAutoplay();
+      });
+      dotsContainer.appendChild(dot);
+    });
+  }
+
+  if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoplay(); });
+  if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoplay(); });
+
+  container.addEventListener('mouseenter', stopAutoplay);
+  container.addEventListener('mouseleave', startAutoplay);
+
+  startAutoplay();
+}
+
 // ── Application Bootstrap ────────────────────────────────
 function init() {
   initSmoothScroll();
   initScrollspy();
   initFaqAccordion();
   initVisitorTracking();
+  initVisiMisiSlider();
   loadLandingNews();
 }
 
