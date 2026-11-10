@@ -204,11 +204,13 @@
       
       <!-- Mobile Hero Layout (< lg) - Exactly matching user reference -->
       <div class="lg:hidden flex flex-col">
-        <!-- Photo Container at the Top -->
-        <div class="w-full h-[310px] sm:h-[400px] overflow-hidden relative bg-slate-200">
+        <!-- Photo Container at the Top with Smooth Bottom Fade -->
+        <div class="w-full h-[330px] sm:h-[420px] overflow-hidden relative bg-surface-bright">
           <img alt="Dewan Guru dan Gedung SD Inpres Lelingluan"
-            class="w-full h-full object-cover object-top"
+            class="w-full h-full object-cover object-top [mask-image:linear-gradient(to_bottom,black_65%,transparent_100%)] [-webkit-mask-image:linear-gradient(to_bottom,black_65%,transparent_100%)]"
             src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
+          <!-- Ambient Bottom Gradient Overlay for Seamless Blending -->
+          <div class="absolute inset-x-0 bottom-0 h-28 sm:h-36 bg-gradient-to-t from-surface-bright via-surface-bright/70 to-transparent pointer-events-none"></div>
         </div>
 
         <!-- Overlapping Card & Stats Flow -->
