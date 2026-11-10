@@ -200,100 +200,191 @@
     <!-- ========================================== -->
     <!-- 2. HERO SECTION                            -->
     <!-- ========================================== -->
-    <section class="relative bg-slate-100/60 lg:bg-surface-container-low border-b border-outline-variant" id="beranda">
-      <div class="w-full lg:max-w-7xl lg:mx-auto lg:px-6 lg:py-14">
-        <div class="flex flex-col lg:grid lg:grid-cols-12 lg:gap-10 lg:items-center">
-          
-          <!-- Photo Container (Order 1 on mobile, Order 2 on desktop) -->
-          <div class="order-1 lg:order-2 lg:col-span-6 w-full">
-            <div class="w-full h-[290px] sm:h-[380px] lg:h-[480px] overflow-hidden lg:rounded-3xl shadow-xs lg:shadow-xl relative bg-slate-200">
-              <img alt="Dewan Guru dan Gedung SD Inpres Lelingluan"
-                class="w-full h-full object-cover object-top lg:object-center"
-                src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
+    <section class="relative bg-surface-bright lg:bg-surface-container-low border-b border-outline-variant" id="beranda">
+      
+      <!-- Mobile Hero Layout (< lg) - Exactly matching user reference -->
+      <div class="lg:hidden flex flex-col">
+        <!-- Photo Container at the Top -->
+        <div class="w-full h-[310px] sm:h-[400px] overflow-hidden relative bg-slate-200">
+          <img alt="Dewan Guru dan Gedung SD Inpres Lelingluan"
+            class="w-full h-full object-cover object-top"
+            src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
+        </div>
+
+        <!-- Overlapping Card & Stats Flow -->
+        <div class="relative -mt-10 z-10 w-full px-4 sm:px-6">
+          <!-- White Floating Card -->
+          <div class="bg-white rounded-3xl shadow-xl p-6 sm:p-8 border border-slate-100 max-w-lg mx-auto">
+            
+            <!-- Top Yellow Dash + Label -->
+            <div class="flex items-center gap-2 mb-2">
+              <span class="w-6 h-1.5 bg-[#F59E0B] rounded-full inline-block shrink-0"></span>
+              <span class="font-label-md text-[11px] font-bold text-[#00288e] tracking-wider uppercase">
+                WEBSITE RESMI SEKOLAH DASAR INPRES LELINGLUAN
+              </span>
             </div>
+
+            <!-- Headline -->
+            <h1 class="text-[25px] sm:text-[30px] font-extrabold text-[#0f172a] tracking-tight leading-[1.2] mt-3 mb-2.5">
+              Selamat Datang di<br>
+              <span class="text-[#00288e]">SD INPRES LELINGLUAN</span>
+            </h1>
+
+            <!-- Description -->
+            <p class="font-body-md text-[13px] text-slate-600 leading-relaxed mb-6">
+              Mewujudkan Generasi Cerdas, Berkarakter, dan Berwawasan Global melalui lingkungan belajar yang inspiratif dan berstandar nasional.
+            </p>
+
+            <!-- Buttons Group -->
+            <div class="flex flex-col gap-3">
+              <a class="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#00288e] hover:bg-primary-container text-white font-bold text-[13px] uppercase tracking-wide shadow-md active:scale-[0.98] transition-all text-center"
+                href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener">
+                <span class="material-symbols-outlined text-[18px]">school</span>
+                <span>DAFTAR SEKARANG!</span>
+              </a>
+              <a class="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border-2 border-[#00288e] text-[#00288e] hover:bg-blue-50 font-bold text-[13px] uppercase tracking-wide active:scale-[0.98] transition-all text-center"
+                href="#portal">
+                <span>PORTAL AKADEMIK</span>
+              </a>
+            </div>
+
           </div>
 
-          <!-- Card Container (Order 2 on mobile, Order 1 on desktop) -->
-          <div class="order-2 lg:order-1 lg:col-span-6 relative -mt-8 sm:-mt-10 lg:mt-0 z-10 w-full px-3 sm:px-6 lg:px-0">
-            <div class="bg-white rounded-t-3xl sm:rounded-3xl shadow-xl lg:shadow-lg p-6 sm:p-8 lg:p-10 border border-slate-100 max-w-xl mx-auto lg:max-w-none">
+          <!-- Badges & Stats Block Directly Beneath Card -->
+          <div class="pt-6 pb-6 max-w-lg mx-auto flex flex-col items-center">
+            
+            <!-- Row 1: Akreditasi Badge (Centered) -->
+            <div class="flex justify-center mb-2">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ECFDF5] text-[#047857] border border-[#10B981]/30 text-[11px] font-bold shadow-2xs">
+                <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
+                Akreditasi B · Kurikulum Merdeka
+              </span>
+            </div>
+
+            <!-- Row 2: Location & NPSN Badges (Centered side by side) -->
+            <div class="flex flex-wrap items-center justify-center gap-2 mb-5">
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EEF2FF] text-[#4338CA] border border-[#C7D2FE] text-[11px] font-medium">
+                <span class="material-symbols-outlined text-[15px] text-[#4F46E5]">location_on</span>
+                Kec. Tanimbar Utara, Maluku
+              </span>
+              <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#EFF6FF] text-[#1E40AF] border border-[#BFDBFE] text-[11px] font-medium">
+                <span class="material-symbols-outlined text-[15px]">school</span>
+                NPSN: 60101905
+              </span>
+            </div>
+
+            <!-- Row 3: 3 Quick Stats with Dividers -->
+            <div class="grid grid-cols-3 divide-x divide-slate-200 w-full max-w-sm mx-auto text-center">
+              <div class="px-2">
+                <span class="text-xl font-extrabold text-[#00288e] block leading-tight">7</span>
+                <span class="text-[11px] text-slate-500 font-medium mt-0.5 block">Portal Aktif</span>
+              </div>
+              <div class="px-2">
+                <span class="text-xl font-extrabold text-slate-900 block leading-tight">2026/27</span>
+                <span class="text-[11px] text-slate-500 font-medium mt-0.5 block">Tahun Ajaran</span>
+              </div>
+              <div class="px-2">
+                <span class="text-xl font-extrabold text-[#047857] inline-flex items-center justify-center gap-1 leading-tight">
+                  <span>Aktif</span>
+                  <span class="material-symbols-outlined text-[16px] text-[#047857]">verified</span>
+                </span>
+                <span class="text-[11px] text-slate-500 font-medium mt-0.5 block">Sekolah Negeri</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <!-- Desktop Hero Layout (lg+) - 2-Column Balanced Masterpiece -->
+      <div class="hidden lg:block max-w-7xl mx-auto px-6 py-14">
+        <div class="grid grid-cols-12 gap-12 items-center">
+          
+          <!-- Left Column: Content Card & Stats -->
+          <div class="col-span-6 flex flex-col justify-center">
+            <div class="bg-white rounded-3xl shadow-lg p-8 lg:p-10 border border-slate-100">
               
               <!-- Top Yellow Dash + Label -->
               <div class="flex items-center gap-2 mb-2">
-                <span class="w-5 h-1 bg-amber-400 rounded-full inline-block shrink-0"></span>
-                <span class="font-label-md text-[11px] sm:text-[12px] font-bold text-[#00288e] tracking-wider uppercase">
+                <span class="w-6 h-1.5 bg-[#F59E0B] rounded-full inline-block shrink-0"></span>
+                <span class="font-label-md text-[12px] font-bold text-[#00288e] tracking-wider uppercase">
                   WEBSITE RESMI SEKOLAH DASAR INPRES LELINGLUAN
                 </span>
               </div>
 
               <!-- Headline -->
-              <h1 class="text-[25px] sm:text-[32px] lg:text-[38px] font-extrabold text-[#0f172a] tracking-tight leading-[1.2] mt-3 mb-3">
+              <h1 class="text-3xl lg:text-[38px] font-extrabold text-[#0f172a] tracking-tight leading-[1.2] mt-3 mb-3">
                 Selamat Datang di<br>
                 <span class="text-[#00288e]">SD INPRES LELINGLUAN</span>
               </h1>
 
               <!-- Description -->
-              <p class="font-body-md text-[13px] sm:text-[14px] text-slate-600 leading-relaxed mb-6">
+              <p class="font-body-md text-[14px] text-slate-600 leading-relaxed mb-6">
                 Mewujudkan Generasi Cerdas, Berkarakter, dan Berwawasan Global melalui lingkungan belajar yang inspiratif dan berstandar nasional.
               </p>
 
               <!-- Buttons Group -->
-              <div class="flex flex-col gap-3">
-                <a class="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl bg-[#00288e] hover:bg-primary-container text-white font-bold text-[13px] sm:text-[14px] uppercase tracking-wide shadow-md active:scale-[0.98] transition-all text-center"
+              <div class="flex flex-col sm:flex-row gap-3">
+                <a class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl bg-[#00288e] hover:bg-primary-container text-white font-bold text-[14px] uppercase tracking-wide shadow-md active:scale-[0.98] transition-all text-center"
                   href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener">
                   <span class="material-symbols-outlined text-[18px]">school</span>
                   <span>DAFTAR SEKARANG!</span>
                 </a>
-                <a class="w-full inline-flex items-center justify-center gap-2 px-5 py-3.5 rounded-xl border-2 border-[#00288e] text-[#00288e] hover:bg-blue-50 font-bold text-[13px] sm:text-[14px] uppercase tracking-wide active:scale-[0.98] transition-all text-center"
+                <a class="flex-1 inline-flex items-center justify-center gap-2 px-6 py-3.5 rounded-xl border-2 border-[#00288e] text-[#00288e] hover:bg-blue-50 font-bold text-[14px] uppercase tracking-wide active:scale-[0.98] transition-all text-center"
                   href="#portal">
                   <span>PORTAL AKADEMIK</span>
                 </a>
               </div>
 
             </div>
+
+            <!-- Desktop Badges & Stats Row -->
+            <div class="mt-6 flex flex-wrap items-center justify-between gap-4 px-2">
+              <div class="flex flex-wrap items-center gap-2">
+                <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ECFDF5] text-[#047857] border border-[#10B981]/30 text-[11px] font-bold shadow-2xs">
+                  <span class="w-1.5 h-1.5 rounded-full bg-[#10B981] animate-pulse"></span>
+                  Akreditasi B · Kurikulum Merdeka
+                </span>
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#EEF2FF] text-[#4338CA] border border-[#C7D2FE] text-[11px] font-medium">
+                  <span class="material-symbols-outlined text-[14px] text-[#4F46E5]">location_on</span>
+                  Kec. Tanimbar Utara
+                </span>
+                <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-[#EFF6FF] text-[#1E40AF] border border-[#BFDBFE] text-[11px] font-medium">
+                  <span class="material-symbols-outlined text-[14px]">school</span>
+                  NPSN: 60101905
+                </span>
+              </div>
+              <div class="flex items-center divide-x divide-slate-300 text-center">
+                <div class="px-3">
+                  <span class="text-xl font-extrabold text-[#00288e] block leading-tight">7</span>
+                  <span class="text-[11px] text-slate-500 font-medium">Portal Aktif</span>
+                </div>
+                <div class="px-3">
+                  <span class="text-xl font-extrabold text-slate-900 block leading-tight">2026/27</span>
+                  <span class="text-[11px] text-slate-500 font-medium">Tahun Ajaran</span>
+                </div>
+                <div class="px-3">
+                  <span class="text-xl font-extrabold text-[#047857] inline-flex items-center gap-1 leading-tight">
+                    <span>Aktif</span>
+                    <span class="material-symbols-outlined text-[15px] text-[#047857]">verified</span>
+                  </span>
+                  <span class="text-[11px] text-slate-500 font-medium block">Negeri</span>
+                </div>
+              </div>
+            </div>
+
+          </div>
+
+          <!-- Right Column: Visual Photo -->
+          <div class="col-span-6 h-[500px] rounded-3xl overflow-hidden shadow-xl border border-slate-200 bg-slate-200">
+            <img alt="Dewan Guru dan Gedung SD Inpres Lelingluan"
+              class="w-full h-full object-cover object-center"
+              src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
           </div>
 
         </div>
       </div>
-    </section>
 
-    <!-- Quick Stats & Badges Bar (Under Hero Banner) -->
-    <section class="bg-surface-container-lowest border-b border-outline-variant py-4 sm:py-5 shadow-xs">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 flex flex-col md:flex-row items-center justify-between gap-4">
-        <!-- Badges & Verification -->
-        <div class="flex flex-wrap items-center justify-center md:justify-start gap-2">
-          <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-[#ECFDF5] text-[#047857] border border-[#10B981]/30 font-label-sm text-label-sm font-bold">
-            <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-            Akreditasi B · Kurikulum Merdeka
-          </span>
-          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-surface-container text-on-surface-variant border border-outline-variant font-label-sm text-label-sm">
-            <span class="material-symbols-outlined text-[14px] text-primary">location_on</span>
-            Kec. Tanimbar Utara, Maluku
-          </span>
-          <span class="inline-flex items-center gap-1 px-2.5 py-1 rounded-full bg-blue-50 text-primary border border-blue-200 font-label-sm text-label-sm font-bold">
-            <span class="material-symbols-outlined text-[14px]">school</span>
-            NPSN: 60101905
-          </span>
-        </div>
-
-        <!-- 3 Quick Stats -->
-        <div class="grid grid-cols-3 gap-3 sm:gap-6 w-full md:w-auto items-center text-center md:text-left divide-x divide-outline-variant/40">
-          <div class="px-2 sm:px-4">
-            <span class="font-headline-sm sm:font-headline-md text-headline-sm sm:text-headline-md text-primary font-bold block leading-tight">7</span>
-            <span class="text-[11px] sm:text-label-sm text-on-surface-variant font-medium">Portal Aktif</span>
-          </div>
-          <div class="px-2 sm:px-4">
-            <span class="font-headline-sm sm:font-headline-md text-headline-sm sm:text-headline-md text-on-surface font-bold block leading-tight">2026/27</span>
-            <span class="text-[11px] sm:text-label-sm text-on-surface-variant font-medium">Tahun Ajaran</span>
-          </div>
-          <div class="px-2 sm:px-4">
-            <span class="font-headline-sm sm:font-headline-md text-headline-sm sm:text-headline-md text-[#047857] font-bold flex items-center justify-center md:justify-start gap-1 leading-tight">
-              <span>Aktif</span>
-              <span class="material-symbols-outlined text-[15px] text-[#047857]">verified</span>
-            </span>
-            <span class="text-[11px] sm:text-label-sm text-on-surface-variant font-medium">Sekolah Negeri</span>
-          </div>
-        </div>
-      </div>
     </section>
 
     <!-- ========================================== -->
