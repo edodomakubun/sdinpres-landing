@@ -8,6 +8,20 @@
   <title>Praktik Baik &amp; Inovasi — SD Inpres Lelingluan</title>
   <meta name="description" content="Ruang berbagi praktik baik pembelajaran, modul inspiratif, video edukasi, dan karya unggulan guru serta siswa SD Inpres Lelingluan.">
 
+  <!-- Open Graph / WhatsApp / Facebook Meta Tags -->
+  <meta property="og:type" content="article">
+  <meta property="og:site_name" content="SD Inpres Lelingluan">
+  <meta property="og:title" id="ogTitle" content="Praktik Baik &amp; Inovasi — SD Inpres Lelingluan">
+  <meta property="og:description" id="ogDescription" content="Ruang berbagi praktik baik pembelajaran, modul inspiratif, video edukasi, dan karya unggulan guru serta siswa SD Inpres Lelingluan.">
+  <meta property="og:image" id="ogImage" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
+  <meta property="og:url" id="ogUrl" content="https://sdinpreslelingluan.com/praktik-baik.html">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" id="twitterTitle" content="Praktik Baik &amp; Inovasi — SD Inpres Lelingluan">
+  <meta name="twitter:description" id="twitterDescription" content="Ruang berbagi praktik baik pembelajaran, modul inspiratif, video edukasi, dan karya unggulan guru serta siswa SD Inpres Lelingluan.">
+  <meta name="twitter:image" id="twitterImage" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
+
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="apple-touch-icon" href="assets/logo.png">
@@ -272,11 +286,24 @@
       </div>
 
       <!-- Reader Footer: Share & Action Buttons -->
-      <div class="px-5 py-3 border-t border-outline-variant/40 bg-surface-container-low flex items-center justify-between shrink-0">
-        <button type="button" id="btnShareArticle" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-outline-variant text-xs font-bold text-on-surface hover:text-primary transition-colors">
-          <span class="material-symbols-outlined text-base text-secondary">share</span>
-          <span>Bagikan</span>
-        </button>
+      <div class="px-5 py-3 border-t border-outline-variant/40 bg-surface-container-low flex flex-wrap items-center justify-between gap-2 shrink-0">
+        <div class="flex flex-wrap items-center gap-2">
+          <!-- WhatsApp Quick Share Button -->
+          <button type="button" id="btnShareWhatsApp" class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#25D366] hover:bg-[#1faa51] text-white text-xs font-bold transition-all shadow-xs active:scale-95">
+            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24"><path d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z"/></svg>
+            <span>WhatsApp</span>
+          </button>
+
+          <button type="button" id="btnShareArticle" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-outline-variant text-xs font-bold text-on-surface hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-base text-secondary">share</span>
+            <span>Bagikan</span>
+          </button>
+
+          <button type="button" id="btnCopyArticleLink" class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white border border-outline-variant text-xs font-semibold text-on-surface hover:text-primary transition-colors" title="Salin Tautan">
+            <span class="material-symbols-outlined text-base">content_copy</span>
+            <span class="hidden sm:inline">Salin</span>
+          </button>
+        </div>
 
         <button type="button" id="btnCloseReaderBottom" class="px-4 py-1.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-container transition-all">
           Selesai Membaca
@@ -674,6 +701,30 @@
         window.history.replaceState({ postId: post.id, slug: postSlug }, '', newUrl);
       }
 
+      // Update Dynamic Meta Tags untuk browser
+      const ytId = post.videoUrl ? getYouTubeVideoId(post.videoUrl) : '';
+      let shareImageUrl = `${window.location.origin}/api/image/${encodeURIComponent(postSlug)}`;
+      if (ytId && !post.coverImageBase64) {
+        shareImageUrl = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
+      }
+      
+      document.title = `${post.title} — SD Inpres Lelingluan`;
+      const metaOgTitle = document.getElementById('ogTitle');
+      const metaOgDesc = document.getElementById('ogDescription');
+      const metaOgImage = document.getElementById('ogImage');
+      const metaOgUrl = document.getElementById('ogUrl');
+      const metaTwTitle = document.getElementById('twitterTitle');
+      const metaTwDesc = document.getElementById('twitterDescription');
+      const metaTwImage = document.getElementById('twitterImage');
+
+      if (metaOgTitle) metaOgTitle.content = `${post.title} — SD Inpres Lelingluan`;
+      if (metaOgDesc) metaOgDesc.content = post.summary || post.title;
+      if (metaOgImage) metaOgImage.content = shareImageUrl;
+      if (metaOgUrl) metaOgUrl.content = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(postSlug)}`;
+      if (metaTwTitle) metaTwTitle.content = `${post.title} — SD Inpres Lelingluan`;
+      if (metaTwDesc) metaTwDesc.content = post.summary || post.title;
+      if (metaTwImage) metaTwImage.content = shareImageUrl;
+
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
@@ -690,6 +741,9 @@
       if (updateUrl && window.history.replaceState) {
         window.history.replaceState({}, '', window.location.pathname);
       }
+
+      // Reset Title
+      document.title = 'Praktik Baik & Inovasi — SD Inpres Lelingluan';
     }
 
     // Memeriksa parameter slug pada URL dan otomatis membuka artikel terkait
@@ -708,31 +762,79 @@
       }
     }
 
-    // Share Handler
+    // Share Handler dengan dukungan kirim file gambar langsung ke medsos
     async function shareArticle() {
       const post = state.currentOpenPost;
       if (!post) return;
 
       const slug = post.slug || post.id;
       const shareUrl = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(slug)}`;
+      const title = `${post.title} — SD Inpres Lelingluan`;
+      const text = post.summary ? `${post.summary}\n\n` : '';
 
-      const shareData = {
-        title: `${post.title} — Praktik Baik SD Inpres Lelingluan`,
-        text: post.summary || post.title,
-        url: shareUrl
-      };
+      // Konversi gambar Base64 menjadi File biner jika browser mendukung share files
+      let imageFile = null;
+      if (post.coverImageBase64 && navigator.canShare) {
+        try {
+          const res = await fetch(post.coverImageBase64);
+          const blob = await res.blob();
+          const ext = blob.type.includes('webp') ? 'webp' : 'jpg';
+          imageFile = new File([blob], `foto-${slug}.${ext}`, { type: blob.type || 'image/jpeg' });
+        } catch (e) {
+          console.warn("Gagal membuat file share:", e);
+        }
+      }
 
       if (navigator.share) {
         try {
-          await navigator.share(shareData);
-        } catch (e) {}
-      } else {
-        navigator.clipboard.writeText(shareUrl).then(() => {
-          alert('Tautan langsung postingan berhasil disalin ke clipboard:\n' + shareUrl);
-        }).catch(() => {
-          prompt('Salin tautan postingan ini:', shareUrl);
-        });
+          const payload = {
+            title,
+            text: `${text}Baca selengkapnya di:`,
+            url: shareUrl
+          };
+          if (imageFile && navigator.canShare({ files: [imageFile] })) {
+            payload.files = [imageFile];
+          }
+          await navigator.share(payload);
+          return;
+        } catch (e) {
+          if (e.name !== 'AbortError') {
+            console.warn("Navigator share failed:", e);
+          } else {
+            return;
+          }
+        }
       }
+
+      // Fallback: Kirim langsung via WhatsApp API
+      shareToWhatsApp();
+    }
+
+    // Kirim langsung ke WhatsApp dengan format pesan rapi
+    function shareToWhatsApp() {
+      const post = state.currentOpenPost;
+      if (!post) return;
+
+      const slug = post.slug || post.id;
+      const shareUrl = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(slug)}`;
+      const summaryText = post.summary ? `${post.summary}\n\n` : '';
+      const message = `*${post.title}*\n\n${summaryText}Baca selengkapnya di:\n${shareUrl}`;
+      const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
+      window.open(waUrl, '_blank');
+    }
+
+    // Salin tautan cepat
+    function copyArticleLink() {
+      const post = state.currentOpenPost;
+      if (!post) return;
+
+      const slug = post.slug || post.id;
+      const shareUrl = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(slug)}`;
+      navigator.clipboard.writeText(shareUrl).then(() => {
+        alert('Tautan postingan berhasil disalin ke clipboard:\n' + shareUrl);
+      }).catch(() => {
+        prompt('Salin tautan artikel ini:', shareUrl);
+      });
     }
 
     // Event listeners
@@ -760,10 +862,12 @@
         applyFilters();
       });
 
-      // Modal close listeners
+      // Modal close & share listeners
       document.getElementById('btnCloseReaderModal')?.addEventListener('click', closeReader);
       document.getElementById('btnCloseReaderBottom')?.addEventListener('click', closeReader);
       document.getElementById('btnShareArticle')?.addEventListener('click', shareArticle);
+      document.getElementById('btnShareWhatsApp')?.addEventListener('click', shareToWhatsApp);
+      document.getElementById('btnCopyArticleLink')?.addEventListener('click', copyArticleLink);
 
       document.addEventListener('keydown', (e) => {
         if (e.key === 'Escape') closeReader();
