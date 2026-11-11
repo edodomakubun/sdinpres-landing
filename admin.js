@@ -281,11 +281,8 @@ export async function compressImageToBase64(file, maxWidth = 1200, maxHeight = 9
         ctx.imageSmoothingQuality = 'high';
         ctx.drawImage(img, 0, 0, width, height);
 
-        // Prioritaskan WebP, fallback ke JPEG jika browser tidak mendukung export WebP
-        let base64 = canvas.toDataURL('image/webp', quality);
-        if (!base64.startsWith('data:image/webp')) {
-          base64 = canvas.toDataURL('image/jpeg', quality);
-        }
+        // Simpan sebagai JPEG kualitas 0.85 untuk kompatibilitas mutlak 100% pada scraper media sosial (WhatsApp, Facebook, Twitter)
+        const base64 = canvas.toDataURL('image/jpeg', Math.min(quality || 0.85, 0.85));
 
         // Estimasi byte data Base64
         const estimatedBytes = Math.round((base64.length * 3) / 4);
@@ -813,7 +810,7 @@ function setupEditor() {
       showToast('Masukkan judul postingan terlebih dahulu!', 'warning');
       return;
     }
-    const fullUrl = `${window.location.origin}/praktik-baik.html?slug=${encodeURIComponent(slug)}`;
+    const fullUrl = `${window.location.origin}/praktik-baik?slug=${encodeURIComponent(slug)}`;
     navigator.clipboard.writeText(fullUrl).then(() => {
       showToast('Tautan postingan berhasil disalin ke clipboard!', 'success');
     }).catch(() => {
@@ -828,7 +825,7 @@ function setupEditor() {
       showToast('Masukkan judul postingan terlebih dahulu!', 'warning');
       return;
     }
-    window.open(`praktik-baik.html?slug=${encodeURIComponent(slug)}`, '_blank');
+    window.open(`praktik-baik?slug=${encodeURIComponent(slug)}`, '_blank');
   });
 
   // Char counter
@@ -1423,7 +1420,7 @@ function renderPostsList() {
             <span>•</span>
             <span class="inline-flex items-center gap-1 font-mono text-[10px] text-primary bg-primary/5 px-2 py-0.5 rounded border border-primary/20">
               <span class="material-symbols-outlined text-[12px]">link</span>
-              <a href="praktik-baik.html?slug=${encodeURIComponent(post.slug || post.id)}" target="_blank" class="hover:underline font-semibold" title="Buka tautan postingan di tab baru">/${escapeHtml(post.slug || post.id)}</a>
+              <a href="praktik-baik?slug=${encodeURIComponent(post.slug || post.id)}" target="_blank" class="hover:underline font-semibold" title="Buka tautan postingan di tab baru">/${escapeHtml(post.slug || post.id)}</a>
               <button type="button" class="btn-copy-post-slug text-outline hover:text-primary transition-colors ml-1" data-slug="${escapeHtml(post.slug || post.id)}" title="Salin Tautan Postingan">
                 <span class="material-symbols-outlined text-[12px]">content_copy</span>
               </button>
@@ -1482,7 +1479,7 @@ function renderPostsList() {
     btn.addEventListener('click', (e) => {
       e.stopPropagation();
       const slug = btn.dataset.slug;
-      const url = `${window.location.origin}/praktik-baik.html?slug=${encodeURIComponent(slug)}`;
+      const url = `${window.location.origin}/praktik-baik?slug=${encodeURIComponent(slug)}`;
       navigator.clipboard.writeText(url).then(() => {
         showToast('Tautan postingan berhasil disalin ke clipboard!', 'success');
       }).catch(() => {

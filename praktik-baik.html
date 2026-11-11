@@ -14,7 +14,11 @@
   <meta property="og:title" id="ogTitle" content="Praktik Baik &amp; Inovasi — SD Inpres Lelingluan">
   <meta property="og:description" id="ogDescription" content="Ruang berbagi praktik baik pembelajaran, modul inspiratif, video edukasi, dan karya unggulan guru serta siswa SD Inpres Lelingluan.">
   <meta property="og:image" id="ogImage" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
-  <meta property="og:url" id="ogUrl" content="https://sdinpreslelingluan.com/praktik-baik.html">
+  <meta property="og:image:secure_url" id="ogImageSecure" content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
+  <meta property="og:image:type" id="ogImageType" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:url" id="ogUrl" content="https://sdinpreslelingluan.com/praktik-baik">
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
@@ -375,6 +379,14 @@
       return id ? `https://www.youtube-nocookie.com/embed/${id}` : '';
     }
 
+    // Dapatkan URL kanonikal bersih (selalu /praktik-baik?slug=... tanpa .html untuk mencegah 308 redirect)
+    function getCanonicalShareUrl(slug) {
+      if (!slug) return `${window.location.origin}/praktik-baik`;
+      const cleanPath = window.location.pathname.replace(/\.html$/, '');
+      const path = cleanPath.endsWith('/praktik-baik') ? cleanPath : '/praktik-baik';
+      return `${window.location.origin}${path}?slug=${encodeURIComponent(slug)}`;
+    }
+
     function formatMarkdown(text) {
       if (!text) return '';
       let escaped = text
@@ -696,15 +708,15 @@
 
       // Update URL browser dengan slug postingan agar bisa langsung di-bookmark / disalin
       const postSlug = post.slug || post.id;
+      const canonicalUrl = getCanonicalShareUrl(postSlug);
       if (updateUrl && postSlug && window.history.replaceState) {
-        const newUrl = `${window.location.pathname}?slug=${encodeURIComponent(postSlug)}`;
-        window.history.replaceState({ postId: post.id, slug: postSlug }, '', newUrl);
+        window.history.replaceState({ postId: post.id, slug: postSlug }, '', canonicalUrl);
       }
 
       // Update Dynamic Meta Tags untuk browser
       const ytId = post.videoUrl ? getYouTubeVideoId(post.videoUrl) : '';
-      let shareImageUrl = `${window.location.origin}/api/image/${encodeURIComponent(postSlug)}`;
-      if (ytId && !post.coverImageBase64) {
+      let shareImageUrl = `${window.location.origin}/api/image/${encodeURIComponent(postSlug)}.jpg`;
+      if (ytId) {
         shareImageUrl = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
       }
       
@@ -712,6 +724,7 @@
       const metaOgTitle = document.getElementById('ogTitle');
       const metaOgDesc = document.getElementById('ogDescription');
       const metaOgImage = document.getElementById('ogImage');
+      const metaOgImageSecure = document.getElementById('ogImageSecure');
       const metaOgUrl = document.getElementById('ogUrl');
       const metaTwTitle = document.getElementById('twitterTitle');
       const metaTwDesc = document.getElementById('twitterDescription');
@@ -720,7 +733,8 @@
       if (metaOgTitle) metaOgTitle.content = `${post.title} — SD Inpres Lelingluan`;
       if (metaOgDesc) metaOgDesc.content = post.summary || post.title;
       if (metaOgImage) metaOgImage.content = shareImageUrl;
-      if (metaOgUrl) metaOgUrl.content = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(postSlug)}`;
+      if (metaOgImageSecure) metaOgImageSecure.content = shareImageUrl;
+      if (metaOgUrl) metaOgUrl.content = canonicalUrl;
       if (metaTwTitle) metaTwTitle.content = `${post.title} — SD Inpres Lelingluan`;
       if (metaTwDesc) metaTwDesc.content = post.summary || post.title;
       if (metaTwImage) metaTwImage.content = shareImageUrl;
@@ -768,7 +782,7 @@
       if (!post) return;
 
       const slug = post.slug || post.id;
-      const shareUrl = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(slug)}`;
+      const shareUrl = getCanonicalShareUrl(slug);
       const title = `${post.title} — SD Inpres Lelingluan`;
       const text = post.summary ? `${post.summary}\n\n` : '';
 
@@ -816,7 +830,7 @@
       if (!post) return;
 
       const slug = post.slug || post.id;
-      const shareUrl = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(slug)}`;
+      const shareUrl = getCanonicalShareUrl(slug);
       const summaryText = post.summary ? `${post.summary}\n\n` : '';
       const message = `*${post.title}*\n\n${summaryText}Baca selengkapnya di:\n${shareUrl}`;
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
@@ -829,7 +843,7 @@
       if (!post) return;
 
       const slug = post.slug || post.id;
-      const shareUrl = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(slug)}`;
+      const shareUrl = getCanonicalShareUrl(slug);
       navigator.clipboard.writeText(shareUrl).then(() => {
         alert('Tautan postingan berhasil disalin ke clipboard:\n' + shareUrl);
       }).catch(() => {

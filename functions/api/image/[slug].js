@@ -13,11 +13,13 @@ function extractYouTubeVideoId(url) {
 
 export async function onRequest(context) {
   const { params } = context;
-  const slug = params.slug;
+  const rawSlug = params.slug || '';
+  // Bersihkan ekstensi jika scraper atau crawler memanggil /api/image/slug.jpg
+  const cleanSlug = rawSlug.replace(/\.(jpe?g|png|webp)$/i, '');
 
   const defaultImageUrl = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg';
 
-  if (!slug) {
+  if (!cleanSlug) {
     return Response.redirect(defaultImageUrl, 302);
   }
 
@@ -34,7 +36,7 @@ export async function onRequest(context) {
     const postDoc = docs.find(d => {
       const docSlug = d.fields?.slug?.stringValue || '';
       const docId = d.name?.split('/').pop() || '';
-      return docSlug.toLowerCase() === slug.toLowerCase() || docId.toLowerCase() === slug.toLowerCase();
+      return docSlug.toLowerCase() === cleanSlug.toLowerCase() || docId.toLowerCase() === cleanSlug.toLowerCase();
     });
 
     if (!postDoc) {
@@ -44,16 +46,14 @@ export async function onRequest(context) {
     const fields = postDoc.fields || {};
     const base64Str = fields.coverImageBase64?.stringValue || '';
     const videoUrl = fields.videoUrl?.stringValue || '';
+    const ytId = extractYouTubeVideoId(videoUrl);
 
-    // Jika tidak ada gambar base64 tapi ada video YouTube, alihkan ke thumbnail YouTube
-    if (!base64Str && videoUrl) {
-      const ytId = extractYouTubeVideoId(videoUrl);
-      if (ytId) {
-        return Response.redirect(`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`, 302);
-      }
+    // Jika postingan memiliki video YouTube, alihkan ke thumbnail resmi YouTube (JPEG murni standar internasional)
+    if (ytId) {
+      return Response.redirect(`https://img.youtube.com/vi/${ytId}/hqdefault.jpg`, 302);
     }
 
-    // Jika ada gambar Base64, decode menjadi byte biner murni
+    // Jika ada gambar Base64 kustom yang diunggah, decode menjadi byte biner murni
     if (base64Str.startsWith('data:')) {
       const commaIdx = base64Str.indexOf(',');
       const header = base64Str.substring(0, commaIdx);
@@ -85,4 +85,3 @@ export async function onRequest(context) {
     return Response.redirect(defaultImageUrl, 302);
   }
 }
-

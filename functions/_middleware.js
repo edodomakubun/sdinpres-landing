@@ -14,7 +14,11 @@ const BOT_USER_AGENTS = [
   'LinkedInBot',
   'Pinterest',
   'Slackbot',
-  'Googlebot'
+  'Googlebot',
+  'Discordbot',
+  'SkypeUriPreview',
+  'Applebot',
+  'bingbot'
 ];
 
 function isBot(userAgent) {
@@ -55,6 +59,11 @@ export async function onRequest(context) {
     slug = url.pathname.replace(/^\/post\//, '').replace(/\/$/, '');
   }
 
+  // Bersihkan ekstensi jika ada (.html dsb.)
+  if (slug) {
+    slug = slug.replace(/\.html$/i, '');
+  }
+
   // Jika bot mengakses halaman beranda umum tanpa slug spesifik, sajikan normal
   if (!slug) {
     return next();
@@ -88,39 +97,88 @@ export async function onRequest(context) {
     const summary = fields.summary?.stringValue || fields.content?.stringValue?.substring(0, 160) || 'Ruang berbagi praktik baik pendidikan SD Inpres Lelingluan.';
     const videoUrl = fields.videoUrl?.stringValue || '';
     const hasBase64 = Boolean(fields.coverImageBase64?.stringValue);
-    
+    const ytId = extractYouTubeVideoId(videoUrl);
+
     // Tentukan URL gambar untuk Open Graph:
-    // WA / FB memerlukan URL HTTPS biner asli, BUKAN string data base64!
+    // WhatsApp dan Facebook memerlukan gambar JPEG/PNG biner asli dengan URL publik HTTPS.
     let ogImageUrl = 'https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg';
     
-    const ytId = extractYouTubeVideoId(videoUrl);
-    if (ytId && !hasBase64) {
+    if (ytId) {
+      // Thumbnail YouTube resmi Google CDN adalah file JPEG murni berkualitas tinggi (paling kompatibel dgn WA/FB)
       ogImageUrl = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
     } else if (hasBase64) {
-      ogImageUrl = `${url.origin}/api/image/${encodeURIComponent(slug)}`;
+      // Foto cover kustom yang diunggah dilayani via edge binary endpoint biner dengan ekstensi .jpg
+      ogImageUrl = `${url.origin}/api/image/${encodeURIComponent(slug)}.jpg`;
     }
 
-    const postFullUrl = `${url.origin}/praktik-baik.html?slug=${encodeURIComponent(slug)}`;
+    // URL kanonikal postingan (selalu bersih tanpa .html agar tidak memicu 308 redirect)
+    const canonicalPostUrl = `${url.origin}/praktik-baik?slug=${encodeURIComponent(slug)}`;
 
-    // 4. Ambil respon HTML asli
-    const response = await next();
-    let html = await response.text();
+    // 4. Ambil respon HTML asli praktik-baik secara langsung tanpa memicu redirect 308/302
+    let html = '';
+    try {
+      if (context.env && context.env.ASSETS) {
+        const assetRes = await context.env.ASSETS.fetch(new URL('/praktik-baik', request.url));
+        if (assetRes.ok) {
+          html = await assetRes.text();
+        }
+      }
+    } catch (e) {
+      console.warn('ASSETS.fetch failed:', e);
+    }
 
-    // 5. Gantikan Meta Tag Open Graph & Twitter Card khusus crawler
+    if (!html) {
+      try {
+        const originRes = await fetch(new URL('/praktik-baik', request.url));
+        if (originRes.ok) {
+          html = await originRes.text();
+        }
+      } catch (e) {
+        console.warn('Origin fetch failed:', e);
+      }
+    }
+
+    if (!html) {
+      const response = await next();
+      html = await response.text();
+    }
+
+    // 5. Gantikan <title>
     html = html.replace(/<title>.*?<\/title>/i, `<title>${escapeHtml(title)} — SD Inpres Lelingluan</title>`);
-    html = html.replace(/<meta property="og:title"[^>]*>/i, `<meta property="og:title" content="${escapeHtml(title)} — SD Inpres Lelingluan">`);
-    html = html.replace(/<meta property="og:description"[^>]*>/i, `<meta property="og:description" content="${escapeHtml(summary)}">`);
-    html = html.replace(/<meta property="og:image"[^>]*>/i, `<meta property="og:image" content="${ogImageUrl}">`);
-    html = html.replace(/<meta property="og:url"[^>]*>/i, `<meta property="og:url" content="${postFullUrl}">`);
-    html = html.replace(/<meta name="twitter:title"[^>]*>/i, `<meta name="twitter:title" content="${escapeHtml(title)} — SD Inpres Lelingluan">`);
-    html = html.replace(/<meta name="twitter:description"[^>]*>/i, `<meta name="twitter:description" content="${escapeHtml(summary)}">`);
-    html = html.replace(/<meta name="twitter:image"[^>]*>/i, `<meta name="twitter:image" content="${ogImageUrl}">`);
 
+    // 6. Buat blok Open Graph & Twitter Card lengkap dan valid
+    const ogTags = `
+  <!-- Open Graph / WhatsApp / Facebook Meta Tags -->
+  <meta property="og:site_name" content="SD Inpres Lelingluan">
+  <meta property="og:type" content="article">
+  <meta property="og:title" content="${escapeHtml(title)} — SD Inpres Lelingluan">
+  <meta property="og:description" content="${escapeHtml(summary)}">
+  <meta property="og:image" content="${ogImageUrl}">
+  <meta property="og:image:secure_url" content="${ogImageUrl}">
+  <meta property="og:image:type" content="image/jpeg">
+  <meta property="og:image:width" content="1200">
+  <meta property="og:image:height" content="630">
+  <meta property="og:image:alt" content="${escapeHtml(title)}">
+  <meta property="og:url" content="${canonicalPostUrl}">
+
+  <!-- Twitter Meta Tags -->
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="${escapeHtml(title)} — SD Inpres Lelingluan">
+  <meta name="twitter:description" content="${escapeHtml(summary)}">
+  <meta name="twitter:image" content="${ogImageUrl}">
+    `.trim();
+
+    // Hapus meta tags Open Graph dan Twitter lama dari HTML dasar, lalu sisipkan yang baru ke dalam <head>
+    html = html.replace(/<meta property="og:[^>]*>/gi, '');
+    html = html.replace(/<meta name="twitter:[^>]*>/gi, '');
+    html = html.replace(/<\/head>/i, `  ${ogTags}\n</head>`);
+
+    // Kembalikan langsung HTTP 200 OK ke crawler tanpa redirect
     return new Response(html, {
-      status: response.status,
+      status: 200,
       headers: {
-        ...Object.fromEntries(response.headers),
-        'Content-Type': 'text/html; charset=utf-8'
+        'Content-Type': 'text/html; charset=utf-8',
+        'Cache-Control': 'public, max-age=3600, s-maxage=3600'
       }
     });
 
@@ -129,4 +187,3 @@ export async function onRequest(context) {
     return next();
   }
 }
-
