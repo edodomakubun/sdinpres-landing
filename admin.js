@@ -318,6 +318,7 @@ function formatBytes(bytes) {
 }
 
 function generateSlug(text) {
+  if (!text) return '';
   return text
     .toString()
     .toLowerCase()
@@ -326,7 +327,8 @@ function generateSlug(text) {
     .replace(/[\u0300-\u036f]/g, '')
     .replace(/[^a-z0-9 -]/g, '')
     .replace(/\s+/g, '-')
-    .replace(/-+/g, '-');
+    .replace(/-+/g, '-')
+    .replace(/^-+|-+$/g, '');
 }
 
 /**
@@ -770,16 +772,63 @@ function setupEditor() {
     postDate.value = new Date().toISOString().split('T')[0];
   }
 
-  // Auto-slug generator
+  // Auto-slug generator & validator
+  let isSlugCustomized = false;
+
   postTitle?.addEventListener('input', () => {
-    if (!state.editingPostId) {
+    // Selalu perbarui jika belum diubah secara manual oleh admin atau jika slug kosong
+    if (!isSlugCustomized || !postSlug.value.trim()) {
       postSlug.value = generateSlug(postTitle.value);
     }
   });
 
+  // Sanitasi slug otomatis saat pengguna mengetik slug manual
+  postSlug?.addEventListener('input', () => {
+    isSlugCustomized = true;
+    const sanitized = postSlug.value
+      .toLowerCase()
+      .replace(/[^a-z0-9 -]/g, '')
+      .replace(/\s+/g, '-');
+    if (postSlug.value !== sanitized) {
+      postSlug.value = sanitized;
+    }
+  });
+
+  // Saat selesai mengetik slug (blur), rapikan strip di awal/akhir
+  postSlug?.addEventListener('blur', () => {
+    postSlug.value = generateSlug(postSlug.value || postTitle.value);
+  });
+
+  // Tombol Buat Ulang Slug
   document.getElementById('btnRegenerateSlug')?.addEventListener('click', () => {
+    isSlugCustomized = false;
     postSlug.value = generateSlug(postTitle.value);
     showToast('Slug diperbarui sesuai judul', 'info');
+  });
+
+  // Tombol Salin Tautan Postingan
+  document.getElementById('btnCopySlugUrl')?.addEventListener('click', () => {
+    const slug = postSlug.value.trim() || generateSlug(postTitle.value);
+    if (!slug) {
+      showToast('Masukkan judul postingan terlebih dahulu!', 'warning');
+      return;
+    }
+    const fullUrl = `${window.location.origin}/praktik-baik.html?slug=${encodeURIComponent(slug)}`;
+    navigator.clipboard.writeText(fullUrl).then(() => {
+      showToast('Tautan postingan berhasil disalin ke clipboard!', 'success');
+    }).catch(() => {
+      prompt('Salin tautan postingan ini:', fullUrl);
+    });
+  });
+
+  // Tombol Buka / Tes Tautan Postingan
+  document.getElementById('btnTestSlugUrl')?.addEventListener('click', () => {
+    const slug = postSlug.value.trim() || generateSlug(postTitle.value);
+    if (!slug) {
+      showToast('Masukkan judul postingan terlebih dahulu!', 'warning');
+      return;
+    }
+    window.open(`praktik-baik.html?slug=${encodeURIComponent(slug)}`, '_blank');
   });
 
   // Char counter
@@ -1015,7 +1064,10 @@ function insertFormatting(textarea, format) {
  */
 async function handleSavePost() {
   const title = document.getElementById('postTitle').value.trim();
-  const slug = document.getElementById('postSlug').value.trim() || generateSlug(title);
+  const rawSlug = document.getElementById('postSlug').value.trim();
+  const slug = generateSlug(rawSlug || title) || ('post-' + Date.now());
+  const slugEl = document.getElementById('postSlug');
+  if (slugEl) slugEl.value = slug;
   const summary = document.getElementById('postSummary').value.trim();
   const content = document.getElementById('postContent').value.trim();
   const category = document.getElementById('postCategory').value;
@@ -1076,11 +1128,14 @@ async function handleSavePost() {
 
   const btnPublish = document.getElementById('btnPublishPrimary');
   const btnSave = document.getElementById('btnSavePost');
-  const originalPublishHtml = btnPublish.innerHTML;
+  const btnPublishText = document.getElementById('btnPublishPrimaryText');
+  const btnSaveText = document.getElementById('btnSavePostText');
 
   try {
-    btnPublish.disabled = true;
-    btnPublish.innerHTML = '<span class="material-symbols-outlined text-base animate-spin">sync</span> Menyimpan ke Firestore...';
+    if (btnPublish) btnPublish.disabled = true;
+    if (btnSave) btnSave.disabled = true;
+    if (btnPublishText) btnPublishText.textContent = 'Menyimpan ke Firestore...';
+    if (btnSaveText) btnSaveText.textContent = 'Menyimpan...';
 
     const savedId = await savePostToDatabase(postData, state.editingPostId);
     showToast(state.editingPostId ? 'Postingan berhasil diperbarui!' : 'Postingan berhasil disimpan ke Firestore!', 'success');
@@ -1092,8 +1147,14 @@ async function handleSavePost() {
     console.error("Gagal menyimpan postingan:", err);
     showToast(`Gagal menyimpan postingan: ${err.message}`, 'error');
   } finally {
-    btnPublish.disabled = false;
-    btnPublish.innerHTML = originalPublishHtml;
+    if (btnPublish) btnPublish.disabled = false;
+    if (btnSave) btnSave.disabled = false;
+    if (btnPublishText) {
+      btnPublishText.textContent = state.editingPostId ? 'Perbarui di Firestore' : 'Simpan ke Firestore';
+    }
+    if (btnSaveText) {
+      btnSaveText.textContent = state.editingPostId ? 'Perbarui Postingan' : 'Simpan & Publikasikan';
+    }
   }
 }
 
@@ -1101,30 +1162,51 @@ function resetEditorForm() {
   state.editingPostId = null;
   state.isYouTubeThumb = false;
   syncYouTubeThumbCheckboxes(false);
-  document.getElementById('postForm').reset();
+
+  const postForm = document.getElementById('postForm');
+  if (postForm) postForm.reset();
   clearCoverImage();
 
   const videoInput = document.getElementById('postVideoUrl');
   if (videoInput) videoInput.value = '';
   const extInput = document.getElementById('postExternalUrl');
   if (extInput) extInput.value = '';
+  const postSlugInput = document.getElementById('postSlug');
+  if (postSlugInput) postSlugInput.value = '';
 
-  document.getElementById('editorModeBadge').textContent = 'POST BARU';
-  document.getElementById('editorModeBadge').className = 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary';
-  document.getElementById('editorHeading').textContent = 'Tulis Postingan Sekolah';
-  document.getElementById('btnSavePostText').textContent = 'Simpan & Publikasikan';
-  document.getElementById('btnPublishPrimaryText').textContent = 'Simpan ke Firestore';
-  document.getElementById('btnCancelEdit').classList.add('hidden');
-  document.getElementById('charCount').textContent = '0 karakter';
-  document.getElementById('postDate').value = new Date().toISOString().split('T')[0];
-  document.getElementById('postAuthor').value = 'Edo Domakubun';
+  const editorModeBadge = document.getElementById('editorModeBadge');
+  if (editorModeBadge) {
+    editorModeBadge.textContent = 'POST BARU';
+    editorModeBadge.className = 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary';
+  }
+
+  const editorHeading = document.getElementById('editorHeading');
+  if (editorHeading) editorHeading.textContent = 'Tulis Postingan Sekolah';
+
+  const btnSavePostText = document.getElementById('btnSavePostText');
+  if (btnSavePostText) btnSavePostText.textContent = 'Simpan & Publikasikan';
+
+  const btnPublishPrimaryText = document.getElementById('btnPublishPrimaryText');
+  if (btnPublishPrimaryText) btnPublishPrimaryText.textContent = 'Simpan ke Firestore';
+
+  const btnCancelEdit = document.getElementById('btnCancelEdit');
+  if (btnCancelEdit) btnCancelEdit.classList.add('hidden');
+
+  const charCount = document.getElementById('charCount');
+  if (charCount) charCount.textContent = '0 karakter';
+
+  const postDate = document.getElementById('postDate');
+  if (postDate) postDate.value = new Date().toISOString().split('T')[0];
+
+  const postAuthor = document.getElementById('postAuthor');
+  if (postAuthor) postAuthor.value = 'Edo Domakubun';
 }
 
 function startEditPost(post) {
   state.editingPostId = post.id;
 
   document.getElementById('postTitle').value = post.title || '';
-  document.getElementById('postSlug').value = post.slug || '';
+  document.getElementById('postSlug').value = post.slug || generateSlug(post.title || '');
   document.getElementById('postSummary').value = post.summary || '';
   document.getElementById('postContent').value = post.content || '';
   document.getElementById('postCategory').value = post.category || 'Praktik Baik';
@@ -1166,12 +1248,22 @@ function startEditPost(post) {
   }
 
   // Update UI indicators
-  document.getElementById('editorModeBadge').textContent = 'SEDANG MENGEDIT';
-  document.getElementById('editorModeBadge').className = 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-amber-500/10 text-amber-600';
-  document.getElementById('editorHeading').textContent = 'Edit Postingan Sekolah';
-  document.getElementById('btnSavePostText').textContent = 'Perbarui Postingan';
-  document.getElementById('btnPublishPrimaryText').textContent = 'Perbarui di Firestore';
-  document.getElementById('btnCancelEdit').classList.remove('hidden');
+  const editorModeBadge = document.getElementById('editorModeBadge');
+  if (editorModeBadge) {
+    editorModeBadge.textContent = 'SEDANG MENGEDIT';
+    editorModeBadge.className = 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-amber-500/10 text-amber-600';
+  }
+  const editorHeading = document.getElementById('editorHeading');
+  if (editorHeading) editorHeading.textContent = 'Edit Postingan Sekolah';
+
+  const btnSavePostText = document.getElementById('btnSavePostText');
+  if (btnSavePostText) btnSavePostText.textContent = 'Perbarui Postingan';
+
+  const btnPublishPrimaryText = document.getElementById('btnPublishPrimaryText');
+  if (btnPublishPrimaryText) btnPublishPrimaryText.textContent = 'Perbarui di Firestore';
+
+  const btnCancelEdit = document.getElementById('btnCancelEdit');
+  if (btnCancelEdit) btnCancelEdit.classList.remove('hidden');
 
   navigateTo('viewEditor');
   showToast(`Sedang mengedit: "${post.title}"`, 'info');
@@ -1242,10 +1334,15 @@ function renderPostsList() {
   const publishedCount = state.posts.filter(p => p.status === 'published').length;
   const draftCount = state.posts.filter(p => p.status === 'draft').length;
 
-  document.getElementById('statTotalPosts').textContent = totalPosts;
-  document.getElementById('statPublishedPosts').textContent = publishedCount;
-  document.getElementById('statDraftPosts').textContent = draftCount;
-  document.getElementById('postCountBadge').textContent = totalPosts;
+  const elTotal = document.getElementById('statTotalPosts');
+  const elPublished = document.getElementById('statPublishedPosts');
+  const elDraft = document.getElementById('statDraftPosts');
+  const elBadge = document.getElementById('postCountBadge');
+
+  if (elTotal) elTotal.textContent = totalPosts;
+  if (elPublished) elPublished.textContent = publishedCount;
+  if (elDraft) elDraft.textContent = draftCount;
+  if (elBadge) elBadge.textContent = totalPosts;
 
   if (filtered.length === 0) {
     container.innerHTML = `
@@ -1318,11 +1415,19 @@ function renderPostsList() {
             ${escapeHtml(post.summary || post.content || '')}
           </p>
 
-          <div class="flex items-center gap-2 text-[11px] text-outline">
-            <span class="material-symbols-outlined text-xs">person</span>
-            <span>${escapeHtml(post.author || 'Admin')}</span>
+          <div class="flex flex-wrap items-center gap-2 text-[11px] text-outline">
+            <span class="inline-flex items-center gap-1">
+              <span class="material-symbols-outlined text-xs">person</span>
+              <span>${escapeHtml(post.author || 'Admin')}</span>
+            </span>
             <span>•</span>
-            <span class="font-mono text-[10px] truncate">slug: ${escapeHtml(post.slug || '-')}</span>
+            <span class="inline-flex items-center gap-1 font-mono text-[10px] text-primary bg-primary/5 px-2 py-0.5 rounded border border-primary/20">
+              <span class="material-symbols-outlined text-[12px]">link</span>
+              <a href="praktik-baik.html?slug=${encodeURIComponent(post.slug || post.id)}" target="_blank" class="hover:underline font-semibold" title="Buka tautan postingan di tab baru">/${escapeHtml(post.slug || post.id)}</a>
+              <button type="button" class="btn-copy-post-slug text-outline hover:text-primary transition-colors ml-1" data-slug="${escapeHtml(post.slug || post.id)}" title="Salin Tautan Postingan">
+                <span class="material-symbols-outlined text-[12px]">content_copy</span>
+              </button>
+            </span>
           </div>
         </div>
 
@@ -1369,6 +1474,20 @@ function renderPostsList() {
         document.getElementById('deleteItemTitle').textContent = post.title;
         document.getElementById('deleteConfirmModal').classList.remove('hidden');
       }
+    });
+  });
+
+  // Listener tombol salin tautan langsung di kartu postingan
+  container.querySelectorAll('.btn-copy-post-slug').forEach(btn => {
+    btn.addEventListener('click', (e) => {
+      e.stopPropagation();
+      const slug = btn.dataset.slug;
+      const url = `${window.location.origin}/praktik-baik.html?slug=${encodeURIComponent(slug)}`;
+      navigator.clipboard.writeText(url).then(() => {
+        showToast('Tautan postingan berhasil disalin ke clipboard!', 'success');
+      }).catch(() => {
+        prompt('Salin tautan postingan:', url);
+      });
     });
   });
 }

@@ -9,6 +9,18 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@500;700;800&display=swap" rel="stylesheet">
+  <script>
+    // Routing otomatis URL slug postingan: /post/:slug -> /praktik-baik.html?slug=:slug
+    (function() {
+      const path = window.location.pathname;
+      if (path.startsWith('/post/')) {
+        const slug = path.replace(/^\/post\//, '').replace(/\/$/, '');
+        if (slug) {
+          window.location.replace('/praktik-baik.html?slug=' + encodeURIComponent(slug));
+        }
+      }
+    })();
+  </script>
   <meta http-equiv="refresh" content="4;url=/">
   <style>
     body {

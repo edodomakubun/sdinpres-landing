@@ -331,15 +331,24 @@
               <div>
                 <div class="flex items-center justify-between text-xs text-on-surface-variant mb-1">
                   <label for="postSlug" class="font-medium">URL Slug (Identitas Unik)</label>
-                  <button type="button" id="btnRegenerateSlug" class="text-primary hover:underline text-[11px] font-semibold flex items-center gap-0.5">
-                    <span class="material-symbols-outlined text-xs">sync</span> Buat Ulang
-                  </button>
+                  <div class="flex items-center gap-2">
+                    <button type="button" id="btnTestSlugUrl" class="text-secondary hover:underline text-[11px] font-semibold flex items-center gap-0.5" title="Buka Tautan Postingan">
+                      <span class="material-symbols-outlined text-xs">open_in_new</span> Buka Tautan
+                    </button>
+                    <button type="button" id="btnCopySlugUrl" class="text-primary hover:underline text-[11px] font-semibold flex items-center gap-0.5" title="Salin Tautan Postingan">
+                      <span class="material-symbols-outlined text-xs">content_copy</span> Salin
+                    </button>
+                    <button type="button" id="btnRegenerateSlug" class="text-primary hover:underline text-[11px] font-semibold flex items-center gap-0.5">
+                      <span class="material-symbols-outlined text-xs">sync</span> Buat Ulang
+                    </button>
+                  </div>
                 </div>
                 <div class="flex items-center rounded-lg bg-surface-container-low px-3 py-2 border border-outline-variant/60 font-mono text-xs text-on-surface">
-                  <span class="text-outline select-none">sdinpreslelingluan.com/post/</span>
+                  <span class="text-outline select-none">praktik-baik.html?slug=</span>
                   <input type="text" id="postSlug" placeholder="pembagian-rapor-semester-genap"
                     class="bg-transparent border-0 p-0 focus:ring-0 text-xs font-mono font-medium text-primary w-full ml-1">
                 </div>
+                <p class="text-[11px] text-outline mt-1">Slug digunakan sebagai tautan langsung untuk membagikan atau membuka postingan ini secara spesifik.</p>
               </div>
 
               <!-- Ringkasan Singkat -->

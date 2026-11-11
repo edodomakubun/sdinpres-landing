@@ -429,6 +429,7 @@
       extractCategories();
       renderCategoryPills();
       applyFilters();
+      checkUrlSlugAndOpen();
     }
 
     function extractCategories() {
@@ -596,7 +597,7 @@
       });
     }
 
-    function openReader(post) {
+    function openReader(post, updateUrl = true) {
       const modal = document.getElementById('readerModal');
       const modalCategory = document.getElementById('modalCategoryBadge');
       const modalDate = document.getElementById('modalDate');
@@ -666,17 +667,45 @@
       // Store current post for sharing
       state.currentOpenPost = post;
 
+      // Update URL browser dengan slug postingan agar bisa langsung di-bookmark / disalin
+      const postSlug = post.slug || post.id;
+      if (updateUrl && postSlug && window.history.replaceState) {
+        const newUrl = `${window.location.pathname}?slug=${encodeURIComponent(postSlug)}`;
+        window.history.replaceState({ postId: post.id, slug: postSlug }, '', newUrl);
+      }
+
       modal.classList.remove('hidden');
       document.body.style.overflow = 'hidden';
     }
 
-    function closeReader() {
+    function closeReader(updateUrl = true) {
       const modal = document.getElementById('readerModal');
       const modalVideoFrame = document.getElementById('modalVideoFrame');
       if (modalVideoFrame) modalVideoFrame.src = '';
       modal.classList.add('hidden');
       document.body.style.overflow = '';
       state.currentOpenPost = null;
+
+      // Kembalikan URL bersih tanpa slug saat modal ditutup
+      if (updateUrl && window.history.replaceState) {
+        window.history.replaceState({}, '', window.location.pathname);
+      }
+    }
+
+    // Memeriksa parameter slug pada URL dan otomatis membuka artikel terkait
+    function checkUrlSlugAndOpen() {
+      const urlParams = new URLSearchParams(window.location.search);
+      const targetSlug = (urlParams.get('slug') || urlParams.get('post') || window.location.hash.replace(/^#/, '')).trim().toLowerCase();
+      if (!targetSlug) return;
+
+      const matched = state.posts.find(p => 
+        (p.slug && p.slug.toLowerCase() === targetSlug) ||
+        (p.id && p.id.toLowerCase() === targetSlug)
+      );
+
+      if (matched) {
+        openReader(matched, false);
+      }
     }
 
     // Share Handler
@@ -684,10 +713,13 @@
       const post = state.currentOpenPost;
       if (!post) return;
 
+      const slug = post.slug || post.id;
+      const shareUrl = `${window.location.origin}${window.location.pathname}?slug=${encodeURIComponent(slug)}`;
+
       const shareData = {
         title: `${post.title} — Praktik Baik SD Inpres Lelingluan`,
         text: post.summary || post.title,
-        url: window.location.href
+        url: shareUrl
       };
 
       if (navigator.share) {
@@ -695,8 +727,10 @@
           await navigator.share(shareData);
         } catch (e) {}
       } else {
-        navigator.clipboard.writeText(window.location.href).then(() => {
-          alert('Tautan halaman berhasil disalin ke clipboard!');
+        navigator.clipboard.writeText(shareUrl).then(() => {
+          alert('Tautan langsung postingan berhasil disalin ke clipboard:\n' + shareUrl);
+        }).catch(() => {
+          prompt('Salin tautan postingan ini:', shareUrl);
         });
       }
     }
@@ -737,6 +771,18 @@
 
       document.getElementById('readerModal')?.addEventListener('click', (e) => {
         if (e.target.id === 'readerModal') closeReader();
+      });
+
+      // Popstate listener untuk navigasi tombol Back/Forward browser
+      window.addEventListener('popstate', () => {
+        const urlParams = new URLSearchParams(window.location.search);
+        const targetSlug = urlParams.get('slug') || urlParams.get('post');
+        const modal = document.getElementById('readerModal');
+        if (!targetSlug && modal && !modal.classList.contains('hidden')) {
+          closeReader(false);
+        } else if (targetSlug) {
+          checkUrlSlugAndOpen();
+        }
       });
     });
   </script>
