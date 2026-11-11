@@ -5,6 +5,7 @@ Landing page statis untuk Cloudflare Pages. Template Blogger lama **tidak disent
 ## Arsitektur
 
 - `https://sdinpreslelingluan.com` → Landing Page Cloudflare Pages
+- `https://sdinpreslelingluan.com/admin` (atau `admin.html`) → Portal Mandiri Pembuatan & Pengelolaan Postingan (Firebase Firestore)
 - `https://blog.sdinpreslelingluan.com` → Blogger
 - Semua foto konten di homepage diambil **secara dinamis dari Blogger Feed**.
 - Tidak ada foto sekolah yang dijadikan sumber konten utama dari folder `assets/`.
@@ -102,3 +103,14 @@ Tahap testing yang disarankan:
 Jangan menghapus atau mengubah template Blogger lama.
 
 Landing page hanya membaca data dari Blogger. Jika posting Blogger diubah, kontennya di landing page ikut berubah saat feed dimuat ulang.
+
+## Portal Admin Postingan Mandiri (`admin.html`)
+
+Halaman SPA mandiri khusus staf/admin untuk membuat berita, pengumuman, dan cerita kegiatan sekolah:
+- **File**: `admin.html`, didukung `admin.js` dan `firebase-config.js`
+- **Database**: Google Cloud Firestore (koleksi `posts`)
+- **Penyimpanan Foto**: Gambar diunggah dan otomatis dikompresi di browser menggunakan HTML5 Canvas (max 1200x900, WebP/JPEG ~80-250 KB) lalu disimpan dalam format Base64 di dokumen Firestore tanpa melebihi batas 1 MB.
+- **Konfigurasi Firebase**: Dapat diisi langsung melalui antarmuka web di tab *Pengaturan Firebase* (tersimpan di browser) atau diedit langsung di `firebase-config.js`.
+- **Security Rules**: Tersedia berkas `firestore.rules` yang dapat disalin ke Firebase Console.
+- **Akses**: Buka `http://localhost:8080/admin.html` saat pengujian lokal atau `https://sdinpreslelingluan.com/admin` saat sudah dideploy di Cloudflare Pages.
+

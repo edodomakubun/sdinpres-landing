@@ -1,0 +1,761 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00288e">
+  <title>Admin &amp; Publikasi Konten — SD Inpres Lelingluan</title>
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
+  <!-- Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS v3 via CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00288e",
+            "primary-container": "#1e40af",
+            "on-primary": "#ffffff",
+            secondary: "#0051d5",
+            "secondary-container": "#316bf3",
+            "on-secondary": "#ffffff",
+            surface: "#faf8ff",
+            "surface-dim": "#d2d9f4",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container": "#eaedff",
+            "surface-container-high": "#e2e7ff",
+            "surface-container-highest": "#dae2fd",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#444653",
+            outline: "#757684",
+            "outline-variant": "#c4c5d5",
+            error: "#ba1a1a",
+            "error-container": "#ffdad6",
+            "on-error": "#ffffff",
+            tertiary: "#003c36",
+            "tertiary-fixed": "#89f5e7"
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background-color: #faf8ff;
+      color: #131b2e;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    /* Custom scrollbar */
+    ::-webkit-scrollbar {
+      width: 6px;
+      height: 6px;
+    }
+    ::-webkit-scrollbar-track {
+      background: #f2f3ff;
+    }
+    ::-webkit-scrollbar-thumb {
+      background: #c4c5d5;
+      border-radius: 9999px;
+    }
+    ::-webkit-scrollbar-thumb:hover {
+      background: #757684;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-[#faf8ff] text-[#131b2e] antialiased selection:bg-[#dae2fd] selection:text-[#00288e]">
+
+  <!-- Top App Navigation Bar -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-outline-variant/50 shadow-sm">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between h-16">
+        
+        <!-- Brand & Title -->
+        <div class="flex items-center gap-3">
+          <div class="w-10 h-10 rounded-xl bg-primary/10 border border-primary/20 flex items-center justify-center p-1.5 shadow-sm">
+            <img src="assets/logo.png" alt="Logo SD Inpres" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+            <span class="material-symbols-outlined text-primary hidden">school</span>
+          </div>
+          <div>
+            <div class="flex items-center gap-2">
+              <h1 class="text-base sm:text-lg font-bold text-primary tracking-tight leading-none">SD Inpres Lelingluan</h1>
+              <span class="text-[10px] font-bold px-2 py-0.5 rounded-full bg-primary/10 text-primary uppercase tracking-wider">CMS Admin</span>
+            </div>
+            <p class="text-xs text-on-surface-variant">Portal Mandiri Pembuatan &amp; Pengelolaan Postingan</p>
+          </div>
+        </div>
+
+        <!-- Right Side: Status Badge & Links -->
+        <div class="flex items-center gap-3">
+          <!-- Firebase Connection Badge -->
+          <div id="firebaseStatusBadge" class="hidden sm:flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-amber-50 text-amber-800 border border-amber-200">
+            <span class="w-2 h-2 rounded-full bg-amber-500 animate-pulse"></span>
+            <span id="firebaseStatusText">Memeriksa Database...</span>
+          </div>
+
+          <!-- Website Link -->
+          <a href="index.html" target="_blank" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg text-xs font-semibold text-secondary hover:bg-surface-container-high transition-colors" title="Buka Halaman Depan Website">
+            <span class="material-symbols-outlined text-base">open_in_new</span>
+            <span class="hidden md:inline">Website Utama</span>
+          </a>
+
+          <!-- Quick Help / Firebase Settings Trigger -->
+          <button id="btnQuickSettings" type="button" class="p-2 rounded-lg text-on-surface-variant hover:text-primary hover:bg-surface-container-high transition-colors" title="Pengaturan Database Firebase">
+            <span class="material-symbols-outlined">settings</span>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Navigation Tabs (SPA Router) -->
+      <nav class="flex space-x-1 border-t border-outline-variant/30 py-2 overflow-x-auto no-scrollbar" aria-label="Tabs">
+        <button id="tabBtnEditor" data-target="viewEditor" class="tab-btn flex items-center gap-2 px-4 py-2 text-sm font-semibold rounded-lg bg-primary text-white shadow-sm transition-all">
+          <span class="material-symbols-outlined text-base">edit_note</span>
+          <span>Buat Postingan Baru</span>
+        </button>
+        <button id="tabBtnList" data-target="viewList" class="tab-btn flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+          <span class="material-symbols-outlined text-base">article</span>
+          <span>Daftar Postingan</span>
+          <span id="postCountBadge" class="px-1.5 py-0.2 text-[11px] font-bold rounded-full bg-surface-container-highest text-primary">0</span>
+        </button>
+        <button id="tabBtnSettings" data-target="viewSettings" class="tab-btn flex items-center gap-2 px-4 py-2 text-sm font-medium rounded-lg text-on-surface-variant hover:bg-surface-container-high transition-all">
+          <span class="material-symbols-outlined text-base">database</span>
+          <span>Pengaturan Firebase</span>
+        </button>
+      </nav>
+    </div>
+  </header>
+
+  <!-- Main Application Body -->
+  <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8">
+
+    <!-- Global Notice Banner (shows when Firebase config is missing) -->
+    <div id="setupBanner" class="hidden mb-6 p-4 rounded-2xl bg-amber-50 border border-amber-200 text-amber-900 shadow-sm">
+      <div class="flex items-start gap-3">
+        <span class="material-symbols-outlined text-amber-600 mt-0.5">info</span>
+        <div class="flex-1">
+          <h2 class="text-sm font-bold">Koneksi Cloud Firestore Belum Dikonfigurasi</h2>
+          <p class="text-xs text-amber-800 mt-1">
+            Untuk menyimpan postingan dan gambar Base64 langsung ke database sekolah, masukkan konfigurasi proyek Firebase Anda di tab <strong>Pengaturan Firebase</strong>. Saat ini sistem berjalan dalam mode penyimpanan lokal (Local Storage) untuk demonstrasi.
+          </p>
+          <div class="mt-2.5 flex items-center gap-2">
+            <button id="btnGoToSettingsFromBanner" class="px-3 py-1 text-xs font-semibold rounded-lg bg-amber-600 text-white hover:bg-amber-700 transition-colors">
+              Atur Firebase Sekarang
+            </button>
+            <button id="btnDismissBanner" class="px-3 py-1 text-xs font-medium rounded-lg text-amber-800 hover:bg-amber-100 transition-colors">
+              Nanti Saja
+            </button>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ================================================================= -->
+    <!-- VIEW 1: EDITOR POSTINGAN (Buat & Edit Post)                       -->
+    <!-- ================================================================= -->
+    <section id="viewEditor" class="spa-view block space-y-6">
+      
+      <!-- Section Header -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-outline-variant/40">
+        <div>
+          <div class="flex items-center gap-2">
+            <span id="editorModeBadge" class="px-2.5 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary">POST BARU</span>
+            <span class="text-xs text-on-surface-variant font-mono" id="editorTimestamp">Otomatis Tersimpan di Draf</span>
+          </div>
+          <h2 id="editorHeading" class="text-2xl font-bold text-on-surface tracking-tight mt-1">Tulis Postingan Sekolah</h2>
+          <p class="text-sm text-on-surface-variant">Buat berita, pengumuman, atau cerita kegiatan dengan gambar beresolusi optimal.</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="btnCancelEdit" type="button" class="hidden px-4 py-2 text-xs font-semibold rounded-xl border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-colors">
+            Batal Edit
+          </button>
+          <button id="btnPreviewPost" type="button" class="px-4 py-2 text-xs font-semibold rounded-xl bg-surface-container-high text-primary hover:bg-surface-container-highest transition-colors flex items-center gap-1.5 shadow-sm">
+            <span class="material-symbols-outlined text-base">visibility</span>
+            <span>Pratinjau Tampilan</span>
+          </button>
+          <button id="btnSavePost" type="button" class="px-5 py-2 text-xs font-bold rounded-xl bg-primary text-white hover:bg-primary-container transition-all flex items-center gap-2 shadow-sm">
+            <span class="material-symbols-outlined text-base">publish</span>
+            <span id="btnSavePostText">Simpan &amp; Publikasikan</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Editor Grid Layout -->
+      <form id="postForm" class="grid grid-cols-1 lg:grid-cols-3 gap-6" onsubmit="return false;">
+        
+        <!-- Left 2 Cols: Main Editor Inputs -->
+        <div class="lg:col-span-2 space-y-6">
+          
+          <!-- Judul Postingan -->
+          <div class="bg-white rounded-2xl p-5 border border-outline-variant/50 shadow-sm space-y-4">
+            <div>
+              <label for="postTitle" class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">
+                Judul Postingan <span class="text-error">*</span>
+              </label>
+              <input type="text" id="postTitle" required placeholder="Contoh: Pembagian Rapor Semester Genap & Pentas Seni Siswa 2026"
+                class="w-full px-4 py-3 text-lg font-bold rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline-variant placeholder:font-normal">
+            </div>
+
+            <!-- Auto-generated Slug -->
+            <div>
+              <div class="flex items-center justify-between text-xs text-on-surface-variant mb-1">
+                <label for="postSlug" class="font-medium">URL Slug (Identitas Unik)</label>
+                <button type="button" id="btnRegenerateSlug" class="text-primary hover:underline text-[11px] font-semibold flex items-center gap-0.5">
+                  <span class="material-symbols-outlined text-xs">sync</span> Buat Ulang
+                </button>
+              </div>
+              <div class="flex items-center rounded-lg bg-surface-container-low px-3 py-2 border border-outline-variant/60 font-mono text-xs text-on-surface">
+                <span class="text-outline select-none">sdinpreslelingluan.com/post/</span>
+                <input type="text" id="postSlug" placeholder="pembagian-rapor-semester-genap"
+                  class="bg-transparent border-0 p-0 focus:ring-0 text-xs font-mono font-medium text-primary w-full ml-1">
+              </div>
+            </div>
+
+            <!-- Ringkasan Singkat -->
+            <div>
+              <label for="postSummary" class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant mb-1">
+                Ringkasan Singkat (Lead / Excerpt)
+              </label>
+              <textarea id="postSummary" rows="2" placeholder="Tuliskan 1-2 kalimat ringkasan yang menarik untuk ditampilkan pada kartu preview..."
+                class="w-full px-3 py-2 text-sm rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all placeholder:text-outline-variant"></textarea>
+            </div>
+          </div>
+
+          <!-- Cover Image Upload & Base64 Auto-Compressor -->
+          <div class="bg-white rounded-2xl p-5 border border-outline-variant/50 shadow-sm space-y-4">
+            <div class="flex items-center justify-between">
+              <div>
+                <h3 class="text-sm font-bold text-on-surface">Foto Utama Postingan (Gambar Base64)</h3>
+                <p class="text-xs text-on-surface-variant">Foto akan otomatis dikompresi agar aman &amp; tidak melebihi kuota 1 MB Firestore.</p>
+              </div>
+              <span class="px-2 py-0.5 rounded text-[11px] font-semibold bg-emerald-50 text-emerald-700 border border-emerald-200 flex items-center gap-1">
+                <span class="material-symbols-outlined text-xs">auto_awesome</span> Canvas Optimizer
+              </span>
+            </div>
+
+            <!-- Drag & Drop Dropzone -->
+            <div id="dropZone" class="relative group cursor-pointer border-2 border-dashed border-outline-variant hover:border-primary rounded-2xl p-6 text-center transition-all bg-surface-container-low/40 hover:bg-surface-container-low">
+              <input type="file" id="fileInput" accept="image/*" class="absolute inset-0 opacity-0 cursor-pointer w-full h-full z-10">
+              
+              <div id="dropZoneEmpty" class="space-y-2 py-4">
+                <div class="w-12 h-12 rounded-full bg-primary/10 text-primary mx-auto flex items-center justify-center">
+                  <span class="material-symbols-outlined text-2xl">add_photo_alternate</span>
+                </div>
+                <div class="text-sm font-semibold text-on-surface">
+                  Tarik foto ke sini atau <span class="text-primary underline">pilih dari perangkat</span>
+                </div>
+                <p class="text-xs text-outline">Mendukung format JPG, PNG, WEBP. Otomatis dikompresi dan dikonversi ke Base64.</p>
+              </div>
+
+              <!-- Preview State (when image is loaded) -->
+              <div id="dropZonePreview" class="hidden space-y-4">
+                <div class="relative max-h-80 overflow-hidden rounded-xl bg-black/5 flex items-center justify-center">
+                  <img id="previewImageElement" src="" alt="Cover Image Preview" class="max-h-80 w-auto object-contain rounded-xl shadow-inner">
+                  <button type="button" id="btnRemoveImage" class="absolute top-2 right-2 z-20 w-8 h-8 rounded-full bg-black/70 hover:bg-error text-white flex items-center justify-center transition-colors shadow" title="Hapus Foto">
+                    <span class="material-symbols-outlined text-sm">close</span>
+                  </button>
+                </div>
+
+                <!-- Compression Analytics & Safety Badge -->
+                <div class="grid grid-cols-2 sm:grid-cols-3 gap-2 text-left bg-surface-container-low p-3 rounded-xl border border-outline-variant/60 text-xs">
+                  <div>
+                    <span class="text-outline block text-[10px] uppercase font-bold">Ukuran Asli</span>
+                    <span id="statOriginalSize" class="font-semibold text-on-surface-variant">-</span>
+                  </div>
+                  <div>
+                    <span class="text-outline block text-[10px] uppercase font-bold">Ukuran Base64</span>
+                    <span id="statCompressedSize" class="font-bold text-primary">-</span>
+                  </div>
+                  <div class="col-span-2 sm:col-span-1 flex items-center">
+                    <span id="statStatusBadge" class="inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800">
+                      <span class="material-symbols-outlined text-xs">check_circle</span> Aman (<1MB)
+                    </span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Image Caption -->
+            <div>
+              <label for="postImageCaption" class="block text-xs font-medium text-on-surface-variant mb-1">
+                Keterangan Foto / Kredensial (Opsional)
+              </label>
+              <input type="text" id="postImageCaption" placeholder="Contoh: Suasana upacara bendera di lapangan sekolah SD Inpres Lelingluan"
+                class="w-full px-3 py-2 text-xs rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all">
+            </div>
+          </div>
+
+          <!-- Rich Content Editor -->
+          <div class="bg-white rounded-2xl p-5 border border-outline-variant/50 shadow-sm space-y-3">
+            <div class="flex items-center justify-between">
+              <label for="postContent" class="block text-xs font-bold uppercase tracking-wider text-on-surface-variant">
+                Isi Lengkap Postingan <span class="text-error">*</span>
+              </label>
+              <span id="charCount" class="text-xs text-outline font-mono">0 karakter</span>
+            </div>
+
+            <!-- Formatting Toolbar -->
+            <div class="flex flex-wrap items-center gap-1 p-1.5 rounded-xl bg-surface-container-low border border-outline-variant/60 text-on-surface-variant">
+              <button type="button" data-format="bold" class="fmt-btn p-1.5 rounded-lg hover:bg-white hover:text-primary transition-all" title="Tebal (Bold)">
+                <span class="material-symbols-outlined text-lg">format_bold</span>
+              </button>
+              <button type="button" data-format="italic" class="fmt-btn p-1.5 rounded-lg hover:bg-white hover:text-primary transition-all" title="Miring (Italic)">
+                <span class="material-symbols-outlined text-lg">format_italic</span>
+              </button>
+              <div class="w-px h-5 bg-outline-variant mx-1"></div>
+              <button type="button" data-format="h2" class="fmt-btn px-2 py-1 rounded-lg hover:bg-white hover:text-primary text-xs font-bold transition-all" title="Judul Bagian">
+                H2
+              </button>
+              <button type="button" data-format="h3" class="fmt-btn px-2 py-1 rounded-lg hover:bg-white hover:text-primary text-xs font-bold transition-all" title="Subjudul">
+                H3
+              </button>
+              <div class="w-px h-5 bg-outline-variant mx-1"></div>
+              <button type="button" data-format="list" class="fmt-btn p-1.5 rounded-lg hover:bg-white hover:text-primary transition-all" title="Daftar Poin">
+                <span class="material-symbols-outlined text-lg">format_list_bulleted</span>
+              </button>
+              <button type="button" data-format="quote" class="fmt-btn p-1.5 rounded-lg hover:bg-white hover:text-primary transition-all" title="Kutipan">
+                <span class="material-symbols-outlined text-lg">format_quote</span>
+              </button>
+              <button type="button" data-format="link" class="fmt-btn p-1.5 rounded-lg hover:bg-white hover:text-primary transition-all" title="Sisipkan Tautan">
+                <span class="material-symbols-outlined text-lg">link</span>
+              </button>
+              <button type="button" data-format="hr" class="fmt-btn p-1.5 rounded-lg hover:bg-white hover:text-primary transition-all" title="Garis Pemisah">
+                <span class="material-symbols-outlined text-lg">horizontal_rule</span>
+              </button>
+            </div>
+
+            <!-- Content Textarea -->
+            <textarea id="postContent" required rows="14" placeholder="Tuliskan berita atau pengumuman lengkap sekolah di sini. Anda dapat menggunakan tombol format di atas untuk membuat subjudul, daftar poin, kutipan, dll..."
+              class="w-full px-4 py-3 text-sm rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 transition-all leading-relaxed font-sans"></textarea>
+          </div>
+
+        </div>
+
+        <!-- Right 1 Col: Metadata & Publishing Controls -->
+        <div class="space-y-6">
+          
+          <!-- Publishing Card -->
+          <div class="bg-white rounded-2xl p-5 border border-outline-variant/50 shadow-sm space-y-4">
+            <h3 class="text-sm font-bold text-on-surface uppercase tracking-wider">Status &amp; Publikasi</h3>
+            
+            <!-- Status Selector -->
+            <div>
+              <label class="block text-xs font-medium text-on-surface-variant mb-1.5">Status Postingan</label>
+              <div class="grid grid-cols-2 gap-2">
+                <label class="cursor-pointer border rounded-xl p-2.5 flex items-center gap-2 border-primary bg-primary/5 text-primary text-xs font-semibold has-[:checked]:border-primary has-[:checked]:bg-primary/10">
+                  <input type="radio" name="postStatus" value="published" checked class="text-primary focus:ring-primary">
+                  <span>Diterbitkan</span>
+                </label>
+                <label class="cursor-pointer border rounded-xl p-2.5 flex items-center gap-2 border-outline-variant hover:bg-surface-container text-xs font-medium has-[:checked]:border-primary has-[:checked]:bg-primary/10 has-[:checked]:text-primary">
+                  <input type="radio" name="postStatus" value="draft" class="text-primary focus:ring-primary">
+                  <span>Draf (Draft)</span>
+                </label>
+              </div>
+            </div>
+
+            <!-- Category Selector -->
+            <div>
+              <label for="postCategory" class="block text-xs font-medium text-on-surface-variant mb-1.5">Kategori Postingan <span class="text-error">*</span></label>
+              <select id="postCategory" required class="w-full px-3 py-2.5 text-xs font-semibold rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20 bg-white">
+                <option value="Berita" selected>📰 Berita Sekolah</option>
+                <option value="Pengumuman">📢 Pengumuman Resmi</option>
+                <option value="Story">🌟 Cerita &amp; Kegiatan (Story)</option>
+                <option value="Galeri">📸 Galeri Foto</option>
+                <option value="Prestasi">🏆 Prestasi Siswa &amp; Guru</option>
+                <option value="Akademik">📚 Informasi Akademik</option>
+              </select>
+            </div>
+
+            <!-- Date Selector -->
+            <div>
+              <label for="postDate" class="block text-xs font-medium text-on-surface-variant mb-1.5">Tanggal Publikasi</label>
+              <input type="date" id="postDate" class="w-full px-3 py-2 text-xs rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20">
+            </div>
+
+            <!-- Author Selector -->
+            <div>
+              <label for="postAuthor" class="block text-xs font-medium text-on-surface-variant mb-1.5">Penulis / Kontributor</label>
+              <input type="text" id="postAuthor" value="Admin SD Inpres Lelingluan" placeholder="Nama staf / guru"
+                class="w-full px-3 py-2 text-xs rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20">
+            </div>
+
+            <!-- Pin to Homepage Checkbox -->
+            <div class="pt-2 border-t border-outline-variant/40">
+              <label class="flex items-center gap-2 cursor-pointer">
+                <input type="checkbox" id="postIsPinned" class="rounded text-primary focus:ring-primary border-outline-variant">
+                <span class="text-xs font-medium text-on-surface">Sematkan sebagai Berita Utama (Pinned)</span>
+              </label>
+            </div>
+
+            <!-- Submit Buttons -->
+            <div class="pt-3 space-y-2">
+              <button type="submit" id="btnPublishPrimary" class="w-full py-3 px-4 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold shadow-md transition-all flex items-center justify-center gap-2">
+                <span class="material-symbols-outlined text-base">cloud_upload</span>
+                <span id="btnPublishPrimaryText">Simpan ke Firestore</span>
+              </button>
+              
+              <button type="button" id="btnResetForm" class="w-full py-2 px-4 rounded-xl border border-outline-variant/80 hover:bg-surface-container text-on-surface-variant text-xs font-semibold transition-colors flex items-center justify-center gap-1.5">
+                <span class="material-symbols-outlined text-sm">restart_alt</span>
+                <span>Bersihkan Formulir</span>
+              </button>
+            </div>
+          </div>
+
+          <!-- Tips & Guidelines Card -->
+          <div class="bg-surface-container-low rounded-2xl p-5 border border-outline-variant/60 text-xs text-on-surface-variant space-y-3">
+            <div class="flex items-center gap-2 text-primary font-bold">
+              <span class="material-symbols-outlined text-base">lightbulb</span>
+              <span>Tips Publikasi Konten</span>
+            </div>
+            <ul class="space-y-1.5 list-disc list-inside text-[11px] leading-relaxed text-outline-variant-darker">
+              <li>Gunakan foto lanskap (horizontal) untuk hasil kartu terbaik di halaman utama.</li>
+              <li>Sistem otomatis mengecilkan foto besar ke resolusi ideal tanpa mengurangi ketajaman layar.</li>
+              <li>Simpan dalam status <strong>Draf</strong> jika tulisan Anda belum selesai dikoreksi.</li>
+            </ul>
+          </div>
+
+        </div>
+
+      </form>
+
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- VIEW 2: DAFTAR POSTINGAN (Manage & Table List)                    -->
+    <!-- ================================================================= -->
+    <section id="viewList" class="spa-view hidden space-y-6">
+      
+      <!-- List Header & Actions -->
+      <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 pb-4 border-b border-outline-variant/40">
+        <div>
+          <h2 class="text-2xl font-bold text-on-surface tracking-tight">Kelola Postingan</h2>
+          <p class="text-sm text-on-surface-variant">Daftar seluruh berita, pengumuman, dan artikel sekolah yang tersimpan.</p>
+        </div>
+
+        <div class="flex items-center gap-2">
+          <button id="btnRefreshList" type="button" class="px-3 py-2 text-xs font-semibold rounded-xl border border-outline-variant hover:bg-surface-container-high transition-colors flex items-center gap-1 text-on-surface-variant">
+            <span class="material-symbols-outlined text-base">refresh</span>
+            <span>Muat Ulang</span>
+          </button>
+          <button id="btnCreateNewFromList" type="button" class="px-4 py-2 text-xs font-bold rounded-xl bg-primary text-white hover:bg-primary-container transition-colors flex items-center gap-1.5 shadow-sm">
+            <span class="material-symbols-outlined text-base">add</span>
+            <span>Buat Post Baru</span>
+          </button>
+        </div>
+      </div>
+
+      <!-- Quick Metrics -->
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+        <div class="bg-white p-4 rounded-2xl border border-outline-variant/50 shadow-sm">
+          <span class="text-xs text-outline font-semibold">Total Postingan</span>
+          <div class="text-2xl font-extrabold text-primary mt-1" id="statTotalPosts">0</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-outline-variant/50 shadow-sm">
+          <span class="text-xs text-outline font-semibold">Diterbitkan</span>
+          <div class="text-2xl font-extrabold text-emerald-600 mt-1" id="statPublishedPosts">0</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-outline-variant/50 shadow-empty">
+          <span class="text-xs text-outline font-semibold">Draf</span>
+          <div class="text-2xl font-extrabold text-amber-600 mt-1" id="statDraftPosts">0</div>
+        </div>
+        <div class="bg-white p-4 rounded-2xl border border-outline-variant/50 shadow-sm">
+          <span class="text-xs text-outline font-semibold">Penyimpanan Aktif</span>
+          <div class="text-sm font-bold text-on-surface mt-2 flex items-center gap-1" id="statStorageBadge">
+            <span class="w-2 h-2 rounded-full bg-emerald-500"></span> Firestore
+          </div>
+        </div>
+      </div>
+
+      <!-- Search & Filters Toolbar -->
+      <div class="bg-white p-4 rounded-2xl border border-outline-variant/50 shadow-sm flex flex-col md:flex-row gap-3 items-center justify-between">
+        
+        <!-- Search Input -->
+        <div class="relative w-full md:w-80">
+          <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
+          <input type="text" id="searchInput" placeholder="Cari judul atau isi postingan..."
+            class="w-full pl-9 pr-4 py-2 text-xs rounded-xl border border-outline-variant focus:border-primary focus:ring-2 focus:ring-primary/20">
+        </div>
+
+        <!-- Filter Dropdowns -->
+        <div class="flex items-center gap-2 w-full md:w-auto">
+          <select id="filterCategory" class="px-3 py-2 text-xs font-medium rounded-xl border border-outline-variant bg-white focus:border-primary">
+            <option value="">Semua Kategori</option>
+            <option value="Berita">Berita</option>
+            <option value="Pengumuman">Pengumuman</option>
+            <option value="Story">Story / Kegiatan</option>
+            <option value="Galeri">Galeri</option>
+            <option value="Prestasi">Prestasi</option>
+            <option value="Akademik">Akademik</option>
+          </select>
+
+          <select id="filterStatus" class="px-3 py-2 text-xs font-medium rounded-xl border border-outline-variant bg-white focus:border-primary">
+            <option value="">Semua Status</option>
+            <option value="published">Diterbitkan</option>
+            <option value="draft">Draf</option>
+          </select>
+        </div>
+
+      </div>
+
+      <!-- Posts List Container -->
+      <div id="postsContainer" class="space-y-3">
+        <!-- Rendered dynamically by admin.js -->
+        <div class="bg-white rounded-2xl p-12 text-center border border-outline-variant/40 space-y-3">
+          <span class="material-symbols-outlined text-4xl text-outline animate-spin">sync</span>
+          <p class="text-sm font-medium text-on-surface-variant">Memuat daftar postingan...</p>
+        </div>
+      </div>
+
+    </section>
+
+
+    <!-- ================================================================= -->
+    <!-- VIEW 3: PENGATURAN FIREBASE (Firebase Credentials & Rules)        -->
+    <!-- ================================================================= -->
+    <section id="viewSettings" class="spa-view hidden space-y-6">
+      
+      <!-- Settings Header -->
+      <div class="pb-4 border-b border-outline-variant/40">
+        <h2 class="text-2xl font-bold text-on-surface tracking-tight">Pengaturan Database Firebase</h2>
+        <p class="text-sm text-on-surface-variant">Hubungkan antarmuka admin dengan proyek Google Cloud Firestore Anda.</p>
+      </div>
+
+      <div class="grid grid-cols-1 lg:grid-cols-3 gap-6">
+        
+        <!-- Form Konfigurasi Firebase (2 cols) -->
+        <div class="lg:col-span-2 bg-white rounded-2xl p-6 border border-outline-variant/50 shadow-sm space-y-5">
+          <div class="flex items-center justify-between pb-3 border-b border-outline-variant/30">
+            <div>
+              <h3 class="text-base font-bold text-on-surface">Kredensial Firebase Web SDK</h3>
+              <p class="text-xs text-on-surface-variant">Salin data konfigurasi dari Firebase Console (Project Settings &gt; General &gt; Your apps &gt; Web app).</p>
+            </div>
+            <span id="configIndicator" class="px-2.5 py-1 text-xs font-bold rounded-full bg-surface-container-high text-on-surface-variant">Belum Disimpan</span>
+          </div>
+
+          <form id="firebaseConfigForm" class="space-y-4" onsubmit="return false;">
+            <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+              <div>
+                <label for="cfgApiKey" class="block text-xs font-bold text-on-surface-variant mb-1">API Key <span class="text-error">*</span></label>
+                <input type="text" id="cfgApiKey" placeholder="AIzaSy..." required class="w-full px-3 py-2 text-xs font-mono rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary">
+              </div>
+              <div>
+                <label for="cfgProjectId" class="block text-xs font-bold text-on-surface-variant mb-1">Project ID <span class="text-error">*</span></label>
+                <input type="text" id="cfgProjectId" placeholder="sdinpres-lelingluan" required class="w-full px-3 py-2 text-xs font-mono rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary">
+              </div>
+              <div>
+                <label for="cfgAuthDomain" class="block text-xs font-bold text-on-surface-variant mb-1">Auth Domain</label>
+                <input type="text" id="cfgAuthDomain" placeholder="sdinpres-lelingluan.firebaseapp.com" class="w-full px-3 py-2 text-xs font-mono rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary">
+              </div>
+              <div>
+                <label for="cfgStorageBucket" class="block text-xs font-bold text-on-surface-variant mb-1">Storage Bucket</label>
+                <input type="text" id="cfgStorageBucket" placeholder="sdinpres-lelingluan.appspot.com" class="w-full px-3 py-2 text-xs font-mono rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary">
+              </div>
+              <div>
+                <label for="cfgMessagingSenderId" class="block text-xs font-bold text-on-surface-variant mb-1">Messaging Sender ID</label>
+                <input type="text" id="cfgMessagingSenderId" placeholder="1234567890" class="w-full px-3 py-2 text-xs font-mono rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary">
+              </div>
+              <div>
+                <label for="cfgAppId" class="block text-xs font-bold text-on-surface-variant mb-1">App ID</label>
+                <input type="text" id="cfgAppId" placeholder="1:1234567890:web:abcdef" class="w-full px-3 py-2 text-xs font-mono rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary">
+              </div>
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="pt-4 flex flex-wrap items-center gap-2">
+              <button type="submit" id="btnSaveConfig" class="px-5 py-2.5 rounded-xl bg-primary hover:bg-primary-container text-white text-xs font-bold shadow transition-all flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base">save</span>
+                <span>Simpan Konfigurasi</span>
+              </button>
+
+              <button type="button" id="btnTestConnection" class="px-4 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-primary text-xs font-semibold transition-colors flex items-center gap-1.5">
+                <span class="material-symbols-outlined text-base">wifi_tethering</span>
+                <span>Uji Koneksi Firestore</span>
+              </button>
+
+              <button type="button" id="btnResetConfig" class="px-3 py-2.5 rounded-xl text-error hover:bg-error-container/30 text-xs font-semibold transition-colors">
+                Reset ke Default
+              </button>
+            </div>
+
+            <!-- Test Connection Output Console -->
+            <div id="testConnectionLog" class="hidden mt-4 p-3 rounded-xl bg-slate-900 text-slate-100 font-mono text-xs overflow-x-auto">
+              <div class="text-slate-400 text-[10px] uppercase font-bold mb-1">Log Koneksi Database:</div>
+              <div id="testConnectionMessage" class="whitespace-pre-wrap"></div>
+            </div>
+
+          </form>
+        </div>
+
+        <!-- Panduan & Keamanan (1 col) -->
+        <div class="space-y-4">
+          <!-- Panduan Firebase Console -->
+          <div class="bg-surface-container-low rounded-2xl p-5 border border-outline-variant/60 text-xs text-on-surface-variant space-y-3">
+            <h4 class="font-bold text-on-surface flex items-center gap-1.5 text-sm">
+              <span class="material-symbols-outlined text-primary text-base">help</span>
+              <span>Langkah Pengaturan Firebase</span>
+            </h4>
+            <ol class="space-y-2 list-decimal list-inside text-[11px] leading-relaxed">
+              <li>Buka <a href="https://console.firebase.google.com" target="_blank" class="text-primary font-semibold underline">console.firebase.google.com</a>.</li>
+              <li>Pilih atau buat proyek baru (contoh: <code>sdinpres-lelingluan</code>).</li>
+              <li>Pilih menu <strong>Firestore Database</strong> lalu klik <em>Create Database</em> (Pilih lokasi terdekat: <code>asia-southeast2</code> Jakarta).</li>
+              <li>Di menu <em>Project Settings &gt; General</em>, tambahkan aplikasi Web (ikon <code>&lt;/&gt;</code>) dan salin objek konfigurasi ke form di samping.</li>
+              <li>Atur <strong>Security Rules</strong> agar postingan dapat dibaca dan disimpan.</li>
+            </ol>
+          </div>
+
+          <!-- Firestore Rules Snippet -->
+          <div class="bg-white rounded-2xl p-5 border border-outline-variant/50 shadow-sm text-xs space-y-2">
+            <div class="flex items-center justify-between">
+              <span class="font-bold text-on-surface">Security Rules (firestore.rules)</span>
+              <button type="button" id="btnCopyRules" class="text-primary hover:underline text-[11px] font-semibold flex items-center gap-0.5">
+                <span class="material-symbols-outlined text-xs">content_copy</span> Salin
+              </button>
+            </div>
+            <pre class="bg-slate-950 text-slate-200 p-3 rounded-xl font-mono text-[10px] overflow-x-auto leading-relaxed">rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    match /posts/{postId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}</pre>
+          </div>
+        </div>
+
+      </div>
+
+    </section>
+
+  </main>
+
+
+  <!-- ================================================================= -->
+  <!-- MODAL: PRATINJAU POSTINGAN (Article Preview Simulator)             -->
+  <!-- ================================================================= -->
+  <div id="previewModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
+    <div class="relative w-full max-w-3xl bg-white rounded-3xl shadow-2xl overflow-hidden my-8 max-h-[90vh] flex flex-col">
+      
+      <!-- Modal Header -->
+      <div class="flex items-center justify-between px-6 py-4 border-b border-outline-variant/40 bg-surface-container-low">
+        <div class="flex items-center gap-2">
+          <span class="w-3 h-3 rounded-full bg-primary"></span>
+          <span class="text-xs font-bold uppercase tracking-wider text-on-surface">Pratinjau Tampilan Postingan</span>
+        </div>
+        <button type="button" id="btnClosePreviewModal" class="w-8 h-8 rounded-full bg-white hover:bg-surface-container-highest text-on-surface-variant flex items-center justify-center transition-colors">
+          <span class="material-symbols-outlined text-base">close</span>
+        </button>
+      </div>
+
+      <!-- Modal Body (Article layout simulating website) -->
+      <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
+        
+        <!-- Category & Date Badge -->
+        <div class="flex items-center gap-3 text-xs">
+          <span id="previewCategoryBadge" class="px-3 py-1 rounded-full font-bold bg-primary text-white">Berita</span>
+          <span id="previewDate" class="text-on-surface-variant font-medium">11 November 2026</span>
+          <span class="text-outline">•</span>
+          <span id="previewAuthor" class="text-on-surface-variant font-medium">Admin SD Inpres</span>
+        </div>
+
+        <!-- Article Title -->
+        <h1 id="previewTitle" class="text-2xl sm:text-3xl font-extrabold text-on-surface tracking-tight leading-snug">
+          Judul Postingan Muncul di Sini
+        </h1>
+
+        <!-- Cover Image Container -->
+        <div id="previewImageWrapper" class="hidden rounded-2xl overflow-hidden border border-outline-variant/40 bg-black/5">
+          <img id="previewModalImage" src="" alt="Pratinjau Foto" class="w-full max-h-96 object-cover">
+          <p id="previewModalCaption" class="p-3 text-xs text-on-surface-variant bg-surface-container-low italic"></p>
+        </div>
+
+        <!-- Summary Quote -->
+        <div id="previewSummaryWrapper" class="hidden border-l-4 border-primary pl-4 py-1 text-sm text-on-surface-variant italic font-serif">
+          <p id="previewSummary"></p>
+        </div>
+
+        <!-- Article Content Formatted -->
+        <div id="previewContent" class="prose max-w-none text-sm text-on-surface leading-relaxed space-y-4">
+        </div>
+
+      </div>
+
+      <!-- Modal Footer -->
+      <div class="px-6 py-3 border-t border-outline-variant/40 bg-surface-container-low flex justify-end">
+        <button type="button" id="btnClosePreviewModalBottom" class="px-4 py-2 text-xs font-semibold rounded-xl bg-white border border-outline-variant text-on-surface hover:bg-surface-container-highest transition-colors">
+          Tutup Pratinjau
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+
+  <!-- ================================================================= -->
+  <!-- MODAL: KONFIRMASI HAPUS                                           -->
+  <!-- ================================================================= -->
+  <div id="deleteConfirmModal" class="fixed inset-0 z-50 hidden bg-black/60 backdrop-blur-sm flex items-center justify-center p-4">
+    <div class="w-full max-w-md bg-white rounded-3xl p-6 shadow-2xl space-y-4">
+      <div class="w-12 h-12 rounded-full bg-error-container text-error flex items-center justify-center">
+        <span class="material-symbols-outlined text-2xl">delete_forever</span>
+      </div>
+      <div>
+        <h3 class="text-base font-bold text-on-surface">Hapus Postingan Ini?</h3>
+        <p class="text-xs text-on-surface-variant mt-1">
+          Postingan "<span id="deleteItemTitle" class="font-bold text-on-surface"></span>" akan dihapus secara permanen dari Cloud Firestore. Tindakan ini tidak dapat dibatalkan.
+        </p>
+      </div>
+      <div class="flex items-center justify-end gap-2 pt-2">
+        <button type="button" id="btnCancelDelete" class="px-4 py-2 text-xs font-semibold rounded-xl border border-outline-variant text-on-surface-variant hover:bg-surface-container-high transition-colors">
+          Batal
+        </button>
+        <button type="button" id="btnConfirmDelete" class="px-4 py-2 text-xs font-bold rounded-xl bg-error text-white hover:bg-red-700 transition-colors shadow">
+          Ya, Hapus Sekarang
+        </button>
+      </div>
+    </div>
+  </div>
+
+
+  <!-- ================================================================= -->
+  <!-- TOAST NOTIFICATION CONTAINER                                      -->
+  <!-- ================================================================= -->
+  <div id="toastContainer" class="fixed bottom-5 right-5 z-50 flex flex-col gap-2 max-w-sm w-full pointer-events-none">
+    <!-- Toasts injected dynamically -->
+  </div>
+
+
+  <!-- App Scripts (ES Modules) -->
+  <script type="module" src="admin.js"></script>
+</body>
+
+</html>
+

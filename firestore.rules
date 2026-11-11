@@ -1,0 +1,25 @@
+rules_version = '2';
+service cloud.firestore {
+  match /databases/{database}/documents {
+    
+    // Koleksi postingan SD Inpres Lelingluan
+    match /posts/{postId} {
+      // Siapapun dapat membaca postingan yang berstatus 'published'
+      allow read: if resource == null || resource.data.status == 'published' || request.auth != null;
+      
+      // Izin menulis, memperbarui, dan menghapus postingan
+      // Untuk produksi: batasi dengan `if request.auth != null`
+      allow create: if request.resource.data.title is string 
+                    && request.resource.data.content is string
+                    && request.resource.data.title.size() > 0;
+      allow update, delete: if true;
+    }
+    
+    // Pengaturan & metadata aplikasi (opsional)
+    match /settings/{docId} {
+      allow read: if true;
+      allow write: if true;
+    }
+  }
+}
+
