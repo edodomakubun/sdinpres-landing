@@ -202,11 +202,11 @@ function initScrollspy() {
       const text = tab.querySelector('span:not(.material-symbols-outlined)');
 
       if (tabTarget === currentId) {
-        tab.className = 'flex flex-col items-center justify-center text-primary font-bold py-1 px-3 active:scale-95 transition-transform duration-100';
+        tab.className = 'flex flex-col items-center justify-center text-primary font-bold py-1 px-0.5 active:scale-95 transition-transform duration-100 min-w-0';
         if (icon) icon.style.fontVariationSettings = "'FILL' 1, 'wght' 500";
         if (text) text.classList.add('font-bold');
       } else {
-        tab.className = 'flex flex-col items-center justify-center text-on-surface-variant py-1 px-3 hover:text-primary active:scale-95 transition-transform duration-100';
+        tab.className = 'flex flex-col items-center justify-center text-on-surface-variant py-1 px-0.5 hover:text-primary active:scale-95 transition-transform duration-100 min-w-0';
         if (icon) icon.style.fontVariationSettings = "'FILL' 0, 'wght' 400";
         if (text) text.classList.remove('font-bold');
       }

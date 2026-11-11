@@ -148,7 +148,7 @@
   <!-- 1. TOP NAV BAR (Sticky Header)             -->
   <!-- ========================================== -->
   <header
-    class="bg-surface-container-lowest/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-outline-variant transition-all duration-200">
+    class="hidden md:block bg-surface-container-lowest/95 backdrop-blur-md sticky top-0 z-50 shadow-sm border-b border-outline-variant transition-all duration-200">
     <div class="flex justify-between items-center w-full px-4 sm:px-6 py-2.5 max-w-7xl mx-auto">
 
       <!-- Leading Brand Group -->
@@ -1620,6 +1620,18 @@
 
     </div>
   </footer>
+
+  <!-- ============================================================== -->
+  <!-- 9.5 FLOATING ACTION BUTTON (FAB) "WEBSITE UTAMA" (md:hidden)   -->
+  <!-- ============================================================== -->
+  <a href="https://blog.sdinpreslelingluan.com"
+    id="mobile-floating-website-btn"
+    class="md:hidden fixed bottom-20 right-4 z-40 inline-flex items-center gap-1.5 px-3.5 py-2.5 rounded-full bg-primary text-white shadow-xl shadow-primary/30 border border-white/20 active:scale-95 transition-all text-xs font-bold backdrop-blur-xs group"
+    aria-label="Kunjungi Website Utama SD Inpres Lelingluan">
+    <span class="material-symbols-outlined text-[17px]">language</span>
+    <span>Website Utama</span>
+    <span class="material-symbols-outlined text-[14px] opacity-80 group-hover:translate-x-0.5 transition-transform">arrow_forward</span>
+  </a>
 
   <!-- ============================================================== -->
   <!-- 10. BOTTOM NAVIGATION BAR FOR MOBILE (md:hidden)               -->
