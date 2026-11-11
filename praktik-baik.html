@@ -334,11 +334,18 @@
 
     const LOCAL_BACKUP_KEY = 'sdinpres_local_posts_backup';
 
-    function getYouTubeEmbedUrl(url) {
+    function getYouTubeVideoId(url) {
       if (!url) return '';
+      const match = url.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/|live\/|watch\?.+&v=))([\w-]{11})/);
+      if (match && match[1]) return match[1];
       const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
-      const match = url.match(regExp);
-      return (match && match[2].length === 11) ? `https://www.youtube-nocookie.com/embed/${match[2]}` : '';
+      const fallback = url.match(regExp);
+      return (fallback && fallback[2].length === 11) ? fallback[2] : '';
+    }
+
+    function getYouTubeEmbedUrl(url) {
+      const id = getYouTubeVideoId(url);
+      return id ? `https://www.youtube-nocookie.com/embed/${id}` : '';
     }
 
     function formatMarkdown(text) {
@@ -519,13 +526,16 @@
           badgeColor = 'bg-emerald-100 text-emerald-800 border-emerald-200';
         }
 
+        const ytId = hasVideo ? getYouTubeVideoId(post.videoUrl) : '';
+        const displayImage = post.coverImageBase64 || (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '');
+
         return `
           <article class="card-item group bg-white rounded-3xl overflow-hidden border border-outline-variant/60 shadow-xs hover:shadow-md transition-all flex flex-col cursor-pointer active:scale-[0.99]" data-id="${post.id}">
             
             <!-- Thumbnail Visual -->
             <div class="relative w-full aspect-[16/10] bg-surface-container overflow-hidden flex items-center justify-center">
-              ${hasImage 
-                ? `<img src="${post.coverImageBase64}" alt="${escapeHtml(post.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">`
+              ${displayImage 
+                ? `<img src="${displayImage}" alt="${escapeHtml(post.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">`
                 : `<div class="w-full h-full bg-gradient-to-tr from-[#00288e]/15 to-[#316bf3]/10 flex flex-col items-center justify-center text-primary/40 p-4">
                      <span class="material-symbols-outlined text-4xl">auto_stories</span>
                      <span class="text-[11px] font-bold mt-1 text-primary/60">SD Inpres Lelingluan</span>

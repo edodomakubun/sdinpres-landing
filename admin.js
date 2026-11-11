@@ -62,6 +62,7 @@ const state = {
   editingPostId: null,
   currentImageBase64: '',
   currentImageMeta: null,
+  isYouTubeThumb: false,
   deleteTargetId: null
 };
 
@@ -326,6 +327,131 @@ function generateSlug(text) {
     .replace(/[^a-z0-9 -]/g, '')
     .replace(/\s+/g, '-')
     .replace(/-+/g, '-');
+}
+
+/**
+ * Ekstraksi 11 karakter YouTube Video ID dari berbagai variasi URL
+ */
+export function extractYouTubeVideoId(url) {
+  if (!url || typeof url !== 'string') return null;
+  const trimmed = url.trim();
+  const match = trimmed.match(/(?:youtu\.be\/|youtube\.com\/(?:embed\/|v\/|watch\?v=|shorts\/|live\/|watch\?.+&v=))([\w-]{11})/);
+  if (match && match[1]) return match[1];
+  const fallback = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/.exec(trimmed);
+  return (fallback && fallback[2]?.length === 11) ? fallback[2] : null;
+}
+
+/**
+ * Mengambil blob thumbnail YouTube (prioritas maxresdefault, fallback hqdefault)
+ */
+export async function fetchYouTubeThumbnailBlob(videoId) {
+  // 1. Coba resolusi tinggi (maxresdefault) terlebih dahulu
+  try {
+    const maxresUrl = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+    const res = await fetch(maxresUrl, { mode: 'cors' });
+    if (res.ok) {
+      const blob = await res.blob();
+      // Placeholder error 120x90 YouTube biasanya berukuran sangat kecil (< 3KB)
+      if (blob.size > 5000) {
+        return blob;
+      }
+    }
+  } catch (e) {
+    console.warn("maxresdefault tidak tersedia, mencoba hqdefault:", e);
+  }
+
+  // 2. Fallback ke hqdefault (480x360, terjamin ada pada seluruh video YouTube)
+  const hqUrl = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
+  const resHq = await fetch(hqUrl, { mode: 'cors' });
+  if (!resHq.ok) {
+    throw new Error('Gagal mengambil gambar thumbnail YouTube.');
+  }
+  return await resHq.blob();
+}
+
+/**
+ * Mengonversi thumbnail video YouTube menjadi foto cover Base64
+ */
+export async function applyYouTubeThumbnailAsCover(videoId, notify = true) {
+  try {
+    if (notify) showToast('Mengambil thumbnail dari YouTube...', 'info');
+
+    const blob = await fetchYouTubeThumbnailBlob(videoId);
+    const file = new File([blob], `youtube-thumb-${videoId}.jpg`, { type: blob.type || 'image/jpeg' });
+
+    // Masukkan ke pipeline Canvas optimizer yang sudah ada
+    await handleImageFile(file);
+    state.isYouTubeThumb = true;
+
+    syncYouTubeThumbCheckboxes(true);
+
+    const statStatusBadge = document.getElementById('statStatusBadge');
+    if (statStatusBadge) {
+      statStatusBadge.innerHTML = `<span class="material-symbols-outlined text-xs">smart_display</span> Thumbnail YouTube`;
+      statStatusBadge.className = 'inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold bg-red-100 text-red-800';
+    }
+
+    if (notify) showToast('Thumbnail YouTube berhasil dijadikan foto utama!', 'success');
+  } catch (err) {
+    console.error('Gagal mengambil thumbnail YouTube:', err);
+    syncYouTubeThumbCheckboxes(false);
+    if (notify) showToast(`Gagal mengambil thumbnail: ${err.message}`, 'error');
+  }
+}
+
+/**
+ * Sinkronisasi kedua kotak centang thumbnail YouTube di formulir
+ */
+export function syncYouTubeThumbCheckboxes(checked) {
+  const chk1 = document.getElementById('chkUseYouTubeThumb');
+  const chk2 = document.getElementById('chkUseYouTubeThumbSecondary');
+  const statusEl = document.getElementById('ytThumbStatus');
+
+  if (chk1) chk1.checked = checked;
+  if (chk2) chk2.checked = checked;
+
+  if (statusEl) {
+    if (checked && state.isYouTubeThumb) {
+      statusEl.classList.remove('hidden');
+    } else {
+      statusEl.classList.add('hidden');
+    }
+  }
+}
+
+/**
+ * Handler saat admin mengklik kotak centang thumbnail YouTube
+ */
+export async function handleYouTubeThumbCheckboxChange(isChecked) {
+  if (!isChecked) {
+    if (state.isYouTubeThumb) {
+      clearCoverImage();
+      showToast('Thumbnail YouTube dilepas dari foto utama', 'info');
+    }
+    syncYouTubeThumbCheckboxes(false);
+    return;
+  }
+
+  const videoInput = document.getElementById('postVideoUrl');
+  const videoUrl = videoInput?.value.trim() || '';
+  const videoId = extractYouTubeVideoId(videoUrl);
+
+  if (!videoId) {
+    syncYouTubeThumbCheckboxes(false);
+    showToast('Silakan masukkan Tautan Video YouTube terlebih dahulu!', 'warning');
+    videoInput?.focus();
+    return;
+  }
+
+  if (state.currentImageBase64 && !state.isYouTubeThumb) {
+    const change = confirm('Anda sudah mengunggah file foto utama. Apakah Anda ingin menggantinya dengan thumbnail video YouTube?');
+    if (!change) {
+      syncYouTubeThumbCheckboxes(false);
+      return;
+    }
+  }
+
+  await applyYouTubeThumbnailAsCover(videoId, true);
 }
 
 // Simple Markdown to HTML formatter for article preview
@@ -743,6 +869,30 @@ function setupEditor() {
     resetEditorForm();
     showToast('Batal mengedit postingan', 'info');
   });
+
+  // YouTube Thumbnail Checkbox Handlers
+  const chkUseYouTubeThumb = document.getElementById('chkUseYouTubeThumb');
+  const chkUseYouTubeThumbSecondary = document.getElementById('chkUseYouTubeThumbSecondary');
+
+  chkUseYouTubeThumb?.addEventListener('change', (e) => {
+    handleYouTubeThumbCheckboxChange(e.target.checked);
+  });
+
+  chkUseYouTubeThumbSecondary?.addEventListener('change', (e) => {
+    handleYouTubeThumbCheckboxChange(e.target.checked);
+  });
+
+  // Listener input pada postVideoUrl: jika centang sedang aktif dan admin memasukkan/mengganti URL
+  const videoInput = document.getElementById('postVideoUrl');
+  videoInput?.addEventListener('input', async (e) => {
+    const url = e.target.value.trim();
+    const videoId = extractYouTubeVideoId(url);
+    const isChecked = document.getElementById('chkUseYouTubeThumb')?.checked || document.getElementById('chkUseYouTubeThumbSecondary')?.checked;
+
+    if (isChecked && videoId && (!state.currentImageBase64 || state.isYouTubeThumb)) {
+      await applyYouTubeThumbnailAsCover(videoId, false);
+    }
+  });
 }
 
 /**
@@ -750,6 +900,12 @@ function setupEditor() {
  */
 async function handleImageFile(file) {
   try {
+    const isYtFile = file && file.name && file.name.startsWith('youtube-thumb-');
+    if (!isYtFile) {
+      state.isYouTubeThumb = false;
+      syncYouTubeThumbCheckboxes(false);
+    }
+
     showToast('Mengompresi gambar dengan Canvas...', 'info');
     const result = await compressImageToBase64(file, 1200, 900, 0.8);
 
@@ -762,15 +918,26 @@ async function handleImageFile(file) {
     const previewImg = document.getElementById('previewImageElement');
     const statOriginalSize = document.getElementById('statOriginalSize');
     const statCompressedSize = document.getElementById('statCompressedSize');
+    const statStatusBadge = document.getElementById('statStatusBadge');
 
     previewImg.src = result.base64;
-    statOriginalSize.textContent = formatBytes(result.originalSize);
+    statOriginalSize.textContent = isYtFile ? 'YouTube CDN' : formatBytes(result.originalSize);
     statCompressedSize.textContent = `${formatBytes(result.compressedSize)} (${result.format.split('/')[1]?.toUpperCase()})`;
+
+    if (isYtFile && statStatusBadge) {
+      statStatusBadge.innerHTML = `<span class="material-symbols-outlined text-xs">smart_display</span> Thumbnail YouTube`;
+      statStatusBadge.className = 'inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold bg-red-100 text-red-800';
+    } else if (statStatusBadge) {
+      statStatusBadge.innerHTML = `<span class="material-symbols-outlined text-xs">check_circle</span> Aman (&lt;1MB)`;
+      statStatusBadge.className = 'inline-flex items-center gap-1 px-2 py-1 rounded-md text-[11px] font-bold bg-emerald-100 text-emerald-800';
+    }
 
     dropZoneEmpty.classList.add('hidden');
     dropZonePreview.classList.remove('hidden');
 
-    showToast(`Foto berhasil dioptimasi ke ${formatBytes(result.compressedSize)} Base64!`, 'success');
+    if (!isYtFile) {
+      showToast(`Foto berhasil dioptimasi ke ${formatBytes(result.compressedSize)} Base64!`, 'success');
+    }
   } catch (err) {
     console.error("Gagal mengompresi gambar:", err);
     showToast(`Gagal memproses gambar: ${err.message}`, 'error');
@@ -780,6 +947,9 @@ async function handleImageFile(file) {
 function clearCoverImage() {
   state.currentImageBase64 = '';
   state.currentImageMeta = null;
+  state.isYouTubeThumb = false;
+  syncYouTubeThumbCheckboxes(false);
+
   const fileInput = document.getElementById('fileInput');
   if (fileInput) fileInput.value = '';
 
@@ -874,6 +1044,20 @@ async function handleSavePost() {
     return;
   }
 
+  // Jika foto utama belum ada, tapi centang thumbnail YouTube aktif dan ada link video,
+  // otomatis muat thumbnail sebelum postingan disimpan ke database
+  const isThumbChecked = document.getElementById('chkUseYouTubeThumb')?.checked || document.getElementById('chkUseYouTubeThumbSecondary')?.checked;
+  if (!state.currentImageBase64 && isThumbChecked && videoUrl) {
+    const videoId = extractYouTubeVideoId(videoUrl);
+    if (videoId) {
+      try {
+        await applyYouTubeThumbnailAsCover(videoId, false);
+      } catch (e) {
+        console.warn("Gagal auto-fetch thumbnail YouTube sebelum simpan:", e);
+      }
+    }
+  }
+
   const postData = {
     title,
     slug,
@@ -915,6 +1099,8 @@ async function handleSavePost() {
 
 function resetEditorForm() {
   state.editingPostId = null;
+  state.isYouTubeThumb = false;
+  syncYouTubeThumbCheckboxes(false);
   document.getElementById('postForm').reset();
   clearCoverImage();
 
@@ -961,6 +1147,8 @@ function startEditPost(post) {
   // Cover image
   if (post.coverImageBase64) {
     state.currentImageBase64 = post.coverImageBase64;
+    state.isYouTubeThumb = false;
+    syncYouTubeThumbCheckboxes(false);
     const dropZoneEmpty = document.getElementById('dropZoneEmpty');
     const dropZonePreview = document.getElementById('dropZonePreview');
     const previewImg = document.getElementById('previewImageElement');

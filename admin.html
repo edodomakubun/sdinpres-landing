@@ -406,6 +406,29 @@
                 </div>
               </div>
 
+              <!-- Checkbox Khusus: Gunakan Thumbnail Video YouTube -->
+              <div class="p-3.5 rounded-2xl bg-amber-50/70 border border-amber-200/90 shadow-2xs transition-colors hover:bg-amber-50">
+                <div class="flex items-start gap-3">
+                  <div class="flex items-center h-5 mt-0.5">
+                    <input type="checkbox" id="chkUseYouTubeThumb" 
+                      class="w-4 h-4 rounded text-red-600 focus:ring-red-500 border-outline-variant cursor-pointer">
+                  </div>
+                  <div class="flex-1">
+                    <label for="chkUseYouTubeThumb" class="text-xs font-bold text-amber-950 cursor-pointer flex items-center gap-1.5 select-none">
+                      <span class="material-symbols-outlined text-[17px] text-red-600">smart_display</span>
+                      <span>Gunakan Thumbnail dari Link Video YouTube</span>
+                    </label>
+                    <p class="text-[11px] text-amber-800 mt-0.5 leading-snug">
+                      Centang opsi ini jika Anda tidak memiliki file foto utama. Gambar thumbnail akan otomatis diambil dari <em>Tautan Video YouTube</em> dan dikonversi menjadi gambar Base64.
+                    </p>
+                    <div id="ytThumbStatus" class="hidden mt-2 flex items-center gap-1.5 text-[11px] font-bold text-emerald-800 bg-emerald-100/80 px-2.5 py-1 rounded-lg w-fit">
+                      <span class="material-symbols-outlined text-xs text-emerald-700">check_circle</span>
+                      <span id="ytThumbStatusText">Thumbnail YouTube aktif digunakan sebagai foto utama</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
               <!-- Image Caption -->
               <div>
                 <label for="postImageCaption" class="block text-xs font-medium text-on-surface-variant mb-1">
@@ -522,6 +545,14 @@
                   <span class="material-symbols-outlined absolute left-2.5 top-1/2 -translate-y-1/2 text-outline text-base">smart_display</span>
                   <input type="url" id="postVideoUrl" placeholder="https://www.youtube.com/watch?v=..."
                     class="w-full pl-8 pr-3 py-2 text-xs rounded-xl border border-outline-variant focus:border-primary focus:ring-1 focus:ring-primary">
+                </div>
+                <!-- Checkbox Sinkron di Bawah Video URL -->
+                <div class="mt-2 flex items-center gap-2">
+                  <input type="checkbox" id="chkUseYouTubeThumbSecondary" 
+                    class="w-3.5 h-3.5 rounded text-red-600 focus:ring-red-500 border-outline-variant cursor-pointer">
+                  <label for="chkUseYouTubeThumbSecondary" class="text-[11px] font-medium text-on-surface-variant cursor-pointer select-none">
+                    Jadikan thumbnail video sebagai foto utama
+                  </label>
                 </div>
               </div>
 
