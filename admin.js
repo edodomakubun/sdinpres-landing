@@ -513,12 +513,13 @@ async function fetchPosts() {
     }
   }
 
-  // Fallback: baca dari local storage
+  // Fallback: baca dari local storage (hanya postingan buatan admin)
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_POSTS_KEY);
-    state.posts = raw ? JSON.parse(raw) : getInitialMockPosts();
+    const parsed = raw ? JSON.parse(raw) : [];
+    state.posts = Array.isArray(parsed) ? parsed.filter(p => !p.id || (!p.id.startsWith('demo-') && !p.id.startsWith('pb-'))) : [];
   } catch (e) {
-    state.posts = getInitialMockPosts();
+    state.posts = [];
   }
   return state.posts;
 }
@@ -577,40 +578,9 @@ async function deletePostFromDatabase(postId) {
   localStorage.setItem(LOCAL_STORAGE_POSTS_KEY, JSON.stringify(state.posts));
 }
 
-// Data awal sebagai demonstrasi jika Firestore belum dikonfigurasi
+// Data awal (kosong tanpa data dummy)
 function getInitialMockPosts() {
-  return [
-    {
-      id: "demo-praktik-1",
-      title: "Inovasi Pembelajaran Berdiferensiasi Berbasis Kearifan Lokal Tanimbar",
-      slug: "pembelajaran-berdiferensiasi-kearifan-lokal-tanimbar",
-      category: "Praktik Baik",
-      summary: "Penerapan modul ajar Kurikulum Merdeka yang memadukan literasi numerasi kontekstual dengan tenun ikat dan budaya lokal di SD Inpres Lelingluan.",
-      content: "Praktik baik ini berfokus pada strategi diferensiasi konten dan produk belajar bagi peserta didik fase B dan C.\n\n### Latar Belakang & Tantangan\nBanyak peserta didik yang lebih cepat memahami konsep geometri dan pola simetri ketika dihubungkan langsung dengan motif tenun khas Tanimbar yang mereka jumpai sehari-hari di rumah.\n\n### Langkah-Langkah Pelaksanaan\n- **Asesmen Diagnostik Awal**: Mengidentifikasi kesiapan belajar dan gaya belajar visual/kinestetik murid.\n- **Eksplorasi Objek Nyata**: Mengamati pola kain tenun asli yang dibawa ke ruang kelas.\n- **Pemecahan Masalah Kolaboratif**: Membuat diagram pola numerik dan presentasi kelompok.\n\n### Dampak Positif\nMinat belajar meningkat drastis, suasana kelas lebih hidup, dan anak-anak bangga akan kekayaan budaya tanah kelahirannya.",
-      coverImageBase64: "",
-      imageCaption: "Aktivitas belajar berdiferensiasi kontekstual siswa kelas IV.",
-      author: "Edo Domakubun",
-      date: new Date().toISOString().split('T')[0],
-      videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-      externalUrl: "https://kurikulum.kemdikbud.go.id",
-      status: "published",
-      isPinned: true
-    },
-    {
-      id: "demo-1",
-      title: "Pelepasan & Pentas Seni Siswa Kelas VI Angkatan 2026",
-      slug: "pelepasan-pentas-seni-kelas-vi-2026",
-      category: "Berita",
-      summary: "Suasana haru dan kebanggaan menyelimuti acara pelepasan peserta didik kelas VI SD Inpres Lelingluan dengan penampilan tarian tradisional Tanimbar.",
-      content: "Hari ini menjadi momen bersejarah bagi keluarga besar SD Inpres Lelingluan. Sebanyak 32 siswa kelas VI secara resmi dilepas untuk melanjutkan pendidikan ke jenjang Sekolah Menengah Pertama (SMP).\n\nAcara dihadiri oleh Komite Sekolah, para orang tua/wali murid, serta tokoh masyarakat desa Lelingluan. Kepala Sekolah dalam sambutannya berpesan agar para lulusan senantiasa menjunjung tinggi karakter disiplin, kejujuran, dan semangat belajar di mana pun mereka berada.\n\n### Penampilan Pentas Seni\nAcara dimeriahkan dengan pagelaran tarian daerah Tanimbar yang dibawakan penuh semangat oleh peserta didik kelas IV dan V.",
-      coverImageBase64: "",
-      imageCaption: "Peserta didik kelas VI bersama para dewan guru pada acara pelepasan.",
-      author: "Admin SD Inpres",
-      date: new Date().toISOString().split('T')[0],
-      status: "published",
-      isPinned: false
-    }
-  ];
+  return [];
 }
 
 // ============================================================================
@@ -1425,6 +1395,18 @@ window.addEventListener('DOMContentLoaded', async () => {
   setupEditor();
   setupListListeners();
   setupSettingsListeners();
+
+  // Hapus data dummy lokal lama
+  try {
+    const raw = localStorage.getItem(LOCAL_STORAGE_POSTS_KEY);
+    if (raw) {
+      const parsed = JSON.parse(raw);
+      if (Array.isArray(parsed)) {
+        const cleaned = parsed.filter(p => !p.id || (!p.id.startsWith('demo-') && !p.id.startsWith('pb-')));
+        localStorage.setItem(LOCAL_STORAGE_POSTS_KEY, JSON.stringify(cleaned));
+      }
+    }
+  } catch (e) {}
 
   // Initialize Firebase
   initFirebase();

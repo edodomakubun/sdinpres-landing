@@ -405,47 +405,17 @@
         }
       }
 
-      // Jika data Firestore kosong / offline, baca cadangan lokal
+      // Jika data Firestore kosong / offline, baca cadangan lokal (khusus yang dibuat admin)
       if (items.length === 0) {
         try {
           const raw = localStorage.getItem(LOCAL_BACKUP_KEY);
           if (raw) {
-            items = JSON.parse(raw).filter(p => !p.status || p.status === 'published');
+            const parsed = JSON.parse(raw);
+            if (Array.isArray(parsed)) {
+              items = parsed.filter(p => (!p.status || p.status === 'published') && (!p.id || (!p.id.startsWith('demo-') && !p.id.startsWith('pb-'))));
+            }
           }
         } catch (e) {}
-      }
-
-      // Fallback data inspiratif jika belum ada data sama sekali
-      if (items.length === 0) {
-        items = [
-          {
-            id: "pb-1",
-            title: "Inovasi Pembelajaran Berdiferensiasi Berbasis Kearifan Lokal Tanimbar",
-            slug: "pembelajaran-berdiferensiasi-tanimbar",
-            category: "Praktik Baik",
-            summary: "Penerapan modul ajar Kurikulum Merdeka yang memadukan literasi numerasi kontekstual dengan tenun ikat dan pola budaya khas desa Lelingluan.",
-            content: "Praktik baik ini berfokus pada strategi diferensiasi konten dan produk belajar bagi peserta didik fase B dan C.\n\n### Latar Belakang & Tantangan\nBanyak peserta didik yang lebih cepat memahami konsep geometri dan pola simetri ketika dihubungkan langsung dengan motif tenun khas Tanimbar yang mereka jumpai sehari-hari di rumah.\n\n### Langkah-Langkah Pelaksanaan\n- **Asesmen Diagnostik Awal**: Mengidentifikasi kesiapan belajar dan gaya belajar visual/kinestetik murid.\n- **Eksplorasi Objek Nyata**: Mengamati pola kain tenun asli yang dibawa ke ruang kelas.\n- **Pemecahan Masalah Kolaboratif**: Membuat diagram pola numerik dan presentasi kelompok.\n\n### Dampak Positif\nMinat belajar meningkat drastis, suasana kelas lebih hidup, dan anak-anak bangga akan kekayaan budaya tanah kelahirannya.",
-            coverImageBase64: "",
-            imageCaption: "Aktivitas belajar berdiferensiasi kontekstual siswa SD Inpres Lelingluan.",
-            author: "Edo Domakubun",
-            date: new Date().toISOString().split('T')[0],
-            videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
-            externalUrl: "https://kurikulum.kemdikbud.go.id",
-            isPinned: true
-          },
-          {
-            id: "pb-2",
-            title: "Gerakan Literasi Pagi '15 Menit Membaca Senyap' Bersama Komite Sekolah",
-            slug: "gerakan-literasi-pagi-15-menit",
-            category: "Pembelajaran",
-            summary: "Pembiasaan membaca buku cerita bergambar setiap pagi sebelum pelajaran dimulai untuk mendongkrak minat baca dan kefasihan literasi anak.",
-            content: "Program ini digagas bersama para wali murid dan komite sekolah untuk menciptakan ekosistem sekolah yang literat dan menyenangkan.",
-            coverImageBase64: "",
-            author: "Dewan Guru SD Inpres",
-            date: new Date().toISOString().split('T')[0],
-            isPinned: false
-          }
-        ];
       }
 
       state.posts = items;
@@ -517,14 +487,17 @@
       if (!container) return;
 
       if (state.filteredPosts.length === 0) {
+        const isSearchOrFilter = state.searchQuery || state.activeCategory;
         container.innerHTML = `
-          <div class="col-span-full bg-white rounded-3xl p-10 sm:p-12 text-center border border-outline-variant/40 space-y-3">
+          <div class="col-span-full bg-white rounded-3xl p-10 sm:p-14 text-center border border-outline-variant/40 space-y-3">
             <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 mx-auto flex items-center justify-center">
-              <span class="material-symbols-outlined text-3xl">search_off</span>
+              <span class="material-symbols-outlined text-3xl">${isSearchOrFilter ? 'search_off' : 'auto_stories'}</span>
             </div>
-            <h3 class="text-base font-bold text-on-surface">Tidak Ada Postingan Ditemukan</h3>
+            <h3 class="text-base font-bold text-on-surface">
+              ${isSearchOrFilter ? 'Tidak Ada Postingan yang Cocok' : 'Belum Ada Postingan Praktik Baik'}
+            </h3>
             <p class="text-xs text-on-surface-variant max-w-sm mx-auto">
-              Tidak ada praktik baik atau konten yang cocok dengan pencarian Anda. Coba pilih kategori lain atau reset kata kunci.
+              ${isSearchOrFilter ? 'Coba ubah kata kunci pencarian atau reset filter kategori.' : 'Saat ini belum ada postingan yang dipublikasikan. Konten yang dibuat di Panel Admin akan otomatis ditampilkan di sini.'}
             </p>
           </div>
         `;
