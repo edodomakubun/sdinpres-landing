@@ -2,7 +2,7 @@
  * SD Inpres Lelingluan — Admin SPA Controller
  * 
  * Modul SPA mandiri untuk membuat dan mengelola postingan sekolah
- * dengan Cloud Firestore dan kompresi gambar otomatis ke Base64.
+ * dengan Cloud Firestore, autentikasi admin resmi, dan kompresi gambar Base64.
  */
 
 import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
@@ -22,11 +22,30 @@ import {
 } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
 
 import { 
+  getAuth, 
+  signInWithEmailAndPassword, 
+  createUserWithEmailAndPassword, 
+  signOut, 
+  onAuthStateChanged 
+} from "https://www.gstatic.com/firebasejs/10.12.0/firebase-auth.js";
+
+import { 
   getActiveFirebaseConfig, 
   saveActiveFirebaseConfig, 
   resetFirebaseConfig, 
   isFirebaseConfigured 
 } from "./firebase-config.js";
+
+// ============================================================================
+// ADMIN CREDENTIALS & SECURITY
+// ============================================================================
+const ADMIN_CREDENTIALS = {
+  email: "edo.domakubun@gmail.com",
+  password: "adminsdin2026",
+  name: "Edo Domakubun"
+};
+
+const AUTH_SESSION_KEY = 'sdinpres_admin_session';
 
 // ============================================================================
 // APP STATE
@@ -35,6 +54,9 @@ const state = {
   currentView: 'viewEditor',
   firebaseApp: null,
   db: null,
+  auth: null,
+  currentUser: null,
+  isAuthenticated: false,
   isLiveFirestore: false,
   posts: [],
   editingPostId: null,
@@ -44,6 +66,178 @@ const state = {
 };
 
 const LOCAL_STORAGE_POSTS_KEY = 'sdinpres_local_posts_backup';
+
+// ============================================================================
+// AUTHENTICATION MODULE
+// ============================================================================
+
+/**
+ * Memeriksa status sesi login saat halaman pertama kali dibuka
+ */
+function checkAuth() {
+  let session = null;
+  try {
+    const rawLocal = localStorage.getItem(AUTH_SESSION_KEY);
+    const rawSession = sessionStorage.getItem(AUTH_SESSION_KEY);
+    session = rawSession ? JSON.parse(rawSession) : (rawLocal ? JSON.parse(rawLocal) : null);
+  } catch (e) {
+    session = null;
+  }
+
+  if (session && session.email && session.email.toLowerCase() === ADMIN_CREDENTIALS.email.toLowerCase()) {
+    setAuthenticatedState(true);
+  } else {
+    setAuthenticatedState(false);
+  }
+}
+
+/**
+ * Mengatur tampilan antara halaman login dan aplikasi utama
+ */
+function setAuthenticatedState(isAuth) {
+  state.isAuthenticated = isAuth;
+  const loginContainer = document.getElementById('loginContainer');
+  const appContainer = document.getElementById('appContainer');
+
+  if (isAuth) {
+    loginContainer?.classList.add('hidden');
+    appContainer?.classList.remove('hidden');
+    fetchPosts().then(() => renderPostsList());
+  } else {
+    appContainer?.classList.add('hidden');
+    loginContainer?.classList.remove('hidden');
+    const pwdInput = document.getElementById('loginPassword');
+    if (pwdInput) pwdInput.value = '';
+  }
+}
+
+/**
+ * Menangani proses masuk (Login) akun Admin
+ */
+async function handleLogin() {
+  const emailInput = document.getElementById('loginEmail');
+  const passwordInput = document.getElementById('loginPassword');
+  const rememberMe = document.getElementById('loginRememberMe')?.checked;
+  const errorAlert = document.getElementById('loginErrorAlert');
+  const errorMessage = document.getElementById('loginErrorMessage');
+  const btnSubmit = document.getElementById('btnSubmitLogin');
+  const btnSubmitText = document.getElementById('btnSubmitLoginText');
+
+  const email = emailInput?.value.trim().toLowerCase();
+  const password = passwordInput?.value;
+
+  errorAlert?.classList.add('hidden');
+
+  if (!email || !password) {
+    errorMessage.textContent = 'Email dan kata sandi wajib diisi.';
+    errorAlert?.classList.remove('hidden');
+    return;
+  }
+
+  // Validasi kredensial administrator resmi
+  if (email !== ADMIN_CREDENTIALS.email.toLowerCase() || password !== ADMIN_CREDENTIALS.password) {
+    errorMessage.textContent = 'Akses Ditolak: Email atau kata sandi admin tidak sesuai.';
+    errorAlert?.classList.remove('hidden');
+    showToast('Akses ditolak: Akun tidak dikenali', 'error');
+    return;
+  }
+
+  // Ubah status tombol jadi memuat
+  const originalHtml = btnSubmitText.textContent;
+  btnSubmit.disabled = true;
+  btnSubmitText.textContent = 'Memverifikasi Akses...';
+
+  try {
+    // Upayakan sinkronisasi dengan Firebase Authentication Cloud jika tersedia
+    if (state.auth) {
+      try {
+        await signInWithEmailAndPassword(state.auth, email, password);
+        console.log("Firebase Auth berhasil masuk:", email);
+      } catch (authErr) {
+        // Jika akun belum dibuat di Firebase Auth Console, daftarkan otomatis
+        if (authErr.code === 'auth/user-not-found' || authErr.code === 'auth/invalid-credential') {
+          try {
+            await createUserWithEmailAndPassword(state.auth, email, password);
+            console.log("Akun admin baru berhasil didaftarkan di Firebase Auth:", email);
+          } catch (createErr) {
+            console.warn("Info Firebase Auth:", createErr.message);
+          }
+        } else {
+          console.warn("Info Firebase Auth:", authErr.message);
+        }
+      }
+    }
+
+    // Simpan sesi administrator
+    const sessionData = {
+      email: ADMIN_CREDENTIALS.email,
+      name: ADMIN_CREDENTIALS.name,
+      loggedInAt: Date.now()
+    };
+
+    if (rememberMe) {
+      localStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(sessionData));
+    } else {
+      sessionStorage.setItem(AUTH_SESSION_KEY, JSON.stringify(sessionData));
+    }
+
+    setAuthenticatedState(true);
+    showToast(`Selamat datang kembali, ${ADMIN_CREDENTIALS.name}!`, 'success');
+  } catch (err) {
+    console.error("Gagal login:", err);
+    errorMessage.textContent = `Gagal masuk: ${err.message}`;
+    errorAlert?.classList.remove('hidden');
+  } finally {
+    btnSubmit.disabled = false;
+    btnSubmitText.textContent = originalHtml;
+  }
+}
+
+/**
+ * Menangani proses keluar (Logout)
+ */
+async function handleLogout() {
+  if (confirm("Apakah Anda yakin ingin keluar dari panel admin SD Inpres Lelingluan?")) {
+    localStorage.removeItem(AUTH_SESSION_KEY);
+    sessionStorage.removeItem(AUTH_SESSION_KEY);
+
+    if (state.auth) {
+      try {
+        await signOut(state.auth);
+      } catch (e) {
+        console.warn("Signout error:", e);
+      }
+    }
+
+    setAuthenticatedState(false);
+    showToast("Anda telah keluar dari panel admin.", "info");
+  }
+}
+
+function setupAuthListeners() {
+  // Submit login form
+  document.getElementById('loginForm')?.addEventListener('submit', (e) => {
+    e.preventDefault();
+    handleLogin();
+  });
+
+  // Logout button
+  document.getElementById('btnLogout')?.addEventListener('click', handleLogout);
+
+  // Toggle password visibility
+  const btnTogglePassword = document.getElementById('btnTogglePassword');
+  const inputPassword = document.getElementById('loginPassword');
+  if (btnTogglePassword && inputPassword) {
+    btnTogglePassword.addEventListener('click', () => {
+      const isPassword = inputPassword.type === 'password';
+      inputPassword.type = isPassword ? 'text' : 'password';
+      const icon = btnTogglePassword.querySelector('.material-symbols-outlined');
+      if (icon) {
+        icon.textContent = isPassword ? 'visibility_off' : 'visibility';
+      }
+    });
+  }
+}
 
 // ============================================================================
 // UTILITIES: IMAGE COMPRESSOR (HTML5 Canvas to Base64)
@@ -224,7 +418,7 @@ function showToast(message, type = 'info') {
 // ============================================================================
 
 /**
- * Inisialisasi Firebase App & Firestore Database
+ * Inisialisasi Firebase App, Firestore Database, & Auth
  */
 function initFirebase() {
   const config = getActiveFirebaseConfig();
@@ -259,7 +453,16 @@ function initFirebase() {
     }
 
     state.db = getFirestore(state.firebaseApp);
+    state.auth = getAuth(state.firebaseApp);
     state.isLiveFirestore = true;
+
+    // Listen auth state
+    onAuthStateChanged(state.auth, (user) => {
+      state.currentUser = user;
+      if (user) {
+        console.log("Status Auth Cloud Aktif:", user.email);
+      }
+    });
 
     if (statusBadge && statusText) {
       statusBadge.className = 'flex items-center gap-2 px-3 py-1.5 rounded-full text-xs font-semibold bg-emerald-50 text-emerald-800 border border-emerald-200';
@@ -276,7 +479,7 @@ function initFirebase() {
     console.error("Gagal menginisialisasi Firebase:", err);
     state.isLiveFirestore = false;
     if (statusText) statusText.textContent = 'Koneksi Gagal';
-    showToast(`Koneksi Firebase gagal: ${err.message}`, 'error');
+    showToast(`Koneksi Firebase: ${err.message}`, 'error');
   }
 }
 
@@ -298,12 +501,15 @@ async function fetchPosts() {
         });
       });
       state.posts = items;
-      // Sinkronkan ke backup lokal
       localStorage.setItem(LOCAL_STORAGE_POSTS_KEY, JSON.stringify(items));
       return items;
     } catch (err) {
       console.warn("Gagal memuat dari Firestore, beralih ke cache lokal:", err);
-      showToast(`Gagal memuat data dari Firestore: ${err.message}`, 'warning');
+      if (err.code === 'permission-denied' || (err.message && err.message.toLowerCase().includes('permission'))) {
+        showToast('Izin Firestore Ditolak: Buka tab Rules di Firebase Console lalu terapkan aturan "allow read, write: if true;" dan klik Publish.', 'warning');
+      } else {
+        showToast(`Database: ${err.message}`, 'warning');
+      }
     }
   }
 
@@ -375,6 +581,22 @@ async function deletePostFromDatabase(postId) {
 function getInitialMockPosts() {
   return [
     {
+      id: "demo-praktik-1",
+      title: "Inovasi Pembelajaran Berdiferensiasi Berbasis Kearifan Lokal Tanimbar",
+      slug: "pembelajaran-berdiferensiasi-kearifan-lokal-tanimbar",
+      category: "Praktik Baik",
+      summary: "Penerapan modul ajar Kurikulum Merdeka yang memadukan literasi numerasi kontekstual dengan tenun ikat dan budaya lokal di SD Inpres Lelingluan.",
+      content: "Praktik baik ini berfokus pada strategi diferensiasi konten dan produk belajar bagi peserta didik fase B dan C.\n\n### Latar Belakang & Tantangan\nBanyak peserta didik yang lebih cepat memahami konsep geometri dan pola simetri ketika dihubungkan langsung dengan motif tenun khas Tanimbar yang mereka jumpai sehari-hari di rumah.\n\n### Langkah-Langkah Pelaksanaan\n- **Asesmen Diagnostik Awal**: Mengidentifikasi kesiapan belajar dan gaya belajar visual/kinestetik murid.\n- **Eksplorasi Objek Nyata**: Mengamati pola kain tenun asli yang dibawa ke ruang kelas.\n- **Pemecahan Masalah Kolaboratif**: Membuat diagram pola numerik dan presentasi kelompok.\n\n### Dampak Positif\nMinat belajar meningkat drastis, suasana kelas lebih hidup, dan anak-anak bangga akan kekayaan budaya tanah kelahirannya.",
+      coverImageBase64: "",
+      imageCaption: "Aktivitas belajar berdiferensiasi kontekstual siswa kelas IV.",
+      author: "Edo Domakubun",
+      date: new Date().toISOString().split('T')[0],
+      videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+      externalUrl: "https://kurikulum.kemdikbud.go.id",
+      status: "published",
+      isPinned: true
+    },
+    {
       id: "demo-1",
       title: "Pelepasan & Pentas Seni Siswa Kelas VI Angkatan 2026",
       slug: "pelepasan-pentas-seni-kelas-vi-2026",
@@ -384,19 +606,6 @@ function getInitialMockPosts() {
       coverImageBase64: "",
       imageCaption: "Peserta didik kelas VI bersama para dewan guru pada acara pelepasan.",
       author: "Admin SD Inpres",
-      date: new Date().toISOString().split('T')[0],
-      status: "published",
-      isPinned: true
-    },
-    {
-      id: "demo-2",
-      title: "Pengumuman Jadwal Penilaian Akhir Semester (PAS) Ganjil",
-      slug: "jadwal-penilaian-akhir-semester-ganjil",
-      category: "Pengumuman",
-      summary: "Informasi resmi jadwal pelaksanaan ujian semester ganjil dan imbauan persiapan belajar bagi seluruh siswa kelas I hingga VI.",
-      content: "Diberitahukan kepada seluruh orang tua dan peserta didik bahwa Penilaian Akhir Semester (PAS) akan dimulai pada pekan depan. Dimohon kerja sama orang tua untuk mendampingi putra-putrinya dalam belajar di rumah.",
-      coverImageBase64: "",
-      author: "Kurikulum & Evaluasi",
       date: new Date().toISOString().split('T')[0],
       status: "published",
       isPinned: false
@@ -466,7 +675,7 @@ function setupEditor() {
   }
 
   // Auto-slug generator
-  postTitle.addEventListener('input', () => {
+  postTitle?.addEventListener('input', () => {
     if (!state.editingPostId) {
       postSlug.value = generateSlug(postTitle.value);
     }
@@ -478,7 +687,7 @@ function setupEditor() {
   });
 
   // Char counter
-  postContent.addEventListener('input', () => {
+  postContent?.addEventListener('input', () => {
     charCount.textContent = `${postContent.value.length} karakter`;
   });
 
@@ -674,6 +883,8 @@ async function handleSavePost() {
   const author = document.getElementById('postAuthor').value.trim() || 'Admin SD Inpres';
   const imageCaption = document.getElementById('postImageCaption').value.trim();
   const isPinned = document.getElementById('postIsPinned').checked;
+  const videoUrl = document.getElementById('postVideoUrl')?.value.trim() || '';
+  const externalUrl = document.getElementById('postExternalUrl')?.value.trim() || '';
   const statusRadios = document.getElementsByName('postStatus');
   let status = 'published';
   for (const r of statusRadios) {
@@ -703,6 +914,8 @@ async function handleSavePost() {
     category,
     date,
     author,
+    videoUrl,
+    externalUrl,
     status,
     isPinned
   };
@@ -735,6 +948,11 @@ function resetEditorForm() {
   document.getElementById('postForm').reset();
   clearCoverImage();
 
+  const videoInput = document.getElementById('postVideoUrl');
+  if (videoInput) videoInput.value = '';
+  const extInput = document.getElementById('postExternalUrl');
+  if (extInput) extInput.value = '';
+
   document.getElementById('editorModeBadge').textContent = 'POST BARU';
   document.getElementById('editorModeBadge').className = 'px-2.5 py-0.5 text-xs font-bold rounded-full bg-primary/10 text-primary';
   document.getElementById('editorHeading').textContent = 'Tulis Postingan Sekolah';
@@ -743,7 +961,7 @@ function resetEditorForm() {
   document.getElementById('btnCancelEdit').classList.add('hidden');
   document.getElementById('charCount').textContent = '0 karakter';
   document.getElementById('postDate').value = new Date().toISOString().split('T')[0];
-  document.getElementById('postAuthor').value = 'Admin SD Inpres Lelingluan';
+  document.getElementById('postAuthor').value = 'Edo Domakubun';
 }
 
 function startEditPost(post) {
@@ -753,11 +971,15 @@ function startEditPost(post) {
   document.getElementById('postSlug').value = post.slug || '';
   document.getElementById('postSummary').value = post.summary || '';
   document.getElementById('postContent').value = post.content || '';
-  document.getElementById('postCategory').value = post.category || 'Berita';
+  document.getElementById('postCategory').value = post.category || 'Praktik Baik';
   document.getElementById('postDate').value = post.date || new Date().toISOString().split('T')[0];
-  document.getElementById('postAuthor').value = post.author || 'Admin SD Inpres';
+  document.getElementById('postAuthor').value = post.author || 'Edo Domakubun';
   document.getElementById('postImageCaption').value = post.imageCaption || '';
   document.getElementById('postIsPinned').checked = Boolean(post.isPinned);
+  const videoInput = document.getElementById('postVideoUrl');
+  if (videoInput) videoInput.value = post.videoUrl || '';
+  const extInput = document.getElementById('postExternalUrl');
+  if (extInput) extInput.value = post.externalUrl || '';
   document.getElementById('charCount').textContent = `${(post.content || '').length} karakter`;
 
   // Set status radio
@@ -1148,7 +1370,7 @@ function setupSettingsListeners() {
 
   // Copy Security Rules
   document.getElementById('btnCopyRules')?.addEventListener('click', () => {
-    const rules = `rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /posts/{postId} {\n      allow read: if true;\n      allow write: if true;\n    }\n  }\n}`;
+    const rules = `rules_version = '2';\nservice cloud.firestore {\n  match /databases/{database}/documents {\n    match /posts/{postId} {\n      allow read, write: if true;\n    }\n  }\n}`;
     navigator.clipboard.writeText(rules).then(() => {
       showToast('Security rules berhasil disalin ke clipboard!', 'success');
     });
@@ -1159,6 +1381,9 @@ function setupSettingsListeners() {
 // INITIALIZATION
 // ============================================================================
 window.addEventListener('DOMContentLoaded', async () => {
+  // Setup Authentication listeners
+  setupAuthListeners();
+
   // Setup SPA Tab Navigation Buttons
   document.querySelectorAll('.tab-btn').forEach(btn => {
     btn.addEventListener('click', () => {
@@ -1201,11 +1426,11 @@ window.addEventListener('DOMContentLoaded', async () => {
   setupListListeners();
   setupSettingsListeners();
 
-  // Initialize Firebase and fetch initial data
+  // Initialize Firebase
   initFirebase();
-  await fetchPosts();
-  renderPostsList();
 
-  console.log("SD Inpres Lelingluan Admin SPA siap digunakan.");
+  // Check auth session
+  checkAuth();
+
+  console.log("SD Inpres Lelingluan Admin SPA dengan autentikasi siap digunakan.");
 });
-

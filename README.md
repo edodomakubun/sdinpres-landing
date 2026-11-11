@@ -5,6 +5,7 @@ Landing page statis untuk Cloudflare Pages. Template Blogger lama **tidak disent
 ## Arsitektur
 
 - `https://sdinpreslelingluan.com` → Landing Page Cloudflare Pages
+- `https://sdinpreslelingluan.com/praktik-baik` (atau `praktik-baik.html`) → Halaman Mandiri Mobile-First Praktik Baik, Artikel, Video & Bahan Ajar
 - `https://sdinpreslelingluan.com/admin` (atau `admin.html`) → Portal Mandiri Pembuatan & Pengelolaan Postingan (Firebase Firestore)
 - `https://blog.sdinpreslelingluan.com` → Blogger
 - Semua foto konten di homepage diambil **secara dinamis dari Blogger Feed**.

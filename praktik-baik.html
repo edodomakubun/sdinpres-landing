@@ -1,0 +1,764 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="theme-color" content="#00288e">
+  <title>Praktik Baik &amp; Inovasi — SD Inpres Lelingluan</title>
+  <meta name="description" content="Ruang berbagi praktik baik pembelajaran, modul inspiratif, video edukasi, dan karya unggulan guru serta siswa SD Inpres Lelingluan.">
+
+  <!-- Favicon -->
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="apple-touch-icon" href="assets/logo.png">
+
+  <!-- Fonts & Material Symbols -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap" rel="stylesheet">
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet">
+
+  <!-- Tailwind CSS v3 via CDN -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <script>
+    tailwind.config = {
+      darkMode: "class",
+      theme: {
+        extend: {
+          colors: {
+            primary: "#00288e",
+            "primary-container": "#1e40af",
+            "on-primary": "#ffffff",
+            secondary: "#0051d5",
+            "secondary-container": "#316bf3",
+            "on-secondary": "#ffffff",
+            surface: "#faf8ff",
+            "surface-dim": "#d2d9f4",
+            "surface-container-lowest": "#ffffff",
+            "surface-container-low": "#f2f3ff",
+            "surface-container": "#eaedff",
+            "surface-container-high": "#e2e7ff",
+            "surface-container-highest": "#dae2fd",
+            "on-surface": "#131b2e",
+            "on-surface-variant": "#444653",
+            outline: "#757684",
+            "outline-variant": "#c4c5d5",
+            amber: {
+              50: "#fffbeb",
+              100: "#fef3c7",
+              500: "#f59e0b",
+              600: "#d97706",
+              700: "#b45309",
+              800: "#92400e"
+            }
+          },
+          fontFamily: {
+            sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"]
+          }
+        }
+      }
+    };
+  </script>
+
+  <style>
+    body {
+      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
+      background-color: #faf8ff;
+      color: #131b2e;
+      -webkit-tap-highlight-color: transparent;
+    }
+    .material-symbols-outlined {
+      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+      display: inline-block;
+      vertical-align: middle;
+      line-height: 1;
+    }
+    .material-symbols-fill {
+      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
+    }
+    .no-scrollbar::-webkit-scrollbar {
+      display: none;
+    }
+    .no-scrollbar {
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+  </style>
+</head>
+
+<body class="min-h-screen flex flex-col bg-[#faf8ff] text-[#131b2e] pb-20 md:pb-6 antialiased selection:bg-[#dae2fd] selection:text-[#00288e]">
+
+  <!-- ============================================================== -->
+  <!-- 1. STICKY TOP APP BAR (Mobile First)                           -->
+  <!-- ============================================================== -->
+  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-outline-variant/60 shadow-xs">
+    <div class="max-w-6xl mx-auto px-4 h-15 py-2.5 flex items-center justify-between gap-3">
+      
+      <!-- Back to Landing Page -->
+      <a href="index.html" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs active:scale-95 transition-all" title="Kembali ke Beranda">
+        <span class="material-symbols-outlined text-lg">arrow_back</span>
+        <span class="font-semibold">Beranda</span>
+      </a>
+
+      <!-- Title & Branding -->
+      <div class="flex items-center gap-2 min-w-0">
+        <div class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center p-1 shrink-0">
+          <img src="assets/logo.png" alt="Logo" class="w-full h-full object-contain" onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
+          <span class="material-symbols-outlined text-primary text-base hidden">school</span>
+        </div>
+        <div class="truncate">
+          <h1 class="text-sm sm:text-base font-extrabold text-primary tracking-tight leading-tight flex items-center gap-1.5">
+            <span>Praktik Baik</span>
+            <span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 hidden sm:inline-flex items-center gap-0.5">
+              <span class="material-symbols-outlined text-[12px] text-amber-600">verified</span> Inspiratif
+            </span>
+          </h1>
+          <p class="text-[10px] text-on-surface-variant truncate">SD Inpres Lelingluan</p>
+        </div>
+      </div>
+
+      <!-- Quick Action / Admin Portal Link -->
+      <div class="flex items-center gap-1.5">
+        <a href="admin.html" class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary/5 hover:bg-primary/10 text-primary text-xs font-semibold border border-primary/20 transition-all" title="Kelola Konten (Admin)">
+          <span class="material-symbols-outlined text-base">edit_note</span>
+          <span class="hidden md:inline">Admin CMS</span>
+        </a>
+      </div>
+
+    </div>
+  </header>
+
+  <!-- Main Content Area -->
+  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-5">
+
+    <!-- ============================================================== -->
+    <!-- 2. HERO BANNER (Mobile-Optimized)                              -->
+    <!-- ============================================================== -->
+    <section class="relative rounded-3xl overflow-hidden bg-gradient-to-br from-[#00288e] via-[#0039be] to-[#1e40af] text-white p-6 sm:p-8 shadow-md">
+      <!-- Decorative background blur orb -->
+      <div class="absolute -right-10 -bottom-10 w-44 h-44 rounded-full bg-white/10 blur-2xl pointer-events-none"></div>
+
+      <div class="relative z-10 space-y-2.5 max-w-2xl">
+        <div class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/15 backdrop-blur-md text-amber-300 border border-white/20 text-[11px] font-bold tracking-wide">
+          <span class="material-symbols-outlined text-sm">auto_awesome</span>
+          <span>Ruang Berbagi &amp; Inovasi Edukasi</span>
+        </div>
+        <h2 class="text-xl sm:text-3xl font-black tracking-tight leading-snug">
+          Praktik Baik, Modul Ajar &amp; Karya Inspiratif
+        </h2>
+        <p class="text-xs sm:text-sm text-blue-100/90 leading-relaxed">
+          Kumpulan inovasi pembelajaran, dokumentasi video edukatif, dan inspirasi pengajaran kontekstual dari para pendidik dan siswa SD Inpres Lelingluan.
+        </p>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- 3. SEARCH & DYNAMIC CATEGORIES (Sticky Filter)                 -->
+    <!-- ============================================================== -->
+    <div class="sticky top-15 z-30 bg-[#faf8ff]/95 backdrop-blur-md pt-2 pb-3 space-y-2.5 border-b border-outline-variant/30">
+      
+      <!-- Search Input -->
+      <div class="relative">
+        <span class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
+        <input type="text" id="searchInput" placeholder="Cari praktik baik, video, judul, atau topik..."
+          class="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm rounded-2xl border border-outline-variant/80 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-white shadow-xs">
+        <button type="button" id="btnClearSearch" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary p-0.5">
+          <span class="material-symbols-outlined text-base">close</span>
+        </button>
+      </div>
+
+      <!-- Horizontal Scroll Category Pills -->
+      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5" id="categoryPillsContainer" aria-label="Kategori">
+        <!-- Rendered dynamically: Semua, Praktik Baik, Video, dll. -->
+        <button type="button" class="category-pill active shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold bg-primary text-white shadow-xs transition-all" data-category="">
+          Semua
+        </button>
+      </div>
+
+    </div>
+
+    <!-- ============================================================== -->
+    <!-- 4. FEED CONTAINER (Cards Grid)                                 -->
+    <!-- ============================================================== -->
+    <section>
+      
+      <!-- Counter & Active Filter Info -->
+      <div class="flex items-center justify-between text-xs text-on-surface-variant mb-3 px-1">
+        <div>
+          Menampilkan <span id="postCount" class="font-bold text-primary">0</span> postingan
+        </div>
+        <div id="filterIndicator" class="text-[11px] font-medium text-outline">
+          Kategori: <strong>Semua</strong>
+        </div>
+      </div>
+
+      <!-- Cards Grid Container -->
+      <div id="cardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
+        <!-- Skeleton Loader / Initial State -->
+        <div class="bg-white rounded-2xl p-6 border border-outline-variant/40 text-center col-span-full py-16 space-y-3">
+          <span class="material-symbols-outlined text-4xl text-outline animate-spin">sync</span>
+          <p class="text-xs font-semibold text-on-surface-variant">Memuat data Praktik Baik dari Cloud Firestore...</p>
+        </div>
+      </div>
+
+    </section>
+
+  </main>
+
+  <!-- ============================================================== -->
+  <!-- 5. ARTICLE & VIDEO READER MODAL (Slide-Up Drawer on Mobile)     -->
+  <!-- ============================================================== -->
+  <div id="readerModal" class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
+    <div class="relative w-full max-w-3xl bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col transition-all">
+      
+      <!-- Top Drag Bar for Mobile & Close Button -->
+      <div class="flex items-center justify-between px-5 py-3.5 border-b border-outline-variant/40 bg-surface-container-low shrink-0">
+        <div class="flex items-center gap-2">
+          <span id="modalCategoryBadge" class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary text-white">Praktik Baik</span>
+          <span id="modalDate" class="text-xs text-on-surface-variant font-medium">11 November 2026</span>
+        </div>
+        <button type="button" id="btnCloseReaderModal" class="w-8 h-8 rounded-full bg-white hover:bg-surface-container-highest text-on-surface flex items-center justify-center shadow-xs transition-colors" title="Tutup">
+          <span class="material-symbols-outlined text-lg">close</span>
+        </button>
+      </div>
+
+      <!-- Reader Scrollable Body -->
+      <div class="p-5 sm:p-8 overflow-y-auto space-y-5">
+        
+        <!-- Video Player (if videoUrl exists) -->
+        <div id="modalVideoContainer" class="hidden rounded-2xl overflow-hidden aspect-video bg-black shadow-md border border-outline-variant/40">
+          <iframe id="modalVideoFrame" src="" class="w-full h-full" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        </div>
+
+        <!-- Cover Photo (if image exists) -->
+        <div id="modalImageContainer" class="hidden rounded-2xl overflow-hidden bg-black/5 border border-outline-variant/40">
+          <img id="modalCoverImage" src="" alt="Foto Praktik Baik" class="w-full max-h-96 object-cover">
+          <p id="modalImageCaption" class="p-2.5 text-xs text-on-surface-variant bg-surface-container-low italic"></p>
+        </div>
+
+        <!-- Title -->
+        <h1 id="modalTitle" class="text-xl sm:text-2xl font-black text-on-surface tracking-tight leading-snug">
+          Judul Postingan
+        </h1>
+
+        <!-- Author Byline -->
+        <div class="flex items-center gap-2.5 text-xs text-on-surface-variant pb-2 border-b border-outline-variant/30">
+          <div class="w-8 h-8 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center text-xs">
+            <span class="material-symbols-outlined text-base">person</span>
+          </div>
+          <div>
+            <div id="modalAuthor" class="font-bold text-on-surface">Edo Domakubun</div>
+            <div class="text-[10px] text-outline">Kontributor Praktik Baik SD Inpres Lelingluan</div>
+          </div>
+        </div>
+
+        <!-- Summary Blockquote -->
+        <div id="modalSummaryWrapper" class="hidden border-l-4 border-amber-500 pl-4 py-1.5 text-xs sm:text-sm text-on-surface-variant italic font-serif bg-amber-50/50 rounded-r-xl">
+          <p id="modalSummary"></p>
+        </div>
+
+        <!-- External Link Button (if attached) -->
+        <div id="modalExternalLinkWrapper" class="hidden">
+          <a id="modalExternalLink" href="" target="_blank" rel="noopener" class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-primary font-bold text-xs border border-primary/20 transition-all">
+            <span class="material-symbols-outlined text-base">open_in_new</span>
+            <span id="modalExternalLinkText">Buka Tautan Materi / Dokumen Terkait</span>
+          </a>
+        </div>
+
+        <!-- Full Formatted Content -->
+        <div id="modalContent" class="text-xs sm:text-sm text-on-surface leading-relaxed space-y-3.5">
+        </div>
+
+      </div>
+
+      <!-- Reader Footer: Share & Action Buttons -->
+      <div class="px-5 py-3 border-t border-outline-variant/40 bg-surface-container-low flex items-center justify-between shrink-0">
+        <button type="button" id="btnShareArticle" class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-outline-variant text-xs font-bold text-on-surface hover:text-primary transition-colors">
+          <span class="material-symbols-outlined text-base text-secondary">share</span>
+          <span>Bagikan</span>
+        </button>
+
+        <button type="button" id="btnCloseReaderBottom" class="px-4 py-1.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-container transition-all">
+          Selesai Membaca
+        </button>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- ============================================================== -->
+  <!-- 6. BOTTOM NAVIGATION BAR FOR MOBILE                            -->
+  <!-- ============================================================== -->
+  <nav class="md:hidden fixed bottom-0 left-0 w-full z-40 flex justify-around items-center py-1.5 px-2 bg-white/95 backdrop-blur-md border-t border-outline-variant/60 shadow-lg" aria-label="Navigasi Bawah">
+    <a href="index.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary py-1 px-3 active:scale-95 transition-all">
+      <span class="material-symbols-outlined text-[20px]">home</span>
+      <span class="text-[10px] mt-0.5 font-medium">Beranda</span>
+    </a>
+    <a href="praktik-baik.html" class="flex flex-col items-center justify-center text-primary font-bold py-1 px-3 active:scale-95 transition-all">
+      <span class="material-symbols-outlined text-[20px] text-amber-500 material-symbols-fill">verified</span>
+      <span class="text-[10px] mt-0.5">Praktik Baik</span>
+    </a>
+    <a href="index.html#portal" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary py-1 px-3 active:scale-95 transition-all">
+      <span class="material-symbols-outlined text-[20px]">apps</span>
+      <span class="text-[10px] mt-0.5 font-medium">Portal</span>
+    </a>
+    <a href="admin.html" class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary py-1 px-3 active:scale-95 transition-all">
+      <span class="material-symbols-outlined text-[20px]">edit_note</span>
+      <span class="text-[10px] mt-0.5 font-medium">Admin</span>
+    </a>
+  </nav>
+
+  <!-- ============================================================== -->
+  <!-- MODULE SCRIPTS: Cloud Firestore Data Loader                    -->
+  <!-- ============================================================== -->
+  <script type="module">
+    import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
+    import { 
+      getFirestore, 
+      collection, 
+      getDocs, 
+      query, 
+      orderBy 
+    } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
+
+    import { getActiveFirebaseConfig, isFirebaseConfigured } from "./firebase-config.js";
+
+    // Application state
+    const state = {
+      posts: [],
+      filteredPosts: [],
+      categories: new Set(),
+      activeCategory: "",
+      searchQuery: ""
+    };
+
+    const LOCAL_BACKUP_KEY = 'sdinpres_local_posts_backup';
+
+    function getYouTubeEmbedUrl(url) {
+      if (!url) return '';
+      const regExp = /^.*(youtu.be\/|v\/|u\/\w\/|embed\/|watch\?v=|&v=)([^#&?]*).*/;
+      const match = url.match(regExp);
+      return (match && match[2].length === 11) ? `https://www.youtube-nocookie.com/embed/${match[2]}` : '';
+    }
+
+    function formatMarkdown(text) {
+      if (!text) return '';
+      let escaped = text
+        .replace(/&/g, '&amp;')
+        .replace(/</g, '&lt;')
+        .replace(/>/g, '&gt;');
+
+      escaped = escaped.replace(/^### (.*$)/gim, '<h3 class="text-sm sm:text-base font-bold text-primary mt-3 mb-1">$1</h3>');
+      escaped = escaped.replace(/^## (.*$)/gim, '<h2 class="text-base sm:text-lg font-extrabold text-primary mt-4 mb-2">$1</h2>');
+      escaped = escaped.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-on-surface">$1</strong>');
+      escaped = escaped.replace(/\*(.*?)\*/gim, '<em class="italic">$1</em>');
+      escaped = escaped.replace(/^\> (.*$)/gim, '<blockquote class="border-l-4 border-amber-500 pl-3.5 py-1 italic my-2 text-on-surface-variant bg-amber-50/40 rounded-r-lg">$1</blockquote>');
+      escaped = escaped.replace(/^\- (.*$)/gim, '<li class="ml-4 list-disc text-on-surface">$1</li>');
+      escaped = escaped.replace(/^---$/gim, '<hr class="my-4 border-outline-variant/60">');
+
+      const paragraphs = escaped.split(/\n\n+/);
+      return paragraphs.map(p => {
+        if (p.startsWith('<h') || p.startsWith('<block') || p.startsWith('<li') || p.startsWith('<hr')) {
+          return p;
+        }
+        return `<p class="leading-relaxed mb-3">${p.replace(/\n/g, '<br>')}</p>`;
+      }).join('');
+    }
+
+    function escapeHtml(str) {
+      if (!str) return '';
+      return str.replace(/[&<>'"]/g, tag => ({
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        "'": '&#39;',
+        '"': '&quot;'
+      }[tag] || tag));
+    }
+
+    async function loadData() {
+      const config = getActiveFirebaseConfig();
+      let items = [];
+
+      if (isFirebaseConfigured(config)) {
+        try {
+          const app = getApps().length === 0 ? initializeApp(config) : getApp();
+          const db = getFirestore(app);
+          const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
+          const snapshot = await getDocs(q);
+          snapshot.forEach(docSnap => {
+            const data = docSnap.data();
+            // Tampilkan hanya postingan yang dipublikasikan (published)
+            if (!data.status || data.status === 'published') {
+              items.push({
+                id: docSnap.id,
+                ...data,
+                date: data.date || (data.createdAt?.toDate ? data.createdAt.toDate().toISOString().split('T')[0] : '')
+              });
+            }
+          });
+          if (items.length > 0) {
+            localStorage.setItem(LOCAL_BACKUP_KEY, JSON.stringify(items));
+          }
+        } catch (err) {
+          console.warn("Gagal memuat dari Firestore, beralih ke cadangan lokal:", err);
+        }
+      }
+
+      // Jika data Firestore kosong / offline, baca cadangan lokal
+      if (items.length === 0) {
+        try {
+          const raw = localStorage.getItem(LOCAL_BACKUP_KEY);
+          if (raw) {
+            items = JSON.parse(raw).filter(p => !p.status || p.status === 'published');
+          }
+        } catch (e) {}
+      }
+
+      // Fallback data inspiratif jika belum ada data sama sekali
+      if (items.length === 0) {
+        items = [
+          {
+            id: "pb-1",
+            title: "Inovasi Pembelajaran Berdiferensiasi Berbasis Kearifan Lokal Tanimbar",
+            slug: "pembelajaran-berdiferensiasi-tanimbar",
+            category: "Praktik Baik",
+            summary: "Penerapan modul ajar Kurikulum Merdeka yang memadukan literasi numerasi kontekstual dengan tenun ikat dan pola budaya khas desa Lelingluan.",
+            content: "Praktik baik ini berfokus pada strategi diferensiasi konten dan produk belajar bagi peserta didik fase B dan C.\n\n### Latar Belakang & Tantangan\nBanyak peserta didik yang lebih cepat memahami konsep geometri dan pola simetri ketika dihubungkan langsung dengan motif tenun khas Tanimbar yang mereka jumpai sehari-hari di rumah.\n\n### Langkah-Langkah Pelaksanaan\n- **Asesmen Diagnostik Awal**: Mengidentifikasi kesiapan belajar dan gaya belajar visual/kinestetik murid.\n- **Eksplorasi Objek Nyata**: Mengamati pola kain tenun asli yang dibawa ke ruang kelas.\n- **Pemecahan Masalah Kolaboratif**: Membuat diagram pola numerik dan presentasi kelompok.\n\n### Dampak Positif\nMinat belajar meningkat drastis, suasana kelas lebih hidup, dan anak-anak bangga akan kekayaan budaya tanah kelahirannya.",
+            coverImageBase64: "",
+            imageCaption: "Aktivitas belajar berdiferensiasi kontekstual siswa SD Inpres Lelingluan.",
+            author: "Edo Domakubun",
+            date: new Date().toISOString().split('T')[0],
+            videoUrl: "https://www.youtube.com/watch?v=dQw4w9WgXcQ",
+            externalUrl: "https://kurikulum.kemdikbud.go.id",
+            isPinned: true
+          },
+          {
+            id: "pb-2",
+            title: "Gerakan Literasi Pagi '15 Menit Membaca Senyap' Bersama Komite Sekolah",
+            slug: "gerakan-literasi-pagi-15-menit",
+            category: "Pembelajaran",
+            summary: "Pembiasaan membaca buku cerita bergambar setiap pagi sebelum pelajaran dimulai untuk mendongkrak minat baca dan kefasihan literasi anak.",
+            content: "Program ini digagas bersama para wali murid dan komite sekolah untuk menciptakan ekosistem sekolah yang literat dan menyenangkan.",
+            coverImageBase64: "",
+            author: "Dewan Guru SD Inpres",
+            date: new Date().toISOString().split('T')[0],
+            isPinned: false
+          }
+        ];
+      }
+
+      state.posts = items;
+      extractCategories();
+      renderCategoryPills();
+      applyFilters();
+    }
+
+    function extractCategories() {
+      state.categories.clear();
+      state.posts.forEach(p => {
+        if (p.category) state.categories.add(p.category);
+      });
+    }
+
+    function renderCategoryPills() {
+      const container = document.getElementById('categoryPillsContainer');
+      if (!container) return;
+
+      const totalCount = state.posts.length;
+      let html = `
+        <button type="button" class="category-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${state.activeCategory === '' ? 'bg-primary text-white shadow-xs' : 'bg-white text-on-surface-variant border border-outline-variant/60 hover:bg-surface-container'}" data-category="">
+          Semua (${totalCount})
+        </button>
+      `;
+
+      state.categories.forEach(cat => {
+        const count = state.posts.filter(p => p.category === cat).length;
+        const isActive = state.activeCategory === cat;
+        html += `
+          <button type="button" class="category-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${isActive ? 'bg-primary text-white shadow-xs' : 'bg-white text-on-surface-variant border border-outline-variant/60 hover:bg-surface-container'}" data-category="${escapeHtml(cat)}">
+            ${escapeHtml(cat)} (${count})
+          </button>
+        `;
+      });
+
+      container.innerHTML = html;
+
+      container.querySelectorAll('.category-pill').forEach(btn => {
+        btn.addEventListener('click', () => {
+          state.activeCategory = btn.dataset.category || '';
+          renderCategoryPills();
+          applyFilters();
+        });
+      });
+    }
+
+    function applyFilters() {
+      const query = state.searchQuery.toLowerCase().trim();
+      const cat = state.activeCategory;
+
+      state.filteredPosts = state.posts.filter(p => {
+        const matchCat = !cat || p.category === cat;
+        const matchQuery = !query || 
+          (p.title && p.title.toLowerCase().includes(query)) ||
+          (p.summary && p.summary.toLowerCase().includes(query)) ||
+          (p.content && p.content.toLowerCase().includes(query)) ||
+          (p.author && p.author.toLowerCase().includes(query));
+        return matchCat && matchQuery;
+      });
+
+      document.getElementById('postCount').textContent = state.filteredPosts.length;
+      document.getElementById('filterIndicator').innerHTML = `Kategori: <strong>${escapeHtml(state.activeCategory || 'Semua')}</strong>`;
+      renderCards();
+    }
+
+    function renderCards() {
+      const container = document.getElementById('cardsGrid');
+      if (!container) return;
+
+      if (state.filteredPosts.length === 0) {
+        container.innerHTML = `
+          <div class="col-span-full bg-white rounded-3xl p-10 sm:p-12 text-center border border-outline-variant/40 space-y-3">
+            <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 mx-auto flex items-center justify-center">
+              <span class="material-symbols-outlined text-3xl">search_off</span>
+            </div>
+            <h3 class="text-base font-bold text-on-surface">Tidak Ada Postingan Ditemukan</h3>
+            <p class="text-xs text-on-surface-variant max-w-sm mx-auto">
+              Tidak ada praktik baik atau konten yang cocok dengan pencarian Anda. Coba pilih kategori lain atau reset kata kunci.
+            </p>
+          </div>
+        `;
+        return;
+      }
+
+      container.innerHTML = state.filteredPosts.map(post => {
+        const hasImage = Boolean(post.coverImageBase64);
+        const hasVideo = Boolean(post.videoUrl);
+        const hasExternal = Boolean(post.externalUrl);
+
+        // Kategori badge styling
+        let badgeColor = 'bg-primary/10 text-primary border-primary/20';
+        if (post.category === 'Praktik Baik') {
+          badgeColor = 'bg-amber-100 text-amber-800 border-amber-200';
+        } else if (post.category === 'Video') {
+          badgeColor = 'bg-rose-100 text-rose-800 border-rose-200';
+        } else if (post.category === 'Pembelajaran') {
+          badgeColor = 'bg-emerald-100 text-emerald-800 border-emerald-200';
+        }
+
+        return `
+          <article class="card-item group bg-white rounded-3xl overflow-hidden border border-outline-variant/60 shadow-xs hover:shadow-md transition-all flex flex-col cursor-pointer active:scale-[0.99]" data-id="${post.id}">
+            
+            <!-- Thumbnail Visual -->
+            <div class="relative w-full aspect-[16/10] bg-surface-container overflow-hidden flex items-center justify-center">
+              ${hasImage 
+                ? `<img src="${post.coverImageBase64}" alt="${escapeHtml(post.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">`
+                : `<div class="w-full h-full bg-gradient-to-tr from-[#00288e]/15 to-[#316bf3]/10 flex flex-col items-center justify-center text-primary/40 p-4">
+                     <span class="material-symbols-outlined text-4xl">auto_stories</span>
+                     <span class="text-[11px] font-bold mt-1 text-primary/60">SD Inpres Lelingluan</span>
+                   </div>`
+              }
+
+              <!-- Overlay Media Badges -->
+              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
+                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold border backdrop-blur-md shadow-xs ${badgeColor}">
+                  ${escapeHtml(post.category || 'Praktik Baik')}
+                </span>
+                ${hasVideo ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-black/75 text-white flex items-center gap-0.5 backdrop-blur-xs"><span class="material-symbols-outlined text-xs text-rose-400">smart_display</span> Video</span>` : ''}
+                ${hasExternal ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-black/75 text-white flex items-center gap-0.5 backdrop-blur-xs"><span class="material-symbols-outlined text-xs">link</span> Dokumen</span>` : ''}
+              </div>
+
+              ${hasVideo ? `
+                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                  <div class="w-12 h-12 rounded-full bg-white/90 text-primary shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                    <span class="material-symbols-outlined text-2xl material-symbols-fill">play_arrow</span>
+                  </div>
+                </div>
+              ` : ''}
+            </div>
+
+            <!-- Content Details -->
+            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
+              <div class="space-y-1.5">
+                <div class="flex items-center gap-2 text-[11px] text-outline">
+                  <span class="font-medium">${post.date || 'Terbaru'}</span>
+                  <span>•</span>
+                  <span class="truncate">${escapeHtml(post.author || 'Admin')}</span>
+                </div>
+                <h3 class="text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+                  ${escapeHtml(post.title)}
+                </h3>
+                <p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
+                  ${escapeHtml(post.summary || post.content || '')}
+                </p>
+              </div>
+
+              <!-- Footer CTA -->
+              <div class="pt-2 border-t border-outline-variant/30 flex items-center justify-between text-xs font-bold text-primary">
+                <span>Pelajari Praktik Baik</span>
+                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
+              </div>
+            </div>
+
+          </article>
+        `;
+      }).join('');
+
+      container.querySelectorAll('.card-item').forEach(card => {
+        card.addEventListener('click', () => {
+          const id = card.dataset.id;
+          const post = state.posts.find(p => p.id === id);
+          if (post) openReader(post);
+        });
+      });
+    }
+
+    function openReader(post) {
+      const modal = document.getElementById('readerModal');
+      const modalCategory = document.getElementById('modalCategoryBadge');
+      const modalDate = document.getElementById('modalDate');
+      const modalTitle = document.getElementById('modalTitle');
+      const modalAuthor = document.getElementById('modalAuthor');
+      const modalSummaryWrapper = document.getElementById('modalSummaryWrapper');
+      const modalSummary = document.getElementById('modalSummary');
+      const modalContent = document.getElementById('modalContent');
+      const modalVideoContainer = document.getElementById('modalVideoContainer');
+      const modalVideoFrame = document.getElementById('modalVideoFrame');
+      const modalImageContainer = document.getElementById('modalImageContainer');
+      const modalCoverImage = document.getElementById('modalCoverImage');
+      const modalImageCaption = document.getElementById('modalImageCaption');
+      const modalExternalLinkWrapper = document.getElementById('modalExternalLinkWrapper');
+      const modalExternalLink = document.getElementById('modalExternalLink');
+      const modalExternalLinkText = document.getElementById('modalExternalLinkText');
+
+      modalCategory.textContent = post.category || 'Praktik Baik';
+      modalDate.textContent = post.date || new Date().toISOString().split('T')[0];
+      modalTitle.textContent = post.title;
+      modalAuthor.textContent = post.author || 'Edo Domakubun';
+
+      // Video Player
+      const embedUrl = getYouTubeEmbedUrl(post.videoUrl);
+      if (embedUrl) {
+        modalVideoFrame.src = embedUrl;
+        modalVideoContainer.classList.remove('hidden');
+      } else {
+        modalVideoFrame.src = '';
+        modalVideoContainer.classList.add('hidden');
+      }
+
+      // Cover Image (shown if no video or if photo is available)
+      if (post.coverImageBase64 && !embedUrl) {
+        modalCoverImage.src = post.coverImageBase64;
+        modalImageContainer.classList.remove('hidden');
+        if (post.imageCaption) {
+          modalImageCaption.textContent = post.imageCaption;
+          modalImageCaption.classList.remove('hidden');
+        } else {
+          modalImageCaption.classList.add('hidden');
+        }
+      } else {
+        modalImageContainer.classList.add('hidden');
+      }
+
+      // Summary
+      if (post.summary) {
+        modalSummary.textContent = post.summary;
+        modalSummaryWrapper.classList.remove('hidden');
+      } else {
+        modalSummaryWrapper.classList.add('hidden');
+      }
+
+      // External Resource Link
+      if (post.externalUrl) {
+        modalExternalLink.href = post.externalUrl;
+        modalExternalLinkText.textContent = `Buka Tautan Sumber: ${post.externalUrl.replace(/^https?:\/\//, '').split('/')[0]}`;
+        modalExternalLinkWrapper.classList.remove('hidden');
+      } else {
+        modalExternalLinkWrapper.classList.add('hidden');
+      }
+
+      // Formatted Content
+      modalContent.innerHTML = formatMarkdown(post.content || '');
+
+      // Store current post for sharing
+      state.currentOpenPost = post;
+
+      modal.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function closeReader() {
+      const modal = document.getElementById('readerModal');
+      const modalVideoFrame = document.getElementById('modalVideoFrame');
+      if (modalVideoFrame) modalVideoFrame.src = '';
+      modal.classList.add('hidden');
+      document.body.style.overflow = '';
+      state.currentOpenPost = null;
+    }
+
+    // Share Handler
+    async function shareArticle() {
+      const post = state.currentOpenPost;
+      if (!post) return;
+
+      const shareData = {
+        title: `${post.title} — Praktik Baik SD Inpres Lelingluan`,
+        text: post.summary || post.title,
+        url: window.location.href
+      };
+
+      if (navigator.share) {
+        try {
+          await navigator.share(shareData);
+        } catch (e) {}
+      } else {
+        navigator.clipboard.writeText(window.location.href).then(() => {
+          alert('Tautan halaman berhasil disalin ke clipboard!');
+        });
+      }
+    }
+
+    // Event listeners
+    window.addEventListener('DOMContentLoaded', () => {
+      loadData();
+
+      // Search listeners
+      const searchInput = document.getElementById('searchInput');
+      const btnClearSearch = document.getElementById('btnClearSearch');
+
+      searchInput?.addEventListener('input', (e) => {
+        state.searchQuery = e.target.value;
+        if (e.target.value) {
+          btnClearSearch?.classList.remove('hidden');
+        } else {
+          btnClearSearch?.classList.add('hidden');
+        }
+        applyFilters();
+      });
+
+      btnClearSearch?.addEventListener('click', () => {
+        searchInput.value = '';
+        state.searchQuery = '';
+        btnClearSearch.classList.add('hidden');
+        applyFilters();
+      });
+
+      // Modal close listeners
+      document.getElementById('btnCloseReaderModal')?.addEventListener('click', closeReader);
+      document.getElementById('btnCloseReaderBottom')?.addEventListener('click', closeReader);
+      document.getElementById('btnShareArticle')?.addEventListener('click', shareArticle);
+
+      document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeReader();
+      });
+
+      document.getElementById('readerModal')?.addEventListener('click', (e) => {
+        if (e.target.id === 'readerModal') closeReader();
+      });
+    });
+  </script>
+
+</body>
+
+</html>
+
