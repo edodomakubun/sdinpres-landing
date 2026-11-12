@@ -38,7 +38,7 @@ export async function onRequest(context) {
       const docId = d.name?.split('/').pop() || '';
       const docStatus = d.fields?.status?.stringValue || '';
       const docType = d.fields?.type?.stringValue || '';
-      if (docId === '__site_stats__' || docStatus === 'system' || docType === 'site_stats') return false;
+      if (docId === 'site-stats' || docStatus === 'system' || docType === 'site_stats') return false;
       return docSlug.toLowerCase() === cleanSlug.toLowerCase() || docId.toLowerCase() === cleanSlug.toLowerCase();
     });
 

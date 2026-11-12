@@ -262,7 +262,7 @@ function initFaqAccordion() {
 }
 
 // ── Firebase Firestore Site Visits & Realtime Online Tracking ──
-const SITE_STATS_DOC_ID = '__site_stats__';
+const SITE_STATS_DOC_ID = 'site-stats';
 const LOCAL_SITE_VISITS_KEY = 'sdinpres_site_visits_backup';
 let hasCountedSiteVisit = false;
 

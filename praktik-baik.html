@@ -526,7 +526,7 @@
           const snapshot = await getDocs(q);
           snapshot.forEach(docSnap => {
             const data = docSnap.data();
-            if (docSnap.id === '__site_stats__' || data.status === 'system' || data.type === 'site_stats') return;
+            if (docSnap.id === 'site-stats' || data.status === 'system' || data.type === 'site_stats') return;
             // Tampilkan hanya postingan yang dipublikasikan (published)
             if (!data.status || data.status === 'published') {
               items.push({
@@ -552,7 +552,7 @@
           if (raw) {
             const parsed = JSON.parse(raw);
             if (Array.isArray(parsed)) {
-              items = parsed.filter(p => (!p.status || p.status === 'published') && p.id !== '__site_stats__' && p.type !== 'site_stats' && (!p.id || (!p.id.startsWith('demo-') && !p.id.startsWith('pb-'))));
+              items = parsed.filter(p => (!p.status || p.status === 'published') && p.id !== 'site-stats' && p.type !== 'site_stats' && (!p.id || (!p.id.startsWith('demo-') && !p.id.startsWith('pb-'))));
             }
           }
         } catch (e) { }
