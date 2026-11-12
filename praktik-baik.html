@@ -276,15 +276,25 @@
           Judul Postingan
         </h1>
 
-        <!-- Author Byline -->
-        <div class="flex items-center gap-2.5 text-xs text-on-surface-variant pb-2 border-b border-outline-variant/30">
-          <div
-            class="w-8 h-8 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center text-xs">
-            <span class="material-symbols-outlined text-base">person</span>
+        <!-- Author Byline & Views Counter -->
+        <div
+          class="flex items-center justify-between gap-2.5 text-xs text-on-surface-variant pb-2.5 border-b border-outline-variant/30">
+          <div class="flex items-center gap-2.5 min-w-0">
+            <div
+              class="w-8 h-8 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center text-xs shrink-0">
+              <span class="material-symbols-outlined text-base">person</span>
+            </div>
+            <div class="min-w-0">
+              <div id="modalAuthor" class="font-bold text-on-surface truncate">Edo Domakubun</div>
+              <div class="text-[10px] text-outline truncate">Kontributor Praktik Baik SD Inpres Lelingluan</div>
+            </div>
           </div>
-          <div>
-            <div id="modalAuthor" class="font-bold text-on-surface">Edo Domakubun</div>
-            <div class="text-[10px] text-outline">Kontributor Praktik Baik SD Inpres Lelingluan</div>
+          <div
+            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/50 text-xs font-bold text-primary shrink-0"
+            title="Jumlah dilihat">
+            <span class="material-symbols-outlined text-base">visibility</span>
+            <span id="modalViewCount">0</span>
+            <span class="font-medium text-on-surface-variant text-[11px]">dilihat</span>
           </div>
         </div>
 
@@ -383,6 +393,9 @@
       getFirestore,
       collection,
       getDocs,
+      doc,
+      updateDoc,
+      increment,
       query,
       orderBy
     } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js";
@@ -391,14 +404,57 @@
 
     // Application state
     const state = {
+      db: null,
       posts: [],
       filteredPosts: [],
       categories: new Set(),
       activeCategory: "",
-      searchQuery: ""
+      searchQuery: "",
+      currentOpenPost: null,
+      viewedPostIds: new Set()
     };
 
     const LOCAL_BACKUP_KEY = 'sdinpres_local_posts_backup';
+
+    function formatViewCount(count) {
+      return (Number(count) || 0).toLocaleString('id-ID');
+    }
+
+    function updateDisplayedViewCount(postId, count) {
+      const formatted = formatViewCount(count);
+      const modalViewEl = document.getElementById('modalViewCount');
+      if (modalViewEl && state.currentOpenPost?.id === postId) {
+        modalViewEl.textContent = formatted;
+      }
+      document.querySelectorAll('.post-view-count').forEach(el => {
+        if (el.dataset.postId === postId) {
+          el.textContent = formatted;
+        }
+      });
+    }
+
+    async function incrementPostView(post) {
+      if (!post || !post.id || state.viewedPostIds.has(post.id)) return;
+      state.viewedPostIds.add(post.id);
+
+      const newViews = (Number(post.views) || 0) + 1;
+      post.views = newViews;
+      updateDisplayedViewCount(post.id, newViews);
+
+      try {
+        localStorage.setItem(LOCAL_BACKUP_KEY, JSON.stringify(state.posts));
+      } catch (e) {}
+
+      if (state.db) {
+        try {
+          await updateDoc(doc(state.db, "posts", post.id), {
+            views: increment(1)
+          });
+        } catch (err) {
+          console.warn("Gagal memperbarui jumlah view ke Firestore:", err);
+        }
+      }
+    }
 
     function getYouTubeVideoId(url) {
       if (!url) return '';
@@ -465,6 +521,7 @@
         try {
           const app = getApps().length === 0 ? initializeApp(config) : getApp();
           const db = getFirestore(app);
+          state.db = db;
           const q = query(collection(db, "posts"), orderBy("createdAt", "desc"));
           const snapshot = await getDocs(q);
           snapshot.forEach(docSnap => {
@@ -474,6 +531,7 @@
               items.push({
                 id: docSnap.id,
                 ...data,
+                views: typeof data.views === 'number' ? data.views : 0,
                 date: data.date || (data.createdAt?.toDate ? data.createdAt.toDate().toISOString().split('T')[0] : '')
               });
             }
@@ -638,10 +696,17 @@
             <!-- Content Details -->
             <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
               <div class="space-y-1.5">
-                <div class="flex items-center gap-2 text-[11px] text-outline">
-                  <span class="font-medium">${post.date || 'Terbaru'}</span>
-                  <span>•</span>
-                  <span class="truncate">${escapeHtml(post.author || 'Admin')}</span>
+                <div class="flex items-center justify-between gap-2 text-[11px] text-outline">
+                  <div class="flex items-center gap-1.5 min-w-0">
+                    <span class="font-medium shrink-0">${post.date || 'Terbaru'}</span>
+                    <span>•</span>
+                    <span class="truncate">${escapeHtml(post.author || 'Admin')}</span>
+                  </div>
+                  <span class="inline-flex items-center gap-1 shrink-0 font-semibold text-primary bg-primary/5 px-2 py-0.5 rounded-full border border-primary/15" title="Jumlah dilihat">
+                    <span class="material-symbols-outlined text-[13px]">visibility</span>
+                    <span class="post-view-count" data-post-id="${escapeHtml(post.id)}">${formatViewCount(post.views)}</span>
+                    <span class="font-medium text-on-surface-variant">dilihat</span>
+                  </span>
                 </div>
                 <h3 class="text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-snug">
                   ${escapeHtml(post.title)}
@@ -693,6 +758,8 @@
       modalDate.textContent = post.date || new Date().toISOString().split('T')[0];
       modalTitle.textContent = post.title;
       modalAuthor.textContent = post.author || 'Edo Domakubun';
+      const modalViewCountEl = document.getElementById('modalViewCount');
+      if (modalViewCountEl) modalViewCountEl.textContent = formatViewCount(post.views);
 
       // Video Player
       const embedUrl = getYouTubeEmbedUrl(post.videoUrl);
@@ -738,8 +805,9 @@
       // Formatted Content
       modalContent.innerHTML = formatMarkdown(post.content || '');
 
-      // Store current post for sharing
+      // Store current post for sharing & catat tayangan (view)
       state.currentOpenPost = post;
+      incrementPostView(post);
 
       // Update URL browser dengan slug postingan agar bisa langsung di-bookmark / disalin
       const postSlug = post.slug || post.id;

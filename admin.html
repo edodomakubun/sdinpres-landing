@@ -864,11 +864,16 @@ service cloud.firestore {
       <div class="p-6 sm:p-8 overflow-y-auto space-y-6">
         
         <!-- Category & Date Badge -->
-        <div class="flex items-center gap-3 text-xs">
+        <div class="flex flex-wrap items-center gap-3 text-xs">
           <span id="previewCategoryBadge" class="px-3 py-1 rounded-full font-bold bg-primary text-white">Berita</span>
           <span id="previewDate" class="text-on-surface-variant font-medium">11 November 2026</span>
           <span class="text-outline">•</span>
           <span id="previewAuthor" class="text-on-surface-variant font-medium">Admin SD Inpres</span>
+          <span class="text-outline">•</span>
+          <span class="inline-flex items-center gap-1 text-primary font-semibold">
+            <span class="material-symbols-outlined text-sm">visibility</span>
+            <span id="previewViewCount">0</span> dilihat
+          </span>
         </div>
 
         <!-- Article Title -->

@@ -666,6 +666,7 @@ async function savePostToDatabase(postData, postId = null) {
       // Add new post
       const ref = await addDoc(collection(state.db, "posts"), {
         ...postData,
+        views: 0,
         createdAt: serverTimestamp(),
         updatedAt: serverTimestamp()
       });
@@ -683,6 +684,7 @@ async function savePostToDatabase(postData, postId = null) {
     posts.unshift({
       id: newId,
       ...postData,
+      views: 0,
       createdAt: nowStr,
       updatedAt: nowStr
     });
@@ -1418,6 +1420,11 @@ function renderPostsList() {
               <span>${escapeHtml(post.author || 'Admin')}</span>
             </span>
             <span>•</span>
+            <span class="inline-flex items-center gap-1 font-semibold text-on-surface-variant" title="Jumlah dilihat pengunjung">
+              <span class="material-symbols-outlined text-xs text-primary">visibility</span>
+              <span>${(Number(post.views) || 0).toLocaleString('id-ID')} dilihat</span>
+            </span>
+            <span>•</span>
             <span class="inline-flex items-center gap-1 font-mono text-[10px] text-primary bg-primary/5 px-2 py-0.5 rounded border border-primary/20">
               <span class="material-symbols-outlined text-[12px]">link</span>
               <a href="praktik-baik?slug=${encodeURIComponent(post.slug || post.id)}" target="_blank" class="hover:underline font-semibold" title="Buka tautan postingan di tab baru">/${escapeHtml(post.slug || post.id)}</a>
@@ -1520,6 +1527,8 @@ function openPreviewModal(post) {
   catBadge.textContent = post.category || 'Berita';
   dateSpan.textContent = post.date || new Date().toISOString().split('T')[0];
   authorSpan.textContent = post.author || 'Admin SD Inpres';
+  const viewCountSpan = document.getElementById('previewViewCount');
+  if (viewCountSpan) viewCountSpan.textContent = (Number(post.views) || 0).toLocaleString('id-ID');
   titleH1.textContent = post.title || 'Judul Postingan';
 
   // Cover Image
