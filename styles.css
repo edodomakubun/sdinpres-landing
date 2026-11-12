@@ -1,4 +1,49 @@
-/* SD Inpres Lelingluan — Supplementary Styles */
+/* SD Inpres Lelingluan: Civic Editorial Stylesheet */
+
+@layer base {
+  html {
+    scroll-padding-top: 5.25rem;
+    background-color: #FAF8F3;
+    color: #111827;
+  }
+
+  h1, h2, h3, h4, blockquote {
+    text-wrap: balance;
+  }
+
+  p, li, dd {
+    text-wrap: pretty;
+  }
+
+  button,
+  summary,
+  [role="button"],
+  a[href],
+  label:has(input),
+  select {
+    cursor: pointer;
+  }
+
+  :where(a, button, summary, input, select, textarea, [tabindex]):focus-visible {
+    outline: 3px solid #00288E;
+    outline-offset: 2px;
+  }
+}
+
+/* Visually hidden helper compatible with keyboard-focusable skip links */
+.visually-hidden:where(:not(:focus-within, :active)) {
+  clip-path: inset(50%);
+  height: 1px;
+  overflow: hidden;
+  position: absolute;
+  white-space: nowrap;
+  width: 1px;
+}
+
+.tabular-nums {
+  font-variant-numeric: tabular-nums;
+}
+
 @layer utilities {
   .no-scrollbar::-webkit-scrollbar {
     display: none;
@@ -21,6 +66,22 @@
   font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
 }
 
+/* Tanimbar Civic Architectural Motif: Crisp dual-tone structural rule (Cobalt + Ochre tick) */
+.tenun-rule {
+  position: relative;
+  border-top: 2px solid #00288E;
+}
+
+.tenun-rule::before {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: 0;
+  width: 3rem;
+  height: 2px;
+  background-color: #B45309;
+}
+
 /* Horizontal scroll smooth touch momentum */
 .horizontal-scroll-touch {
   -webkit-overflow-scrolling: touch;
@@ -31,7 +92,91 @@
   scroll-snap-align: start;
 }
 
-/* Accordion transition polish */
+/* Native Accordion Disclosure (<details>) */
+details summary {
+  list-style: none;
+}
+
 details summary::-webkit-details-marker {
   display: none;
+}
+
+details[open] summary .faq-chevron {
+  transform: rotate(180deg);
+}
+
+/* Native Modal Dialog (<dialog>) */
+dialog:modal {
+  overscroll-behavior: contain;
+}
+
+dialog::backdrop {
+  background-color: rgba(15, 23, 42, 0.56);
+  overflow: hidden;
+  overscroll-behavior: contain;
+}
+
+/* Motion only when user has not requested reduced motion */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
+
+  .faq-chevron {
+    transition: transform 200ms cubic-bezier(0.22, 1, 0.36, 1);
+  }
+
+  @supports (interpolate-size: allow-keywords) {
+    details::details-content {
+      interpolate-size: allow-keywords;
+      block-size: 0;
+      opacity: 0;
+      overflow: clip;
+      transition:
+        block-size 220ms cubic-bezier(0.22, 1, 0.36, 1),
+        opacity 180ms ease-out,
+        content-visibility 220ms allow-discrete;
+    }
+
+    details[open]::details-content {
+      block-size: auto;
+      opacity: 1;
+    }
+  }
+
+  dialog#readerModal {
+    opacity: 0;
+    transform: translateY(8px) scale(0.985);
+    transition:
+      opacity 180ms cubic-bezier(0.22, 1, 0.36, 1),
+      transform 200ms cubic-bezier(0.22, 1, 0.36, 1),
+      display 180ms allow-discrete,
+      overlay 180ms allow-discrete;
+  }
+
+  dialog#readerModal[open] {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+
+  @starting-style {
+    dialog#readerModal[open] {
+      opacity: 0;
+      transform: translateY(8px) scale(0.985);
+    }
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    transition-duration: 0.01ms !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+  }
 }

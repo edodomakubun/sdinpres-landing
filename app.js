@@ -1,4 +1,4 @@
-/* SD INPRES LELINGLUAN — Portal Resmi & Layanan Digital Terpadu */
+/* SD INPRES LELINGLUAN | Portal Resmi & Layanan Digital Terpadu */
 const CONFIG = {
   bloggerBase: 'https://blog.sdinpreslelingluan.com',
   newsLabel: 'Berita',
@@ -41,10 +41,10 @@ function postDate(post) {
   const date = raw ? new Date(raw) : null;
   return date && !Number.isNaN(date.getTime())
     ? date.toLocaleDateString('id-ID', {
-        day: 'numeric',
-        month: 'short',
-        year: 'numeric'
-      })
+      day: 'numeric',
+      month: 'short',
+      year: 'numeric'
+    })
     : 'Terkini';
 }
 
@@ -118,48 +118,77 @@ function renderNews(posts) {
   if (!container || !posts || !posts.length) return;
 
   const validPosts = posts.slice(0, CONFIG.newsLimit);
+  const categoryThemes = [
+    { bg: 'bg-[#EFF6FF]', text: 'text-[#00288E]', label: 'Kesehatan' },
+    { bg: 'bg-[#FEF3C7]', text: 'text-[#78350F]', label: 'Seni & Budaya' },
+    { bg: 'bg-[#ECFDF5]', text: 'text-[#047857]', label: 'Guru & KBM' },
+    { bg: 'bg-[#F1F5F9]', text: 'text-[#334155]', label: 'Kesiswaan' }
+  ];
+
   container.innerHTML = validPosts.map((post, idx) => {
     const title = escapeHTML(postTitle(post));
     const href = escapeHTML(postUrl(post));
     const date = escapeHTML(postDate(post));
     const desc = escapeHTML(excerpt(post));
     const thumb = escapeHTML(postThumbnail(post));
-
-    const categoryThemes = [
-      { bg: 'bg-[#EFF6FF]', text: 'text-primary', label: 'Kesehatan' },
-      { bg: 'bg-[#FEF3C7]', text: 'text-[#B45309]', label: 'Seni & Budaya' },
-      { bg: 'bg-[#ECFDF5]', text: 'text-[#047857]', label: 'Guru & KBM' },
-      { bg: 'bg-[#F5F3FF]', text: 'text-[#6D28D9]', label: 'Kesiswaan' }
-    ];
     const cat = categoryThemes[idx % categoryThemes.length];
 
-    return `
-      <article class="bg-surface-container-lowest border border-outline-variant rounded-2xl overflow-hidden shadow-xs hover:shadow-md transition-all flex flex-col justify-between group">
-        <div>
-          <div class="h-32 sm:h-36 md:h-44 w-full bg-surface-container overflow-hidden relative">
-            <img class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300" src="${thumb}" alt="${title}" loading="lazy">
-            <span class="absolute top-2.5 left-2.5 px-2 py-0.5 rounded-full ${cat.bg} ${cat.text} text-[10px] font-bold shadow-xs">
-              ${cat.label}
-            </span>
-          </div>
-          <div class="p-3.5 sm:p-4">
-            <div class="flex items-center gap-1.5 text-outline text-[11px] mb-1.5">
-              <span class="material-symbols-outlined text-[14px]">calendar_today</span>
-              <span>${date}</span>
+    if (idx === 0) {
+      return `
+        <article class="lg:col-span-6 lg:row-span-3 bg-white border border-[#D8D3C8] rounded-lg overflow-hidden flex flex-col justify-between group hover:border-[#00288E] transition-colors">
+          <div>
+            <div class="aspect-[16/10] w-full bg-[#EFECE4] overflow-hidden border-b border-[#D8D3C8]">
+              <img class="w-full h-full object-cover" src="${thumb}" alt="${title}" width="640" height="400" loading="lazy" decoding="async">
             </div>
-            <h3 class="font-headline-sm text-[13px] sm:text-[14px] md:text-[15px] leading-tight text-on-surface font-bold line-clamp-2 group-hover:text-primary transition-colors">
+            <div class="p-5 sm:p-6">
+              <div class="flex flex-wrap items-center gap-2.5 mb-3">
+                <span class="px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider ${cat.bg} ${cat.text}">${cat.label}</span>
+                <span class="text-xs text-[#475569] tabular-nums">${date}</span>
+              </div>
+              <h3 class="font-display text-xl sm:text-2xl leading-snug text-[#111827] font-semibold group-hover:text-[#00288E] transition-colors">
+                ${title}
+              </h3>
+              <p class="text-sm text-[#475569] mt-2.5 leading-relaxed max-w-[65ch]">
+                ${desc}
+              </p>
+            </div>
+          </div>
+          <div class="px-5 sm:px-6 pb-5 pt-2 border-t border-[#EFECE4]">
+            <a class="inline-flex items-center gap-1.5 min-h-[44px] text-sm text-[#00288E] font-bold hover:underline" href="${href}">
+              <span>Baca selengkapnya</span>
+              <span class="visually-hidden">: ${title}</span>
+              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+            </a>
+          </div>
+        </article>
+      `;
+    }
+
+    return `
+      <article class="lg:col-span-6 bg-white border border-[#D8D3C8] rounded-lg overflow-hidden flex flex-col sm:flex-row group hover:border-[#00288E] transition-colors">
+        <div class="sm:w-44 md:w-48 aspect-[16/10] sm:aspect-auto bg-[#EFECE4] overflow-hidden shrink-0 border-b sm:border-b-0 sm:border-r border-[#D8D3C8]">
+          <img class="w-full h-full object-cover" src="${thumb}" alt="${title}" width="320" height="220" loading="lazy" decoding="async">
+        </div>
+        <div class="p-4 sm:p-5 flex flex-col justify-between flex-1 min-w-0">
+          <div>
+            <div class="flex flex-wrap items-center gap-2 mb-1.5">
+              <span class="px-2 py-0.5 rounded-xs text-[10px] font-bold uppercase tracking-wider ${cat.bg} ${cat.text}">${cat.label}</span>
+              <span class="text-xs text-[#475569] tabular-nums">${date}</span>
+            </div>
+            <h3 class="font-display text-base sm:text-lg leading-snug text-[#111827] font-semibold line-clamp-2 group-hover:text-[#00288E] transition-colors">
               ${title}
             </h3>
-            <p class="font-body-sm text-[11px] sm:text-[12px] text-on-surface-variant mt-1.5 line-clamp-2 leading-relaxed">
+            <p class="text-xs sm:text-sm text-[#475569] mt-1.5 line-clamp-2 leading-relaxed">
               ${desc}
             </p>
           </div>
-        </div>
-        <div class="p-3.5 sm:p-4 pt-0">
-          <a class="inline-flex items-center gap-1 text-[11px] sm:text-label-sm text-primary font-bold hover:underline" href="${href}">
-            <span>Baca Selengkapnya</span>
-            <span class="material-symbols-outlined text-[13px]">arrow_forward</span>
-          </a>
+          <div class="mt-2 pt-2 border-t border-[#EFECE4]">
+            <a class="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm text-[#00288E] font-bold hover:underline" href="${href}">
+              <span>Baca selengkapnya</span>
+              <span class="visually-hidden">: ${title}</span>
+              <span class="material-symbols-outlined text-[15px]" aria-hidden="true">arrow_forward</span>
+            </a>
+          </div>
         </div>
       </article>
     `;
@@ -202,11 +231,13 @@ function initScrollspy() {
       const text = tab.querySelector('span:not(.material-symbols-outlined)');
 
       if (tabTarget === currentId) {
-        tab.className = 'flex flex-col items-center justify-center text-primary font-bold py-1 px-0.5 active:scale-95 transition-transform duration-100 min-w-0';
+        tab.className = 'flex flex-col items-center justify-center min-h-[44px] text-[#00288E] font-bold py-1.5 px-1 border-t-2 border-[#00288E] -mt-[1px] min-w-0';
+        tab.setAttribute('aria-current', 'location');
         if (icon) icon.style.fontVariationSettings = "'FILL' 1, 'wght' 500";
         if (text) text.classList.add('font-bold');
       } else {
-        tab.className = 'flex flex-col items-center justify-center text-on-surface-variant py-1 px-0.5 hover:text-primary active:scale-95 transition-transform duration-100 min-w-0';
+        tab.className = 'flex flex-col items-center justify-center min-h-[44px] text-[#475569] py-1.5 px-1 hover:text-[#00288E] border-t-2 border-transparent -mt-[1px] min-w-0';
+        tab.removeAttribute('aria-current');
         if (icon) icon.style.fontVariationSettings = "'FILL' 0, 'wght' 400";
         if (text) text.classList.remove('font-bold');
       }
@@ -227,7 +258,8 @@ function initSmoothScroll() {
       const target = $(href);
       if (target) {
         e.preventDefault();
-        target.scrollIntoView({ behavior: 'smooth' });
+        const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        target.scrollIntoView({ behavior: prefersReduced ? 'auto' : 'smooth' });
       }
     });
   });
@@ -244,21 +276,9 @@ function initBlogLinks() {
   }, { capture: true });
 }
 
-// ── FAQ Accordion Toggle Helper ──────────────────────────
+// ── FAQ Accordion Disclosure Helper ──────────────────────
 function initFaqAccordion() {
-  const faqItems = $$('#faq details');
-  faqItems.forEach(item => {
-    item.addEventListener('toggle', () => {
-      if (item.open) {
-        // Optional: close other items for an accordion experience
-        faqItems.forEach(other => {
-          if (other !== item && other.open) {
-            other.removeAttribute('open');
-          }
-        });
-      }
-    });
-  });
+  // Preserve native independent <details> disclosure per modern-web-guidance
 }
 
 // ── Firebase Firestore Site Visits & Realtime Online Tracking ──
@@ -278,7 +298,7 @@ function updateSiteVisitsDisplay(count) {
     if (textEl) {
       textEl.textContent = `${formatted} Kunjungan`;
     } else {
-      el.innerHTML = `<span class="material-symbols-outlined text-[14px] text-primary shrink-0">visibility</span> <span class="visit-count-text">${formatted} Kunjungan</span>`;
+      el.innerHTML = `<span class="material-symbols-outlined text-[15px] text-[#00288E] shrink-0" aria-hidden="true">visibility</span> <span class="visit-count-text tabular-nums">${formatted} Kunjungan</span>`;
     }
   });
 }
@@ -290,7 +310,7 @@ function updateOnlineDisplay(count) {
     if (textEl) {
       textEl.textContent = `${safeCount} Online`;
     } else {
-      el.innerHTML = `<span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse shrink-0"></span> <span class="online-count-text">${safeCount} Online</span>`;
+      el.innerHTML = `<span class="w-2 h-2 rounded-full bg-[#047857] shrink-0" aria-hidden="true"></span> <span class="online-count-text tabular-nums">${safeCount} Online</span>`;
     }
   });
 }
@@ -327,7 +347,7 @@ function subscribeSiteStatsRealtime(onSnapshotFn, statsRef) {
       updateSiteVisitsDisplay(liveViews);
       try {
         localStorage.setItem(LOCAL_SITE_VISITS_KEY, String(liveViews));
-      } catch {}
+      } catch { }
     },
     err => {
       console.warn('Listener realtime kunjungan Firestore terganggu:', err);
@@ -347,7 +367,7 @@ async function initVisitorTracking() {
     if (cachedVisits > 0) {
       updateSiteVisitsDisplay(cachedVisits);
     }
-  } catch {}
+  } catch { }
 
   try {
     const [
@@ -406,7 +426,7 @@ async function initVisitorTracking() {
             updateSiteVisitsDisplay(newViews);
             try {
               localStorage.setItem(LOCAL_SITE_VISITS_KEY, String(newViews));
-            } catch {}
+            } catch { }
 
             await updateDoc(statsRef, {
               views: increment(1),
@@ -419,7 +439,7 @@ async function initVisitorTracking() {
             updateSiteVisitsDisplay(initialViews);
             try {
               localStorage.setItem(LOCAL_SITE_VISITS_KEY, String(initialViews));
-            } catch {}
+            } catch { }
 
             await setDoc(statsRef, {
               type: 'site_stats',
@@ -435,7 +455,7 @@ async function initVisitorTracking() {
           updateSiteVisitsDisplay(fallbackVisits);
           try {
             localStorage.setItem(LOCAL_SITE_VISITS_KEY, String(fallbackVisits));
-          } catch {}
+          } catch { }
         }
       }
 
@@ -449,7 +469,7 @@ async function initVisitorTracking() {
       updateSiteVisitsDisplay(fallbackVisits);
       try {
         localStorage.setItem(LOCAL_SITE_VISITS_KEY, String(fallbackVisits));
-      } catch {}
+      } catch { }
     }
   }
 }
@@ -459,72 +479,91 @@ function initVisiMisiSlider() {
   const slides = [
     {
       badgeLabel: 'VISI',
-      badgeClass: 'bg-[#F59E0B] text-slate-900',
+      badgeClass: 'bg-[#FEF3C7] text-[#78350F] border border-[#D97706]',
       text: '“Menjadi sekolah unggul yang melahirkan generasi penerus bangsa yang literat, cerdas, berkarakter mulia, dan tangguh dalam menghadapi berbagai tantangan, serta menciptakan lingkungan belajar yang aman, nyaman, inklusif dan Religius.”'
     },
     {
       badgeLabel: 'MISI 1',
-      badgeClass: 'bg-[#00288e] text-white',
+      badgeClass: 'bg-[#00288E] text-white border border-[#00288E]',
       text: '1. Meningkatkan skor literasi siswa melalui program pembinaan minat baca dan literasi secara berkelanjutan.'
     },
     {
       badgeLabel: 'MISI 2',
-      badgeClass: 'bg-[#00288e] text-white',
+      badgeClass: 'bg-[#00288E] text-white border border-[#00288E]',
       text: '2. Menanamkan nilai-nilai moral dan budi pekerti luhur melalui pembinaan karakter dan akhlak mulia.'
     },
     {
       badgeLabel: 'MISI 3',
-      badgeClass: 'bg-[#00288e] text-white',
+      badgeClass: 'bg-[#00288E] text-white border border-[#00288E]',
       text: '3. Meningkatkan kompetensi guru dalam merancang pembelajaran inovatif melalui pelatihan berkala.'
     },
     {
       badgeLabel: 'MISI 4',
-      badgeClass: 'bg-[#00288e] text-white',
+      badgeClass: 'bg-[#00288E] text-white border border-[#00288E]',
       text: '4. Mewujudkan sekolah yang aman dan nyaman melalui program anti-bullying dan penanggulangan kekerasan.'
     }
   ];
 
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
   let currentIndex = 0;
   let timer = null;
+  let isPaused = prefersReduced;
+
   const container = document.getElementById('visi-misi-slider');
   const badgeEl = document.getElementById('visi-misi-badge');
   const textEl = document.getElementById('visi-misi-text');
   const dotsContainer = document.getElementById('visi-misi-dots');
   const prevBtn = document.getElementById('visi-misi-prev');
   const nextBtn = document.getElementById('visi-misi-next');
+  const toggleBtn = document.getElementById('visi-misi-toggle');
 
   if (!container || !badgeEl || !textEl) return;
+
+  function syncToggleButton() {
+    if (!toggleBtn) return;
+    const icon = toggleBtn.querySelector('.material-symbols-outlined');
+    toggleBtn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
+    toggleBtn.setAttribute('aria-label', isPaused ? 'Putar otomatis Visi & Misi' : 'Jeda otomatis Visi & Misi');
+    toggleBtn.setAttribute('title', isPaused ? 'Putar slide Visi & Misi' : 'Jeda slide Visi & Misi');
+    if (icon) icon.textContent = isPaused ? 'play_arrow' : 'pause';
+  }
 
   function updateDots(activeIdx) {
     if (!dotsContainer) return;
     const dots = dotsContainer.querySelectorAll('button');
     dots.forEach((dot, idx) => {
-      if (idx === activeIdx) {
-        dot.className = 'w-6 h-2 rounded-full bg-[#00288e] transition-all duration-300';
-      } else {
-        dot.className = 'w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300';
+      const bar = dot.querySelector('span');
+      dot.setAttribute('aria-current', idx === activeIdx ? 'true' : 'false');
+      if (bar) {
+        bar.className = idx === activeIdx
+          ? 'block w-5 h-1.5 rounded-xs bg-[#00288E] transition-colors'
+          : 'block w-2 h-1.5 rounded-xs bg-[#C7C1B5] group-hover:bg-[#64748B] transition-colors';
       }
     });
   }
 
   function renderSlide(index) {
     const item = slides[index];
-    textEl.style.opacity = '0';
-    textEl.style.transform = 'translateY(-4px)';
-
-    setTimeout(() => {
-      badgeEl.className = `px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wider shrink-0 transition-colors duration-200 shadow-2xs ${item.badgeClass}`;
+    if (prefersReduced) {
+      badgeEl.className = `px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider shrink-0 ${item.badgeClass}`;
       badgeEl.textContent = item.badgeLabel;
       textEl.textContent = item.text;
       textEl.setAttribute('title', item.text);
       updateDots(index);
+      return;
+    }
 
-      textEl.style.transform = 'translateY(4px)';
+    textEl.style.opacity = '0';
+    setTimeout(() => {
+      badgeEl.className = `px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider shrink-0 transition-colors duration-200 ${item.badgeClass}`;
+      badgeEl.textContent = item.badgeLabel;
+      textEl.textContent = item.text;
+      textEl.setAttribute('title', item.text);
+      updateDots(index);
       requestAnimationFrame(() => {
         textEl.style.opacity = '1';
-        textEl.style.transform = 'translateY(0)';
       });
-    }, 180);
+    }, 150);
   }
 
   function nextSlide() {
@@ -537,11 +576,6 @@ function initVisiMisiSlider() {
     renderSlide(currentIndex);
   }
 
-  function startAutoplay() {
-    stopAutoplay();
-    timer = setInterval(nextSlide, 6000);
-  }
-
   function stopAutoplay() {
     if (timer) {
       clearInterval(timer);
@@ -549,16 +583,25 @@ function initVisiMisiSlider() {
     }
   }
 
-  // Generate indicator dots
+  function startAutoplay() {
+    stopAutoplay();
+    if (isPaused) return;
+    timer = setInterval(nextSlide, 6000);
+  }
+
   if (dotsContainer) {
     dotsContainer.innerHTML = '';
     slides.forEach((slide, idx) => {
       const dot = document.createElement('button');
       dot.setAttribute('type', 'button');
       dot.setAttribute('aria-label', `Pindah ke slide ${slide.badgeLabel}`);
-      dot.className = idx === 0
-        ? 'w-6 h-2 rounded-full bg-[#00288e] transition-all duration-300'
-        : 'w-2 h-2 rounded-full bg-slate-300 hover:bg-slate-400 transition-all duration-300';
+      dot.setAttribute('aria-current', idx === 0 ? 'true' : 'false');
+      dot.className = 'group min-h-[44px] px-1.5 flex items-center justify-center focus-visible:outline-2 focus-visible:outline-[#00288E]';
+      const bar = document.createElement('span');
+      bar.className = idx === 0
+        ? 'block w-5 h-1.5 rounded-xs bg-[#00288E] transition-colors'
+        : 'block w-2 h-1.5 rounded-xs bg-[#C7C1B5] group-hover:bg-[#64748B] transition-colors';
+      dot.appendChild(bar);
       dot.addEventListener('click', () => {
         currentIndex = idx;
         renderSlide(currentIndex);
@@ -570,9 +613,23 @@ function initVisiMisiSlider() {
 
   if (nextBtn) nextBtn.addEventListener('click', () => { nextSlide(); startAutoplay(); });
   if (prevBtn) prevBtn.addEventListener('click', () => { prevSlide(); startAutoplay(); });
+  if (toggleBtn) {
+    syncToggleButton();
+    toggleBtn.addEventListener('click', () => {
+      isPaused = !isPaused;
+      syncToggleButton();
+      if (isPaused) {
+        stopAutoplay();
+      } else {
+        startAutoplay();
+      }
+    });
+  }
 
   container.addEventListener('mouseenter', stopAutoplay);
-  container.addEventListener('mouseleave', startAutoplay);
+  container.addEventListener('mouseleave', () => {
+    if (!isPaused) startAutoplay();
+  });
 
   startAutoplay();
 }

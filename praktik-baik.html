@@ -1,18 +1,18 @@
 <!DOCTYPE html>
-<html lang="id" class="scroll-smooth">
+<html lang="id">
 
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="theme-color" content="#00288e">
-  <title>Praktik Baik &amp; Inovasi — SD Inpres Lelingluan</title>
+  <meta name="theme-color" content="#00288E">
+  <title>Praktik Baik &amp; Inovasi | SD Inpres Lelingluan</title>
   <meta name="description"
     content="Ruang berbagi praktik baik pembelajaran, modul inspiratif, video edukasi, dan karya unggulan guru serta siswa SD Inpres Lelingluan.">
 
   <!-- Open Graph / WhatsApp / Facebook Meta Tags -->
   <meta property="og:type" content="article">
   <meta property="og:site_name" content="SD Inpres Lelingluan">
-  <meta property="og:title" id="ogTitle" content="Praktik Baik &amp; Inovasi — SD Inpres Lelingluan">
+  <meta property="og:title" id="ogTitle" content="Praktik Baik &amp; Inovasi | SD Inpres Lelingluan">
   <meta property="og:description" id="ogDescription"
     content="Ruang berbagi praktik baik pembelajaran, modul inspiratif, video edukasi, dan karya unggulan guru serta siswa SD Inpres Lelingluan.">
   <meta property="og:image" id="ogImage"
@@ -26,7 +26,7 @@
 
   <!-- Twitter Meta Tags -->
   <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" id="twitterTitle" content="Praktik Baik &amp; Inovasi — SD Inpres Lelingluan">
+  <meta name="twitter:title" id="twitterTitle" content="Praktik Baik &amp; Inovasi | SD Inpres Lelingluan">
   <meta name="twitter:description" id="twitterDescription"
     content="Ruang berbagi praktik baik pembelajaran, modul inspiratif, video edukasi, dan karya unggulan guru serta siswa SD Inpres Lelingluan.">
   <meta name="twitter:image" id="twitterImage"
@@ -39,354 +39,298 @@
   <!-- Fonts & Material Symbols -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,300..800;1,300..800&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
     rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap"
+  <link
+    href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
     rel="stylesheet">
 
-  <!-- Tailwind CSS v3 via CDN -->
-  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <!-- Tailwind CSS v3 -->
+  <script src="https://cdn.tailwindcss.com?plugins=forms"></script>
   <script>
     tailwind.config = {
-      darkMode: "class",
       theme: {
         extend: {
-          colors: {
-            primary: "#00288e",
-            "primary-container": "#1e40af",
-            "on-primary": "#ffffff",
-            secondary: "#0051d5",
-            "secondary-container": "#316bf3",
-            "on-secondary": "#ffffff",
-            surface: "#faf8ff",
-            "surface-dim": "#d2d9f4",
-            "surface-container-lowest": "#ffffff",
-            "surface-container-low": "#f2f3ff",
-            "surface-container": "#eaedff",
-            "surface-container-high": "#e2e7ff",
-            "surface-container-highest": "#dae2fd",
-            "on-surface": "#131b2e",
-            "on-surface-variant": "#444653",
-            outline: "#757684",
-            "outline-variant": "#c4c5d5",
-            amber: {
-              50: "#fffbeb",
-              100: "#fef3c7",
-              500: "#f59e0b",
-              600: "#d97706",
-              700: "#b45309",
-              800: "#92400e"
-            }
-          },
           fontFamily: {
-            sans: ["Plus Jakarta Sans", "system-ui", "sans-serif"]
+            display: ['"Fraunces"', 'Georgia', 'serif'],
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+          },
+          colors: {
+            primary: '#00288E',
+            'ground': '#FAF8F3',
+            'paper': '#FFFFFF',
+            'paper-muted': '#EFECE4',
+            'ink': '#111827',
+            'ink-muted': '#475569',
+            'rule': '#D8D3C8',
+            'ochre': '#B45309',
+            'ochre-soft': '#FEF3C7',
+            'ochre-ink': '#78350F',
+            'emerald-ink': '#047857'
           }
         }
       }
-    };
+    }
   </script>
 
-  <style>
-    body {
-      font-family: 'Plus Jakarta Sans', system-ui, sans-serif;
-      background-color: #faf8ff;
-      color: #131b2e;
-      -webkit-tap-highlight-color: transparent;
-    }
-
-    .material-symbols-outlined {
-      font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
-      display: inline-block;
-      vertical-align: middle;
-      line-height: 1;
-    }
-
-    .material-symbols-fill {
-      font-variation-settings: 'FILL' 1, 'wght' 500, 'GRAD' 0, 'opsz' 24;
-    }
-
-    .no-scrollbar::-webkit-scrollbar {
-      display: none;
-    }
-
-    .no-scrollbar {
-      -ms-overflow-style: none;
-      scrollbar-width: none;
-    }
-  </style>
+  <link href="styles.css" rel="stylesheet">
 </head>
 
-<body
-  class="min-h-screen flex flex-col bg-[#faf8ff] text-[#131b2e] pb-20 md:pb-6 antialiased selection:bg-[#dae2fd] selection:text-[#00288e]">
+<body class="bg-ground text-ink font-sans antialiased pb-24 md:pb-12">
+  <a href="#main-content"
+    class="visually-hidden inline-flex items-center min-h-[44px] bg-primary text-white px-4 py-2 font-bold text-sm focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md">
+    Langsung ke galeri praktik baik
+  </a>
 
   <!-- ============================================================== -->
-  <!-- 1. STICKY TOP APP BAR (Mobile First)                           -->
+  <!-- TOP NAVIGATION BAR (SOLID PAPER HEADER)                        -->
   <!-- ============================================================== -->
-  <header class="sticky top-0 z-40 bg-white/95 backdrop-blur-md border-b border-outline-variant/60 shadow-xs">
-    <div class="max-w-6xl mx-auto px-4 h-15 py-2.5 flex items-center justify-between gap-3">
-
-      <!-- Back to Landing Page -->
-      <a href="index.html"
-        class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-surface-container hover:bg-surface-container-high text-primary font-bold text-xs active:scale-95 transition-all"
-        title="Kembali ke Beranda">
-        <span class="material-symbols-outlined text-lg">arrow_back</span>
-        <span class="font-semibold">Beranda</span>
+  <header class="sticky top-0 z-40 bg-paper border-b border-rule">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
+      <a href="/" class="flex items-center gap-3 group min-w-0">
+        <img src="assets/logo.png" alt="Logo SD Inpres Lelingluan" width="38" height="38"
+          class="w-9 h-9 object-contain shrink-0">
+        <div class="min-w-0 leading-tight">
+          <p class="font-display text-sm sm:text-base font-bold text-ink truncate group-hover:text-primary transition-colors">
+            Praktik Baik &amp; Inovasi
+          </p>
+          <p class="text-[11px] font-semibold uppercase tracking-wider text-ink-muted truncate">
+            SD Inpres Lelingluan
+          </p>
+        </div>
       </a>
 
-      <!-- Title & Branding -->
-      <div class="flex items-center gap-2 min-w-0">
-        <div
-          class="w-8 h-8 rounded-lg bg-primary/10 border border-primary/20 flex items-center justify-center p-1 shrink-0">
-          <img src="assets/logo.png" alt="Logo" class="w-full h-full object-contain"
-            onerror="this.style.display='none'; this.nextElementSibling.classList.remove('hidden')">
-          <span class="material-symbols-outlined text-primary text-base hidden">school</span>
-        </div>
-        <div class="truncate">
-          <h1
-            class="text-sm sm:text-base font-extrabold text-primary tracking-tight leading-tight flex items-center gap-1.5">
-            <span>Praktik Baik</span>
-            <span
-              class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800 hidden sm:inline-flex items-center gap-0.5">
-              <span class="material-symbols-outlined text-[12px] text-amber-600">verified</span> Inspiratif
-            </span>
-          </h1>
-          <p class="text-[10px] text-on-surface-variant truncate">SD Inpres Lelingluan</p>
-        </div>
-      </div>
-
-      <!-- Quick Action / Admin Portal Link -->
-      <div class="flex items-center gap-1.5">
-        <a href="admin.html"
-          class="inline-flex items-center gap-1 px-3 py-1.5 rounded-full bg-primary/5 hover:bg-primary/10 text-primary text-xs font-semibold border border-primary/20 transition-all"
-          title="Kelola Konten (Admin)">
-          <span class="material-symbols-outlined text-base">edit_note</span>
-          <span class="hidden md:inline">Admin CMS</span>
+      <div class="flex items-center gap-2 shrink-0">
+        <a href="/"
+          class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-md bg-ground border border-rule text-xs sm:text-sm font-semibold text-ink hover:border-primary hover:text-primary transition-colors">
+          <span class="material-symbols-outlined text-[17px]" aria-hidden="true">arrow_back</span>
+          <span>Beranda</span>
+        </a>
+        <a href="https://blog.sdinpreslelingluan.com"
+          class="hidden sm:inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-primary text-white text-sm font-semibold hover:bg-[#001F70] transition-colors">
+          <span class="material-symbols-outlined text-[17px]" aria-hidden="true">language</span>
+          <span>Website Utama</span>
         </a>
       </div>
-
     </div>
   </header>
 
-  <!-- Main Content Area -->
-  <main class="flex-1 max-w-6xl w-full mx-auto px-4 sm:px-6 py-4 sm:py-6 space-y-5">
-
+  <main id="main-content">
     <!-- ============================================================== -->
-    <!-- 3. SEARCH & DYNAMIC CATEGORIES (Sticky Filter)                 -->
+    <!-- EDITORIAL PAGE HEADER                                          -->
     <!-- ============================================================== -->
-    <div
-      class="sticky top-15 z-30 bg-[#faf8ff]/95 backdrop-blur-md pt-2 pb-3 space-y-2.5 border-b border-outline-variant/30">
-
-      <!-- Search Input -->
-      <div class="relative">
-        <span
-          class="material-symbols-outlined absolute left-3.5 top-1/2 -translate-y-1/2 text-outline text-lg">search</span>
-        <input type="text" id="searchInput" placeholder="Cari praktik baik, video, judul, atau topik..."
-          class="w-full pl-10 pr-9 py-2.5 text-xs sm:text-sm rounded-2xl border border-outline-variant/80 focus:border-primary focus:ring-2 focus:ring-primary/20 bg-white shadow-xs">
-        <button type="button" id="btnClearSearch"
-          class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-outline hover:text-primary p-0.5">
-          <span class="material-symbols-outlined text-base">close</span>
-        </button>
-      </div>
-
-      <!-- Horizontal Scroll Category Pills -->
-      <div class="flex items-center gap-1.5 overflow-x-auto no-scrollbar py-0.5" id="categoryPillsContainer"
-        aria-label="Kategori">
-        <!-- Rendered dynamically: Semua, Praktik Baik, Video, dll. -->
-        <button type="button"
-          class="category-pill active shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold bg-primary text-white shadow-xs transition-all"
-          data-category="">
-          Semua
-        </button>
-      </div>
-
-    </div>
-
-    <!-- ============================================================== -->
-    <!-- 4. FEED CONTAINER (Cards Grid)                                 -->
-    <!-- ============================================================== -->
-    <section>
-
-      <!-- Counter & Active Filter Info -->
-      <div class="flex items-center justify-between text-xs text-on-surface-variant mb-3 px-1">
-        <div>
-          Menampilkan <span id="postCount" class="font-bold text-primary">0</span> postingan
-        </div>
-        <div id="filterIndicator" class="text-[11px] font-medium text-outline">
-          Kategori: <strong>Semua</strong>
+    <section class="bg-paper border-b border-rule py-8 sm:py-12">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div class="max-w-3xl space-y-3">
+          <p class="text-xs font-bold uppercase tracking-[0.14em] text-ochre-ink">
+            Dokumentasi Pembelajaran &amp; Refleksi Guru
+          </p>
+          <h1 class="font-display font-semibold text-ink tracking-tight leading-[1.15]"
+            style="font-size: clamp(1.875rem, 3.6vw, 2.75rem);">
+            Ruang Berbagi Praktik Baik SD Inpres Lelingluan
+          </h1>
+          <p class="text-sm sm:text-base text-ink-muted leading-relaxed max-w-[65ch]">
+            Kumpulan modul ajar inovatif, rekaman pembelajaran kelas, dan pengalaman nyata pendidik dalam penerapan Kurikulum Merdeka di Kecamatan Tanimbar Utara.
+          </p>
         </div>
       </div>
-
-      <!-- Cards Grid Container -->
-      <div id="cardsGrid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-5">
-        <!-- Skeleton Loader / Initial State -->
-        <div
-          class="bg-white rounded-2xl p-6 border border-outline-variant/40 text-center col-span-full py-16 space-y-3">
-          <span class="material-symbols-outlined text-4xl text-outline animate-spin">sync</span>
-          <p class="text-xs font-semibold text-on-surface-variant">Memuat data Praktik Baik...</p>
-        </div>
-      </div>
-
     </section>
 
+    <!-- ============================================================== -->
+    <!-- SEARCH LANDMARK & CATEGORY FILTERS                             -->
+    <!-- ============================================================== -->
+    <section class="bg-ground border-b border-rule py-4">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <search aria-label="Cari dan saring praktik baik" class="space-y-3">
+          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+            <div class="relative flex-1 max-w-xl">
+              <label for="searchInput" class="visually-hidden">
+                Cari judul praktik baik, penulis, atau kata kunci
+              </label>
+              <span class="material-symbols-outlined text-[20px] text-ink-muted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+                aria-hidden="true">search</span>
+              <input id="searchInput" type="search"
+                placeholder="Cari judul praktik baik, penulis, atau topik..."
+                class="w-full min-h-[44px] pl-11 pr-11 py-2 rounded-md bg-paper border border-rule text-sm text-ink placeholder:text-ink-muted focus:border-primary focus:ring-2 focus:ring-primary/20">
+              <button id="btnClearSearch" type="button"
+                class="hidden absolute right-1 top-1/2 -translate-y-1/2 min-w-[40px] min-h-[40px] inline-flex items-center justify-center text-ink-muted hover:text-ink"
+                aria-label="Hapus kata kunci pencarian">
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">close</span>
+              </button>
+            </div>
+
+            <div class="flex items-center gap-3 text-xs sm:text-sm text-ink-muted shrink-0">
+              <span id="filterIndicator">Kategori: <strong class="text-ink">Semua</strong></span>
+              <span aria-hidden="true">&middot;</span>
+              <span>Menampilkan <strong id="postCount" class="text-ink tabular-nums">0</strong> tulisan</span>
+            </div>
+          </div>
+
+          <div id="categoryPillsContainer"
+            class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1"
+            role="group" aria-label="Filter kategori praktik baik">
+          </div>
+        </search>
+      </div>
+    </section>
+
+    <!-- ============================================================== -->
+    <!-- CARDS GRID                                                     -->
+    <!-- ============================================================== -->
+    <section class="py-8 sm:py-10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+        <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite">
+          <!-- Initial honest loading state replaced once Firestore resolves -->
+          <div class="col-span-full bg-paper border border-rule rounded-lg p-8 sm:p-10 text-center space-y-2">
+            <span class="material-symbols-outlined text-3xl text-primary" aria-hidden="true">menu_book</span>
+            <p class="font-display text-base font-semibold text-ink">Memuat Katalog Praktik Baik</p>
+            <p class="text-sm text-ink-muted">Sedang mengambil publikasi guru terbaru dari arsip sekolah...</p>
+          </div>
+        </div>
+      </div>
+    </section>
   </main>
 
   <!-- ============================================================== -->
-  <!-- 5. ARTICLE & VIDEO READER MODAL (Slide-Up Drawer on Mobile)     -->
+  <!-- NATIVE ARTICLE READER DIALOG (closedby="any")                  -->
   <!-- ============================================================== -->
-  <div id="readerModal"
-    class="fixed inset-0 z-50 hidden bg-black/70 backdrop-blur-sm flex items-end sm:items-center justify-center p-0 sm:p-4 overflow-y-auto">
-    <div
-      class="relative w-full max-w-3xl bg-white rounded-t-3xl sm:rounded-3xl shadow-2xl overflow-hidden max-h-[92vh] flex flex-col transition-all">
-
-      <!-- Top Drag Bar for Mobile & Close Button -->
-      <div
-        class="flex items-center justify-between px-5 py-3.5 border-b border-outline-variant/40 bg-surface-container-low shrink-0">
-        <div class="flex items-center gap-2">
+  <dialog id="readerModal" closedby="any" aria-labelledby="modalTitle"
+    class="m-auto w-[calc(100%-1.5rem)] max-w-3xl max-h-[90vh] p-0 rounded-lg border border-rule bg-paper text-ink shadow-2xl overflow-hidden">
+    <div class="flex flex-col max-h-[90vh]">
+      <!-- Sticky Dialog Header -->
+      <div class="px-5 sm:px-6 py-3.5 bg-paper border-b border-rule flex items-center justify-between gap-3 shrink-0">
+        <div class="flex flex-wrap items-center gap-2 min-w-0">
           <span id="modalCategoryBadge"
-            class="px-2.5 py-0.5 rounded-full text-[10px] font-bold bg-primary text-white">Praktik Baik</span>
-          <span id="modalDate" class="text-xs text-on-surface-variant font-medium">11 November 2026</span>
+            class="px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider bg-ochre-soft text-ochre-ink border border-[#D97706]">
+            Praktik Baik
+          </span>
+          <span id="modalDate" class="text-xs text-ink-muted tabular-nums"></span>
         </div>
-        <button type="button" id="btnCloseReaderModal"
-          class="w-8 h-8 rounded-full bg-white hover:bg-surface-container-highest text-on-surface flex items-center justify-center shadow-xs transition-colors"
-          title="Tutup">
-          <span class="material-symbols-outlined text-lg">close</span>
+        <button id="btnCloseReaderModal" type="button"
+          class="min-w-[44px] min-h-[44px] -mr-2 inline-flex items-center justify-center rounded-md text-ink-muted hover:text-ink hover:bg-ground transition-colors"
+          aria-label="Tutup jendela baca artikel">
+          <span class="material-symbols-outlined text-[22px]" aria-hidden="true">close</span>
         </button>
       </div>
 
-      <!-- Reader Scrollable Body -->
-      <div class="p-5 sm:p-8 overflow-y-auto space-y-5">
+      <!-- Scrollable Dialog Body -->
+      <div class="p-5 sm:p-8 overflow-y-auto space-y-6">
+        <div class="space-y-3">
+          <h2 id="modalTitle" class="font-display text-2xl sm:text-3xl font-semibold text-ink leading-tight">
+            Judul Praktik Baik
+          </h2>
 
-        <!-- Video Player (if videoUrl exists) -->
-        <div id="modalVideoContainer"
-          class="hidden rounded-2xl overflow-hidden aspect-video bg-black shadow-md border border-outline-variant/40">
-          <iframe id="modalVideoFrame" src="" class="w-full h-full"
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-rule text-xs sm:text-sm text-ink-muted">
+            <div class="flex items-center gap-2">
+              <span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">person</span>
+              <span>Ditulis oleh <strong id="modalAuthor" class="text-ink">Guru SD Inpres Lelingluan</strong></span>
+            </div>
+            <div class="inline-flex items-center gap-1.5 text-primary font-semibold">
+              <span class="material-symbols-outlined text-[17px]" aria-hidden="true">visibility</span>
+              <span id="modalViewCount" class="tabular-nums">0</span>
+              <span class="text-ink-muted font-normal">dilihat</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Optional YouTube Embed -->
+        <div id="modalVideoContainer" class="hidden rounded-lg overflow-hidden border border-rule bg-black aspect-video">
+          <iframe id="modalVideoFrame" class="w-full h-full" title="Video Pembelajaran Praktik Baik"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
         </div>
 
-        <!-- Cover Photo (if image exists) -->
-        <div id="modalImageContainer"
-          class="hidden rounded-2xl overflow-hidden bg-black/5 border border-outline-variant/40">
-          <img id="modalCoverImage" src="" alt="Foto Praktik Baik" class="w-full max-h-96 object-cover">
-          <p id="modalImageCaption" class="p-2.5 text-xs text-on-surface-variant bg-surface-container-low italic"></p>
+        <!-- Optional Cover Image -->
+        <figure id="modalImageContainer" class="hidden tenun-rule bg-ground border border-rule rounded-b-lg overflow-hidden">
+          <img id="modalCoverImage" src="" alt="" class="w-full max-h-[420px] object-cover">
+          <figcaption id="modalImageCaption" class="hidden px-4 py-2.5 text-xs text-ink-muted border-t border-rule"></figcaption>
+        </figure>
+
+        <!-- Summary Callout -->
+        <div id="modalSummaryWrapper" class="hidden border-l-4 border-ochre bg-ground px-4 py-3 rounded-r-md">
+          <p class="text-[11px] font-bold uppercase tracking-wider text-ochre-ink mb-1">Ringkasan Praktik Baik</p>
+          <p id="modalSummary" class="text-sm text-ink leading-relaxed max-w-[65ch]"></p>
         </div>
 
-        <!-- Title -->
-        <h1 id="modalTitle" class="text-xl sm:text-2xl font-black text-on-surface tracking-tight leading-snug">
-          Judul Postingan
-        </h1>
-
-        <!-- Author Byline & Views Counter -->
-        <div
-          class="flex items-center justify-between gap-2.5 text-xs text-on-surface-variant pb-2.5 border-b border-outline-variant/30">
-          <div class="flex items-center gap-2.5 min-w-0">
-            <div
-              class="w-8 h-8 rounded-full bg-primary/10 text-primary font-bold flex items-center justify-center text-xs shrink-0">
-              <span class="material-symbols-outlined text-base">person</span>
-            </div>
-            <div class="min-w-0">
-              <div id="modalAuthor" class="font-bold text-on-surface truncate">Edo Domakubun</div>
-              <div class="text-[10px] text-outline truncate">Kontributor Praktik Baik SD Inpres Lelingluan</div>
-            </div>
-          </div>
-          <div
-            class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-low border border-outline-variant/50 text-xs font-bold text-primary shrink-0"
-            title="Jumlah dilihat">
-            <span class="material-symbols-outlined text-base">visibility</span>
-            <span id="modalViewCount">0</span>
-            <span class="font-medium text-on-surface-variant text-[11px]">dilihat</span>
-          </div>
-        </div>
-
-        <!-- Summary Blockquote -->
-        <div id="modalSummaryWrapper"
-          class="hidden border-l-4 border-amber-500 pl-4 py-1.5 text-xs sm:text-sm text-on-surface-variant italic font-serif bg-amber-50/50 rounded-r-xl">
-          <p id="modalSummary"></p>
-        </div>
-
-        <!-- External Link Button (if attached) -->
+        <!-- External Resource -->
         <div id="modalExternalLinkWrapper" class="hidden">
-          <a id="modalExternalLink" href="" target="_blank" rel="noopener"
-            class="inline-flex items-center gap-2 px-4 py-2.5 rounded-xl bg-surface-container-high hover:bg-surface-container-highest text-primary font-bold text-xs border border-primary/20 transition-all">
-            <span class="material-symbols-outlined text-base">open_in_new</span>
-            <span id="modalExternalLinkText">Buka Tautan Materi / Dokumen Terkait</span>
+          <a id="modalExternalLink" href="#" target="_blank" rel="noopener noreferrer"
+            class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 rounded-md bg-ground border border-rule text-sm font-bold text-primary hover:border-primary transition-colors">
+            <span class="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span>
+            <span id="modalExternalLinkText">Buka Tautan Sumber</span>
           </a>
         </div>
 
-        <!-- Full Formatted Content -->
-        <div id="modalContent" class="text-xs sm:text-sm text-on-surface leading-relaxed space-y-3.5">
-        </div>
-
+        <!-- Markdown Article Body -->
+        <div id="modalContent" class="text-sm sm:text-base text-ink leading-relaxed max-w-[65ch] space-y-3"></div>
       </div>
 
-      <!-- Reader Footer: Share & Action Buttons -->
-      <div
-        class="px-5 py-3 border-t border-outline-variant/40 bg-surface-container-low flex flex-wrap items-center justify-between gap-2 shrink-0">
+      <!-- Sticky Dialog Footer Actions -->
+      <div class="px-5 sm:px-6 py-3 bg-ground border-t border-rule flex flex-wrap items-center justify-between gap-2 shrink-0">
         <div class="flex flex-wrap items-center gap-2">
-          <!-- WhatsApp Quick Share Button -->
-          <button type="button" id="btnShareWhatsApp"
-            class="inline-flex items-center gap-1.5 px-3.5 py-1.5 rounded-xl bg-[#25D366] hover:bg-[#1faa51] text-white text-xs font-bold transition-all shadow-xs active:scale-95">
-            <svg class="w-3.5 h-3.5 fill-current" viewBox="0 0 24 24">
-              <path
-                d="M.057 24l1.687-6.163c-1.041-1.804-1.588-3.849-1.587-5.946.003-6.556 5.338-11.891 11.893-11.891 3.181.001 6.167 1.24 8.413 3.488 2.245 2.248 3.481 5.236 3.48 8.414-.003 6.557-5.338 11.892-11.893 11.892-1.99-.001-3.951-.5-5.688-1.448l-6.305 1.654zm6.597-3.807c1.676.995 3.276 1.591 5.392 1.592 5.448 0 9.886-4.434 9.889-9.885.002-5.462-4.415-9.89-9.881-9.892-5.452 0-9.887 4.434-9.889 9.884-.001 2.225.651 3.891 1.746 5.634l-.999 3.648 3.742-.981zm11.387-5.464c-.074-.124-.272-.198-.57-.347-.297-.149-1.758-.868-2.031-.967-.272-.099-.47-.149-.669.149-.198.297-.768.967-.941 1.165-.173.198-.347.223-.644.074-.297-.149-1.255-.462-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.297-.347.446-.521.151-.172.2-.296.3-.495.099-.198.05-.372-.025-.521-.075-.148-.669-1.611-.916-2.206-.242-.579-.487-.501-.669-.51l-.57-.01c-.198 0-.52.074-.792.372s-1.04 1.016-1.04 2.479 1.065 2.876 1.213 3.074c.149.198 2.095 3.2 5.076 4.487.709.306 1.263.489 1.694.626.712.226 1.36.194 1.872.118.571-.085 1.758-.719 2.006-1.413.248-.695.248-1.29.173-1.414z" />
-            </svg>
-            <span>WhatsApp</span>
+          <button id="btnShareWhatsApp" type="button"
+            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-md bg-[#047857] text-white text-xs sm:text-sm font-bold hover:bg-[#065F46] transition-colors">
+            <span class="material-symbols-outlined text-[17px]" aria-hidden="true">chat</span>
+            <span>Bagikan ke WhatsApp</span>
           </button>
-
-          <button type="button" id="btnShareArticle"
-            class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-xl bg-white border border-outline-variant text-xs font-bold text-on-surface hover:text-primary transition-colors">
-            <span class="material-symbols-outlined text-base text-secondary">share</span>
+          <button id="btnShareArticle" type="button"
+            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-md bg-paper border border-rule text-ink text-xs sm:text-sm font-semibold hover:border-primary hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-[17px]" aria-hidden="true">share</span>
             <span>Bagikan</span>
           </button>
-
-          <button type="button" id="btnCopyArticleLink"
-            class="inline-flex items-center gap-1 px-2.5 py-1.5 rounded-xl bg-white border border-outline-variant text-xs font-semibold text-on-surface hover:text-primary transition-colors"
-            title="Salin Tautan">
-            <span class="material-symbols-outlined text-base">content_copy</span>
-            <span class="hidden sm:inline">Salin</span>
+          <button id="btnCopyArticleLink" type="button"
+            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-md bg-paper border border-rule text-ink text-xs sm:text-sm font-semibold hover:border-primary hover:text-primary transition-colors">
+            <span class="material-symbols-outlined text-[17px]" aria-hidden="true">content_copy</span>
+            <span id="copyBtnLabel">Salin Tautan</span>
           </button>
         </div>
 
-        <button type="button" id="btnCloseReaderBottom"
-          class="px-4 py-1.5 rounded-xl bg-primary text-white text-xs font-bold hover:bg-primary-container transition-all">
-          Selesai Membaca
+        <button id="btnCloseReaderBottom" type="button"
+          class="inline-flex items-center justify-center min-h-[44px] px-4 rounded-md border border-rule bg-paper text-sm font-semibold text-ink hover:bg-paper-muted transition-colors">
+          Tutup
         </button>
       </div>
-
     </div>
-  </div>
+  </dialog>
 
   <!-- ============================================================== -->
-  <!-- 6. BOTTOM NAVIGATION BAR FOR MOBILE                            -->
+  <!-- MOBILE BOTTOM NAVIGATION BAR (CONSISTENT WITH LANDING)         -->
   <!-- ============================================================== -->
   <nav
-    class="md:hidden fixed bottom-0 left-0 w-full z-40 flex justify-around items-center py-1.5 px-2 bg-white/95 backdrop-blur-md border-t border-outline-variant/60 shadow-lg"
-    aria-label="Navigasi Bawah">
-    <a href="index.html"
-      class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary py-1 px-3 active:scale-95 transition-all">
-      <span class="material-symbols-outlined text-[20px]">home</span>
-      <span class="text-[10px] mt-0.5 font-medium">Beranda</span>
+    class="md:hidden fixed bottom-0 left-0 w-full z-40 grid grid-cols-5 items-center bg-paper border-t border-rule shadow-md"
+    aria-label="Navigasi Bawah Ponsel">
+    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+      href="/#beranda">
+      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">home</span>
+      <span class="text-[11px] mt-0.5 truncate w-full text-center">Beranda</span>
     </a>
-    <a href="praktik-baik.html"
-      class="flex flex-col items-center justify-center text-primary font-bold py-1 px-3 active:scale-95 transition-all">
-      <span class="material-symbols-outlined text-[20px] text-amber-500 material-symbols-fill">verified</span>
-      <span class="text-[10px] mt-0.5">Praktik Baik</span>
+
+    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+      href="/#portal">
+      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">apps</span>
+      <span class="text-[11px] mt-0.5 truncate w-full text-center">Portal</span>
     </a>
-    <a href="index.html#portal"
-      class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary py-1 px-3 active:scale-95 transition-all">
-      <span class="material-symbols-outlined text-[20px]">apps</span>
-      <span class="text-[10px] mt-0.5 font-medium">Portal</span>
+
+    <a class="flex flex-col items-center justify-center min-h-[44px] text-ochre-ink font-bold py-1.5 px-1 border-t-2 border-ochre -mt-[1px] min-w-0"
+      href="praktik-baik" aria-current="page">
+      <span class="material-symbols-outlined text-[20px] text-ochre material-symbols-fill" aria-hidden="true">verified</span>
+      <span class="text-[11px] font-bold mt-0.5 truncate w-full text-center text-ochre-ink">Praktik Baik</span>
     </a>
-    <a href="admin.html"
-      class="flex flex-col items-center justify-center text-on-surface-variant hover:text-primary py-1 px-3 active:scale-95 transition-all">
-      <span class="material-symbols-outlined text-[20px]">edit_note</span>
-      <span class="text-[10px] mt-0.5 font-medium">Admin</span>
+
+    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+      href="/#berita">
+      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">newspaper</span>
+      <span class="text-[11px] mt-0.5 truncate w-full text-center">Kabar</span>
+    </a>
+
+    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+      href="/#profil">
+      <span class="material-symbols-outlined text-[20px]" aria-hidden="true">info</span>
+      <span class="text-[11px] mt-0.5 truncate w-full text-center">Profil</span>
     </a>
   </nav>
 
-  <!-- ============================================================== -->
-  <!-- MODULE SCRIPTS: Cloud Firestore Data Loader                    -->
-  <!-- ============================================================== -->
   <script type="module">
     import { initializeApp, getApps, getApp } from "https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js";
     import {
@@ -402,7 +346,6 @@
 
     import { getActiveFirebaseConfig, isFirebaseConfigured } from "./firebase-config.js";
 
-    // Application state
     const state = {
       db: null,
       posts: [],
@@ -411,7 +354,8 @@
       activeCategory: "",
       searchQuery: "",
       currentOpenPost: null,
-      viewedPostIds: new Set()
+      viewedPostIds: new Set(),
+      loadError: false
     };
 
     const LOCAL_BACKUP_KEY = 'sdinpres_local_posts_backup';
@@ -470,7 +414,6 @@
       return id ? `https://www.youtube-nocookie.com/embed/${id}` : '';
     }
 
-    // Dapatkan URL kanonikal bersih (selalu /praktik-baik?slug=... tanpa .html untuk mencegah 308 redirect)
     function getCanonicalShareUrl(slug) {
       if (!slug) return `${window.location.origin}/praktik-baik`;
       const cleanPath = window.location.pathname.replace(/\.html$/, '');
@@ -485,13 +428,13 @@
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
 
-      escaped = escaped.replace(/^### (.*$)/gim, '<h3 class="text-sm sm:text-base font-bold text-primary mt-3 mb-1">$1</h3>');
-      escaped = escaped.replace(/^## (.*$)/gim, '<h2 class="text-base sm:text-lg font-extrabold text-primary mt-4 mb-2">$1</h2>');
-      escaped = escaped.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-on-surface">$1</strong>');
+      escaped = escaped.replace(/^### (.*$)/gim, '<h3 class="font-display text-base sm:text-lg font-semibold text-primary mt-4 mb-1.5">$1</h3>');
+      escaped = escaped.replace(/^## (.*$)/gim, '<h2 class="font-display text-lg sm:text-xl font-semibold text-primary mt-5 mb-2">$1</h2>');
+      escaped = escaped.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-ink">$1</strong>');
       escaped = escaped.replace(/\*(.*?)\*/gim, '<em class="italic">$1</em>');
-      escaped = escaped.replace(/^\> (.*$)/gim, '<blockquote class="border-l-4 border-amber-500 pl-3.5 py-1 italic my-2 text-on-surface-variant bg-amber-50/40 rounded-r-lg">$1</blockquote>');
-      escaped = escaped.replace(/^\- (.*$)/gim, '<li class="ml-4 list-disc text-on-surface">$1</li>');
-      escaped = escaped.replace(/^---$/gim, '<hr class="my-4 border-outline-variant/60">');
+      escaped = escaped.replace(/^\> (.*$)/gim, '<blockquote class="border-l-4 border-ochre pl-3.5 py-1.5 italic my-2 text-ink-muted bg-ground rounded-r-md">$1</blockquote>');
+      escaped = escaped.replace(/^\- (.*$)/gim, '<li class="ml-5 list-disc text-ink">$1</li>');
+      escaped = escaped.replace(/^---$/gim, '<hr class="my-4 border-rule">');
 
       const paragraphs = escaped.split(/\n\n+/);
       return paragraphs.map(p => {
@@ -504,7 +447,7 @@
 
     function escapeHtml(str) {
       if (!str) return '';
-      return str.replace(/[&<>'"]/g, tag => ({
+      return String(str).replace(/[&<>'"]/g, tag => ({
         '&': '&amp;',
         '<': '&lt;',
         '>': '&gt;',
@@ -516,6 +459,7 @@
     async function loadData() {
       const config = getActiveFirebaseConfig();
       let items = [];
+      state.loadError = false;
 
       if (isFirebaseConfigured(config)) {
         try {
@@ -527,7 +471,6 @@
           snapshot.forEach(docSnap => {
             const data = docSnap.data();
             if (docSnap.id === 'site-stats' || data.status === 'system' || data.type === 'site_stats') return;
-            // Tampilkan hanya postingan yang dipublikasikan (published)
             if (!data.status || data.status === 'published') {
               items.push({
                 id: docSnap.id,
@@ -538,14 +481,16 @@
             }
           });
           if (items.length > 0) {
-            localStorage.setItem(LOCAL_BACKUP_KEY, JSON.stringify(items));
+            try {
+              localStorage.setItem(LOCAL_BACKUP_KEY, JSON.stringify(items));
+            } catch (e) {}
           }
         } catch (err) {
           console.warn("Gagal memuat dari Firestore, beralih ke cadangan lokal:", err);
+          state.loadError = true;
         }
       }
 
-      // Jika data Firestore kosong / offline, baca cadangan lokal (khusus yang dibuat admin)
       if (items.length === 0) {
         try {
           const raw = localStorage.getItem(LOCAL_BACKUP_KEY);
@@ -553,9 +498,10 @@
             const parsed = JSON.parse(raw);
             if (Array.isArray(parsed)) {
               items = parsed.filter(p => (!p.status || p.status === 'published') && p.id !== 'site-stats' && p.type !== 'site_stats' && (!p.id || (!p.id.startsWith('demo-') && !p.id.startsWith('pb-'))));
+              if (items.length > 0) state.loadError = false;
             }
           }
-        } catch (e) { }
+        } catch (e) {}
       }
 
       state.posts = items;
@@ -578,7 +524,9 @@
 
       const totalCount = state.posts.length;
       let html = `
-        <button type="button" class="category-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${state.activeCategory === '' ? 'bg-primary text-white shadow-xs' : 'bg-white text-on-surface-variant border border-outline-variant/60 hover:bg-surface-container'}" data-category="">
+        <button type="button"
+          class="category-pill shrink-0 min-h-[44px] px-4 py-2 rounded-md text-xs font-bold border transition-colors ${state.activeCategory === '' ? 'bg-primary text-white border-primary' : 'bg-paper text-ink-muted border-rule hover:border-primary hover:text-primary'}"
+          data-category="" aria-pressed="${state.activeCategory === '' ? 'true' : 'false'}">
           Semua (${totalCount})
         </button>
       `;
@@ -587,7 +535,9 @@
         const count = state.posts.filter(p => p.category === cat).length;
         const isActive = state.activeCategory === cat;
         html += `
-          <button type="button" class="category-pill shrink-0 px-3.5 py-1.5 rounded-full text-xs font-bold transition-all ${isActive ? 'bg-primary text-white shadow-xs' : 'bg-white text-on-surface-variant border border-outline-variant/60 hover:bg-surface-container'}" data-category="${escapeHtml(cat)}">
+          <button type="button"
+            class="category-pill shrink-0 min-h-[44px] px-4 py-2 rounded-md text-xs font-bold border transition-colors ${isActive ? 'bg-primary text-white border-primary' : 'bg-paper text-ink-muted border-rule hover:border-primary hover:text-primary'}"
+            data-category="${escapeHtml(cat)}" aria-pressed="${isActive ? 'true' : 'false'}">
             ${escapeHtml(cat)} (${count})
           </button>
         `;
@@ -605,21 +555,21 @@
     }
 
     function applyFilters() {
-      const query = state.searchQuery.toLowerCase().trim();
+      const q = state.searchQuery.toLowerCase().trim();
       const cat = state.activeCategory;
 
       state.filteredPosts = state.posts.filter(p => {
         const matchCat = !cat || p.category === cat;
-        const matchQuery = !query ||
-          (p.title && p.title.toLowerCase().includes(query)) ||
-          (p.summary && p.summary.toLowerCase().includes(query)) ||
-          (p.content && p.content.toLowerCase().includes(query)) ||
-          (p.author && p.author.toLowerCase().includes(query));
+        const matchQuery = !q ||
+          (p.title && p.title.toLowerCase().includes(q)) ||
+          (p.summary && p.summary.toLowerCase().includes(q)) ||
+          (p.content && p.content.toLowerCase().includes(q)) ||
+          (p.author && p.author.toLowerCase().includes(q));
         return matchCat && matchQuery;
       });
 
       document.getElementById('postCount').textContent = state.filteredPosts.length;
-      document.getElementById('filterIndicator').innerHTML = `Kategori: <strong>${escapeHtml(state.activeCategory || 'Semua')}</strong>`;
+      document.getElementById('filterIndicator').innerHTML = `Kategori: <strong class="text-ink">${escapeHtml(state.activeCategory || 'Semua')}</strong>`;
       renderCards();
     }
 
@@ -628,109 +578,157 @@
       if (!container) return;
 
       if (state.filteredPosts.length === 0) {
-        const isSearchOrFilter = state.searchQuery || state.activeCategory;
-        container.innerHTML = `
-          <div class="col-span-full bg-white rounded-3xl p-10 sm:p-14 text-center border border-outline-variant/40 space-y-3">
-            <div class="w-14 h-14 rounded-full bg-amber-50 text-amber-600 mx-auto flex items-center justify-center">
-              <span class="material-symbols-outlined text-3xl">${isSearchOrFilter ? 'search_off' : 'auto_stories'}</span>
+        if (state.loadError && state.posts.length === 0) {
+          container.innerHTML = `
+            <div class="col-span-full bg-paper border border-rule rounded-lg p-8 sm:p-12 text-center space-y-4">
+              <div class="w-12 h-12 rounded-md bg-ochre-soft text-ochre-ink border border-[#D97706] mx-auto flex items-center justify-center">
+                <span class="material-symbols-outlined text-2xl" aria-hidden="true">cloud_off</span>
+              </div>
+              <div class="space-y-1">
+                <h2 class="font-display text-lg font-semibold text-ink">Gagal Memuat Data Praktik Baik</h2>
+                <p class="text-sm text-ink-muted max-w-md mx-auto">
+                  Koneksi ke layanan arsip sekolah terputus. Periksa jaringan internet Anda lalu coba muat ulang.
+                </p>
+              </div>
+              <div class="flex flex-wrap justify-center gap-3 pt-1">
+                <button id="btnRetryLoad" type="button"
+                  class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-primary text-white text-sm font-bold hover:bg-[#001F70] transition-colors">
+                  <span class="material-symbols-outlined text-[18px]" aria-hidden="true">refresh</span>
+                  <span>Muat Ulang Data</span>
+                </button>
+                <a href="/"
+                  class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-ground border border-rule text-sm font-semibold text-ink hover:border-primary">
+                  Kembali ke Beranda
+                </a>
+              </div>
             </div>
-            <h3 class="text-base font-bold text-on-surface">
-              ${isSearchOrFilter ? 'Tidak Ada Postingan yang Cocok' : 'Belum Ada Postingan Praktik Baik'}
-            </h3>
-            <p class="text-xs text-on-surface-variant max-w-sm mx-auto">
-              ${isSearchOrFilter ? 'Coba ubah kata kunci pencarian atau reset filter kategori.' : 'Saat ini belum ada postingan yang dipublikasikan. Konten yang dibuat di Panel Admin akan otomatis ditampilkan di sini.'}
-            </p>
+          `;
+          document.getElementById('btnRetryLoad')?.addEventListener('click', loadData);
+          return;
+        }
+
+        const isSearchOrFilter = Boolean(state.searchQuery || state.activeCategory);
+        container.innerHTML = `
+          <div class="col-span-full bg-paper border border-rule rounded-lg p-8 sm:p-12 text-center space-y-4">
+            <div class="w-12 h-12 rounded-md bg-ochre-soft text-ochre-ink border border-[#D97706] mx-auto flex items-center justify-center">
+              <span class="material-symbols-outlined text-2xl" aria-hidden="true">${isSearchOrFilter ? 'search_off' : 'auto_stories'}</span>
+            </div>
+            <div class="space-y-1">
+              <h2 class="font-display text-lg font-semibold text-ink">
+                ${isSearchOrFilter ? 'Tidak Ada Tulisan yang Cocok' : 'Belum Ada Publikasi Praktik Baik'}
+              </h2>
+              <p class="text-sm text-ink-muted max-w-md mx-auto">
+                ${isSearchOrFilter ? 'Ubah kata kunci pencarian atau tampilkan kembali semua kategori.' : 'Saat ini belum ada artikel praktik baik yang diterbitkan dari panel admin sekolah.'}
+              </p>
+            </div>
+            ${isSearchOrFilter ? `
+              <button id="btnResetFilters" type="button"
+                class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-primary text-white text-sm font-bold hover:bg-[#001F70] transition-colors">
+                <span>Tampilkan Semua Kategori</span>
+              </button>
+            ` : `
+              <a href="/"
+                class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-ground border border-rule text-sm font-semibold text-ink hover:border-primary">
+                Kembali ke Beranda
+              </a>
+            `}
           </div>
         `;
+        document.getElementById('btnResetFilters')?.addEventListener('click', () => {
+          const searchInput = document.getElementById('searchInput');
+          if (searchInput) searchInput.value = '';
+          state.searchQuery = '';
+          state.activeCategory = '';
+          document.getElementById('btnClearSearch')?.classList.add('hidden');
+          renderCategoryPills();
+          applyFilters();
+        });
         return;
       }
 
       container.innerHTML = state.filteredPosts.map(post => {
-        const hasImage = Boolean(post.coverImageBase64);
         const hasVideo = Boolean(post.videoUrl);
         const hasExternal = Boolean(post.externalUrl);
 
-        // Kategori badge styling
-        let badgeColor = 'bg-primary/10 text-primary border-primary/20';
+        let badgeColor = 'bg-[#EFF6FF] text-[#00288E] border-[#BFDBFE]';
         if (post.category === 'Praktik Baik') {
-          badgeColor = 'bg-amber-100 text-amber-800 border-amber-200';
-        } else if (post.category === 'Video') {
-          badgeColor = 'bg-rose-100 text-rose-800 border-rose-200';
+          badgeColor = 'bg-[#FEF3C7] text-[#78350F] border-[#D97706]';
         } else if (post.category === 'Pembelajaran') {
-          badgeColor = 'bg-emerald-100 text-emerald-800 border-emerald-200';
+          badgeColor = 'bg-[#ECFDF5] text-[#047857] border-[#A7F3D0]';
+        } else if (post.category === 'Video') {
+          badgeColor = 'bg-[#F1F5F9] text-[#1E293B] border-[#CBD5E1]';
         }
 
         const ytId = hasVideo ? getYouTubeVideoId(post.videoUrl) : '';
         const displayImage = post.coverImageBase64 || (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '');
 
         return `
-          <article class="card-item group bg-white rounded-3xl overflow-hidden border border-outline-variant/60 shadow-xs hover:shadow-md transition-all flex flex-col cursor-pointer active:scale-[0.99]" data-id="${post.id}">
-            
-            <!-- Thumbnail Visual -->
-            <div class="relative w-full aspect-[16/10] bg-surface-container overflow-hidden flex items-center justify-center">
-              ${displayImage
-            ? `<img src="${displayImage}" alt="${escapeHtml(post.title)}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300">`
-            : `<div class="w-full h-full bg-gradient-to-tr from-[#00288e]/15 to-[#316bf3]/10 flex flex-col items-center justify-center text-primary/40 p-4">
-                     <span class="material-symbols-outlined text-4xl">auto_stories</span>
-                     <span class="text-[11px] font-bold mt-1 text-primary/60">SD Inpres Lelingluan</span>
-                   </div>`
+          <article class="group bg-paper rounded-lg overflow-hidden border border-rule hover:border-primary transition-colors flex flex-col justify-between">
+            <div>
+              <div class="relative w-full aspect-[16/10] bg-paper-muted overflow-hidden border-b border-rule flex items-center justify-center">
+                ${displayImage
+            ? `<img src="${escapeHtml(displayImage)}" alt="${escapeHtml(post.title)}" width="480" height="300" loading="lazy" decoding="async" class="w-full h-full object-cover">`
+            : `<div class="w-full h-full bg-ground flex flex-col items-center justify-center text-primary/60 p-4">
+                 <span class="material-symbols-outlined text-4xl" aria-hidden="true">auto_stories</span>
+                 <span class="text-xs font-semibold mt-1 text-ink-muted">SD Inpres Lelingluan</span>
+               </div>`
           }
 
-              <!-- Overlay Media Badges -->
-              <div class="absolute top-2.5 left-2.5 flex items-center gap-1.5">
-                <span class="px-2.5 py-0.5 rounded-full text-[10px] font-bold border backdrop-blur-md shadow-xs ${badgeColor}">
-                  ${escapeHtml(post.category || 'Praktik Baik')}
-                </span>
-                ${hasVideo ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-black/75 text-white flex items-center gap-0.5 backdrop-blur-xs"><span class="material-symbols-outlined text-xs text-rose-400">smart_display</span> Video</span>` : ''}
-                ${hasExternal ? `<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-black/75 text-white flex items-center gap-0.5 backdrop-blur-xs"><span class="material-symbols-outlined text-xs">link</span> Dokumen</span>` : ''}
+                ${hasVideo ? `
+                  <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
+                    <div class="w-12 h-12 rounded-md bg-ink/85 text-white border border-white/40 flex items-center justify-center">
+                      <span class="material-symbols-outlined text-2xl material-symbols-fill" aria-hidden="true">play_arrow</span>
+                    </div>
+                  </div>
+                ` : ''}
               </div>
 
-              ${hasVideo ? `
-                <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                  <div class="w-12 h-12 rounded-full bg-white/90 text-primary shadow-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                    <span class="material-symbols-outlined text-2xl material-symbols-fill">play_arrow</span>
+              <div class="p-5 space-y-2.5">
+                <div class="flex flex-wrap items-center justify-between gap-2">
+                  <div class="flex flex-wrap items-center gap-1.5">
+                    <span class="px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider border ${badgeColor}">
+                      ${escapeHtml(post.category || 'Praktik Baik')}
+                    </span>
+                    ${hasVideo ? `<span class="px-2 py-0.5 rounded-xs text-[11px] font-semibold bg-ground text-ink border border-rule">Video</span>` : ''}
+                    ${hasExternal ? `<span class="px-2 py-0.5 rounded-xs text-[11px] font-semibold bg-ground text-ink border border-rule">Dokumen</span>` : ''}
                   </div>
-                </div>
-              ` : ''}
-            </div>
-
-            <!-- Content Details -->
-            <div class="p-4 sm:p-5 flex-1 flex flex-col justify-between space-y-3">
-              <div class="space-y-1.5">
-                <div class="flex items-center justify-between gap-2 text-[11px] text-outline">
-                  <div class="flex items-center gap-1.5 min-w-0">
-                    <span class="font-medium shrink-0">${post.date || 'Terbaru'}</span>
-                    <span>•</span>
-                    <span class="truncate">${escapeHtml(post.author || 'Admin')}</span>
-                  </div>
-                  <span class="inline-flex items-center gap-1 shrink-0 font-semibold text-primary bg-primary/5 px-2 py-0.5 rounded-full border border-primary/15" title="Jumlah dilihat">
-                    <span class="material-symbols-outlined text-[13px]">visibility</span>
+                  <span class="inline-flex items-center gap-1 text-xs font-semibold text-primary tabular-nums" title="Jumlah dilihat">
+                    <span class="material-symbols-outlined text-[15px]" aria-hidden="true">visibility</span>
                     <span class="post-view-count" data-post-id="${escapeHtml(post.id)}">${formatViewCount(post.views)}</span>
-                    <span class="font-medium text-on-surface-variant">dilihat</span>
                   </span>
                 </div>
-                <h3 class="text-sm sm:text-base font-bold text-on-surface group-hover:text-primary transition-colors line-clamp-2 leading-snug">
+
+                <div class="flex items-center gap-1.5 text-xs text-ink-muted">
+                  <span class="tabular-nums">${escapeHtml(post.date || 'Terbaru')}</span>
+                  <span aria-hidden="true">&middot;</span>
+                  <span class="truncate">${escapeHtml(post.author || 'Admin')}</span>
+                </div>
+
+                <h2 class="font-display text-lg leading-snug text-ink font-semibold group-hover:text-primary transition-colors line-clamp-2">
                   ${escapeHtml(post.title)}
-                </h3>
-                <p class="text-xs text-on-surface-variant line-clamp-2 leading-relaxed">
+                </h2>
+
+                <p class="text-xs sm:text-sm text-ink-muted line-clamp-2 leading-relaxed">
                   ${escapeHtml(post.summary || post.content || '')}
                 </p>
               </div>
-
-              <!-- Footer CTA -->
-              <div class="pt-2 border-t border-outline-variant/30 flex items-center justify-between text-xs font-bold text-primary">
-                <span>Buka Praktik Baik ini</span>
-                <span class="material-symbols-outlined text-base group-hover:translate-x-1 transition-transform">arrow_forward</span>
-              </div>
             </div>
 
+            <div class="px-5 py-3 bg-ground border-t border-rule">
+              <button type="button"
+                class="open-post-btn w-full min-h-[44px] flex items-center justify-between text-xs sm:text-sm font-bold text-primary hover:underline text-left"
+                data-id="${escapeHtml(post.id)}">
+                <span>Buka praktik baik ini<span class="visually-hidden">: ${escapeHtml(post.title)}</span></span>
+                <span class="material-symbols-outlined text-[17px]" aria-hidden="true">arrow_forward</span>
+              </button>
+            </div>
           </article>
         `;
       }).join('');
 
-      container.querySelectorAll('.card-item').forEach(card => {
-        card.addEventListener('click', () => {
-          const id = card.dataset.id;
+      container.querySelectorAll('.open-post-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const id = btn.dataset.id;
           const post = state.posts.find(p => p.id === id);
           if (post) openReader(post);
         });
@@ -762,7 +760,6 @@
       const modalViewCountEl = document.getElementById('modalViewCount');
       if (modalViewCountEl) modalViewCountEl.textContent = formatViewCount(post.views);
 
-      // Video Player
       const embedUrl = getYouTubeEmbedUrl(post.videoUrl);
       if (embedUrl) {
         modalVideoFrame.src = embedUrl;
@@ -772,9 +769,9 @@
         modalVideoContainer.classList.add('hidden');
       }
 
-      // Cover Image (shown if no video or if photo is available)
       if (post.coverImageBase64 && !embedUrl) {
         modalCoverImage.src = post.coverImageBase64;
+        modalCoverImage.alt = post.title || 'Dokumentasi praktik baik';
         modalImageContainer.classList.remove('hidden');
         if (post.imageCaption) {
           modalImageCaption.textContent = post.imageCaption;
@@ -786,7 +783,6 @@
         modalImageContainer.classList.add('hidden');
       }
 
-      // Summary
       if (post.summary) {
         modalSummary.textContent = post.summary;
         modalSummaryWrapper.classList.remove('hidden');
@@ -794,7 +790,6 @@
         modalSummaryWrapper.classList.add('hidden');
       }
 
-      // External Resource Link
       if (post.externalUrl) {
         modalExternalLink.href = post.externalUrl;
         modalExternalLinkText.textContent = `Buka Tautan Sumber: ${post.externalUrl.replace(/^https?:\/\//, '').split('/')[0]}`;
@@ -803,28 +798,24 @@
         modalExternalLinkWrapper.classList.add('hidden');
       }
 
-      // Formatted Content
       modalContent.innerHTML = formatMarkdown(post.content || '');
 
-      // Store current post for sharing & catat tayangan (view)
       state.currentOpenPost = post;
       incrementPostView(post);
 
-      // Update URL browser dengan slug postingan agar bisa langsung di-bookmark / disalin
       const postSlug = post.slug || post.id;
       const canonicalUrl = getCanonicalShareUrl(postSlug);
       if (updateUrl && postSlug && window.history.replaceState) {
         window.history.replaceState({ postId: post.id, slug: postSlug }, '', canonicalUrl);
       }
 
-      // Update Dynamic Meta Tags untuk browser
       const ytId = post.videoUrl ? getYouTubeVideoId(post.videoUrl) : '';
       let shareImageUrl = `${window.location.origin}/api/image/${encodeURIComponent(postSlug)}.jpg`;
       if (ytId) {
         shareImageUrl = `https://img.youtube.com/vi/${ytId}/hqdefault.jpg`;
       }
 
-      document.title = `${post.title} — SD Inpres Lelingluan`;
+      document.title = `${post.title} | SD Inpres Lelingluan`;
       const metaOgTitle = document.getElementById('ogTitle');
       const metaOgDesc = document.getElementById('ogDescription');
       const metaOgImage = document.getElementById('ogImage');
@@ -834,37 +825,42 @@
       const metaTwDesc = document.getElementById('twitterDescription');
       const metaTwImage = document.getElementById('twitterImage');
 
-      if (metaOgTitle) metaOgTitle.content = `${post.title} — SD Inpres Lelingluan`;
+      if (metaOgTitle) metaOgTitle.content = `${post.title} | SD Inpres Lelingluan`;
       if (metaOgDesc) metaOgDesc.content = post.summary || post.title;
       if (metaOgImage) metaOgImage.content = shareImageUrl;
       if (metaOgImageSecure) metaOgImageSecure.content = shareImageUrl;
       if (metaOgUrl) metaOgUrl.content = canonicalUrl;
-      if (metaTwTitle) metaTwTitle.content = `${post.title} — SD Inpres Lelingluan`;
+      if (metaTwTitle) metaTwTitle.content = `${post.title} | SD Inpres Lelingluan`;
       if (metaTwDesc) metaTwDesc.content = post.summary || post.title;
       if (metaTwImage) metaTwImage.content = shareImageUrl;
 
-      modal.classList.remove('hidden');
-      document.body.style.overflow = 'hidden';
+      if (modal && !modal.open) {
+        modal.showModal();
+      }
+    }
+
+    function cleanupOnClose(updateUrl = true) {
+      const modalVideoFrame = document.getElementById('modalVideoFrame');
+      if (modalVideoFrame) modalVideoFrame.src = '';
+      state.currentOpenPost = null;
+
+      if (updateUrl && window.history.replaceState) {
+        window.history.replaceState({}, '', window.location.pathname);
+      }
+      document.title = 'Praktik Baik & Inovasi | SD Inpres Lelingluan';
     }
 
     function closeReader(updateUrl = true) {
       const modal = document.getElementById('readerModal');
-      const modalVideoFrame = document.getElementById('modalVideoFrame');
-      if (modalVideoFrame) modalVideoFrame.src = '';
-      modal.classList.add('hidden');
-      document.body.style.overflow = '';
-      state.currentOpenPost = null;
-
-      // Kembalikan URL bersih tanpa slug saat modal ditutup
-      if (updateUrl && window.history.replaceState) {
-        window.history.replaceState({}, '', window.location.pathname);
+      if (!modal) return;
+      modal.dataset.skipHistoryUpdate = updateUrl ? '0' : '1';
+      if (modal.open) {
+        modal.close();
+      } else {
+        cleanupOnClose(updateUrl);
       }
-
-      // Reset Title
-      document.title = 'Praktik Baik & Inovasi — SD Inpres Lelingluan';
     }
 
-    // Memeriksa parameter slug pada URL dan otomatis membuka artikel terkait
     function checkUrlSlugAndOpen() {
       const urlParams = new URLSearchParams(window.location.search);
       const targetSlug = (urlParams.get('slug') || urlParams.get('post') || window.location.hash.replace(/^#/, '')).trim().toLowerCase();
@@ -880,17 +876,15 @@
       }
     }
 
-    // Share Handler dengan dukungan kirim file gambar langsung ke medsos
     async function shareArticle() {
       const post = state.currentOpenPost;
       if (!post) return;
 
       const slug = post.slug || post.id;
       const shareUrl = getCanonicalShareUrl(slug);
-      const title = `${post.title} — SD Inpres Lelingluan`;
+      const title = `${post.title} | SD Inpres Lelingluan`;
       const text = post.summary ? `${post.summary}\n\n` : '';
 
-      // Konversi gambar Base64 menjadi File biner jika browser mendukung share files
       let imageFile = null;
       if (post.coverImageBase64 && navigator.canShare) {
         try {
@@ -898,37 +892,25 @@
           const blob = await res.blob();
           const ext = blob.type.includes('webp') ? 'webp' : 'jpg';
           imageFile = new File([blob], `foto-${slug}.${ext}`, { type: blob.type || 'image/jpeg' });
-        } catch (e) {
-          console.warn("Gagal membuat file share:", e);
-        }
+        } catch (e) {}
       }
 
       if (navigator.share) {
         try {
-          const payload = {
-            title,
-            text: `${text}Baca selengkapnya di:`,
-            url: shareUrl
-          };
+          const payload = { title, text: `${text}Baca selengkapnya di:`, url: shareUrl };
           if (imageFile && navigator.canShare({ files: [imageFile] })) {
             payload.files = [imageFile];
           }
           await navigator.share(payload);
           return;
         } catch (e) {
-          if (e.name !== 'AbortError') {
-            console.warn("Navigator share failed:", e);
-          } else {
-            return;
-          }
+          if (e.name === 'AbortError') return;
         }
       }
 
-      // Fallback: Kirim langsung via WhatsApp API
       shareToWhatsApp();
     }
 
-    // Kirim langsung ke WhatsApp dengan format pesan rapi
     function shareToWhatsApp() {
       const post = state.currentOpenPost;
       if (!post) return;
@@ -938,69 +920,87 @@
       const summaryText = post.summary ? `${post.summary}\n\n` : '';
       const message = `*${post.title}*\n\n${summaryText}Baca selengkapnya di:\n${shareUrl}`;
       const waUrl = `https://api.whatsapp.com/send?text=${encodeURIComponent(message)}`;
-      window.open(waUrl, '_blank');
+      window.open(waUrl, '_blank', 'noopener,noreferrer');
     }
 
-    // Salin tautan cepat
     function copyArticleLink() {
       const post = state.currentOpenPost;
       if (!post) return;
 
       const slug = post.slug || post.id;
       const shareUrl = getCanonicalShareUrl(slug);
-      navigator.clipboard.writeText(shareUrl).then(() => {
-        alert('Tautan postingan berhasil disalin ke clipboard:\n' + shareUrl);
-      }).catch(() => {
-        prompt('Salin tautan artikel ini:', shareUrl);
-      });
+      const labelEl = document.getElementById('copyBtnLabel');
+
+      const showCopied = () => {
+        if (!labelEl) return;
+        labelEl.textContent = 'Tautan Tersalin';
+        setTimeout(() => {
+          labelEl.textContent = 'Salin Tautan';
+        }, 2500);
+      };
+
+      if (navigator.clipboard?.writeText) {
+        navigator.clipboard.writeText(shareUrl).then(showCopied).catch(() => {
+          window.prompt('Salin tautan artikel ini:', shareUrl);
+        });
+      } else {
+        window.prompt('Salin tautan artikel ini:', shareUrl);
+      }
     }
 
-    // Event listeners
     window.addEventListener('DOMContentLoaded', () => {
       loadData();
 
-      // Search listeners
       const searchInput = document.getElementById('searchInput');
       const btnClearSearch = document.getElementById('btnClearSearch');
+      const modal = document.getElementById('readerModal');
 
       searchInput?.addEventListener('input', (e) => {
         state.searchQuery = e.target.value;
-        if (e.target.value) {
-          btnClearSearch?.classList.remove('hidden');
-        } else {
-          btnClearSearch?.classList.add('hidden');
-        }
+        btnClearSearch?.classList.toggle('hidden', !e.target.value);
         applyFilters();
       });
 
       btnClearSearch?.addEventListener('click', () => {
-        searchInput.value = '';
+        if (searchInput) searchInput.value = '';
         state.searchQuery = '';
-        btnClearSearch.classList.add('hidden');
+        btnClearSearch?.classList.add('hidden');
         applyFilters();
+        searchInput?.focus();
       });
 
-      // Modal close & share listeners
-      document.getElementById('btnCloseReaderModal')?.addEventListener('click', closeReader);
-      document.getElementById('btnCloseReaderBottom')?.addEventListener('click', closeReader);
+      document.getElementById('btnCloseReaderModal')?.addEventListener('click', () => closeReader(true));
+      document.getElementById('btnCloseReaderBottom')?.addEventListener('click', () => closeReader(true));
       document.getElementById('btnShareArticle')?.addEventListener('click', shareArticle);
       document.getElementById('btnShareWhatsApp')?.addEventListener('click', shareToWhatsApp);
       document.getElementById('btnCopyArticleLink')?.addEventListener('click', copyArticleLink);
 
-      document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') closeReader();
-      });
+      if (modal) {
+        modal.addEventListener('close', () => {
+          const skipUpdate = modal.dataset.skipHistoryUpdate === '1';
+          modal.dataset.skipHistoryUpdate = '0';
+          cleanupOnClose(!skipUpdate);
+        });
 
-      document.getElementById('readerModal')?.addEventListener('click', (e) => {
-        if (e.target.id === 'readerModal') closeReader();
-      });
+        // Safari closedby="any" backdrop pointer fallback
+        if (!('closedBy' in HTMLDialogElement.prototype)) {
+          let pointerStartedOnBackdrop = false;
+          modal.addEventListener('pointerdown', (e) => {
+            pointerStartedOnBackdrop = e.target === modal;
+          });
+          modal.addEventListener('pointerup', (e) => {
+            if (pointerStartedOnBackdrop && e.target === modal) {
+              closeReader(true);
+            }
+            pointerStartedOnBackdrop = false;
+          });
+        }
+      }
 
-      // Popstate listener untuk navigasi tombol Back/Forward browser
       window.addEventListener('popstate', () => {
         const urlParams = new URLSearchParams(window.location.search);
         const targetSlug = urlParams.get('slug') || urlParams.get('post');
-        const modal = document.getElementById('readerModal');
-        if (!targetSlug && modal && !modal.classList.contains('hidden')) {
+        if (!targetSlug && modal?.open) {
           closeReader(false);
         } else if (targetSlug) {
           checkUrlSlugAndOpen();
@@ -1008,7 +1008,6 @@
       });
     });
   </script>
-
 </body>
 
 </html>
