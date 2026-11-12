@@ -36,6 +36,9 @@ export async function onRequest(context) {
     const postDoc = docs.find(d => {
       const docSlug = d.fields?.slug?.stringValue || '';
       const docId = d.name?.split('/').pop() || '';
+      const docStatus = d.fields?.status?.stringValue || '';
+      const docType = d.fields?.type?.stringValue || '';
+      if (docId === '__site_stats__' || docStatus === 'system' || docType === 'site_stats') return false;
       return docSlug.toLowerCase() === cleanSlug.toLowerCase() || docId.toLowerCase() === cleanSlug.toLowerCase();
     });
 

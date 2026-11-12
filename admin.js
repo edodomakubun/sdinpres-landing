@@ -619,6 +619,7 @@ async function fetchPosts() {
       const items = [];
       snapshot.forEach(docSnap => {
         const data = docSnap.data();
+        if (docSnap.id === '__site_stats__' || data.status === 'system' || data.type === 'site_stats') return;
         items.push({
           id: docSnap.id,
           ...data,
@@ -642,7 +643,7 @@ async function fetchPosts() {
   try {
     const raw = localStorage.getItem(LOCAL_STORAGE_POSTS_KEY);
     const parsed = raw ? JSON.parse(raw) : [];
-    state.posts = Array.isArray(parsed) ? parsed.filter(p => !p.id || (!p.id.startsWith('demo-') && !p.id.startsWith('pb-'))) : [];
+    state.posts = Array.isArray(parsed) ? parsed.filter(p => p.id !== '__site_stats__' && p.status !== 'system' && p.type !== 'site_stats' && (!p.id || (!p.id.startsWith('demo-') && !p.id.startsWith('pb-')))) : [];
   } catch (e) {
     state.posts = [];
   }

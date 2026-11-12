@@ -261,66 +261,169 @@ function initFaqAccordion() {
   });
 }
 
-// ── Firebase Realtime Visitor Tracking ───────────────────
-function initVisitorTracking() {
+// ── Firebase Firestore Site Visits & Realtime Online Tracking ──
+const SITE_STATS_DOC_ID = '__site_stats__';
+const LOCAL_SITE_VISITS_KEY = 'sdinpres_site_visits_backup';
+let hasCountedSiteVisit = false;
+
+function formatVisitCount(count) {
+  return (Number(count) || 0).toLocaleString('id-ID');
+}
+
+function updateSiteVisitsDisplay(count) {
+  const formatted = formatVisitCount(count);
+  $$('.live-total-visits').forEach(el => {
+    const textEl = el.querySelector('.visit-count-text');
+    if (textEl) {
+      textEl.textContent = `${formatted} Kunjungan`;
+    } else {
+      el.innerHTML = `<span class="material-symbols-outlined text-[14px] text-primary shrink-0">visibility</span> <span class="visit-count-text">${formatted} Kunjungan</span>`;
+    }
+  });
+}
+
+function updateOnlineDisplay(count) {
+  const safeCount = Math.max(1, Number(count) || 1);
+  $$('.live-online-count').forEach(el => {
+    const textEl = el.querySelector('.online-count-text');
+    if (textEl) {
+      textEl.textContent = `${safeCount} Online`;
+    } else {
+      el.innerHTML = `<span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse shrink-0"></span> <span class="online-count-text">${safeCount} Online</span>`;
+    }
+  });
+}
+
+async function fetchLegacyRtdbVisits(databaseURL) {
+  if (!databaseURL) return 0;
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), 2500);
+  try {
+    const res = await fetch(`${databaseURL.replace(/\/$/, '')}/stats/totalVisits.json`, {
+      signal: controller.signal
+    });
+    if (!res.ok) return 0;
+    const val = await res.json();
+    return typeof val === 'number' && val > 0 ? val : 0;
+  } catch {
+    return 0;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+async function initVisitorTracking() {
   const onlineElements = $$('.live-online-count');
   const totalElements = $$('.live-total-visits');
+  if (!onlineElements.length && !totalElements.length) return;
 
-  if (typeof firebase === 'undefined') return;
-
-  const firebaseConfig = {
-    apiKey: "AIzaSyBFt6boJNvB1oV0eusQZPlvybr_OXd_dSI",
-    authDomain: "attendez-2k0ks.firebaseapp.com",
-    databaseURL: "https://attendez-2k0ks-default-rtdb.asia-southeast1.firebasedatabase.app",
-    projectId: "attendez-2k0ks",
-    storageBucket: "attendez-2k0ks.firebasestorage.app",
-    messagingSenderId: "1082706342744",
-    appId: "1:1082706342744:web:2a5988aa01351bc715ab2d"
-  };
+  // Tampilkan cadangan lokal lebih dulu agar tidak berkedip di angka 0
+  let cachedVisits = 0;
+  try {
+    cachedVisits = Number(localStorage.getItem(LOCAL_SITE_VISITS_KEY)) || 0;
+    if (cachedVisits > 0) {
+      updateSiteVisitsDisplay(cachedVisits);
+    }
+  } catch {}
 
   try {
-    if (!firebase.apps.length) {
-      firebase.initializeApp(firebaseConfig);
-    }
+    const [
+      { initializeApp, getApps, getApp },
+      { getFirestore, doc, getDoc, setDoc, updateDoc, increment, serverTimestamp },
+      { getDatabase, ref: rtdbRef, onValue, push: rtdbPush, set: rtdbSet, onDisconnect },
+      { getActiveFirebaseConfig, isFirebaseConfigured }
+    ] = await Promise.all([
+      import('https://www.gstatic.com/firebasejs/10.12.0/firebase-app.js'),
+      import('https://www.gstatic.com/firebasejs/10.12.0/firebase-firestore.js'),
+      import('https://www.gstatic.com/firebasejs/10.12.0/firebase-database.js'),
+      import('./firebase-config.js')
+    ]);
 
-    const db = firebase.database();
-    const onlineRef = db.ref('stats/onlineUsers');
-    const totalRef = db.ref('stats/totalVisits');
-    const connectedRef = db.ref('.info/connected');
+    const config = getActiveFirebaseConfig();
+    if (!isFirebaseConfigured(config)) return;
 
-    // 1. Online Users
-    connectedRef.on('value', snap => {
-      if (snap.val() === true) {
-        const sessionRef = onlineRef.push();
-        sessionRef.onDisconnect().remove();
-        sessionRef.set(true);
+    const app = getApps().length === 0 ? initializeApp(config) : getApp();
+
+    // 1. Online Users Presence (RTDB)
+    if (onlineElements.length && config.databaseURL) {
+      try {
+        const rtdb = getDatabase(app);
+        const onlineRef = rtdbRef(rtdb, 'stats/onlineUsers');
+        const connectedRef = rtdbRef(rtdb, '.info/connected');
+
+        onValue(connectedRef, snap => {
+          if (snap.val() === true) {
+            const sessionRef = rtdbPush(onlineRef);
+            onDisconnect(sessionRef).remove();
+            rtdbSet(sessionRef, true);
+          }
+        });
+
+        onValue(onlineRef, snap => {
+          const activeSessions = snap.exists() ? Object.keys(snap.val() || {}).length : 0;
+          updateOnlineDisplay(activeSessions > 0 ? activeSessions : 1);
+        });
+      } catch (rtdbErr) {
+        console.warn('Info kehadiran online RTDB:', rtdbErr);
       }
-    });
-
-    onlineRef.on('value', snap => {
-      const activeSessions = snap.numChildren();
-      const count = activeSessions > 0 ? activeSessions : 1;
-      onlineElements.forEach(el => {
-        el.textContent = `${count} Online`;
-      });
-    });
-
-    // 2. Total Visits
-    const hasVisited = sessionStorage.getItem('hasVisited');
-    if (!hasVisited) {
-      totalRef.transaction(currentTotal => (currentTotal || 0) + 1);
-      sessionStorage.setItem('hasVisited', 'true');
     }
 
-    totalRef.on('value', snap => {
-      const total = snap.val() || 0;
-      const formatted = total.toLocaleString('id-ID');
-      totalElements.forEach(el => {
-        el.textContent = `${formatted} Kunjungan`;
-      });
-    });
+    // 2. Total Kunjungan Halaman Utama (Cloud Firestore — cara kerja identik dengan view postingan)
+    if (totalElements.length && !hasCountedSiteVisit) {
+      hasCountedSiteVisit = true;
+      const db = getFirestore(app);
+      const statsRef = doc(db, 'posts', SITE_STATS_DOC_ID);
+
+      try {
+        const snap = await getDoc(statsRef);
+        if (snap.exists()) {
+          const currentViews = Number(snap.data()?.views) || 0;
+          const newViews = currentViews + 1;
+          updateSiteVisitsDisplay(newViews);
+          try {
+            localStorage.setItem(LOCAL_SITE_VISITS_KEY, String(newViews));
+          } catch {}
+
+          await updateDoc(statsRef, {
+            views: increment(1),
+            updatedAt: serverTimestamp()
+          });
+        } else {
+          // Migrasi otomatis satu kali dari hitungan RTDB lama jika tersedia
+          const legacyCount = await fetchLegacyRtdbVisits(config.databaseURL);
+          const initialViews = Math.max(legacyCount, cachedVisits) + 1;
+          updateSiteVisitsDisplay(initialViews);
+          try {
+            localStorage.setItem(LOCAL_SITE_VISITS_KEY, String(initialViews));
+          } catch {}
+
+          await setDoc(statsRef, {
+            type: 'site_stats',
+            status: 'system',
+            title: 'Statistik Kunjungan Halaman Utama',
+            views: initialViews,
+            updatedAt: serverTimestamp()
+          });
+        }
+      } catch (firestoreErr) {
+        console.warn('Gagal memperbarui kunjungan ke Firestore, beralih ke cadangan lokal:', firestoreErr);
+        const fallbackVisits = cachedVisits + 1;
+        updateSiteVisitsDisplay(fallbackVisits);
+        try {
+          localStorage.setItem(LOCAL_SITE_VISITS_KEY, String(fallbackVisits));
+        } catch {}
+      }
+    }
   } catch (error) {
-    console.error('Firebase tracking error:', error);
+    console.warn('Pelacakan kunjungan beralih ke cadangan lokal:', error);
+    if (!hasCountedSiteVisit && totalElements.length) {
+      hasCountedSiteVisit = true;
+      const fallbackVisits = cachedVisits + 1;
+      updateSiteVisitsDisplay(fallbackVisits);
+      try {
+        localStorage.setItem(LOCAL_SITE_VISITS_KEY, String(fallbackVisits));
+      } catch {}
+    }
   }
 }
 

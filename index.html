@@ -1525,14 +1525,16 @@
           <!-- Realtime Visitor Traffic Badges -->
           <div class="flex items-center gap-3 mt-2">
             <span
-              class="live-online-count inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant font-label-sm text-label-sm text-on-surface">
-              <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse"></span>
-              1 Online
+              class="live-online-count inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant font-label-sm text-label-sm text-on-surface"
+              title="Pengunjung sedang aktif">
+              <span class="w-2 h-2 rounded-full bg-[#10B981] animate-pulse shrink-0"></span>
+              <span class="online-count-text">1 Online</span>
             </span>
             <span
-              class="live-total-visits inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant font-label-sm text-label-sm text-on-surface">
-              <span class="material-symbols-outlined text-[14px] text-outline">visibility</span>
-              0 Kunjungan
+              class="live-total-visits inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-surface-container-lowest border border-outline-variant font-label-sm text-label-sm text-on-surface"
+              title="Total kunjungan halaman utama">
+              <span class="material-symbols-outlined text-[14px] text-primary shrink-0">visibility</span>
+              <span class="visit-count-text">0 Kunjungan</span>
             </span>
           </div>
         </div>
@@ -1672,11 +1674,7 @@
 
   </nav>
 
-  <!-- Firebase Realtime Analytics SDK -->
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-app.js"></script>
-  <script src="https://www.gstatic.com/firebasejs/8.10.1/firebase-database.js"></script>
-
-  <!-- Application Logic -->
+  <!-- Application Logic (menggunakan Firebase v10 SDK modular secara dinamis) -->
   <script src="app.js"></script>
 </body>
 
