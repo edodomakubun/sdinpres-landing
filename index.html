@@ -13,9 +13,9 @@
     content="Membentuk Karakter, Menginspirasi Masa Depan. SD Inpres Lelingluan, Kec. Tanimbar Utara, Kab. Kepulauan Tanimbar, Maluku.">
   <meta property="og:url" content="https://sdinpreslelingluan.com/">
   <meta property="og:image"
-    content="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg">
+    content="https://sdinpreslelingluan.com/assets/herobanner_1.jpeg">
 
-  <title>SD Inpres Lelingluan - Portal Resmi &amp; Layanan Digital Terpadu</title>
+  <title>SD Inpres Lelingluan | Portal Resmi &amp; Layanan Digital Terpadu</title>
 
   <!-- Favicon -->
   <link rel="icon" type="image/png" href="assets/favicon.png">
@@ -25,7 +25,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
     rel="stylesheet">
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -38,50 +38,48 @@
       theme: {
         extend: {
           fontFamily: {
-            display: ['"Fraunces"', 'Georgia', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            editorial: ['"Instrument Serif"', 'Georgia', 'serif']
           },
           colors: {
             primary: '#00288E',
-            'ground': '#FAF8F3',
-            'paper': '#FFFFFF',
-            'paper-muted': '#EFECE4',
-            'ink': '#111827',
-            'ink-muted': '#475569',
-            'rule': '#D8D3C8',
-            'ochre': '#B45309',
-            'ochre-soft': '#FEF3C7',
-            'ochre-ink': '#78350F',
-            'emerald-ink': '#047857'
+            'primary-mid': '#1E40AF',
+            accent: '#D97706',
+            'accent-ink': '#78350F',
+            'accent-soft': '#FEF3C7',
+            canvas: '#F8FAFC',
+            ink: '#0F172A'
           }
         }
       }
     }
   </script>
 
-  <!-- Shared Supplementary Styles -->
+  <!-- Shared Interactive & Motion Styles -->
   <link href="styles.css" rel="stylesheet">
 </head>
 
-<body class="bg-ground text-ink font-sans antialiased pb-24 md:pb-0">
+<body class="bg-canvas text-slate-900 font-sans antialiased pb-24 md:pb-0 selection:bg-[#00288E] selection:text-white">
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
   <a href="#main-content"
-    class="visually-hidden inline-flex items-center min-h-[44px] bg-primary text-white px-4 py-2 font-bold text-sm focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md">
+    class="visually-hidden inline-flex items-center min-h-[44px] bg-primary text-white px-4 py-2 font-bold text-sm focus:fixed focus:top-3 focus:left-3 focus:z-[80] focus:rounded-xl shadow-lg">
     Langsung ke konten utama
   </a>
 
   <!-- ============================================================== -->
   <!-- 1. TOP HEADER BAR & VISI MISI SLIDER (HIDDEN ON MOBILE)        -->
   <!-- ============================================================== -->
-  <header class="hidden md:block sticky top-0 z-50 bg-paper border-b border-rule">
+  <header class="hidden md:block sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between gap-6">
       <a href="#beranda" class="flex items-center gap-3 group shrink-0">
         <img src="assets/logo.png" alt="Logo SD Inpres Lelingluan" width="40" height="40"
-          class="w-10 h-10 object-contain shrink-0">
+          class="w-10 h-10 object-contain shrink-0 transition-transform duration-300 group-hover:scale-105">
         <div class="leading-tight">
-          <span class="block font-display text-base font-bold text-ink tracking-tight group-hover:text-primary transition-colors">
+          <span class="block text-base font-extrabold tracking-tight text-slate-900 group-hover:text-primary transition-colors">
             SD Inpres Lelingluan
           </span>
-          <span class="block text-[11px] font-semibold uppercase tracking-wider text-ink-muted">
+          <span class="block text-[11px] font-semibold tracking-wide text-slate-500">
             Tanimbar Utara &middot; NPSN <span class="tabular-nums">60101905</span>
           </span>
         </div>
@@ -89,68 +87,67 @@
 
       <nav aria-label="Navigasi Utama" class="flex items-center gap-1 lg:gap-2">
         <a href="#beranda"
-          class="px-3 min-h-[44px] inline-flex items-center text-sm font-semibold text-ink hover:text-primary transition-colors">
+          class="px-3.5 min-h-[44px] inline-flex items-center rounded-lg text-sm font-semibold text-slate-800 hover:bg-slate-100 hover:text-primary transition-colors">
           Beranda
         </a>
         <a href="#portal"
-          class="px-3 min-h-[44px] inline-flex items-center text-sm font-semibold text-ink-muted hover:text-primary transition-colors">
-          Portal Layanan
+          class="px-3.5 min-h-[44px] inline-flex items-center rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-colors">
+          Portal
         </a>
         <a href="praktik-baik"
-          class="px-3 min-h-[44px] inline-flex items-center gap-1.5 text-sm font-bold text-ochre-ink hover:text-ochre transition-colors">
-          <span class="material-symbols-outlined text-[16px] text-ochre" aria-hidden="true">verified</span>
+          class="px-3.5 min-h-[44px] inline-flex items-center gap-1.5 rounded-lg text-sm font-bold text-accent-ink bg-accent-soft/80 hover:bg-accent-soft border border-amber-200/80 transition-colors">
+          <span class="material-symbols-outlined text-[17px] text-accent material-symbols-fill" aria-hidden="true">verified</span>
           <span>Praktik Baik</span>
         </a>
         <a href="#berita"
-          class="px-3 min-h-[44px] inline-flex items-center text-sm font-semibold text-ink-muted hover:text-primary transition-colors">
+          class="px-3.5 min-h-[44px] inline-flex items-center rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-colors">
           Berita
         </a>
         <a href="#profil"
-          class="px-3 min-h-[44px] inline-flex items-center text-sm font-semibold text-ink-muted hover:text-primary transition-colors">
+          class="px-3.5 min-h-[44px] inline-flex items-center rounded-lg text-sm font-semibold text-slate-600 hover:bg-slate-100 hover:text-primary transition-colors">
           Profil
         </a>
       </nav>
 
       <div class="flex items-center gap-3 shrink-0">
         <a href="https://blog.sdinpreslelingluan.com"
-          class="inline-flex items-center gap-2 min-h-[44px] px-4 rounded-md bg-primary text-white text-sm font-semibold hover:bg-[#001F70] transition-colors">
+          class="inline-flex items-center gap-2 min-h-[44px] px-4 rounded-xl bg-primary text-white text-sm font-bold shadow-xs hover:bg-primary-mid hover:shadow-md active:scale-[0.98] transition-all">
           <span class="material-symbols-outlined text-[18px]" aria-hidden="true">language</span>
           <span>Website Utama</span>
         </a>
       </div>
     </div>
 
-    <!-- Visi & Misi Slider Utility Strip -->
-    <div id="visi-misi-slider" class="bg-ground border-t border-rule" aria-label="Visi dan Misi Sekolah">
+    <!-- Visi & Misi Slider Strip -->
+    <div id="visi-misi-slider" class="bg-slate-50/90 border-t border-slate-200/70" aria-label="Visi dan Misi Sekolah">
       <div class="max-w-7xl mx-auto px-6 min-h-[46px] flex items-center justify-between gap-4">
         <div class="flex items-center gap-3 min-w-0 flex-1 py-1.5">
           <span id="visi-misi-badge"
-            class="px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider shrink-0 bg-ochre-soft text-ochre-ink border border-[#D97706]">
+            class="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider shrink-0 bg-accent-soft text-accent-ink border border-amber-300">
             VISI
           </span>
           <p id="visi-misi-text"
-            class="text-xs lg:text-sm text-ink truncate transition-opacity duration-200 font-medium"
+            class="text-xs lg:text-sm text-slate-700 truncate transition-opacity duration-200 font-medium"
             title="Menjadi sekolah unggul yang melahirkan generasi penerus bangsa yang literat, cerdas, berkarakter mulia, dan tangguh dalam menghadapi berbagai tantangan, serta menciptakan lingkungan belajar yang aman, nyaman, inklusif dan Religius.">
             &ldquo;Menjadi sekolah unggul yang melahirkan generasi penerus bangsa yang literat, cerdas, berkarakter mulia, dan tangguh dalam menghadapi berbagai tantangan, serta menciptakan lingkungan belajar yang aman, nyaman, inklusif dan Religius.&rdquo;
           </p>
         </div>
 
         <div class="flex items-center gap-1 shrink-0">
-          <div id="visi-misi-dots" class="flex items-center" role="group" aria-label="Indikator slide Visi &amp; Misi">
-          </div>
-          <div class="flex items-center border-l border-rule pl-2 ml-1">
+          <div id="visi-misi-dots" class="flex items-center" role="group" aria-label="Indikator slide Visi &amp; Misi"></div>
+          <div class="flex items-center border-l border-slate-200 pl-2 ml-1">
             <button id="visi-misi-prev" type="button"
-              class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center text-ink-muted hover:text-primary transition-colors"
+              class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-lg text-slate-600 hover:text-primary hover:bg-white transition-colors"
               aria-label="Slide Visi dan Misi sebelumnya">
               <span class="material-symbols-outlined text-[18px]" aria-hidden="true">chevron_left</span>
             </button>
             <button id="visi-misi-toggle" type="button" aria-pressed="false"
-              class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center text-ink-muted hover:text-primary transition-colors"
+              class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-lg text-slate-600 hover:text-primary hover:bg-white transition-colors"
               aria-label="Jeda otomatis Visi dan Misi">
               <span class="material-symbols-outlined text-[18px]" aria-hidden="true">pause</span>
             </button>
             <button id="visi-misi-next" type="button"
-              class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center text-ink-muted hover:text-primary transition-colors"
+              class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-lg text-slate-600 hover:text-primary hover:bg-white transition-colors"
               aria-label="Slide Visi dan Misi berikutnya">
               <span class="material-symbols-outlined text-[18px]" aria-hidden="true">chevron_right</span>
             </button>
@@ -162,353 +159,431 @@
 
   <main id="main-content">
     <!-- ============================================================== -->
-    <!-- 2. HERO SECTION (ASYMMETRIC CIVIC EDITORIAL SPREAD)            -->
+    <!-- 2. FULL-BLEED HERO BANNER STAGE + UNOBSTRUCTED EDITORIAL BAND  -->
     <!-- ============================================================== -->
-    <section id="beranda" class="border-b border-rule bg-ground">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 pt-5 pb-10 sm:py-12 lg:py-16">
-        <!-- Mobile Identity Strip (shown only below md when desktop header is hidden) -->
-        <div class="flex md:hidden items-center justify-between gap-3 pb-5 mb-6 border-b border-rule">
-          <div class="flex items-center gap-2.5 min-w-0">
-            <img src="assets/logo.png" alt="Logo SD Inpres Lelingluan" width="36" height="36"
-              class="w-9 h-9 object-contain shrink-0">
-            <div class="min-w-0 leading-tight">
-              <p class="font-display text-sm font-bold text-ink truncate">SD Inpres Lelingluan</p>
-              <p class="text-[11px] font-medium text-ink-muted truncate">Tanimbar Utara &middot; NPSN 60101905</p>
-            </div>
+    <section id="beranda" class="bg-white border-b border-slate-200">
+      <!-- Mobile Top Identity Row (above photo so zero UI covers banner) -->
+      <div class="flex md:hidden items-center justify-between gap-3 px-4 py-2.5 bg-white border-b border-slate-200 hero-animate">
+        <div class="flex items-center gap-2.5 min-w-0">
+          <img src="assets/logo.png" alt="Logo SD Inpres Lelingluan" width="36" height="36"
+            class="w-9 h-9 object-contain shrink-0">
+          <div class="min-w-0 leading-tight">
+            <p class="text-sm font-extrabold tracking-tight text-slate-900 truncate">SD Inpres Lelingluan</p>
+            <p class="text-[11px] font-medium text-slate-500 truncate">Tanimbar Utara &middot; NPSN 60101905</p>
           </div>
-          <a href="praktik-baik"
-            class="shrink-0 inline-flex items-center gap-1 min-h-[44px] px-3 rounded-md bg-ochre-soft text-ochre-ink border border-[#D97706] text-xs font-bold">
-            <span class="material-symbols-outlined text-[15px]" aria-hidden="true">verified</span>
-            <span>Praktik Baik</span>
-          </a>
+        </div>
+        <a href="praktik-baik"
+          class="shrink-0 inline-flex items-center gap-1 min-h-[44px] px-3.5 rounded-xl bg-accent-soft text-accent-ink border border-amber-300 text-xs font-extrabold active:scale-[0.97] transition-transform">
+          <span class="material-symbols-outlined text-[15px] text-accent material-symbols-fill" aria-hidden="true">verified</span>
+          <span>Praktik Baik</span>
+        </a>
+      </div>
+
+      <!-- Full-Bleed Edge-to-Edge Crystal Glass Banner Stage (100% unobstructed photo) -->
+      <div id="hero-banner-carousel" class="w-full select-none">
+        <div class="hero-glass-stage relative w-full aspect-[4/3] sm:aspect-[16/9] md:aspect-auto md:h-[420px] lg:h-[470px] xl:h-[520px] bg-slate-900 overflow-hidden">
+          <!-- Slide 1 (LCP Hero Image) -->
+          <img src="assets/herobanner_1.jpeg"
+            data-hero-slide="0"
+            data-caption="Dewan Guru dan Staf di gerbang utama SD Inpres Lelingluan"
+            alt="Dewan guru dan staf SD Inpres Lelingluan berfoto bersama di depan papan nama sekolah"
+            width="1280" height="960" fetchpriority="high" decoding="sync"
+            class="hero-slide absolute inset-0 w-full h-full object-cover object-[50%_65%] opacity-100 scale-100 transition-all duration-700 ease-out">
+
+          <!-- Slide 2 -->
+          <img src="assets/herobanner_2.jpeg"
+            data-hero-slide="1"
+            data-caption="Pendidik SD Inpres Lelingluan di halaman utama sekolah"
+            alt="Para ibu guru SD Inpres Lelingluan berfoto di lapangan sekolah di bawah tiang bendera"
+            width="1280" height="960" loading="lazy" fetchpriority="low" decoding="async"
+            class="hero-slide absolute inset-0 w-full h-full object-cover object-[50%_68%] opacity-0 scale-[1.03] pointer-events-none transition-all duration-700 ease-out">
+
+          <!-- Slide 3 -->
+          <img src="assets/herobanner_3.jpeg"
+            data-hero-slide="2"
+            data-caption="Kebersamaan guru di depan papan nama resmi sekolah"
+            alt="Barisan guru SD Inpres Lelingluan berdiri bersama di depan papan nama sekolah"
+            width="1280" height="960" loading="lazy" fetchpriority="low" decoding="async"
+            class="hero-slide absolute inset-0 w-full h-full object-cover object-[50%_52%] opacity-0 scale-[1.03] pointer-events-none transition-all duration-700 ease-out">
+
+          <!-- Slide 4 -->
+          <img src="assets/herobanner_4.jpeg"
+            data-hero-slide="3"
+            data-caption="Kepala Sekolah menyapa hangat peserta didik saat kegiatan luar kelas"
+            alt="Kepala SD Inpres Lelingluan berbincang akrab dengan siswa-siswi di halaman sekolah"
+            width="822" height="900" loading="lazy" fetchpriority="low" decoding="async"
+            class="hero-slide absolute inset-0 w-full h-full object-cover object-[50%_30%] opacity-0 scale-[1.03] pointer-events-none transition-all duration-700 ease-out">
+
+          <!-- Slide 5 -->
+          <img src="assets/herobanner_5.jpeg"
+            data-hero-slide="4"
+            data-caption="Kegiatan senam dan olahraga pagi bersama warga sekolah"
+            alt="Guru dan peserta didik SD Inpres Lelingluan berkumpul bersama dalam kegiatan olahraga pagi di halaman sekolah"
+            width="1600" height="900" loading="lazy" fetchpriority="low" decoding="async"
+            class="hero-slide absolute inset-0 w-full h-full object-cover object-[50%_58%] opacity-0 scale-[1.03] pointer-events-none transition-all duration-700 ease-out">
+
+          <!-- Slide 6 -->
+          <img src="assets/herobanner_6.jpeg"
+            data-hero-slide="5"
+            data-caption="Pendampingan langsung siswa dalam kegiatan sekolah di lapangan"
+            alt="Guru dan Kepala Sekolah mendampingi peserta didik pada kegiatan lapangan di halaman SD Inpres Lelingluan"
+            width="1600" height="900" loading="lazy" fetchpriority="low" decoding="async"
+            class="hero-slide absolute inset-0 w-full h-full object-cover object-[50%_45%] opacity-0 scale-[1.03] pointer-events-none transition-all duration-700 ease-out">
         </div>
 
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 lg:gap-12 items-center">
-          <!-- Left Editorial Column -->
-          <div class="lg:col-span-6 space-y-5">
-            <p class="text-xs font-bold uppercase tracking-[0.14em] text-primary">
-              Sekolah Dasar Negeri &middot; Kec. Tanimbar Utara, Kab. Kepulauan Tanimbar, Maluku
-            </p>
+        <!-- Smoked Frosted-Glass Gallery Control Bar Directly Beneath Photo -->
+        <div class="hero-glass-bar-backdrop relative overflow-hidden">
+          <div class="bg-slate-950/45 backdrop-blur-xl text-white border-y border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.28)]">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 py-2.5 flex flex-col sm:flex-row sm:items-center justify-between gap-2.5">
+              <div class="flex items-center gap-2.5 min-w-0">
+                <span id="hero-slide-counter"
+                  class="px-2.5 py-0.5 rounded-md bg-amber-400/95 text-slate-950 text-[11px] font-extrabold tracking-wider tabular-nums shrink-0 shadow-[inset_0_1px_0_rgba(255,255,255,0.55)]">
+                  01 / 06
+                </span>
+                <p id="hero-slide-caption" class="text-xs sm:text-sm font-semibold text-white/95 truncate">
+                  Dewan Guru dan Staf di gerbang utama SD Inpres Lelingluan
+                </p>
+              </div>
 
-            <h1 class="font-display font-semibold text-ink tracking-tight leading-[1.12]"
-              style="font-size: clamp(2.125rem, 4.2vw, 3.375rem);">
-              Membentuk Karakter, Menginspirasi Masa Depan.
-            </h1>
-
-            <p class="text-base sm:text-lg text-ink-muted leading-relaxed max-w-[54ch]">
-              Gerbang informasi pendidikan terintegrasi SD Inpres Lelingluan yang menghubungkan pendidik, peserta didik,
-              orang tua, dan masyarakat Desa Lelingluan dalam satu portal layanan terpadu.
-            </p>
-
-            <div class="flex flex-wrap items-center gap-3 pt-1">
-              <a href="#portal"
-                class="inline-flex items-center gap-2 min-h-[44px] px-5 py-2.5 rounded-md bg-primary text-white text-sm font-bold hover:bg-[#001F70] transition-colors">
-                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">apps</span>
-                <span>Akses Portal Layanan</span>
-              </a>
-              <a href="praktik-baik"
-                class="inline-flex items-center gap-2 min-h-[44px] px-5 py-2.5 rounded-md bg-paper text-ink border border-rule text-sm font-bold hover:border-ochre hover:text-ochre-ink transition-colors">
-                <span class="material-symbols-outlined text-[18px] text-ochre" aria-hidden="true">verified</span>
-                <span>Galeri Praktik Baik</span>
-              </a>
+              <div class="flex items-center justify-between sm:justify-end gap-3 shrink-0">
+                <div id="hero-dots" class="flex items-center gap-0.5" role="group"
+                  aria-label="Pilih foto hero banner"></div>
+                <div class="flex items-center gap-1.5 border-l border-white/20 pl-3">
+                  <button id="hero-prev" type="button"
+                    class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl bg-white/12 text-white border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] hover:bg-white/25 hover:border-white/45 transition-all active:scale-95"
+                    aria-label="Foto hero sebelumnya">
+                    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">chevron_left</span>
+                  </button>
+                  <button id="hero-toggle" type="button" aria-pressed="false"
+                    class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl bg-white/12 text-white border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] hover:bg-white/25 hover:border-white/45 transition-all active:scale-95"
+                    aria-label="Jeda putar otomatis galeri hero">
+                    <span class="material-symbols-outlined text-[19px]" aria-hidden="true">pause</span>
+                  </button>
+                  <button id="hero-next" type="button"
+                    class="min-w-[44px] min-h-[44px] inline-flex items-center justify-center rounded-xl bg-white/12 text-white border border-white/25 shadow-[inset_0_1px_0_rgba(255,255,255,0.25)] hover:bg-white/25 hover:border-white/45 transition-all active:scale-95"
+                    aria-label="Foto hero berikutnya">
+                    <span class="material-symbols-outlined text-[20px]" aria-hidden="true">chevron_right</span>
+                  </button>
+                </div>
+              </div>
             </div>
           </div>
+        </div>
+      </div>
 
-          <!-- Right Visual Frame Column -->
-          <div class="lg:col-span-6">
-            <figure class="tenun-rule bg-paper border border-rule rounded-b-lg overflow-hidden">
-              <div class="aspect-[16/10] bg-paper-muted overflow-hidden">
-                <img
-                  src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEh7fRJe9SVBEej0swcVC4DM7hCsCrH-RTrh8f7bjetyGiuwXQ3DV6bvM2f-gEsF67S5Tlh7-VM-zLbuc_nR5X-VRsdqgILF_qUBhC8EG6getFTTbI4xJkPJRxFPf2UbibB2KyYwVt1_nnvNITK3Q3oNfyxU4nxTc7aGiASXRbiUWf31i5nKThNzZTZGQ5P5/s1280/img1.jpeg"
-                  alt="Gedung utama dan halaman SD Inpres Lelingluan di Kecamatan Tanimbar Utara"
-                  width="1280" height="720" fetchpriority="high" decoding="sync"
-                  class="w-full h-full object-cover">
+      <!-- Frosted Crystal Glass Hero Editorial & CTA Card Beneath Banner -->
+      <div class="hero-glass-backdrop py-6 sm:py-8 lg:py-9 px-4 sm:px-6">
+        <div class="max-w-7xl mx-auto">
+          <div class="hero-glass-panel bg-white/65 backdrop-blur-xl border border-white/90 rounded-2xl sm:rounded-3xl p-5 sm:p-7 lg:p-9">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-10 items-center">
+              <div class="lg:col-span-7 space-y-3">
+                <p class="hero-animate hero-delay-1 text-xs sm:text-sm font-bold text-primary tracking-wide">
+                  Kec. Tanimbar Utara &middot; Kab. Kepulauan Tanimbar, Maluku
+                </p>
+                <h1 class="hero-animate hero-delay-2 font-extrabold text-slate-900 tracking-[-0.03em] leading-[1.08]"
+                  style="font-size: clamp(2rem, 4.2vw, 3.375rem);">
+                  Membentuk Karakter,
+                  <span class="font-editorial italic font-normal text-primary block sm:inline">
+                    Menginspirasi Masa Depan.
+                  </span>
+                </h1>
+                <p class="hero-animate hero-delay-3 text-sm sm:text-base text-slate-700 leading-relaxed max-w-[58ch]">
+                  Portal digital resmi SD Inpres Lelingluan yang menghubungkan layanan SPMB, ruang belajar siswa, administrasi guru, dan warta sekolah dalam satu pengalaman yang cepat dan transparan.
+                </p>
               </div>
-              <figcaption
-                class="px-4 py-3 bg-paper border-t border-rule flex flex-wrap items-center justify-between gap-2 text-xs text-ink-muted">
-                <span class="font-semibold text-ink">Lingkungan Belajar SD Inpres Lelingluan</span>
-                <span>Desa Lelingluan, Tanimbar Utara</span>
-              </figcaption>
-            </figure>
+
+              <div class="lg:col-span-5 hero-animate hero-delay-4 flex flex-col lg:items-end gap-4">
+                <div class="flex flex-col sm:flex-row lg:justify-end gap-3 w-full">
+                  <a href="#portal"
+                    class="stay-shimmer inline-flex items-center justify-center gap-2 min-h-[48px] px-6 py-3 rounded-xl bg-primary text-white text-sm sm:text-base font-extrabold shadow-[0_12px_28px_-8px_rgba(0,40,142,0.36),inset_0_1px_0_rgba(255,255,255,0.28)] hover:bg-primary-mid hover:-translate-y-0.5 active:scale-[0.98] transition-all">
+                    <span class="material-symbols-outlined text-[19px]" aria-hidden="true">apps</span>
+                    <span>Akses Portal Layanan</span>
+                  </a>
+                  <a href="praktik-baik"
+                    class="inline-flex items-center justify-center gap-2 min-h-[48px] px-5 py-3 rounded-xl bg-white/65 text-slate-900 border border-white/90 text-sm sm:text-base font-bold shadow-[0_8px_20px_-8px_rgba(15,23,42,0.12),inset_0_1px_0_rgba(255,255,255,0.95)] hover:border-amber-400 hover:bg-white/90 hover:-translate-y-0.5 active:scale-[0.98] transition-all">
+                    <span class="idle-breath material-symbols-outlined text-[19px] text-accent material-symbols-fill" aria-hidden="true">verified</span>
+                    <span>Galeri Praktik Baik</span>
+                  </a>
+                </div>
+                <p class="text-xs font-semibold text-slate-600 flex flex-wrap lg:justify-end items-center gap-x-3 gap-y-1">
+                  <span class="tabular-nums">NPSN <strong class="text-slate-900">60101905</strong></span>
+                  <span aria-hidden="true">&middot;</span>
+                  <span>Akreditasi <strong class="text-[#047857]">Peringkat B</strong></span>
+                  <span aria-hidden="true">&middot;</span>
+                  <span>Kurikulum <strong class="text-primary">Merdeka</strong></span>
+                </p>
+              </div>
+            </div>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============================================================== -->
-    <!-- 3. PORTAL LAYANAN TERPADU (FLAGSHIP + 2 STRUCTURED DIRECTORIES)-->
+    <!-- 3. INTERACTIVE PORTAL LAYANAN (FILTER + FLAGSHIP + 8-CARD GRID)-->
     <!-- ============================================================== -->
-    <section id="portal" class="py-12 sm:py-16 bg-ground border-b border-rule">
+    <section id="portal" class="py-12 sm:py-16 lg:py-20 bg-canvas">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="flex flex-col md:flex-row md:items-end justify-between gap-4 mb-8">
-          <div class="space-y-2 max-w-[60ch]">
-            <p class="text-xs font-bold uppercase tracking-[0.14em] text-primary">Direktori Layanan Resmi</p>
-            <h2 class="font-display text-2xl sm:text-3xl font-semibold text-ink leading-tight">
-              Portal Layanan Terpadu Sekolah
+        <div class="reveal-item flex flex-col lg:flex-row lg:items-end justify-between gap-5 mb-8">
+          <div class="space-y-2 max-w-[58ch]">
+            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-primary">Layanan Digital Sekolah</p>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
+              Satu Akses untuk Semua Kebutuhan Sekolah
             </h2>
-            <p class="text-sm sm:text-base text-ink-muted leading-relaxed">
-              Akses cepat sistem penerimaan siswa baru, administrasi pendidik, pembelajaran siswa, dan arsip sekolah.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+              Pilih peran Anda untuk menyaring portal pendaftaran, pembelajaran siswa, administrasi pendidik, dan arsip publik.
             </p>
           </div>
-          <a href="https://blog.sdinpreslelingluan.com"
-            class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-primary hover:underline shrink-0">
-            <span>Buka Website Utama Sekolah</span>
-            <span class="material-symbols-outlined text-[17px]" aria-hidden="true">arrow_forward</span>
-          </a>
+
+          <!-- Interactive Role Filter Tabs -->
+          <div class="flex flex-wrap items-center gap-2 shrink-0" role="group" aria-label="Saring layanan berdasarkan peran">
+            <button type="button" data-portal-filter="all" aria-pressed="true"
+              class="min-h-[44px] px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-[#00288E] text-white shadow-xs transition-all">
+              Semua Layanan
+            </button>
+            <button type="button" data-portal-filter="keluarga" aria-pressed="false"
+              class="min-h-[44px] px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[#00288E]/40 hover:text-[#00288E] transition-all">
+              Orang Tua &amp; Siswa
+            </button>
+            <button type="button" data-portal-filter="pendidik" aria-pressed="false"
+              class="min-h-[44px] px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[#00288E]/40 hover:text-[#00288E] transition-all">
+              Pendidik &amp; Staf
+            </button>
+          </div>
         </div>
 
-        <!-- Flagship Band: SPMB Online 2026/2027 -->
-        <div class="tenun-rule bg-paper border border-rule rounded-b-lg p-5 sm:p-6 mb-6">
-          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-5">
+        <!-- Flagship Banner: SPMB Online 2026/2027 (Elevated Focal Point per R-01/R-12) -->
+        <div data-portal-group="keluarga"
+          class="reveal-item stay-shimmer rounded-2xl bg-gradient-to-br from-[#00288E] via-[#0B35A0] to-[#1D4ED8] text-white p-6 sm:p-8 shadow-[0_16px_38px_-12px_rgba(0,40,142,0.34)] mb-6">
+          <div class="flex flex-col lg:flex-row lg:items-center justify-between gap-6">
             <div class="flex items-start gap-4">
-              <div
-                class="w-11 h-11 rounded-md bg-ochre-soft border border-[#D97706] text-ochre-ink flex items-center justify-center shrink-0">
-                <span class="material-symbols-outlined text-[24px]" aria-hidden="true">school</span>
+              <div class="idle-float w-12 h-12 rounded-xl bg-white/15 border border-white/25 flex items-center justify-center shrink-0">
+                <span class="material-symbols-outlined text-[26px] text-amber-300" aria-hidden="true">school</span>
               </div>
-              <div class="space-y-1">
+              <div class="space-y-1.5">
                 <div class="flex flex-wrap items-center gap-2">
-                  <span
-                    class="px-2 py-0.5 rounded-xs bg-ochre-soft text-ochre-ink text-[11px] font-bold uppercase tracking-wider">
-                    Layanan Prioritas
+                  <span class="px-2.5 py-0.5 rounded-md bg-amber-400 text-slate-950 text-[11px] font-extrabold uppercase tracking-wider">
+                    Prioritas 2026/2027
                   </span>
-                  <span class="text-xs font-semibold text-ink-muted tabular-nums">Tahun Ajaran 2026/2027</span>
+                  <span class="text-xs font-semibold text-blue-100">Penerimaan Peserta Didik Baru</span>
                 </div>
-                <h3 class="font-display text-xl sm:text-2xl font-semibold text-ink">
-                  SPMB Online 2026/2027 (Penerimaan Siswa Baru)
+                <h3 class="text-xl sm:text-2xl font-extrabold tracking-tight text-white">
+                  SPMB Online SD Inpres Lelingluan 2026/2027
                 </h3>
-                <p class="text-sm text-ink-muted max-w-[65ch]">
-                  Portal pendaftaran daring calon peserta didik baru beserta informasi persyaratan dan jadwal verifikasi berkas di sekolah.
+                <p class="text-sm sm:text-base text-blue-100 leading-relaxed max-w-[62ch]">
+                  Pendaftaran calon siswa baru secara daring beserta informasi kelengkapan berkas dan jadwal verifikasi di sekretariat sekolah.
                 </p>
               </div>
             </div>
             <div class="shrink-0">
               <a href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center justify-center gap-2 min-h-[44px] w-full sm:w-auto px-5 py-2.5 rounded-md bg-primary text-white text-sm font-bold hover:bg-[#001F70] transition-colors">
+                class="inline-flex items-center justify-center gap-2 min-h-[48px] w-full sm:w-auto px-6 py-3 rounded-xl bg-white text-primary font-extrabold text-sm sm:text-base shadow-md hover:bg-amber-50 hover:-translate-y-0.5 active:scale-[0.98] transition-all">
                 <span>Buka Portal SPMB</span>
-                <span class="material-symbols-outlined text-[17px]" aria-hidden="true">open_in_new</span>
+                <span class="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span>
               </a>
             </div>
           </div>
         </div>
 
-        <!-- Two Grouped Service Ledgers (Single Responsive Markup) -->
-        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-          <!-- Group A: Pendidik & KBM -->
-          <div class="bg-paper border border-rule rounded-lg overflow-hidden">
-            <div class="px-5 py-3.5 bg-paper-muted border-b border-rule flex items-center justify-between">
-              <h3 class="text-xs font-bold uppercase tracking-[0.12em] text-ink">
-                Administrasi Pendidik &amp; KBM
-              </h3>
-              <span class="text-xs text-ink-muted tabular-nums">4 Layanan</span>
+        <!-- Balanced 8-Card Portal Grid (Zero Orphan Slots in All Filter States) -->
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+          <!-- 1. Portal Siswa -->
+          <a href="https://portalsiswa.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
+            data-portal-group="keluarga"
+            class="spotlight-card reveal-item group bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 active:scale-[0.985] transition-all duration-300 flex flex-col justify-between gap-4">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-11 h-11 rounded-xl bg-[#EFF6FF] text-primary flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[22px]" aria-hidden="true">menu_book</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" aria-hidden="true">open_in_new</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 group-hover:text-primary transition-colors">Portal Siswa</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Materi belajar, jadwal kelas, dan informasi evaluasi peserta didik.
+              </p>
             </div>
-            <ul class="divide-y divide-[#EFECE4]">
-              <li>
-                <a href="https://portalguru.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
-                  class="flex items-center justify-between gap-4 px-5 py-3.5 min-h-[64px] hover:bg-ground transition-colors group">
-                  <div class="flex items-center gap-3.5 min-w-0">
-                    <span class="material-symbols-outlined text-[22px] text-primary shrink-0" aria-hidden="true">co_present</span>
-                    <div class="min-w-0">
-                      <span class="block text-sm sm:text-base font-bold text-ink group-hover:text-primary transition-colors">
-                        Portal Guru
-                      </span>
-                      <span class="block text-xs text-ink-muted truncate">
-                        Pusat layanan administrasi, perangkat ajar, dan data pendidik
-                      </span>
-                    </div>
-                  </div>
-                  <span class="material-symbols-outlined text-[18px] text-ink-muted group-hover:text-primary shrink-0" aria-hidden="true">open_in_new</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://siakad.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
-                  class="flex items-center justify-between gap-4 px-5 py-3.5 min-h-[64px] hover:bg-ground transition-colors group">
-                  <div class="flex items-center gap-3.5 min-w-0">
-                    <span class="material-symbols-outlined text-[22px] text-primary shrink-0" aria-hidden="true">fact_check</span>
-                    <div class="min-w-0">
-                      <span class="block text-sm sm:text-base font-bold text-ink group-hover:text-primary transition-colors">
-                        Presensi Guru
-                      </span>
-                      <span class="block text-xs text-ink-muted truncate">
-                        Sistem rekapitulasi kehadiran harian dan kinerja tenaga pendidik
-                      </span>
-                    </div>
-                  </div>
-                  <span class="material-symbols-outlined text-[18px] text-ink-muted group-hover:text-primary shrink-0" aria-hidden="true">open_in_new</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://jurnal.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
-                  class="flex items-center justify-between gap-4 px-5 py-3.5 min-h-[64px] hover:bg-ground transition-colors group">
-                  <div class="flex items-center gap-3.5 min-w-0">
-                    <span class="material-symbols-outlined text-[22px] text-primary shrink-0" aria-hidden="true">edit_note</span>
-                    <div class="min-w-0">
-                      <span class="block text-sm sm:text-base font-bold text-ink group-hover:text-primary transition-colors">
-                        Jurnal Mengajar
-                      </span>
-                      <span class="block text-xs text-ink-muted truncate">
-                        Catatan kegiatan belajar mengajar harian per kelas
-                      </span>
-                    </div>
-                  </div>
-                  <span class="material-symbols-outlined text-[18px] text-ink-muted group-hover:text-primary shrink-0" aria-hidden="true">open_in_new</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://postartikel.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
-                  class="flex items-center justify-between gap-4 px-5 py-3.5 min-h-[64px] hover:bg-ground transition-colors group">
-                  <div class="flex items-center gap-3.5 min-w-0">
-                    <span class="material-symbols-outlined text-[22px] text-primary shrink-0" aria-hidden="true">post_add</span>
-                    <div class="min-w-0">
-                      <span class="block text-sm sm:text-base font-bold text-ink group-hover:text-primary transition-colors">
-                        Posting Artikel
-                      </span>
-                      <span class="block text-xs text-ink-muted truncate">
-                        Ruang unggah praktik baik guru dan laporan kegiatan sekolah
-                      </span>
-                    </div>
-                  </div>
-                  <span class="material-symbols-outlined text-[18px] text-ink-muted group-hover:text-primary shrink-0" aria-hidden="true">open_in_new</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+            <span class="text-xs font-bold text-primary">Untuk Siswa &amp; Orang Tua</span>
+          </a>
 
-          <!-- Group B: Siswa, Praktik Baik & Arsip -->
-          <div class="bg-paper border border-rule rounded-lg overflow-hidden">
-            <div class="px-5 py-3.5 bg-paper-muted border-b border-rule flex items-center justify-between">
-              <h3 class="text-xs font-bold uppercase tracking-[0.12em] text-ink">
-                Peserta Didik, Publikasi &amp; Arsip
+          <!-- 2. Galeri Praktik Baik Guru (Deliberate Accent Highlight) -->
+          <a href="praktik-baik" data-portal-group="keluarga"
+            class="spotlight-card reveal-item group bg-white border-2 border-amber-300 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-amber-500 hover:-translate-y-0.5 active:scale-[0.985] transition-all duration-300 flex flex-col justify-between gap-4">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="idle-float-slow w-11 h-11 rounded-xl bg-accent-soft text-accent flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[22px] material-symbols-fill" aria-hidden="true">verified</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] text-accent-ink group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 group-hover:text-accent-ink transition-colors">
+                Galeri Praktik Baik
               </h3>
-              <span class="text-xs text-ink-muted tabular-nums">4 Layanan</span>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Kumpulan inovasi pembelajaran, video ajar, dan refleksi pendidik sekolah.
+              </p>
             </div>
-            <ul class="divide-y divide-[#EFECE4]">
-              <li>
-                <a href="https://portalsiswa.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
-                  class="flex items-center justify-between gap-4 px-5 py-3.5 min-h-[64px] hover:bg-ground transition-colors group">
-                  <div class="flex items-center gap-3.5 min-w-0">
-                    <span class="material-symbols-outlined text-[22px] text-primary shrink-0" aria-hidden="true">menu_book</span>
-                    <div class="min-w-0">
-                      <span class="block text-sm sm:text-base font-bold text-ink group-hover:text-primary transition-colors">
-                        Portal Siswa
-                      </span>
-                      <span class="block text-xs text-ink-muted truncate">
-                        Materi belajar, pengumuman kelas, dan informasi evaluasi siswa
-                      </span>
-                    </div>
-                  </div>
-                  <span class="material-symbols-outlined text-[18px] text-ink-muted group-hover:text-primary shrink-0" aria-hidden="true">open_in_new</span>
-                </a>
-              </li>
-              <li>
-                <a href="praktik-baik"
-                  class="flex items-center justify-between gap-4 px-5 py-3.5 min-h-[64px] bg-[#FFFBEB] hover:bg-ochre-soft/60 transition-colors group">
-                  <div class="flex items-center gap-3.5 min-w-0">
-                    <span class="material-symbols-outlined text-[22px] text-ochre shrink-0 material-symbols-fill" aria-hidden="true">verified</span>
-                    <div class="min-w-0">
-                      <span class="block text-sm sm:text-base font-bold text-ochre-ink group-hover:underline">
-                        Galeri Praktik Baik Guru
-                      </span>
-                      <span class="block text-xs text-ink-muted truncate">
-                        Kumpulan inovasi pembelajaran, asesmen, dan refleksi pendidik
-                      </span>
-                    </div>
-                  </div>
-                  <span class="material-symbols-outlined text-[18px] text-ochre-ink shrink-0" aria-hidden="true">arrow_forward</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://archive-sdinleling.blogspot.com" target="_blank" rel="noopener noreferrer"
-                  class="flex items-center justify-between gap-4 px-5 py-3.5 min-h-[64px] hover:bg-ground transition-colors group">
-                  <div class="flex items-center gap-3.5 min-w-0">
-                    <span class="material-symbols-outlined text-[22px] text-primary shrink-0" aria-hidden="true">folder_open</span>
-                    <div class="min-w-0">
-                      <span class="block text-sm sm:text-base font-bold text-ink group-hover:text-primary transition-colors">
-                        Arsip Digital
-                      </span>
-                      <span class="block text-xs text-ink-muted truncate">
-                        Dokumentasi dokumen resmi, SK, dan rekaman kegiatan terdahulu
-                      </span>
-                    </div>
-                  </div>
-                  <span class="material-symbols-outlined text-[18px] text-ink-muted group-hover:text-primary shrink-0" aria-hidden="true">open_in_new</span>
-                </a>
-              </li>
-              <li>
-                <a href="https://blog.sdinpreslelingluan.com"
-                  class="flex items-center justify-between gap-4 px-5 py-3.5 min-h-[64px] hover:bg-ground transition-colors group">
-                  <div class="flex items-center gap-3.5 min-w-0">
-                    <span class="material-symbols-outlined text-[22px] text-primary shrink-0" aria-hidden="true">language</span>
-                    <div class="min-w-0">
-                      <span class="block text-sm sm:text-base font-bold text-ink group-hover:text-primary transition-colors">
-                        Website Utama Sekolah
-                      </span>
-                      <span class="block text-xs text-ink-muted truncate">
-                        Warta berita sekolah, agenda resmi, dan halaman informasi publik
-                      </span>
-                    </div>
-                  </div>
-                  <span class="material-symbols-outlined text-[18px] text-ink-muted group-hover:text-primary shrink-0" aria-hidden="true">arrow_forward</span>
-                </a>
-              </li>
-            </ul>
-          </div>
+            <span class="text-xs font-bold text-accent-ink">Publikasi Unggulan</span>
+          </a>
+
+          <!-- 3. Portal Guru -->
+          <a href="https://portalguru.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
+            data-portal-group="pendidik"
+            class="spotlight-card reveal-item group bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 active:scale-[0.985] transition-all duration-300 flex flex-col justify-between gap-4">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-11 h-11 rounded-xl bg-[#EFF6FF] text-primary flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[22px]" aria-hidden="true">co_present</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" aria-hidden="true">open_in_new</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 group-hover:text-primary transition-colors">Portal Guru</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Pusat administrasi pendidik, modul ajar, dan sinkronisasi data kelas.
+              </p>
+            </div>
+            <span class="text-xs font-bold text-slate-500">Khusus Pendidik</span>
+          </a>
+
+          <!-- 4. Presensi Guru -->
+          <a href="https://siakad.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
+            data-portal-group="pendidik"
+            class="spotlight-card reveal-item group bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 active:scale-[0.985] transition-all duration-300 flex flex-col justify-between gap-4">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-11 h-11 rounded-xl bg-[#EFF6FF] text-primary flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[22px]" aria-hidden="true">fact_check</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" aria-hidden="true">open_in_new</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 group-hover:text-primary transition-colors">Presensi Guru</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Sistem pencatatan kehadiran harian dan rekap kinerja pendidik.
+              </p>
+            </div>
+            <span class="text-xs font-bold text-slate-500">Khusus Pendidik</span>
+          </a>
+
+          <!-- 5. Jurnal Mengajar -->
+          <a href="https://jurnal.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
+            data-portal-group="pendidik"
+            class="spotlight-card reveal-item group bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 active:scale-[0.985] transition-all duration-300 flex flex-col justify-between gap-4">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-11 h-11 rounded-xl bg-[#EFF6FF] text-primary flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[22px]" aria-hidden="true">edit_note</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" aria-hidden="true">open_in_new</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 group-hover:text-primary transition-colors">Jurnal Mengajar</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Dokumentasi pelaksanaan kegiatan belajar mengajar harian per kelas.
+              </p>
+            </div>
+            <span class="text-xs font-bold text-slate-500">Khusus Pendidik</span>
+          </a>
+
+          <!-- 6. Posting Artikel -->
+          <a href="https://postartikel.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer"
+            data-portal-group="pendidik"
+            class="spotlight-card reveal-item group bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 active:scale-[0.985] transition-all duration-300 flex flex-col justify-between gap-4">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-11 h-11 rounded-xl bg-[#EFF6FF] text-primary flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[22px]" aria-hidden="true">post_add</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" aria-hidden="true">open_in_new</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 group-hover:text-primary transition-colors">Posting Artikel</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Ruang publikasi praktik baik guru serta berita kegiatan sekolah.
+              </p>
+            </div>
+            <span class="text-xs font-bold text-slate-500">Khusus Pendidik</span>
+          </a>
+
+          <!-- 7. Arsip Digital -->
+          <a href="https://archive-sdinleling.blogspot.com" target="_blank" rel="noopener noreferrer"
+            data-portal-group="keluarga"
+            class="spotlight-card reveal-item group bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 active:scale-[0.985] transition-all duration-300 flex flex-col justify-between gap-4">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-11 h-11 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[22px]" aria-hidden="true">folder_open</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary group-hover:translate-x-0.5 transition-all" aria-hidden="true">open_in_new</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 group-hover:text-primary transition-colors">Arsip Digital</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Penyimpanan dokumen resmi, SK sekolah, dan rekam jejak kegiatan.
+              </p>
+            </div>
+            <span class="text-xs font-bold text-slate-500">Arsip Publik</span>
+          </a>
+
+          <!-- 8. Website Utama -->
+          <a href="https://blog.sdinpreslelingluan.com" data-portal-group="keluarga"
+            class="spotlight-card reveal-item group bg-white border border-slate-200 rounded-2xl p-5 shadow-xs hover:shadow-md hover:border-primary/40 hover:-translate-y-0.5 active:scale-[0.985] transition-all duration-300 flex flex-col justify-between gap-4">
+            <div>
+              <div class="flex items-center justify-between mb-4">
+                <div class="w-11 h-11 rounded-xl bg-slate-100 text-slate-700 flex items-center justify-center">
+                  <span class="material-symbols-outlined text-[22px]" aria-hidden="true">language</span>
+                </div>
+                <span class="material-symbols-outlined text-[18px] text-slate-400 group-hover:text-primary group-hover:translate-x-1 transition-all" aria-hidden="true">arrow_forward</span>
+              </div>
+              <h3 class="text-base font-bold text-slate-900 group-hover:text-primary transition-colors">Website Utama</h3>
+              <p class="text-xs sm:text-sm text-slate-600 mt-1 leading-relaxed">
+                Blog resmi sekolah berisi pengumuman, galeri foto, dan agenda publik.
+              </p>
+            </div>
+            <span class="text-xs font-bold text-primary">Warta Sekolah</span>
+          </a>
         </div>
       </div>
     </section>
 
     <!-- ============================================================== -->
-    <!-- 4. SAMBUTAN KEPALA SEKOLAH (EDITORIAL PULL-QUOTE BAND)         -->
+    <!-- 4. SAMBUTAN KEPALA SEKOLAH (MODERN EDITORIAL SPLIT)            -->
     <!-- ============================================================== -->
-    <section id="sambutan" class="py-12 sm:py-16 bg-paper border-b border-rule">
+    <section id="sambutan" class="py-12 sm:py-16 lg:py-20 bg-white border-y border-slate-200">
       <div class="max-w-6xl mx-auto px-4 sm:px-6">
-        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-start">
-          <!-- Principal Portrait & Official Nameplate -->
-          <div class="md:col-span-4">
-            <figure class="tenun-rule bg-ground border border-rule rounded-b-lg p-3">
-              <div class="aspect-[4/5] bg-paper-muted overflow-hidden rounded-xs">
+        <div class="grid grid-cols-1 md:grid-cols-12 gap-8 lg:gap-12 items-center">
+          <div class="md:col-span-5 reveal-item">
+            <figure class="bg-canvas border border-slate-200 rounded-2xl p-3 shadow-xs">
+              <div class="aspect-[4/5] bg-slate-100 rounded-xl overflow-hidden">
                 <img
                   src="https://blogger.googleusercontent.com/img/b/R29vZ2xl/AVvXsEgW7IiFIUu8cuaou0hWMfGSJCmQ7SdVPLQufa9nxHzm9z8bHS7KLIX-dLr2tzjxvET-eNKUI1J3c5GRkjbIevD2amgKAh_G3ps3u-vC4vepVkNLTe_YYpAvdh7vBa2u7wZhkn6PinxZN8LQ5z4uxxm4LiVxlYn8yyh_0Ft6pjUtke9aUhyphenhyphenyz0XNZxoXWAvW/s251-rw/IMG-20251212-WA0017.jpg"
                   alt="Soferet Sefatja Domakubun, S.Pd, Kepala SD Inpres Lelingluan"
                   width="251" height="314" loading="lazy" decoding="async"
                   class="w-full h-full object-cover object-top">
               </div>
-              <figcaption class="pt-3 px-1">
-                <p class="font-display text-base font-bold text-ink leading-snug">
-                  SOFERET SEFATJA DOMAKUBUN, S.Pd
-                </p>
-                <p class="text-xs font-semibold text-primary mt-0.5">
-                  Kepala SD Inpres Lelingluan
-                </p>
-                <p class="text-xs text-ink-muted mt-0.5 tabular-nums">
-                  NIP. 19680606 199111 1 001
-                </p>
+              <figcaption class="px-2 pt-3 pb-1">
+                <p class="text-base font-extrabold text-slate-900 tracking-tight">SOFERET SEFATJA DOMAKUBUN, S.Pd</p>
+                <p class="text-xs font-bold text-primary mt-0.5">Kepala SD Inpres Lelingluan</p>
+                <p class="text-xs text-slate-500 mt-0.5 tabular-nums">NIP. 19680606 199111 1 001</p>
               </figcaption>
             </figure>
           </div>
 
-          <!-- Editorial Message -->
-          <div class="md:col-span-8 space-y-5">
-            <p class="text-xs font-bold uppercase tracking-[0.14em] text-primary">
-              Sambutan Kepala Sekolah
-            </p>
-            <h2 class="font-display text-2xl sm:text-3xl font-semibold text-ink leading-tight">
-              Pelayanan Pendidikan Transparan di Bumi Duan Lolat
+          <div class="md:col-span-7 space-y-5 reveal-item">
+            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-primary">Sambutan Kepala Sekolah</p>
+            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-tight">
+              Pendidikan Terbuka &amp; Kolaboratif di Tanimbar Utara
             </h2>
 
-            <blockquote class="border-l-4 border-ochre pl-4 sm:pl-5 py-1 font-display text-lg sm:text-xl text-ink leading-snug">
+            <blockquote class="border-l-4 border-accent pl-4 sm:pl-5 py-1 font-editorial italic text-2xl sm:text-[1.75rem] text-slate-900 leading-snug">
               &ldquo;Transformasi digital sekolah kami dedikasikan untuk memperkuat kolaborasi orang tua dan guru demi
               kemajuan belajar anak-anak Tanimbar.&rdquo;
             </blockquote>
 
-            <div class="space-y-4 text-sm sm:text-base text-ink-muted leading-relaxed max-w-[65ch]">
+            <div class="space-y-3.5 text-sm sm:text-base text-slate-600 leading-relaxed max-w-[65ch]">
               <p>
-                Shalom dan salam sejahtera bagi seluruh keluarga besar SD Inpres Lelingluan. Kehadiran portal resmi ini
-                merupakan langkah nyata kami dalam membangun tata kelola sekolah yang terbuka, akuntabel, dan mudah
-                diakses oleh orang tua serta masyarakat Kecamatan Tanimbar Utara.
+                Shalom dan salam sejahtera bagi seluruh keluarga besar SD Inpres Lelingluan. Portal resmi ini hadir
+                sebagai wujud komitmen tata kelola pendidikan yang transparan, tertib, dan mudah dijangkau dari mana saja.
               </p>
               <p>
-                Melalui penerapan Kurikulum Merdeka dan dokumentasi praktik baik para guru, kami berkomitmen menumbuhkan
-                kemampuan literasi dan numerasi peserta didik sekaligus merawat nilai-nilai luhur kearifan lokal Maluku.
+                Dengan penerapan Kurikulum Merdeka dan dokumentasi praktik baik para pendidik, kami terus membimbing
+                peserta didik agar unggul dalam literasi, numerasi, sekaligus berakar kuat pada nilai budaya Maluku.
               </p>
             </div>
           </div>
@@ -517,276 +592,359 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- 5. PROFIL SEKOLAH & DAPODIK (ARCHIVAL DEFINITION LEDGER)       -->
+    <!-- 5. PROFIL SEKOLAH & DAPODIK (HIGH-CONTRAST SUMMARY + LEDGER)   -->
     <!-- ============================================================== -->
-    <section id="profil" class="py-12 sm:py-16 bg-ground border-b border-rule">
+    <section id="profil" class="py-12 sm:py-16 lg:py-20 bg-canvas border-b border-slate-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div class="lg:col-span-4 space-y-3">
-            <p class="text-xs font-bold uppercase tracking-[0.14em] text-primary">Identitas Satuan Pendidikan</p>
-            <h2 class="font-display text-2xl sm:text-3xl font-semibold text-ink leading-tight">
-              Profil Resmi &amp; Data Pokok Pendidikan
-            </h2>
-            <p class="text-sm sm:text-base text-ink-muted leading-relaxed">
-              Ringkasan legalitas operasional, akreditasi, dan kedudukan administratif SD Inpres Lelingluan berdasarkan data Dapodik Kemendikdasmen.
-            </p>
-            <div class="pt-2 flex flex-wrap gap-3">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-6 lg:gap-8 items-stretch">
+          <!-- Left Official Verification Card -->
+          <div class="lg:col-span-5 reveal-item bg-slate-900 text-white rounded-2xl p-6 sm:p-8 flex flex-col justify-between gap-6 shadow-md">
+            <div class="space-y-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-500/15 border border-emerald-400/30 text-emerald-300 text-xs font-bold">
+                <span class="stay-beacon w-2 h-2 rounded-full bg-emerald-400 shrink-0" aria-hidden="true"></span>
+                <span>Terdata Resmi Kemendikdasmen</span>
+              </div>
+              <div>
+                <p class="text-xs font-semibold uppercase tracking-wider text-slate-400">Nomor Pokok Sekolah Nasional</p>
+                <p class="text-4xl sm:text-5xl font-extrabold tracking-tight tabular-nums text-white mt-1">60101905</p>
+              </div>
+              <p class="text-sm text-slate-300 leading-relaxed">
+                Identitas resmi SD Inpres Lelingluan sebagai satuan pendidikan dasar negeri di Kecamatan Tanimbar Utara, Kabupaten Kepulauan Tanimbar.
+              </p>
+            </div>
+
+            <div class="flex flex-wrap gap-3 pt-2">
               <a href="https://dapo.kemendikdasmen.go.id/sekolah?npsn=60103379" target="_blank" rel="noopener noreferrer"
-                class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-paper border border-rule text-sm font-bold text-primary hover:border-primary transition-colors">
+                class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl bg-white text-slate-900 text-sm font-bold hover:bg-slate-100 active:scale-[0.98] transition-all">
                 <span>Cek Data Dapodik</span>
-                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">open_in_new</span>
+                <span class="material-symbols-outlined text-[17px]" aria-hidden="true">open_in_new</span>
               </a>
               <a href="https://blog.sdinpreslelingluan.com/p/profil.html"
-                class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md text-sm font-bold text-ink hover:text-primary transition-colors">
+                class="inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2.5 rounded-xl bg-white/10 border border-white/20 text-white text-sm font-semibold hover:bg-white/20 transition-colors">
                 <span>Profil Lengkap</span>
-                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+                <span class="material-symbols-outlined text-[17px]" aria-hidden="true">arrow_forward</span>
               </a>
             </div>
           </div>
 
-          <div class="lg:col-span-8">
-            <div class="tenun-rule bg-paper border border-rule rounded-b-lg overflow-hidden">
-              <dl class="divide-y divide-rule">
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-5 py-4">
-                  <dt class="text-xs font-bold uppercase tracking-wider text-ink-muted">Nomor Pokok Sekolah Nasional</dt>
-                  <dd class="sm:col-span-2 text-sm sm:text-base font-bold text-ink tabular-nums">60101905</dd>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-5 py-4">
-                  <dt class="text-xs font-bold uppercase tracking-wider text-ink-muted">Status &amp; Akreditasi</dt>
-                  <dd class="sm:col-span-2 text-sm sm:text-base text-ink flex flex-wrap items-center gap-2">
-                    <span class="font-bold">Terakreditasi Peringkat B</span>
-                    <span class="px-2 py-0.5 rounded-xs bg-[#ECFDF5] text-emerald-ink text-xs font-bold">BAN-S/M Resmi</span>
-                  </dd>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-5 py-4">
-                  <dt class="text-xs font-bold uppercase tracking-wider text-ink-muted">Kurikulum Berjalan</dt>
-                  <dd class="sm:col-span-2 text-sm sm:text-base font-semibold text-ink">Kurikulum Merdeka (Fase A, Fase B, dan Fase C)</dd>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-5 py-4">
-                  <dt class="text-xs font-bold uppercase tracking-wider text-ink-muted">Alamat &amp; Wilayah</dt>
-                  <dd class="sm:col-span-2 text-sm sm:text-base text-ink leading-relaxed">
-                    Desa Lelingluan, Kec. Tanimbar Utara, Kab. Kepulauan Tanimbar, Prov. Maluku
-                  </dd>
-                </div>
-                <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-5 py-4">
-                  <dt class="text-xs font-bold uppercase tracking-wider text-ink-muted">Waktu Pelayanan Sekolah</dt>
-                  <dd class="sm:col-span-2 text-sm sm:text-base text-ink tabular-nums">
-                    Senin - Jumat, Pukul 08.00 - 13.00 WIT
-                  </dd>
-                </div>
-              </dl>
+          <!-- Right Clean Specification List -->
+          <div class="lg:col-span-7 reveal-item bg-white border border-slate-200 rounded-2xl overflow-hidden flex flex-col justify-center">
+            <div class="px-6 py-4 bg-slate-50 border-b border-slate-200">
+              <h2 class="text-lg sm:text-xl font-extrabold tracking-tight text-slate-900">
+                Informasi Operasional Sekolah
+              </h2>
             </div>
+            <dl class="divide-y divide-slate-100">
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-6 py-4">
+                <dt class="text-xs font-bold uppercase tracking-wider text-slate-500">Status &amp; Akreditasi</dt>
+                <dd class="sm:col-span-2 text-sm sm:text-base font-bold text-slate-900 flex flex-wrap items-center gap-2">
+                  <span>Negeri &middot; Peringkat B</span>
+                  <span class="px-2 py-0.5 rounded-md bg-emerald-50 text-[#047857] text-xs font-bold border border-emerald-200">BAN-S/M</span>
+                </dd>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-6 py-4">
+                <dt class="text-xs font-bold uppercase tracking-wider text-slate-500">Kurikulum</dt>
+                <dd class="sm:col-span-2 text-sm sm:text-base font-semibold text-slate-800">
+                  Kurikulum Merdeka (Fase A, Fase B, dan Fase C)
+                </dd>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-6 py-4">
+                <dt class="text-xs font-bold uppercase tracking-wider text-slate-500">Alamat Sekolah</dt>
+                <dd class="sm:col-span-2 text-sm sm:text-base text-slate-700 leading-relaxed">
+                  Desa Lelingluan, Kec. Tanimbar Utara, Kab. Kepulauan Tanimbar, Prov. Maluku
+                </dd>
+              </div>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-1 sm:gap-4 px-6 py-4">
+                <dt class="text-xs font-bold uppercase tracking-wider text-slate-500">Jam Layanan TU</dt>
+                <dd class="sm:col-span-2 text-sm sm:text-base font-semibold text-slate-800 tabular-nums">
+                  Senin - Jumat, 08.00 - 13.00 WIT
+                </dd>
+              </div>
+            </dl>
           </div>
         </div>
       </div>
     </section>
 
     <!-- ============================================================== -->
-    <!-- 6. 4 PILAR PENDIDIKAN (TYPOGRAPHIC INDEXED GRID)               -->
+    <!-- 6. 4 PILAR PENDIDIKAN (INTERACTIVE TABBED SHOWCASE)            -->
     <!-- ============================================================== -->
-    <section id="pilar" class="py-12 sm:py-16 bg-paper border-b border-rule">
+    <section id="pilar" class="py-12 sm:py-16 lg:py-20 bg-white border-b border-slate-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="max-w-[62ch] space-y-2 mb-8">
-          <p class="text-xs font-bold uppercase tracking-[0.14em] text-primary">Arah Pembinaan</p>
-          <h2 class="font-display text-2xl sm:text-3xl font-semibold text-ink leading-tight">
-            Empat Pilar Pendidikan Sekolah
+        <div class="reveal-item max-w-[60ch] space-y-2 mb-8">
+          <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-primary">Arah Pembinaan Peserta Didik</p>
+          <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
+            Empat Pilar Pendidikan SD Inpres Lelingluan
           </h2>
-          <p class="text-sm sm:text-base text-ink-muted leading-relaxed">
-            Kerangka pembinaan peserta didik yang memadukan penguasaan akademik, literasi digital, warisan budaya Tanimbar, dan karakter inklusif.
+          <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+            Ketuk atau pilih setiap pilar untuk melihat fokus pembinaan yang dijalankan sekolah setiap hari.
           </p>
         </div>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-5">
-          <article class="bg-ground border border-rule rounded-lg p-5 flex flex-col justify-between">
-            <div>
-              <span class="font-display text-2xl font-bold text-primary tabular-nums">01</span>
-              <h3 class="font-display text-lg font-semibold text-ink mt-2">
-                Kurikulum Merdeka &amp; Literasi
-              </h3>
-              <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                Pembelajaran berdiferensiasi sesuai tahap perkembangan siswa untuk menguatkan daya baca, logika matematika, dan rasa ingin tahu.
-              </p>
-            </div>
-          </article>
+        <div class="reveal-item grid grid-cols-1 lg:grid-cols-12 gap-6 items-start">
+          <!-- Interactive Pillar Selector -->
+          <div class="lg:col-span-5 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-2.5" role="tablist"
+            aria-label="Daftar Empat Pilar Pendidikan">
+            <button type="button" role="tab" aria-selected="true" id="pilar-tab-1" aria-controls="pilar-panel-1"
+              data-pilar-tab="1"
+              class="min-h-[56px] w-full px-4 py-3.5 rounded-xl border border-[#00288E] bg-[#00288E] text-white shadow-md flex items-center justify-between gap-3 text-left transition-all">
+              <div class="flex items-center gap-3 min-w-0">
+                <span data-pilar-num class="text-xs font-extrabold px-2 py-0.5 rounded-md bg-white/15 text-amber-300 tabular-nums shrink-0">01</span>
+                <span class="text-sm sm:text-base font-bold truncate">Kurikulum Merdeka &amp; Literasi</span>
+              </div>
+              <span class="material-symbols-outlined text-[18px] shrink-0" aria-hidden="true">chevron_right</span>
+            </button>
 
-          <article class="bg-ground border border-rule rounded-lg p-5 flex flex-col justify-between">
-            <div>
-              <span class="font-display text-2xl font-bold text-primary tabular-nums">02</span>
-              <h3 class="font-display text-lg font-semibold text-ink mt-2">
-                Pembelajaran &amp; Layanan Digital
-              </h3>
-              <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                Pemanfaatan media ajar digital, jurnal kelas terstruktur, dan transparansi informasi bagi guru dan wali murid.
-              </p>
-            </div>
-          </article>
+            <button type="button" role="tab" aria-selected="false" id="pilar-tab-2" aria-controls="pilar-panel-2"
+              data-pilar-tab="2"
+              class="min-h-[56px] w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-800 hover:border-primary/40 flex items-center justify-between gap-3 text-left transition-all">
+              <div class="flex items-center gap-3 min-w-0">
+                <span data-pilar-num class="text-xs font-extrabold px-2 py-0.5 rounded-md bg-slate-100 text-[#00288E] tabular-nums shrink-0">02</span>
+                <span class="text-sm sm:text-base font-bold truncate">Pembelajaran &amp; Layanan Digital</span>
+              </div>
+              <span class="material-symbols-outlined text-[18px] shrink-0" aria-hidden="true">chevron_right</span>
+            </button>
 
-          <article class="tenun-rule bg-[#FFFBEB] border border-[#D97706] rounded-b-lg p-5 flex flex-col justify-between">
-            <div>
-              <span class="font-display text-2xl font-bold text-ochre-ink tabular-nums">03</span>
-              <h3 class="font-display text-lg font-semibold text-ink mt-2">
-                Kearifan Lokal Tanimbar
-              </h3>
-              <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                Pelestarian seni tari, bahasa daerah, dan nilai persaudaraan masyarakat Tanimbar sebagai akar jati diri peserta didik.
-              </p>
-            </div>
-          </article>
+            <button type="button" role="tab" aria-selected="false" id="pilar-tab-3" aria-controls="pilar-panel-3"
+              data-pilar-tab="3"
+              class="min-h-[56px] w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-800 hover:border-primary/40 flex items-center justify-between gap-3 text-left transition-all">
+              <div class="flex items-center gap-3 min-w-0">
+                <span data-pilar-num class="text-xs font-extrabold px-2 py-0.5 rounded-md bg-slate-100 text-[#00288E] tabular-nums shrink-0">03</span>
+                <span class="text-sm sm:text-base font-bold truncate">Kearifan Lokal Tanimbar</span>
+              </div>
+              <span class="material-symbols-outlined text-[18px] shrink-0" aria-hidden="true">chevron_right</span>
+            </button>
 
-          <article class="bg-ground border border-rule rounded-lg p-5 flex flex-col justify-between">
-            <div>
-              <span class="font-display text-2xl font-bold text-primary tabular-nums">04</span>
-              <h3 class="font-display text-lg font-semibold text-ink mt-2">
-                Sekolah Aman &amp; Ramah Anak
+            <button type="button" role="tab" aria-selected="false" id="pilar-tab-4" aria-controls="pilar-panel-4"
+              data-pilar-tab="4"
+              class="min-h-[56px] w-full px-4 py-3.5 rounded-xl border border-slate-200 bg-white text-slate-800 hover:border-primary/40 flex items-center justify-between gap-3 text-left transition-all">
+              <div class="flex items-center gap-3 min-w-0">
+                <span data-pilar-num class="text-xs font-extrabold px-2 py-0.5 rounded-md bg-slate-100 text-[#00288E] tabular-nums shrink-0">04</span>
+                <span class="text-sm sm:text-base font-bold truncate">Sekolah Aman &amp; Ramah Anak</span>
+              </div>
+              <span class="material-symbols-outlined text-[18px] shrink-0" aria-hidden="true">chevron_right</span>
+            </button>
+          </div>
+
+          <!-- Active Pillar Detail Panel -->
+          <div class="lg:col-span-7 bg-canvas border border-slate-200 rounded-2xl p-6 sm:p-8 min-h-[260px] flex items-center">
+            <article id="pilar-panel-1" role="tabpanel" aria-labelledby="pilar-tab-1" data-pilar-panel="1" class="w-full space-y-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#EFF6FF] text-primary text-xs font-bold">
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">auto_stories</span>
+                <span>Pilar 01 &middot; Penguatan Akademik</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                Kurikulum Merdeka &amp; Penguatan Literasi
               </h3>
-              <p class="text-sm text-ink-muted mt-2 leading-relaxed">
-                Budaya gotong royong, pencegahan perundungan, serta lingkungan sekolah yang sehat, inklusif, dan religius.
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-[60ch]">
+                Pembelajaran berdiferensiasi di setiap fase (Fase A, B, dan C) untuk menumbuhkan kecintaan membaca,
+                kemampuan bernalar kritis, dan penguasaan numerasi dasar secara bertahap.
               </p>
-            </div>
-          </article>
+              <a href="praktik-baik" class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-primary hover:underline">
+                <span>Lihat contoh modul di Praktik Baik</span>
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+              </a>
+            </article>
+
+            <article id="pilar-panel-2" role="tabpanel" aria-labelledby="pilar-tab-2" data-pilar-panel="2" class="hidden w-full space-y-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-[#EFF6FF] text-primary text-xs font-bold">
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">devices</span>
+                <span>Pilar 02 &middot; Ekosistem Digital</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                Pembelajaran &amp; Layanan Sekolah Digital
+              </h3>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-[60ch]">
+                Pemanfaatan media ajar interaktif, jurnal mengajar daring, serta layanan administrasi terhubung agar guru lebih fokus mendampingi siswa dan orang tua cepat memperoleh informasi.
+              </p>
+              <a href="#portal" class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-primary hover:underline">
+                <span>Jelajahi portal digital sekolah</span>
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+              </a>
+            </article>
+
+            <article id="pilar-panel-3" role="tabpanel" aria-labelledby="pilar-tab-3" data-pilar-panel="3" class="hidden w-full space-y-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-accent-soft text-accent-ink border border-amber-300 text-xs font-bold">
+                <span class="material-symbols-outlined text-[16px] text-accent" aria-hidden="true">diversity_3</span>
+                <span>Pilar 03 &middot; Identitas Tanimbar</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                Merawat Kearifan Lokal &amp; Seni Budaya Tanimbar
+              </h3>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-[60ch]">
+                Pelestarian seni tari tradisi, bahasa daerah, serta nilai persaudaraan Bumi Duan Lolat dalam kegiatan
+                ekstrakurikuler dan proyek penguatan karakter siswa.
+              </p>
+              <a href="#berita" class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-accent-ink hover:underline">
+                <span>Baca liputan budaya siswa</span>
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+              </a>
+            </article>
+
+            <article id="pilar-panel-4" role="tabpanel" aria-labelledby="pilar-tab-4" data-pilar-panel="4" class="hidden w-full space-y-4">
+              <div class="inline-flex items-center gap-2 px-3 py-1 rounded-lg bg-emerald-50 text-[#047857] border border-emerald-200 text-xs font-bold">
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">health_and_safety</span>
+                <span>Pilar 04 &middot; Lingkungan Sekolah</span>
+              </div>
+              <h3 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900">
+                Sekolah Aman, Sehat &amp; Ramah Anak
+              </h3>
+              <p class="text-sm sm:text-base text-slate-600 leading-relaxed max-w-[60ch]">
+                Pencegahan perundungan, kebiasaan hidup bersih bersama Unit Kesehatan Sekolah (UKS), serta pembinaan disiplin positif yang menumbuhkan empati antarpeserta didik.
+              </p>
+              <a href="#faq" class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-primary hover:underline">
+                <span>Lihat informasi layanan sekolah</span>
+                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+              </a>
+            </article>
+          </div>
         </div>
       </div>
     </section>
 
     <!-- ============================================================== -->
-    <!-- 7. BERITA & KABAR SEKOLAH (ASYMMETRIC EDITORIAL GRID)          -->
+    <!-- 7. BERITA & KABAR SEKOLAH (ASYMMETRIC PREMIUM NEWS GRID)       -->
     <!-- ============================================================== -->
-    <section id="berita" class="py-12 sm:py-16 bg-ground border-b border-rule">
+    <section id="berita" class="py-12 sm:py-16 lg:py-20 bg-canvas border-b border-slate-200">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div class="flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
+        <div class="reveal-item flex flex-col sm:flex-row sm:items-end justify-between gap-4 mb-8">
           <div class="space-y-1.5">
-            <p class="text-xs font-bold uppercase tracking-[0.14em] text-primary">Warta Resmi</p>
-            <h2 class="font-display text-2xl sm:text-3xl font-semibold text-ink leading-tight">
-              Berita &amp; Kabar Sekolah Terkini
+            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-primary">Warta Terbaru</p>
+            <h2 class="text-2xl sm:text-3xl lg:text-4xl font-extrabold tracking-tight text-slate-900 leading-tight">
+              Berita &amp; Kabar Sekolah
             </h2>
           </div>
           <a href="https://blog.sdinpreslelingluan.com/search/label/Berita"
-            class="inline-flex items-center gap-1.5 min-h-[44px] text-sm font-bold text-primary hover:underline shrink-0">
+            class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-xl bg-white border border-slate-200 text-sm font-bold text-primary hover:border-primary/40 transition-colors shrink-0">
             <span>Arsip Semua Berita</span>
             <span class="material-symbols-outlined text-[17px]" aria-hidden="true">arrow_forward</span>
           </a>
         </div>
 
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-5" id="news-container">
-          <!-- Featured Lead Story (Card 1) -->
-          <article class="lg:col-span-6 lg:row-span-3 bg-paper border border-rule rounded-lg overflow-hidden flex flex-col justify-between group hover:border-primary transition-colors">
+          <!-- Featured Story (Card 1) -->
+          <article class="spotlight-card reveal-item lg:col-span-6 lg:row-span-3 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#00288E]/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between group">
             <div>
-              <div class="aspect-[16/10] w-full bg-paper-muted overflow-hidden border-b border-rule">
-                <img class="w-full h-full object-cover" width="640" height="400" loading="lazy" decoding="async"
+              <div class="aspect-[16/10] w-full bg-slate-100 overflow-hidden">
+                <img class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500"
+                  width="640" height="400" loading="lazy" decoding="async"
                   alt="UKS SD Inpres Lelingluan"
                   src="https://lh3.googleusercontent.com/aida-public/AB6AXuAgfeEr4EpMs6Q7BAdxhvRz_Lo4mAd2xKjeAgj-tJKxv2unXfeEddr2APY0w-diyLGCCdWjcQUSnDllKo1X93Um73RbPrsYan5my3a80APIko7iHDqxFVkoyKRxrWwjnHtKgMXGnBYR7bKT49b6sxPiTMA9DNX6Xed8oDYLS-24DdDcaOHaaAn65o501a9tzYDID2oW0ZO-TcSFKHnHWeHSdXzlBlU7YF1fxsAm_kU8">
               </div>
               <div class="p-5 sm:p-6">
                 <div class="flex flex-wrap items-center gap-2.5 mb-3">
-                  <span class="px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider bg-[#EFF6FF] text-primary">Kesehatan</span>
-                  <span class="text-xs text-ink-muted tabular-nums">7 Agu 2024</span>
+                  <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider bg-[#EFF6FF] text-[#00288E]">Kesehatan</span>
+                  <span class="text-xs font-medium text-slate-500 tabular-nums">7 Agu 2024</span>
                 </div>
-                <h3 class="font-display text-xl sm:text-2xl leading-snug text-ink font-semibold group-hover:text-primary transition-colors">
+                <h3 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug text-slate-900 group-hover:text-[#00288E] transition-colors">
                   Peran Penting UKS Mendukung Kesehatan &amp; Konsentrasi Siswa
                 </h3>
-                <p class="text-sm text-ink-muted mt-2.5 leading-relaxed max-w-[65ch]">
+                <p class="text-sm text-slate-600 mt-2.5 leading-relaxed max-w-[65ch]">
                   Unit Kesehatan Sekolah SD Inpres Lelingluan menjaga sanitasi dan penanganan cepat medis dasar.
                 </p>
               </div>
             </div>
-            <div class="px-5 sm:px-6 pb-5 pt-2 border-t border-[#EFECE4]">
-              <a class="inline-flex items-center gap-1.5 min-h-[44px] text-sm text-primary font-bold hover:underline"
+            <div class="px-5 sm:px-6 pb-5 pt-3 border-t border-slate-100">
+              <a class="inline-flex items-center gap-1.5 min-h-[44px] text-sm text-[#00288E] font-bold hover:underline"
                 href="https://blog.sdinpreslelingluan.com">
                 <span>Baca selengkapnya</span>
                 <span class="visually-hidden">: Peran Penting UKS Mendukung Kesehatan &amp; Konsentrasi Siswa</span>
-                <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+                <span class="material-symbols-outlined text-[17px] group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
               </a>
             </div>
           </article>
 
           <!-- Compact Story (Card 2) -->
-          <article class="lg:col-span-6 bg-paper border border-rule rounded-lg overflow-hidden flex flex-col sm:flex-row group hover:border-primary transition-colors">
-            <div class="sm:w-44 md:w-48 aspect-[16/10] sm:aspect-auto bg-paper-muted overflow-hidden shrink-0 border-b sm:border-b-0 sm:border-r border-rule">
-              <img class="w-full h-full object-cover" width="320" height="220" loading="lazy" decoding="async"
+          <article class="spotlight-card reveal-item lg:col-span-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#00288E]/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col sm:flex-row group">
+            <div class="sm:w-44 md:w-48 aspect-[16/10] sm:aspect-auto bg-slate-100 overflow-hidden shrink-0">
+              <img class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
+                width="320" height="220" loading="lazy" decoding="async"
                 alt="Tarian Budaya Tanimbar SD Inpres Lelingluan"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuAKI5JyCY55YnViWUih_ST-iN0SCExI5715bByTkyL45yn72ORnB2M3EIAFhALLY6hHkIQ11w6ekpvjkfcHSWpelXVGrS3wjp4EVDzK9EL8lM61kdsF91HxjwQGo5o6GZKOZ6xMaUp6icc4PF8QQ0GoCzcN-YWdBis4LlMaxfEWCThgSXBom69FKSdImVctMCWgE7Do3FA6mFnqMVjd3oa9IAG0EsKyrMp08mYJ-Yaq">
             </div>
             <div class="p-4 sm:p-5 flex flex-col justify-between flex-1 min-w-0">
               <div>
                 <div class="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span class="px-2 py-0.5 rounded-xs text-[10px] font-bold uppercase tracking-wider bg-ochre-soft text-ochre-ink">Seni &amp; Budaya</span>
-                  <span class="text-xs text-ink-muted tabular-nums">29 Jul 2024</span>
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-accent-soft text-accent-ink">Seni &amp; Budaya</span>
+                  <span class="text-xs font-medium text-slate-500 tabular-nums">29 Jul 2024</span>
                 </div>
-                <h3 class="font-display text-base sm:text-lg leading-snug text-ink font-semibold line-clamp-2 group-hover:text-primary transition-colors">
+                <h3 class="text-base sm:text-lg font-bold tracking-tight leading-snug text-slate-900 line-clamp-2 group-hover:text-[#00288E] transition-colors">
                   Menari Berhias Warisan: Pentas Budaya Tanimbar 2026
                 </h3>
-                <p class="text-xs sm:text-sm text-ink-muted mt-1.5 line-clamp-2 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 mt-1.5 line-clamp-2 leading-relaxed">
                   Partisipasi kontingen siswa dalam melestarikan tarian tradisi dan warisan leluhur Tanimbar.
                 </p>
               </div>
-              <div class="mt-2 pt-2 border-t border-[#EFECE4]">
-                <a class="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm text-primary font-bold hover:underline"
+              <div class="mt-2 pt-2 border-t border-slate-100">
+                <a class="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm text-[#00288E] font-bold hover:underline"
                   href="https://blog.sdinpreslelingluan.com">
                   <span>Baca selengkapnya</span>
                   <span class="visually-hidden">: Menari Berhias Warisan: Pentas Budaya Tanimbar 2026</span>
-                  <span class="material-symbols-outlined text-[15px]" aria-hidden="true">arrow_forward</span>
+                  <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                 </a>
               </div>
             </div>
           </article>
 
           <!-- Compact Story (Card 3) -->
-          <article class="lg:col-span-6 bg-paper border border-rule rounded-lg overflow-hidden flex flex-col sm:flex-row group hover:border-primary transition-colors">
-            <div class="sm:w-44 md:w-48 aspect-[16/10] sm:aspect-auto bg-paper-muted overflow-hidden shrink-0 border-b sm:border-b-0 sm:border-r border-rule">
-              <img class="w-full h-full object-cover" width="320" height="220" loading="lazy" decoding="async"
+          <article class="spotlight-card reveal-item lg:col-span-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#00288E]/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col sm:flex-row group">
+            <div class="sm:w-44 md:w-48 aspect-[16/10] sm:aspect-auto bg-slate-100 overflow-hidden shrink-0">
+              <img class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
+                width="320" height="220" loading="lazy" decoding="async"
                 alt="KKG Guru SD Inpres Lelingluan"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuD5ah8nSDiAUeOdvO4E8b2BlFTJunfOHuCKMqPmoVP9UZEhHzp_-G9qj78HCOFqqFsWk8M2DeoPbN6Tcl5BEtQEtK_0e_KNP0EmyG94mla4uvK8asx5zwtCPh65soCeGe8khEn0QPCTIcL6csWrKo5P6z3Xy9bOJ4vPJ3dH1C1VCoohNIpbM7keCmglOE2o3TOv45cE7b7xBkJG3rPGuireemWpQmM7M2LAeOMoZIBe">
             </div>
             <div class="p-4 sm:p-5 flex flex-col justify-between flex-1 min-w-0">
               <div>
                 <div class="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span class="px-2 py-0.5 rounded-xs text-[10px] font-bold uppercase tracking-wider bg-[#ECFDF5] text-emerald-ink">Guru &amp; KBM</span>
-                  <span class="text-xs text-ink-muted tabular-nums">20 Jul 2024</span>
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-[#ECFDF5] text-[#047857]">Guru &amp; KBM</span>
+                  <span class="text-xs font-medium text-slate-500 tabular-nums">20 Jul 2024</span>
                 </div>
-                <h3 class="font-display text-base sm:text-lg leading-snug text-ink font-semibold line-clamp-2 group-hover:text-primary transition-colors">
+                <h3 class="text-base sm:text-lg font-bold tracking-tight leading-snug text-slate-900 line-clamp-2 group-hover:text-[#00288E] transition-colors">
                   Sinergi Pendidik: Kegiatan KKG Modul Kurikulum Merdeka
                 </h3>
-                <p class="text-xs sm:text-sm text-ink-muted mt-1.5 line-clamp-2 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 mt-1.5 line-clamp-2 leading-relaxed">
                   Penyusunan modul ajar terdiferensiasi dan media digital interaktif tahun ajaran baru.
                 </p>
               </div>
-              <div class="mt-2 pt-2 border-t border-[#EFECE4]">
-                <a class="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm text-primary font-bold hover:underline"
+              <div class="mt-2 pt-2 border-t border-slate-100">
+                <a class="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm text-[#00288E] font-bold hover:underline"
                   href="https://blog.sdinpreslelingluan.com">
                   <span>Baca selengkapnya</span>
                   <span class="visually-hidden">: Sinergi Pendidik: Kegiatan KKG Modul Kurikulum Merdeka</span>
-                  <span class="material-symbols-outlined text-[15px]" aria-hidden="true">arrow_forward</span>
+                  <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                 </a>
               </div>
             </div>
           </article>
 
           <!-- Compact Story (Card 4) -->
-          <article class="lg:col-span-6 bg-paper border border-rule rounded-lg overflow-hidden flex flex-col sm:flex-row group hover:border-primary transition-colors">
-            <div class="sm:w-44 md:w-48 aspect-[16/10] sm:aspect-auto bg-paper-muted overflow-hidden shrink-0 border-b sm:border-b-0 sm:border-r border-rule">
-              <img class="w-full h-full object-cover" width="320" height="220" loading="lazy" decoding="async"
+          <article class="spotlight-card reveal-item lg:col-span-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#00288E]/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col sm:flex-row group">
+            <div class="sm:w-44 md:w-48 aspect-[16/10] sm:aspect-auto bg-slate-100 overflow-hidden shrink-0">
+              <img class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500"
+                width="320" height="220" loading="lazy" decoding="async"
                 alt="Kegiatan Pramuka Siswa SD Inpres Lelingluan"
                 src="https://lh3.googleusercontent.com/aida-public/AB6AXuBT7ZGvjXija2X_jGlO6mKnOvigKrIQpLsy8HGCUW1XoZ0sfzczdTQfpVCEutHYN7GbT9-zoyEmQBiiybuKcldJo7PrdaVtiKmVlTbL694auUj1-HXcdGaX6gJaZEEea-BmIMBGlmrG6zW8GbCjQeKf7Q3ulUmZC7JjuaPIQTcZdRDw7BZ2cxWn1r4TGxcYAfT3UaleQK6OSvUTAZpYUjrDr43k4dHOLqZM5TiH3FAN">
             </div>
             <div class="p-4 sm:p-5 flex flex-col justify-between flex-1 min-w-0">
               <div>
                 <div class="flex flex-wrap items-center gap-2 mb-1.5">
-                  <span class="px-2 py-0.5 rounded-xs text-[10px] font-bold uppercase tracking-wider bg-[#F1F5F9] text-[#334155]">Kesiswaan</span>
-                  <span class="text-xs text-ink-muted tabular-nums">15 Jul 2024</span>
+                  <span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-700">Kesiswaan</span>
+                  <span class="text-xs font-medium text-slate-500 tabular-nums">15 Jul 2024</span>
                 </div>
-                <h3 class="font-display text-base sm:text-lg leading-snug text-ink font-semibold line-clamp-2 group-hover:text-primary transition-colors">
+                <h3 class="text-base sm:text-lg font-bold tracking-tight leading-snug text-slate-900 line-clamp-2 group-hover:text-[#00288E] transition-colors">
                   Giat Pramuka Siaga: Memupuk Kemandirian Siswa
                 </h3>
-                <p class="text-xs sm:text-sm text-ink-muted mt-1.5 line-clamp-2 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 mt-1.5 line-clamp-2 leading-relaxed">
                   Latihan kepramukaan membina karakter tangguh, kekompakan, dan jiwa disiplin peserta didik.
                 </p>
               </div>
-              <div class="mt-2 pt-2 border-t border-[#EFECE4]">
-                <a class="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm text-primary font-bold hover:underline"
+              <div class="mt-2 pt-2 border-t border-slate-100">
+                <a class="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm text-[#00288E] font-bold hover:underline"
                   href="https://blog.sdinpreslelingluan.com">
                   <span>Baca selengkapnya</span>
                   <span class="visually-hidden">: Giat Pramuka Siaga: Memupuk Kemandirian Siswa</span>
-                  <span class="material-symbols-outlined text-[15px]" aria-hidden="true">arrow_forward</span>
+                  <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
                 </a>
               </div>
             </div>
@@ -796,31 +954,31 @@
     </section>
 
     <!-- ============================================================== -->
-    <!-- 8. FAQ SECTION (SPLIT LAYOUT + NATIVE <details> DISCLOSURES)   -->
+    <!-- 8. FAQ SECTION (SMOOTH NATIVE <details> DISCLOSURES)           -->
     <!-- ============================================================== -->
-    <section id="faq" class="py-12 sm:py-16 bg-paper border-b border-rule">
+    <section id="faq" class="py-12 sm:py-16 lg:py-20 bg-white">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
         <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
-          <div class="lg:col-span-4 space-y-2">
-            <p class="text-xs font-bold uppercase tracking-[0.14em] text-primary">Pusat Bantuan Orang Tua</p>
-            <h2 class="font-display text-2xl sm:text-3xl font-semibold text-ink leading-tight">
-              Pertanyaan yang Sering Diajukan
+          <div class="lg:col-span-4 space-y-2.5 reveal-item">
+            <p class="text-xs font-extrabold uppercase tracking-[0.14em] text-primary">Pusat Bantuan Orang Tua</p>
+            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-tight">
+              Pertanyaan Umum
             </h2>
-            <p class="text-sm sm:text-base text-ink-muted leading-relaxed">
-              Informasi praktis seputar pendaftaran SPMB, akses akun Portal Guru maupun Siswa, dan lokasi layanan tata usaha sekolah.
+            <p class="text-sm sm:text-base text-slate-600 leading-relaxed">
+              Panduan cepat seputar alur pendaftaran SPMB, akses Portal Guru &amp; Siswa, serta lokasi tata usaha sekolah.
             </p>
           </div>
 
-          <div class="lg:col-span-8 space-y-3">
-            <details class="bg-ground border border-rule rounded-lg overflow-hidden" open>
-              <summary class="flex items-center justify-between gap-4 px-5 py-4 min-h-[52px] font-semibold text-sm sm:text-base text-ink hover:text-primary transition-colors">
+          <div class="lg:col-span-8 space-y-3 reveal-item">
+            <details class="bg-canvas border border-slate-200 rounded-2xl overflow-hidden transition-colors open:border-primary/40" open>
+              <summary class="flex items-center justify-between gap-4 px-5 py-4 min-h-[56px] font-bold text-sm sm:text-base text-slate-900 hover:text-primary transition-colors">
                 <span>Bagaimana alur pendaftaran peserta didik baru (SPMB 2026)?</span>
-                <span class="material-symbols-outlined text-[20px] text-ink-muted faq-chevron shrink-0" aria-hidden="true">expand_more</span>
+                <span class="material-symbols-outlined text-[20px] text-slate-500 faq-chevron shrink-0" aria-hidden="true">expand_more</span>
               </summary>
-              <div class="px-5 pb-5 pt-1 text-sm text-ink-muted leading-relaxed border-t border-rule/60">
+              <div class="px-5 pb-5 pt-2 text-sm text-slate-600 leading-relaxed border-t border-slate-200/70">
                 <p>
-                  Calon wali murid dapat mengakses portal <strong class="text-ink">SPMB Online</strong> pada menu portal di atas
-                  atau datang langsung ke sekretariat sekolah pada hari Senin - Jumat (08.00 - 13.00 WIT) dengan membawa:
+                  Calon wali murid dapat mengakses portal <strong class="text-slate-900">SPMB Online</strong> di atas
+                  atau datang ke sekretariat sekolah pada hari Senin - Jumat (08.00 - 13.00 WIT) dengan membawa:
                 </p>
                 <ul class="list-disc pl-5 mt-2 space-y-1">
                   <li>Fotokopi Akta Kelahiran calon siswa.</li>
@@ -831,25 +989,24 @@
               </div>
             </details>
 
-            <details class="bg-ground border border-rule rounded-lg overflow-hidden">
-              <summary class="flex items-center justify-between gap-4 px-5 py-4 min-h-[52px] font-semibold text-sm sm:text-base text-ink hover:text-primary transition-colors">
+            <details class="bg-canvas border border-slate-200 rounded-2xl overflow-hidden transition-colors open:border-primary/40">
+              <summary class="flex items-center justify-between gap-4 px-5 py-4 min-h-[56px] font-bold text-sm sm:text-base text-slate-900 hover:text-primary transition-colors">
                 <span>Bagaimana cara mengakses Portal Guru dan Portal Siswa?</span>
-                <span class="material-symbols-outlined text-[20px] text-ink-muted faq-chevron shrink-0" aria-hidden="true">expand_more</span>
+                <span class="material-symbols-outlined text-[20px] text-slate-500 faq-chevron shrink-0" aria-hidden="true">expand_more</span>
               </summary>
-              <div class="px-5 pb-5 pt-1 text-sm text-ink-muted leading-relaxed border-t border-rule/60">
+              <div class="px-5 pb-5 pt-2 text-sm text-slate-600 leading-relaxed border-t border-slate-200/70">
                 <p>
-                  Setiap guru dan siswa aktif terdaftar menggunakan NISN atau akun Dapodik terverifikasi. Jika mengalami
-                  kendala masuk atau lupa kata sandi, silakan menghubungi Operator Sekolah melalui bagian tata usaha.
+                  Guru dan siswa aktif masuk menggunakan NISN atau akun Dapodik terverifikasi. Jika terkendala kata sandi, silakan menghubungi Operator Sekolah melalui bagian tata usaha.
                 </p>
               </div>
             </details>
 
-            <details class="bg-ground border border-rule rounded-lg overflow-hidden">
-              <summary class="flex items-center justify-between gap-4 px-5 py-4 min-h-[52px] font-semibold text-sm sm:text-base text-ink hover:text-primary transition-colors">
+            <details class="bg-canvas border border-slate-200 rounded-2xl overflow-hidden transition-colors open:border-primary/40">
+              <summary class="flex items-center justify-between gap-4 px-5 py-4 min-h-[56px] font-bold text-sm sm:text-base text-slate-900 hover:text-primary transition-colors">
                 <span>Di mana lokasi fisik SD Inpres Lelingluan?</span>
-                <span class="material-symbols-outlined text-[20px] text-ink-muted faq-chevron shrink-0" aria-hidden="true">expand_more</span>
+                <span class="material-symbols-outlined text-[20px] text-slate-500 faq-chevron shrink-0" aria-hidden="true">expand_more</span>
               </summary>
-              <div class="px-5 pb-5 pt-1 text-sm text-ink-muted leading-relaxed border-t border-rule/60">
+              <div class="px-5 pb-5 pt-2 text-sm text-slate-600 leading-relaxed border-t border-slate-200/70">
                 <p>
                   Sekolah berlokasi di Desa Lelingluan, Kecamatan Tanimbar Utara, Kabupaten Kepulauan Tanimbar, Provinsi Maluku.
                 </p>
@@ -862,69 +1019,66 @@
   </main>
 
   <!-- ============================================================== -->
-  <!-- 9. FOOTER COLOPHON & REALTIME VISITOR COUNTERS                 -->
+  <!-- 9. FOOTER & REALTIME VISITOR COUNTERS                          -->
   <!-- ============================================================== -->
-  <footer class="bg-ink text-ground pt-12 pb-10">
+  <footer class="bg-[#0B1120] text-slate-100 pt-12 pb-10">
     <div class="max-w-7xl mx-auto px-4 sm:px-6">
-      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-slate-700">
-        <!-- Brand & Live Telemetry -->
+      <div class="grid grid-cols-1 md:grid-cols-12 gap-8 pb-10 border-b border-slate-800">
         <div class="md:col-span-5 space-y-4">
           <div class="flex items-center gap-3">
             <img src="assets/logo.png" alt="Logo SD Inpres Lelingluan" width="42" height="42"
-              class="w-10 h-10 object-contain bg-white rounded-md p-1 shrink-0">
+              class="w-10 h-10 object-contain bg-white rounded-xl p-1 shrink-0">
             <div>
-              <p class="font-display text-lg font-bold text-white leading-tight">SD Inpres Lelingluan</p>
-              <p class="text-xs text-slate-300">Kec. Tanimbar Utara &middot; Kab. Kepulauan Tanimbar</p>
+              <p class="text-lg font-extrabold tracking-tight text-white leading-tight">SD Inpres Lelingluan</p>
+              <p class="text-xs text-slate-400">Kec. Tanimbar Utara &middot; Kab. Kepulauan Tanimbar</p>
             </div>
           </div>
           <p class="text-sm text-slate-300 leading-relaxed max-w-[46ch]">
-            Portal digital resmi SD Inpres Lelingluan dalam mewujudkan layanan pendidikan dasar yang transparan, berbudaya Tanimbar, dan terhubung.
+            Portal digital resmi SD Inpres Lelingluan dalam mewujudkan layanan pendidikan dasar yang modern, transparan, dan terhubung bagi masyarakat.
           </p>
 
-          <!-- Real-Time Visitor Telemetry (Preserves exact JS hooks) -->
+          <!-- Real-Time Visitor Telemetry -->
           <div class="flex flex-wrap items-center gap-2.5 pt-1">
             <span
-              class="live-online-count inline-flex items-center gap-2 px-3 py-1.5 rounded-md bg-slate-800 border border-slate-700 text-xs font-semibold text-white">
-              <span class="w-2 h-2 rounded-full bg-[#34D399] shrink-0" aria-hidden="true"></span>
+              class="live-online-count inline-flex items-center gap-2 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-white">
+              <span class="stay-beacon w-2 h-2 rounded-full bg-emerald-400 shrink-0" aria-hidden="true"></span>
               <span class="online-count-text tabular-nums">1 Online</span>
             </span>
             <span
-              class="live-total-visits inline-flex items-center gap-1.5 px-3 py-1.5 rounded-md bg-slate-800 border border-slate-700 text-xs font-semibold text-slate-200">
-              <span class="material-symbols-outlined text-[15px] text-[#93C5FD] shrink-0" aria-hidden="true">visibility</span>
+              class="live-total-visits inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-slate-900 border border-slate-800 text-xs font-semibold text-slate-200">
+              <span class="material-symbols-outlined text-[15px] text-blue-300 shrink-0" aria-hidden="true">visibility</span>
               <span class="visit-count-text tabular-nums">Memuat kunjungan...</span>
             </span>
           </div>
         </div>
 
-        <!-- Navigasi -->
         <div class="md:col-span-3 space-y-3">
-          <h3 class="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Navigasi Portal</h3>
+          <h3 class="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Navigasi</h3>
           <ul class="space-y-1.5 text-sm">
-            <li><a href="#beranda" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">Beranda</a></li>
-            <li><a href="#portal" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">Direktori Portal</a></li>
-            <li><a href="praktik-baik" class="inline-flex items-center min-h-[36px] text-amber-300 font-semibold hover:text-amber-200 hover:underline">Galeri Praktik Baik</a></li>
-            <li><a href="#berita" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">Berita Sekolah</a></li>
-            <li><a href="#profil" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">Profil &amp; Dapodik</a></li>
+            <li><a href="#beranda" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">Beranda</a></li>
+            <li><a href="#portal" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">Portal Layanan</a></li>
+            <li><a href="praktik-baik" class="inline-flex items-center min-h-[36px] text-amber-300 font-bold hover:text-amber-200 transition-colors">Galeri Praktik Baik</a></li>
+            <li><a href="#berita" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">Berita Sekolah</a></li>
+            <li><a href="#profil" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">Profil &amp; Dapodik</a></li>
           </ul>
         </div>
 
-        <!-- Tautan Eksternal Resmi -->
         <div class="md:col-span-4 space-y-3">
           <h3 class="text-xs font-bold uppercase tracking-[0.14em] text-slate-400">Layanan Terhubung</h3>
           <ul class="grid grid-cols-1 sm:grid-cols-2 gap-x-4 gap-y-1.5 text-sm">
-            <li><a href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">SPMB Online 2026</a></li>
-            <li><a href="https://portalguru.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">Portal Guru</a></li>
-            <li><a href="https://portalsiswa.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">Portal Siswa</a></li>
-            <li><a href="https://siakad.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">Presensi Guru</a></li>
-            <li><a href="https://jurnal.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">Jurnal Mengajar</a></li>
-            <li><a href="https://archive-sdinleling.blogspot.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-200 hover:text-white hover:underline">Arsip Digital</a></li>
+            <li><a href="https://spmb2026.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">SPMB Online 2026</a></li>
+            <li><a href="https://portalguru.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">Portal Guru</a></li>
+            <li><a href="https://portalsiswa.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">Portal Siswa</a></li>
+            <li><a href="https://siakad.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">Presensi Guru</a></li>
+            <li><a href="https://jurnal.sdinpreslelingluan.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">Jurnal Mengajar</a></li>
+            <li><a href="https://archive-sdinleling.blogspot.com" target="_blank" rel="noopener noreferrer" class="inline-flex items-center min-h-[36px] text-slate-300 hover:text-white transition-colors">Arsip Digital</a></li>
           </ul>
         </div>
       </div>
 
       <div class="pt-6 flex flex-col sm:flex-row items-center justify-between gap-2 text-xs text-slate-400 text-center sm:text-left">
         <p>&copy; 2026 SD Inpres Lelingluan, Kepulauan Tanimbar. Hak Cipta Dilindungi Undang-Undang.</p>
-        <p>Crafted with care by <span class="text-slate-200 font-semibold">Edward Domakubun</span></p>
+        <p>Crafted with care by <span class="text-white font-semibold">Edward Domakubun</span></p>
       </div>
     </div>
   </footer>
@@ -933,7 +1087,7 @@
   <!-- 9.5 MOBILE FLOATING ACTION BUTTON "WEBSITE UTAMA" (md:hidden)  -->
   <!-- ============================================================== -->
   <a href="https://blog.sdinpreslelingluan.com" id="mobile-floating-website-btn"
-    class="md:hidden fixed bottom-[72px] right-4 z-40 inline-flex items-center gap-1.5 min-h-[44px] px-3.5 py-2 rounded-md bg-primary text-white shadow-lg border border-white/25 text-xs font-bold hover:bg-[#001F70] transition-colors"
+    class="md:hidden fixed bottom-[76px] right-4 z-40 inline-flex items-center gap-1.5 min-h-[44px] px-4 py-2.5 rounded-xl bg-primary text-white shadow-[0_12px_28px_-6px_rgba(0,40,142,0.45)] border border-white/20 text-xs font-bold hover:bg-primary-mid active:scale-95 transition-all"
     aria-label="Kunjungi Website Utama SD Inpres Lelingluan">
     <span class="material-symbols-outlined text-[17px]" aria-hidden="true">language</span>
     <span>Website Utama</span>
@@ -941,44 +1095,45 @@
   </a>
 
   <!-- ============================================================== -->
-  <!-- 10. BOTTOM NAVIGATION BAR FOR MOBILE (md:hidden)               -->
+  <!-- 10. MOBILE BOTTOM NAVIGATION BAR (md:hidden)                   -->
   <!-- ============================================================== -->
   <nav
-    class="md:hidden fixed bottom-0 left-0 w-full z-50 grid grid-cols-5 items-center bg-paper border-t border-rule shadow-md"
+    class="md:hidden fixed bottom-0 left-0 w-full z-50 grid grid-cols-5 items-center py-1 px-1.5 bg-white/92 backdrop-blur-md border-t border-slate-200/90 shadow-[0_-8px_24px_-8px_rgba(15,23,42,0.12)]"
     aria-label="Navigasi Bawah Ponsel">
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-primary font-bold py-1.5 px-1 border-t-2 border-primary -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-[#00288E] font-bold py-1.5 px-1 rounded-xl bg-[#EFF6FF]/90 transition-colors min-w-0"
       data-tab="beranda" href="#beranda" aria-current="location">
       <span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;" aria-hidden="true">home</span>
       <span class="text-[11px] mt-0.5 truncate w-full text-center">Beranda</span>
     </a>
 
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-slate-600 py-1.5 px-1 rounded-xl hover:text-[#00288E] transition-colors min-w-0"
       data-tab="portal" href="#portal">
       <span class="material-symbols-outlined text-[20px]" aria-hidden="true">apps</span>
       <span class="text-[11px] mt-0.5 truncate w-full text-center">Portal</span>
     </a>
 
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-ochre-ink font-bold py-1.5 px-1 border-t-2 border-transparent -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-accent-ink font-bold py-1.5 px-1 rounded-xl hover:bg-amber-50/70 transition-colors min-w-0"
       href="praktik-baik">
-      <span class="material-symbols-outlined text-[20px] text-ochre material-symbols-fill" aria-hidden="true">verified</span>
-      <span class="text-[11px] font-bold mt-0.5 truncate w-full text-center text-ochre-ink">Praktik Baik</span>
+      <span class="material-symbols-outlined text-[20px] text-accent material-symbols-fill" aria-hidden="true">verified</span>
+      <span class="text-[11px] font-bold mt-0.5 truncate w-full text-center text-accent-ink">Praktik Baik</span>
     </a>
 
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-slate-600 py-1.5 px-1 rounded-xl hover:text-[#00288E] transition-colors min-w-0"
       data-tab="berita" href="#berita">
       <span class="material-symbols-outlined text-[20px]" aria-hidden="true">newspaper</span>
       <span class="text-[11px] mt-0.5 truncate w-full text-center">Kabar</span>
     </a>
 
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-slate-600 py-1.5 px-1 rounded-xl hover:text-[#00288E] transition-colors min-w-0"
       data-tab="profil" href="#profil">
       <span class="material-symbols-outlined text-[20px]" aria-hidden="true">info</span>
       <span class="text-[11px] mt-0.5 truncate w-full text-center">Profil</span>
     </a>
   </nav>
 
-  <!-- Application Logic -->
-  <script src="app.js"></script>
+  <script defer src="live-motion.js"></script>
+  <script defer src="app.js"></script>
+  <script defer src="cursor.js"></script>
 </body>
 
 </html>

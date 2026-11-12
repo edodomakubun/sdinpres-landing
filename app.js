@@ -135,29 +135,29 @@ function renderNews(posts) {
 
     if (idx === 0) {
       return `
-        <article class="lg:col-span-6 lg:row-span-3 bg-white border border-[#D8D3C8] rounded-lg overflow-hidden flex flex-col justify-between group hover:border-[#00288E] transition-colors">
+        <article class="spotlight-card reveal-item lg:col-span-6 lg:row-span-3 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#00288E]/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col justify-between group">
           <div>
-            <div class="aspect-[16/10] w-full bg-[#EFECE4] overflow-hidden border-b border-[#D8D3C8]">
-              <img class="w-full h-full object-cover" src="${thumb}" alt="${title}" width="640" height="400" loading="lazy" decoding="async">
+            <div class="aspect-[16/10] w-full bg-slate-100 overflow-hidden">
+              <img class="w-full h-full object-cover group-hover:scale-[1.03] transition-transform duration-500" src="${thumb}" alt="${title}" width="640" height="400" loading="lazy" decoding="async">
             </div>
             <div class="p-5 sm:p-6">
               <div class="flex flex-wrap items-center gap-2.5 mb-3">
-                <span class="px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider ${cat.bg} ${cat.text}">${cat.label}</span>
-                <span class="text-xs text-[#475569] tabular-nums">${date}</span>
+                <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider ${cat.bg} ${cat.text}">${cat.label}</span>
+                <span class="text-xs font-medium text-slate-500 tabular-nums">${date}</span>
               </div>
-              <h3 class="font-display text-xl sm:text-2xl leading-snug text-[#111827] font-semibold group-hover:text-[#00288E] transition-colors">
+              <h3 class="text-xl sm:text-2xl font-bold tracking-tight leading-snug text-slate-900 group-hover:text-[#00288E] transition-colors">
                 ${title}
               </h3>
-              <p class="text-sm text-[#475569] mt-2.5 leading-relaxed max-w-[65ch]">
+              <p class="text-sm text-slate-600 mt-2.5 leading-relaxed max-w-[65ch]">
                 ${desc}
               </p>
             </div>
           </div>
-          <div class="px-5 sm:px-6 pb-5 pt-2 border-t border-[#EFECE4]">
+          <div class="px-5 sm:px-6 pb-5 pt-3 border-t border-slate-100">
             <a class="inline-flex items-center gap-1.5 min-h-[44px] text-sm text-[#00288E] font-bold hover:underline" href="${href}">
               <span>Baca selengkapnya</span>
               <span class="visually-hidden">: ${title}</span>
-              <span class="material-symbols-outlined text-[16px]" aria-hidden="true">arrow_forward</span>
+              <span class="material-symbols-outlined text-[17px] group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
             </a>
           </div>
         </article>
@@ -165,34 +165,37 @@ function renderNews(posts) {
     }
 
     return `
-      <article class="lg:col-span-6 bg-white border border-[#D8D3C8] rounded-lg overflow-hidden flex flex-col sm:flex-row group hover:border-[#00288E] transition-colors">
-        <div class="sm:w-44 md:w-48 aspect-[16/10] sm:aspect-auto bg-[#EFECE4] overflow-hidden shrink-0 border-b sm:border-b-0 sm:border-r border-[#D8D3C8]">
-          <img class="w-full h-full object-cover" src="${thumb}" alt="${title}" width="320" height="220" loading="lazy" decoding="async">
+      <article class="spotlight-card reveal-item lg:col-span-6 bg-white border border-slate-200 rounded-2xl overflow-hidden shadow-xs hover:shadow-md hover:border-[#00288E]/40 hover:-translate-y-0.5 transition-all duration-300 flex flex-col sm:flex-row group">
+        <div class="sm:w-44 md:w-48 aspect-[16/10] sm:aspect-auto bg-slate-100 overflow-hidden shrink-0">
+          <img class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500" src="${thumb}" alt="${title}" width="320" height="220" loading="lazy" decoding="async">
         </div>
         <div class="p-4 sm:p-5 flex flex-col justify-between flex-1 min-w-0">
           <div>
             <div class="flex flex-wrap items-center gap-2 mb-1.5">
-              <span class="px-2 py-0.5 rounded-xs text-[10px] font-bold uppercase tracking-wider ${cat.bg} ${cat.text}">${cat.label}</span>
-              <span class="text-xs text-[#475569] tabular-nums">${date}</span>
+              <span class="px-2 py-0.5 rounded-md text-[10px] font-bold uppercase tracking-wider ${cat.bg} ${cat.text}">${cat.label}</span>
+              <span class="text-xs font-medium text-slate-500 tabular-nums">${date}</span>
             </div>
-            <h3 class="font-display text-base sm:text-lg leading-snug text-[#111827] font-semibold line-clamp-2 group-hover:text-[#00288E] transition-colors">
+            <h3 class="text-base sm:text-lg font-bold tracking-tight leading-snug text-slate-900 line-clamp-2 group-hover:text-[#00288E] transition-colors">
               ${title}
             </h3>
-            <p class="text-xs sm:text-sm text-[#475569] mt-1.5 line-clamp-2 leading-relaxed">
+            <p class="text-xs sm:text-sm text-slate-600 mt-1.5 line-clamp-2 leading-relaxed">
               ${desc}
             </p>
           </div>
-          <div class="mt-2 pt-2 border-t border-[#EFECE4]">
+          <div class="mt-2 pt-2 border-t border-slate-100">
             <a class="inline-flex items-center gap-1 min-h-[44px] text-xs sm:text-sm text-[#00288E] font-bold hover:underline" href="${href}">
               <span>Baca selengkapnya</span>
               <span class="visually-hidden">: ${title}</span>
-              <span class="material-symbols-outlined text-[15px]" aria-hidden="true">arrow_forward</span>
+              <span class="material-symbols-outlined text-[16px] group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
             </a>
           </div>
         </div>
       </article>
     `;
   }).join('');
+
+  initSpotlightCards();
+  window.refreshLiveReveal?.();
 }
 
 async function loadLandingNews() {
@@ -231,12 +234,12 @@ function initScrollspy() {
       const text = tab.querySelector('span:not(.material-symbols-outlined)');
 
       if (tabTarget === currentId) {
-        tab.className = 'flex flex-col items-center justify-center min-h-[44px] text-[#00288E] font-bold py-1.5 px-1 border-t-2 border-[#00288E] -mt-[1px] min-w-0';
+        tab.className = 'flex flex-col items-center justify-center min-h-[48px] text-[#00288E] font-bold py-1.5 px-1 rounded-xl bg-[#EFF6FF]/90 transition-colors min-w-0';
         tab.setAttribute('aria-current', 'location');
-        if (icon) icon.style.fontVariationSettings = "'FILL' 1, 'wght' 500";
+        if (icon) icon.style.fontVariationSettings = "'FILL' 1, 'wght' 550";
         if (text) text.classList.add('font-bold');
       } else {
-        tab.className = 'flex flex-col items-center justify-center min-h-[44px] text-[#475569] py-1.5 px-1 hover:text-[#00288E] border-t-2 border-transparent -mt-[1px] min-w-0';
+        tab.className = 'flex flex-col items-center justify-center min-h-[48px] text-slate-600 py-1.5 px-1 rounded-xl hover:text-[#00288E] transition-colors min-w-0';
         tab.removeAttribute('aria-current');
         if (icon) icon.style.fontVariationSettings = "'FILL' 0, 'wght' 400";
         if (text) text.classList.remove('font-bold');
@@ -599,8 +602,8 @@ function initVisiMisiSlider() {
       dot.className = 'group min-h-[44px] px-1.5 flex items-center justify-center focus-visible:outline-2 focus-visible:outline-[#00288E]';
       const bar = document.createElement('span');
       bar.className = idx === 0
-        ? 'block w-5 h-1.5 rounded-xs bg-[#00288E] transition-colors'
-        : 'block w-2 h-1.5 rounded-xs bg-[#C7C1B5] group-hover:bg-[#64748B] transition-colors';
+        ? 'block w-5 h-1.5 rounded-full bg-[#00288E] transition-all duration-300'
+        : 'block w-2 h-1.5 rounded-full bg-slate-300 group-hover:bg-slate-400 transition-all duration-300';
       dot.appendChild(bar);
       dot.addEventListener('click', () => {
         currentIndex = idx;
@@ -634,14 +637,298 @@ function initVisiMisiSlider() {
   startAutoplay();
 }
 
+// ── Scroll Reading Progress Indicator ────────────────────
+function initScrollProgress() {
+  const bar = document.querySelector('.scroll-progress-bar');
+  if (!bar) return;
+
+  let ticking = false;
+  const update = () => {
+    const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+    const progress = docHeight > 0 ? Math.min(1, Math.max(0, window.scrollY / docHeight)) : 0;
+    document.documentElement.style.setProperty('--scroll-progress', String(progress));
+    ticking = false;
+  };
+
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      ticking = true;
+      requestAnimationFrame(update);
+    }
+  }, { passive: true });
+  update();
+}
+
+// ── Choreographed Live Scroll Reveal (delegated to live-motion.js) ──
+function initScrollReveal() {
+  if (typeof window.refreshLiveReveal === 'function') {
+    window.refreshLiveReveal();
+    return;
+  }
+  $$('.reveal-item').forEach(el => el.classList.add('is-visible'));
+}
+
+// ── Pointer Spotlight Micro-Interaction ──────────────────
+function initSpotlightCards() {
+  if (!window.matchMedia('(hover: hover)').matches) return;
+
+  $$('.spotlight-card').forEach(card => {
+    if (card.dataset.spotlightBound === '1') return;
+    card.dataset.spotlightBound = '1';
+    card.addEventListener('pointermove', (e) => {
+      const rect = card.getBoundingClientRect();
+      card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+      card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+    });
+  });
+}
+
+// ── Interactive Portal Role Filter ───────────────────────
+function initPortalFilter() {
+  const buttons = $$('[data-portal-filter]');
+  const cards = $$('[data-portal-group]');
+  if (!buttons.length || !cards.length) return;
+
+  const applyFilter = (targetGroup) => {
+    buttons.forEach(btn => {
+      const active = btn.dataset.portalFilter === targetGroup;
+      btn.setAttribute('aria-pressed', active ? 'true' : 'false');
+      if (active) {
+        btn.className = 'min-h-[44px] px-4 py-2 rounded-lg text-xs sm:text-sm font-bold bg-[#00288E] text-white shadow-xs transition-all';
+      } else {
+        btn.className = 'min-h-[44px] px-4 py-2 rounded-lg text-xs sm:text-sm font-semibold bg-white text-slate-600 border border-slate-200 hover:border-[#00288E]/40 hover:text-[#00288E] transition-all';
+      }
+    });
+
+    cards.forEach((card, idx) => {
+      const group = card.dataset.portalGroup;
+      const matches = targetGroup === 'all' || group === targetGroup;
+      card.classList.toggle('hidden', !matches);
+      if (matches) {
+        card.classList.remove('animate-panel-swap');
+        void card.offsetWidth;
+        card.style.animationDelay = `${(idx % 4) * 35}ms`;
+        card.classList.add('animate-panel-swap');
+      }
+    });
+  };
+
+  buttons.forEach(btn => {
+    btn.addEventListener('click', () => applyFilter(btn.dataset.portalFilter || 'all'));
+  });
+}
+
+// ── Interactive 4 Pilar Tabs Showcase ────────────────────
+function initPilarTabs() {
+  const tabs = $$('[data-pilar-tab]');
+  const panels = $$('[data-pilar-panel]');
+  if (!tabs.length || !panels.length) return;
+
+  const activatePilar = (id) => {
+    tabs.forEach(tab => {
+      const isSelected = tab.dataset.pilarTab === id;
+      tab.setAttribute('aria-selected', isSelected ? 'true' : 'false');
+      tab.classList.toggle('bg-[#00288E]', isSelected);
+      tab.classList.toggle('text-white', isSelected);
+      tab.classList.toggle('border-[#00288E]', isSelected);
+      tab.classList.toggle('shadow-md', isSelected);
+      tab.classList.toggle('bg-white', !isSelected);
+      tab.classList.toggle('text-slate-800', !isSelected);
+      tab.classList.toggle('border-slate-200', !isSelected);
+
+      const numBadge = tab.querySelector('[data-pilar-num]');
+      if (numBadge) {
+        numBadge.className = isSelected
+          ? 'text-xs font-extrabold px-2 py-0.5 rounded-md bg-white/15 text-amber-300 tabular-nums shrink-0'
+          : 'text-xs font-extrabold px-2 py-0.5 rounded-md bg-slate-100 text-[#00288E] tabular-nums shrink-0';
+      }
+    });
+
+    panels.forEach(panel => {
+      const match = panel.dataset.pilarPanel === id;
+      panel.classList.toggle('hidden', !match);
+      if (match) {
+        panel.classList.remove('animate-panel-swap');
+        void panel.offsetWidth;
+        panel.classList.add('animate-panel-swap');
+      }
+    });
+  };
+
+  tabs.forEach((tab, idx) => {
+    tab.addEventListener('click', () => activatePilar(tab.dataset.pilarTab));
+    tab.addEventListener('keydown', (e) => {
+      if (e.key === 'ArrowDown' || e.key === 'ArrowRight') {
+        e.preventDefault();
+        const next = tabs[(idx + 1) % tabs.length];
+        next.focus();
+        activatePilar(next.dataset.pilarTab);
+      } else if (e.key === 'ArrowUp' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const prev = tabs[(idx - 1 + tabs.length) % tabs.length];
+        prev.focus();
+        activatePilar(prev.dataset.pilarTab);
+      }
+    });
+  });
+}
+
+// ── Interactive Hero Banner Carousel ─────────────────────
+function initHeroCarousel() {
+  const carousel = document.getElementById('hero-banner-carousel');
+  if (!carousel) return;
+
+  const slides = $$('.hero-slide', carousel);
+  const captionEl = document.getElementById('hero-slide-caption');
+  const counterEl = document.getElementById('hero-slide-counter');
+  const dotsContainer = document.getElementById('hero-dots');
+  const prevBtn = document.getElementById('hero-prev');
+  const nextBtn = document.getElementById('hero-next');
+  const toggleBtn = document.getElementById('hero-toggle');
+
+  if (!slides.length) return;
+
+  const prefersReduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+  let current = 0;
+  let timer = null;
+  let isPaused = prefersReduced;
+  let touchStartX = 0;
+
+  function syncToggleBtn() {
+    if (!toggleBtn) return;
+    const icon = toggleBtn.querySelector('.material-symbols-outlined');
+    toggleBtn.setAttribute('aria-pressed', isPaused ? 'true' : 'false');
+    toggleBtn.setAttribute('aria-label', isPaused ? 'Putar otomatis galeri hero' : 'Jeda putar otomatis galeri hero');
+    if (icon) icon.textContent = isPaused ? 'play_arrow' : 'pause';
+  }
+
+  function updateDots(activeIdx) {
+    if (!dotsContainer) return;
+    const dotBtns = dotsContainer.querySelectorAll('button');
+    dotBtns.forEach((btn, idx) => {
+      const bar = btn.querySelector('span');
+      const active = idx === activeIdx;
+      btn.setAttribute('aria-current', active ? 'true' : 'false');
+      if (bar) {
+        bar.className = active
+          ? 'block w-6 h-1.5 rounded-full bg-amber-400 transition-all duration-300'
+          : 'block w-2.5 h-1.5 rounded-full bg-white/55 group-hover:bg-white/90 transition-all duration-300';
+      }
+    });
+  }
+
+  function goToSlide(index) {
+    current = (index + slides.length) % slides.length;
+    slides.forEach((img, idx) => {
+      const active = idx === current;
+      img.classList.toggle('opacity-100', active);
+      img.classList.toggle('scale-100', active);
+      img.classList.toggle('opacity-0', !active);
+      img.classList.toggle('scale-[1.03]', !active);
+      img.classList.toggle('pointer-events-none', !active);
+      img.setAttribute('aria-hidden', active ? 'false' : 'true');
+    });
+
+    const activeSlide = slides[current];
+    if (captionEl && activeSlide?.dataset.caption) {
+      captionEl.textContent = activeSlide.dataset.caption;
+    }
+    if (counterEl) {
+      const num = String(current + 1).padStart(2, '0');
+      const total = String(slides.length).padStart(2, '0');
+      counterEl.textContent = `${num} / ${total}`;
+    }
+    updateDots(current);
+  }
+
+  function stopTimer() {
+    if (timer) {
+      clearInterval(timer);
+      timer = null;
+    }
+  }
+
+  function startTimer() {
+    stopTimer();
+    if (isPaused) return;
+    timer = setInterval(() => goToSlide(current + 1), 5000);
+  }
+
+  if (dotsContainer) {
+    dotsContainer.innerHTML = '';
+    slides.forEach((_, idx) => {
+      const btn = document.createElement('button');
+      btn.type = 'button';
+      btn.setAttribute('aria-label', `Tampilkan foto hero ${idx + 1} dari ${slides.length}`);
+      btn.setAttribute('aria-current', idx === 0 ? 'true' : 'false');
+      btn.className = 'group min-h-[44px] min-w-[28px] flex items-center justify-center focus-visible:outline-2 focus-visible:outline-amber-300';
+      const bar = document.createElement('span');
+      bar.className = idx === 0
+        ? 'block w-6 h-1.5 rounded-full bg-amber-400 transition-all duration-300'
+        : 'block w-2.5 h-1.5 rounded-full bg-white/55 group-hover:bg-white/90 transition-all duration-300';
+      btn.appendChild(bar);
+      btn.addEventListener('click', () => {
+        goToSlide(idx);
+        startTimer();
+      });
+      dotsContainer.appendChild(btn);
+    });
+  }
+
+  prevBtn?.addEventListener('click', () => {
+    goToSlide(current - 1);
+    startTimer();
+  });
+
+  nextBtn?.addEventListener('click', () => {
+    goToSlide(current + 1);
+    startTimer();
+  });
+
+  toggleBtn?.addEventListener('click', () => {
+    isPaused = !isPaused;
+    syncToggleBtn();
+    if (isPaused) stopTimer();
+    else startTimer();
+  });
+
+  carousel.addEventListener('mouseenter', stopTimer);
+  carousel.addEventListener('mouseleave', () => {
+    if (!isPaused) startTimer();
+  });
+
+  carousel.addEventListener('touchstart', (e) => {
+    touchStartX = e.changedTouches[0]?.clientX || 0;
+  }, { passive: true });
+
+  carousel.addEventListener('touchend', (e) => {
+    const touchEndX = e.changedTouches[0]?.clientX || 0;
+    const diff = touchStartX - touchEndX;
+    if (Math.abs(diff) > 40) {
+      goToSlide(diff > 0 ? current + 1 : current - 1);
+      startTimer();
+    }
+  }, { passive: true });
+
+  syncToggleBtn();
+  goToSlide(0);
+  startTimer();
+}
+
 // ── Application Bootstrap ────────────────────────────────
 function init() {
+  initScrollProgress();
   initSmoothScroll();
   initBlogLinks();
   initScrollspy();
   initFaqAccordion();
   initVisitorTracking();
+  initHeroCarousel();
   initVisiMisiSlider();
+  initPortalFilter();
+  initPilarTabs();
+  initScrollReveal();
+  initSpotlightCards();
   loadLandingNews();
 }
 

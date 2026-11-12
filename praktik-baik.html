@@ -40,7 +40,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
     rel="stylesheet">
   <link
     href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap"
@@ -53,21 +53,17 @@
       theme: {
         extend: {
           fontFamily: {
-            display: ['"Fraunces"', 'Georgia', 'serif'],
-            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif']
+            sans: ['"Plus Jakarta Sans"', 'system-ui', 'sans-serif'],
+            editorial: ['"Instrument Serif"', 'Georgia', 'serif']
           },
           colors: {
             primary: '#00288E',
-            'ground': '#FAF8F3',
-            'paper': '#FFFFFF',
-            'paper-muted': '#EFECE4',
-            'ink': '#111827',
-            'ink-muted': '#475569',
-            'rule': '#D8D3C8',
-            'ochre': '#B45309',
-            'ochre-soft': '#FEF3C7',
-            'ochre-ink': '#78350F',
-            'emerald-ink': '#047857'
+            'primary-mid': '#1E40AF',
+            accent: '#D97706',
+            'accent-ink': '#78350F',
+            'accent-soft': '#FEF3C7',
+            canvas: '#F8FAFC',
+            ink: '#0F172A'
           }
         }
       }
@@ -77,25 +73,27 @@
   <link href="styles.css" rel="stylesheet">
 </head>
 
-<body class="bg-ground text-ink font-sans antialiased pb-24 md:pb-12">
+<body class="bg-canvas text-slate-900 font-sans antialiased pb-24 md:pb-14 selection:bg-[#00288E] selection:text-white">
+  <div class="scroll-progress-bar" aria-hidden="true"></div>
+
   <a href="#main-content"
-    class="visually-hidden inline-flex items-center min-h-[44px] bg-primary text-white px-4 py-2 font-bold text-sm focus:fixed focus:top-3 focus:left-3 focus:z-[60] focus:rounded-md">
+    class="visually-hidden inline-flex items-center min-h-[44px] bg-primary text-white px-4 py-2 font-bold text-sm focus:fixed focus:top-3 focus:left-3 focus:z-[80] focus:rounded-xl shadow-lg">
     Langsung ke galeri praktik baik
   </a>
 
   <!-- ============================================================== -->
-  <!-- TOP NAVIGATION BAR (SOLID PAPER HEADER)                        -->
+  <!-- TOP NAVIGATION BAR (GLASS HEADER)                              -->
   <!-- ============================================================== -->
-  <header class="sticky top-0 z-40 bg-paper border-b border-rule">
+  <header class="sticky top-0 z-40 bg-white/90 backdrop-blur-md border-b border-slate-200/80">
     <div class="max-w-7xl mx-auto px-4 sm:px-6 h-16 flex items-center justify-between gap-4">
       <a href="/" class="flex items-center gap-3 group min-w-0">
         <img src="assets/logo.png" alt="Logo SD Inpres Lelingluan" width="38" height="38"
-          class="w-9 h-9 object-contain shrink-0">
+          class="w-9 h-9 object-contain shrink-0 transition-transform duration-300 group-hover:scale-105">
         <div class="min-w-0 leading-tight">
-          <p class="font-display text-sm sm:text-base font-bold text-ink truncate group-hover:text-primary transition-colors">
+          <p class="text-sm sm:text-base font-extrabold tracking-tight text-slate-900 truncate group-hover:text-primary transition-colors">
             Praktik Baik &amp; Inovasi
           </p>
-          <p class="text-[11px] font-semibold uppercase tracking-wider text-ink-muted truncate">
+          <p class="text-[11px] font-semibold text-slate-500 truncate">
             SD Inpres Lelingluan
           </p>
         </div>
@@ -103,12 +101,12 @@
 
       <div class="flex items-center gap-2 shrink-0">
         <a href="/"
-          class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-md bg-ground border border-rule text-xs sm:text-sm font-semibold text-ink hover:border-primary hover:text-primary transition-colors">
+          class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-xl bg-white border border-slate-200 text-xs sm:text-sm font-bold text-slate-800 hover:border-primary/40 hover:text-primary active:scale-[0.98] transition-all">
           <span class="material-symbols-outlined text-[17px]" aria-hidden="true">arrow_back</span>
           <span>Beranda</span>
         </a>
         <a href="https://blog.sdinpreslelingluan.com"
-          class="hidden sm:inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-primary text-white text-sm font-semibold hover:bg-[#001F70] transition-colors">
+          class="hidden sm:inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-xl bg-primary text-white text-sm font-bold shadow-xs hover:bg-primary-mid active:scale-[0.98] transition-all">
           <span class="material-symbols-outlined text-[17px]" aria-hidden="true">language</span>
           <span>Website Utama</span>
         </a>
@@ -118,57 +116,60 @@
 
   <main id="main-content">
     <!-- ============================================================== -->
-    <!-- EDITORIAL PAGE HEADER                                          -->
+    <!-- MOBILE-FIRST PAGE INTRO WITH STAGGERED ENTRANCE                -->
     <!-- ============================================================== -->
-    <section class="bg-paper border-b border-rule py-8 sm:py-12">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6">
+    <section class="hero-glass-backdrop border-b border-slate-200 py-8 sm:py-12 lg:py-14">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 relative z-10">
         <div class="max-w-3xl space-y-3">
-          <p class="text-xs font-bold uppercase tracking-[0.14em] text-ochre-ink">
-            Dokumentasi Pembelajaran &amp; Refleksi Guru
+          <p class="hero-animate hero-delay-1 inline-flex items-center gap-2 text-xs sm:text-sm font-extrabold uppercase tracking-[0.14em] text-accent-ink">
+            <span class="idle-breath material-symbols-outlined text-[16px] text-accent material-symbols-fill" aria-hidden="true">auto_awesome</span>
+            <span>Dokumentasi Pembelajaran &amp; Refleksi Guru</span>
           </p>
-          <h1 class="font-display font-semibold text-ink tracking-tight leading-[1.15]"
-            style="font-size: clamp(1.875rem, 3.6vw, 2.75rem);">
-            Ruang Berbagi Praktik Baik SD Inpres Lelingluan
+          <h1 class="hero-animate hero-delay-2 font-extrabold text-slate-900 tracking-[-0.03em] leading-[1.12]"
+            style="font-size: clamp(1.875rem, 3.8vw, 3rem);">
+            Ruang Berbagi
+            <span class="font-editorial italic font-normal text-primary">Praktik Baik Guru</span>
+            SD Inpres Lelingluan
           </h1>
-          <p class="text-sm sm:text-base text-ink-muted leading-relaxed max-w-[65ch]">
-            Kumpulan modul ajar inovatif, rekaman pembelajaran kelas, dan pengalaman nyata pendidik dalam penerapan Kurikulum Merdeka di Kecamatan Tanimbar Utara.
+          <p class="hero-animate hero-delay-3 text-sm sm:text-base text-slate-600 leading-relaxed max-w-[65ch]">
+            Kumpulan modul ajar inovatif, video praktik pembelajaran kelas, dan karya unggulan guru dalam menerapkan Kurikulum Merdeka di Kecamatan Tanimbar Utara.
           </p>
         </div>
       </div>
     </section>
 
     <!-- ============================================================== -->
-    <!-- SEARCH LANDMARK & CATEGORY FILTERS                             -->
+    <!-- INTERACTIVE SEARCH LANDMARK & CATEGORY FILTERS                 -->
     <!-- ============================================================== -->
-    <section class="bg-ground border-b border-rule py-4">
+    <section class="bg-canvas border-b border-slate-200 py-4 sm:py-5">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <search aria-label="Cari dan saring praktik baik" class="space-y-3">
-          <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3">
+        <search aria-label="Cari dan saring praktik baik" class="space-y-3.5">
+          <div class="flex flex-col md:flex-row md:items-center justify-between gap-3">
             <div class="relative flex-1 max-w-xl">
               <label for="searchInput" class="visually-hidden">
                 Cari judul praktik baik, penulis, atau kata kunci
               </label>
-              <span class="material-symbols-outlined text-[20px] text-ink-muted absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
+              <span class="material-symbols-outlined text-[20px] text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2 pointer-events-none"
                 aria-hidden="true">search</span>
               <input id="searchInput" type="search"
                 placeholder="Cari judul praktik baik, penulis, atau topik..."
-                class="w-full min-h-[44px] pl-11 pr-11 py-2 rounded-md bg-paper border border-rule text-sm text-ink placeholder:text-ink-muted focus:border-primary focus:ring-2 focus:ring-primary/20">
+                class="w-full min-h-[48px] pl-11 pr-12 py-2.5 rounded-xl bg-white border border-slate-200 text-sm text-slate-900 placeholder:text-slate-400 shadow-2xs focus:border-primary focus:ring-2 focus:ring-primary/15 transition-all">
               <button id="btnClearSearch" type="button"
-                class="hidden absolute right-1 top-1/2 -translate-y-1/2 min-w-[40px] min-h-[40px] inline-flex items-center justify-center text-ink-muted hover:text-ink"
+                class="hidden absolute right-1.5 top-1/2 -translate-y-1/2 min-w-[40px] min-h-[40px] inline-flex items-center justify-center rounded-lg text-slate-400 hover:text-slate-700 hover:bg-slate-100 transition-colors"
                 aria-label="Hapus kata kunci pencarian">
                 <span class="material-symbols-outlined text-[18px]" aria-hidden="true">close</span>
               </button>
             </div>
 
-            <div class="flex items-center gap-3 text-xs sm:text-sm text-ink-muted shrink-0">
-              <span id="filterIndicator">Kategori: <strong class="text-ink">Semua</strong></span>
+            <div class="flex items-center gap-2.5 text-xs sm:text-sm text-slate-600 shrink-0">
+              <span id="filterIndicator">Kategori: <strong class="text-slate-900">Semua</strong></span>
               <span aria-hidden="true">&middot;</span>
-              <span>Menampilkan <strong id="postCount" class="text-ink tabular-nums">0</strong> tulisan</span>
+              <span>Menampilkan <strong id="postCount" class="text-primary tabular-nums">0</strong> tulisan</span>
             </div>
           </div>
 
           <div id="categoryPillsContainer"
-            class="flex items-center gap-2 overflow-x-auto no-scrollbar py-1"
+            class="flex items-center gap-2 overflow-x-auto no-scrollbar py-0.5 horizontal-scroll-touch"
             role="group" aria-label="Filter kategori praktik baik">
           </div>
         </search>
@@ -178,14 +179,13 @@
     <!-- ============================================================== -->
     <!-- CARDS GRID                                                     -->
     <!-- ============================================================== -->
-    <section class="py-8 sm:py-10">
+    <section class="py-8 sm:py-12">
       <div class="max-w-7xl mx-auto px-4 sm:px-6">
-        <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6" aria-live="polite">
-          <!-- Initial honest loading state replaced once Firestore resolves -->
-          <div class="col-span-full bg-paper border border-rule rounded-lg p-8 sm:p-10 text-center space-y-2">
+        <div id="cardsGrid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-5 sm:gap-6" aria-live="polite">
+          <div class="col-span-full bg-white border border-slate-200 rounded-2xl p-8 sm:p-12 text-center space-y-2 shadow-xs">
             <span class="material-symbols-outlined text-3xl text-primary" aria-hidden="true">menu_book</span>
-            <p class="font-display text-base font-semibold text-ink">Memuat Katalog Praktik Baik</p>
-            <p class="text-sm text-ink-muted">Sedang mengambil publikasi guru terbaru dari arsip sekolah...</p>
+            <p class="text-base font-bold text-slate-900">Memuat Katalog Praktik Baik</p>
+            <p class="text-sm text-slate-600">Sedang mengambil publikasi guru terbaru dari arsip sekolah...</p>
           </div>
         </div>
       </div>
@@ -196,98 +196,93 @@
   <!-- NATIVE ARTICLE READER DIALOG (closedby="any")                  -->
   <!-- ============================================================== -->
   <dialog id="readerModal" closedby="any" aria-labelledby="modalTitle"
-    class="m-auto w-[calc(100%-1.5rem)] max-w-3xl max-h-[90vh] p-0 rounded-lg border border-rule bg-paper text-ink shadow-2xl overflow-hidden">
+    class="m-auto w-[calc(100%-1.25rem)] max-w-3xl max-h-[90vh] p-0 rounded-2xl border border-slate-200 bg-white text-slate-900 shadow-2xl overflow-hidden">
     <div class="flex flex-col max-h-[90vh]">
-      <!-- Sticky Dialog Header -->
-      <div class="px-5 sm:px-6 py-3.5 bg-paper border-b border-rule flex items-center justify-between gap-3 shrink-0">
+      <!-- Dialog Top Bar -->
+      <div class="px-5 sm:px-6 py-3.5 bg-white border-b border-slate-200 flex items-center justify-between gap-3 shrink-0">
         <div class="flex flex-wrap items-center gap-2 min-w-0">
           <span id="modalCategoryBadge"
-            class="px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider bg-ochre-soft text-ochre-ink border border-[#D97706]">
+            class="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider bg-accent-soft text-accent-ink border border-amber-300">
             Praktik Baik
           </span>
-          <span id="modalDate" class="text-xs text-ink-muted tabular-nums"></span>
+          <span id="modalDate" class="text-xs font-medium text-slate-500 tabular-nums"></span>
         </div>
         <button id="btnCloseReaderModal" type="button"
-          class="min-w-[44px] min-h-[44px] -mr-2 inline-flex items-center justify-center rounded-md text-ink-muted hover:text-ink hover:bg-ground transition-colors"
+          class="min-w-[44px] min-h-[44px] -mr-2 inline-flex items-center justify-center rounded-xl text-slate-500 hover:text-slate-900 hover:bg-slate-100 active:scale-95 transition-all"
           aria-label="Tutup jendela baca artikel">
           <span class="material-symbols-outlined text-[22px]" aria-hidden="true">close</span>
         </button>
       </div>
 
-      <!-- Scrollable Dialog Body -->
+      <!-- Scrollable Reader Body -->
       <div class="p-5 sm:p-8 overflow-y-auto space-y-6">
         <div class="space-y-3">
-          <h2 id="modalTitle" class="font-display text-2xl sm:text-3xl font-semibold text-ink leading-tight">
+          <h2 id="modalTitle" class="text-2xl sm:text-3xl font-extrabold tracking-tight text-slate-900 leading-tight">
             Judul Praktik Baik
           </h2>
 
-          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-rule text-xs sm:text-sm text-ink-muted">
+          <div class="flex flex-wrap items-center justify-between gap-3 pb-4 border-b border-slate-200 text-xs sm:text-sm text-slate-600">
             <div class="flex items-center gap-2">
               <span class="material-symbols-outlined text-[18px] text-primary" aria-hidden="true">person</span>
-              <span>Ditulis oleh <strong id="modalAuthor" class="text-ink">Guru SD Inpres Lelingluan</strong></span>
+              <span>Ditulis oleh <strong id="modalAuthor" class="text-slate-900">Guru SD Inpres Lelingluan</strong></span>
             </div>
-            <div class="inline-flex items-center gap-1.5 text-primary font-semibold">
+            <div class="inline-flex items-center gap-1.5 text-primary font-bold">
               <span class="material-symbols-outlined text-[17px]" aria-hidden="true">visibility</span>
               <span id="modalViewCount" class="tabular-nums">0</span>
-              <span class="text-ink-muted font-normal">dilihat</span>
+              <span class="text-slate-500 font-medium">dilihat</span>
             </div>
           </div>
         </div>
 
-        <!-- Optional YouTube Embed -->
-        <div id="modalVideoContainer" class="hidden rounded-lg overflow-hidden border border-rule bg-black aspect-video">
+        <div id="modalVideoContainer" class="hidden rounded-xl overflow-hidden border border-slate-200 bg-black aspect-video shadow-xs">
           <iframe id="modalVideoFrame" class="w-full h-full" title="Video Pembelajaran Praktik Baik"
             allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
             allowfullscreen></iframe>
         </div>
 
-        <!-- Optional Cover Image -->
-        <figure id="modalImageContainer" class="hidden tenun-rule bg-ground border border-rule rounded-b-lg overflow-hidden">
+        <figure id="modalImageContainer" class="hidden bg-slate-50 border border-slate-200 rounded-xl overflow-hidden">
           <img id="modalCoverImage" src="" alt="" class="w-full max-h-[420px] object-cover">
-          <figcaption id="modalImageCaption" class="hidden px-4 py-2.5 text-xs text-ink-muted border-t border-rule"></figcaption>
+          <figcaption id="modalImageCaption" class="hidden px-4 py-2.5 text-xs text-slate-600 border-t border-slate-200"></figcaption>
         </figure>
 
-        <!-- Summary Callout -->
-        <div id="modalSummaryWrapper" class="hidden border-l-4 border-ochre bg-ground px-4 py-3 rounded-r-md">
-          <p class="text-[11px] font-bold uppercase tracking-wider text-ochre-ink mb-1">Ringkasan Praktik Baik</p>
-          <p id="modalSummary" class="text-sm text-ink leading-relaxed max-w-[65ch]"></p>
+        <div id="modalSummaryWrapper" class="hidden border-l-4 border-accent bg-amber-50/50 px-4 py-3 rounded-r-xl">
+          <p class="text-[11px] font-extrabold uppercase tracking-wider text-accent-ink mb-1">Ringkasan Praktik Baik</p>
+          <p id="modalSummary" class="text-sm text-slate-800 leading-relaxed max-w-[65ch]"></p>
         </div>
 
-        <!-- External Resource -->
         <div id="modalExternalLinkWrapper" class="hidden">
           <a id="modalExternalLink" href="#" target="_blank" rel="noopener noreferrer"
-            class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 rounded-md bg-ground border border-rule text-sm font-bold text-primary hover:border-primary transition-colors">
+            class="inline-flex items-center gap-2 min-h-[44px] px-4 py-2.5 rounded-xl bg-slate-50 border border-slate-200 text-sm font-bold text-primary hover:border-primary/40 hover:bg-[#EFF6FF]/60 transition-colors">
             <span class="material-symbols-outlined text-[18px]" aria-hidden="true">open_in_new</span>
             <span id="modalExternalLinkText">Buka Tautan Sumber</span>
           </a>
         </div>
 
-        <!-- Markdown Article Body -->
-        <div id="modalContent" class="text-sm sm:text-base text-ink leading-relaxed max-w-[65ch] space-y-3"></div>
+        <div id="modalContent" class="text-sm sm:text-base text-slate-700 leading-relaxed max-w-[65ch] space-y-3"></div>
       </div>
 
-      <!-- Sticky Dialog Footer Actions -->
-      <div class="px-5 sm:px-6 py-3 bg-ground border-t border-rule flex flex-wrap items-center justify-between gap-2 shrink-0">
+      <!-- Sticky Dialog Actions Footer -->
+      <div class="px-5 sm:px-6 py-3.5 bg-slate-50 border-t border-slate-200 flex flex-wrap items-center justify-between gap-2 shrink-0">
         <div class="flex flex-wrap items-center gap-2">
           <button id="btnShareWhatsApp" type="button"
-            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-md bg-[#047857] text-white text-xs sm:text-sm font-bold hover:bg-[#065F46] transition-colors">
+            class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-xl bg-[#047857] text-white text-xs sm:text-sm font-bold hover:bg-[#065F46] active:scale-[0.98] transition-all">
             <span class="material-symbols-outlined text-[17px]" aria-hidden="true">chat</span>
-            <span>Bagikan ke WhatsApp</span>
+            <span>WhatsApp</span>
           </button>
           <button id="btnShareArticle" type="button"
-            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-md bg-paper border border-rule text-ink text-xs sm:text-sm font-semibold hover:border-primary hover:text-primary transition-colors">
+            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs sm:text-sm font-bold hover:border-primary/40 hover:text-primary active:scale-[0.98] transition-all">
             <span class="material-symbols-outlined text-[17px]" aria-hidden="true">share</span>
             <span>Bagikan</span>
           </button>
           <button id="btnCopyArticleLink" type="button"
-            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-md bg-paper border border-rule text-ink text-xs sm:text-sm font-semibold hover:border-primary hover:text-primary transition-colors">
-            <span class="material-symbols-outlined text-[17px]" aria-hidden="true">content_copy</span>
+            class="inline-flex items-center gap-1.5 min-h-[44px] px-3.5 rounded-xl bg-white border border-slate-200 text-slate-800 text-xs sm:text-sm font-bold hover:border-primary/40 hover:text-primary active:scale-[0.98] transition-all">
+            <span id="copyBtnIcon" class="material-symbols-outlined text-[17px]" aria-hidden="true">content_copy</span>
             <span id="copyBtnLabel">Salin Tautan</span>
           </button>
         </div>
 
         <button id="btnCloseReaderBottom" type="button"
-          class="inline-flex items-center justify-center min-h-[44px] px-4 rounded-md border border-rule bg-paper text-sm font-semibold text-ink hover:bg-paper-muted transition-colors">
+          class="inline-flex items-center justify-center min-h-[44px] px-4 rounded-xl border border-slate-200 bg-white text-sm font-bold text-slate-700 hover:bg-slate-100 active:scale-[0.98] transition-all">
           Tutup
         </button>
       </div>
@@ -298,33 +293,33 @@
   <!-- MOBILE BOTTOM NAVIGATION BAR (CONSISTENT WITH LANDING)         -->
   <!-- ============================================================== -->
   <nav
-    class="md:hidden fixed bottom-0 left-0 w-full z-40 grid grid-cols-5 items-center bg-paper border-t border-rule shadow-md"
+    class="md:hidden fixed bottom-0 left-0 w-full z-40 grid grid-cols-5 items-center py-1 px-1.5 bg-white/92 backdrop-blur-md border-t border-slate-200/90 shadow-[0_-8px_24px_-8px_rgba(15,23,42,0.12)]"
     aria-label="Navigasi Bawah Ponsel">
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-slate-600 py-1.5 px-1 rounded-xl hover:text-primary transition-colors min-w-0"
       href="/#beranda">
       <span class="material-symbols-outlined text-[20px]" aria-hidden="true">home</span>
       <span class="text-[11px] mt-0.5 truncate w-full text-center">Beranda</span>
     </a>
 
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-slate-600 py-1.5 px-1 rounded-xl hover:text-primary transition-colors min-w-0"
       href="/#portal">
       <span class="material-symbols-outlined text-[20px]" aria-hidden="true">apps</span>
       <span class="text-[11px] mt-0.5 truncate w-full text-center">Portal</span>
     </a>
 
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-ochre-ink font-bold py-1.5 px-1 border-t-2 border-ochre -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-accent-ink font-bold py-1.5 px-1 rounded-xl bg-accent-soft/85 transition-colors min-w-0"
       href="praktik-baik" aria-current="page">
-      <span class="material-symbols-outlined text-[20px] text-ochre material-symbols-fill" aria-hidden="true">verified</span>
-      <span class="text-[11px] font-bold mt-0.5 truncate w-full text-center text-ochre-ink">Praktik Baik</span>
+      <span class="material-symbols-outlined text-[20px] text-accent material-symbols-fill" aria-hidden="true">verified</span>
+      <span class="text-[11px] font-bold mt-0.5 truncate w-full text-center text-accent-ink">Praktik Baik</span>
     </a>
 
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-slate-600 py-1.5 px-1 rounded-xl hover:text-primary transition-colors min-w-0"
       href="/#berita">
       <span class="material-symbols-outlined text-[20px]" aria-hidden="true">newspaper</span>
       <span class="text-[11px] mt-0.5 truncate w-full text-center">Kabar</span>
     </a>
 
-    <a class="flex flex-col items-center justify-center min-h-[44px] text-ink-muted py-1.5 px-1 hover:text-primary border-t-2 border-transparent -mt-[1px] min-w-0"
+    <a class="flex flex-col items-center justify-center min-h-[48px] text-slate-600 py-1.5 px-1 rounded-xl hover:text-primary transition-colors min-w-0"
       href="/#profil">
       <span class="material-symbols-outlined text-[20px]" aria-hidden="true">info</span>
       <span class="text-[11px] mt-0.5 truncate w-full text-center">Profil</span>
@@ -359,6 +354,37 @@
     };
 
     const LOCAL_BACKUP_KEY = 'sdinpres_local_posts_backup';
+
+    // Top reading progress indicator
+    function initScrollProgress() {
+      let ticking = false;
+      const update = () => {
+        const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+        const progress = docHeight > 0 ? Math.min(1, Math.max(0, window.scrollY / docHeight)) : 0;
+        document.documentElement.style.setProperty('--scroll-progress', String(progress));
+        ticking = false;
+      };
+      window.addEventListener('scroll', () => {
+        if (!ticking) {
+          ticking = true;
+          requestAnimationFrame(update);
+        }
+      }, { passive: true });
+      update();
+    }
+
+    function bindSpotlightCards() {
+      if (!window.matchMedia('(hover: hover)').matches) return;
+      document.querySelectorAll('.spotlight-card').forEach(card => {
+        if (card.dataset.spotlightBound === '1') return;
+        card.dataset.spotlightBound = '1';
+        card.addEventListener('pointermove', (e) => {
+          const rect = card.getBoundingClientRect();
+          card.style.setProperty('--mx', `${e.clientX - rect.left}px`);
+          card.style.setProperty('--my', `${e.clientY - rect.top}px`);
+        });
+      });
+    }
 
     function formatViewCount(count) {
       return (Number(count) || 0).toLocaleString('id-ID');
@@ -428,13 +454,13 @@
         .replace(/</g, '&lt;')
         .replace(/>/g, '&gt;');
 
-      escaped = escaped.replace(/^### (.*$)/gim, '<h3 class="font-display text-base sm:text-lg font-semibold text-primary mt-4 mb-1.5">$1</h3>');
-      escaped = escaped.replace(/^## (.*$)/gim, '<h2 class="font-display text-lg sm:text-xl font-semibold text-primary mt-5 mb-2">$1</h2>');
-      escaped = escaped.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-ink">$1</strong>');
+      escaped = escaped.replace(/^### (.*$)/gim, '<h3 class="text-base sm:text-lg font-bold text-primary mt-4 mb-1.5">$1</h3>');
+      escaped = escaped.replace(/^## (.*$)/gim, '<h2 class="text-lg sm:text-xl font-extrabold text-primary mt-5 mb-2">$1</h2>');
+      escaped = escaped.replace(/\*\*(.*?)\*\*/gim, '<strong class="font-bold text-slate-900">$1</strong>');
       escaped = escaped.replace(/\*(.*?)\*/gim, '<em class="italic">$1</em>');
-      escaped = escaped.replace(/^\> (.*$)/gim, '<blockquote class="border-l-4 border-ochre pl-3.5 py-1.5 italic my-2 text-ink-muted bg-ground rounded-r-md">$1</blockquote>');
-      escaped = escaped.replace(/^\- (.*$)/gim, '<li class="ml-5 list-disc text-ink">$1</li>');
-      escaped = escaped.replace(/^---$/gim, '<hr class="my-4 border-rule">');
+      escaped = escaped.replace(/^\> (.*$)/gim, '<blockquote class="border-l-4 border-accent pl-3.5 py-1.5 italic my-2 text-slate-700 bg-amber-50/50 rounded-r-xl">$1</blockquote>');
+      escaped = escaped.replace(/^\- (.*$)/gim, '<li class="ml-5 list-disc text-slate-800">$1</li>');
+      escaped = escaped.replace(/^---$/gim, '<hr class="my-4 border-slate-200">');
 
       const paragraphs = escaped.split(/\n\n+/);
       return paragraphs.map(p => {
@@ -525,7 +551,7 @@
       const totalCount = state.posts.length;
       let html = `
         <button type="button"
-          class="category-pill shrink-0 min-h-[44px] px-4 py-2 rounded-md text-xs font-bold border transition-colors ${state.activeCategory === '' ? 'bg-primary text-white border-primary' : 'bg-paper text-ink-muted border-rule hover:border-primary hover:text-primary'}"
+          class="category-pill shrink-0 min-h-[44px] px-4 py-2 rounded-xl text-xs font-bold border transition-all active:scale-95 ${state.activeCategory === '' ? 'bg-primary text-white border-primary shadow-xs' : 'bg-white text-slate-600 border-slate-200 hover:border-primary/40 hover:text-primary'}"
           data-category="" aria-pressed="${state.activeCategory === '' ? 'true' : 'false'}">
           Semua (${totalCount})
         </button>
@@ -536,7 +562,7 @@
         const isActive = state.activeCategory === cat;
         html += `
           <button type="button"
-            class="category-pill shrink-0 min-h-[44px] px-4 py-2 rounded-md text-xs font-bold border transition-colors ${isActive ? 'bg-primary text-white border-primary' : 'bg-paper text-ink-muted border-rule hover:border-primary hover:text-primary'}"
+            class="category-pill shrink-0 min-h-[44px] px-4 py-2 rounded-xl text-xs font-bold border transition-all active:scale-95 ${isActive ? 'bg-primary text-white border-primary shadow-xs' : 'bg-white text-slate-600 border-slate-200 hover:border-primary/40 hover:text-primary'}"
             data-category="${escapeHtml(cat)}" aria-pressed="${isActive ? 'true' : 'false'}">
             ${escapeHtml(cat)} (${count})
           </button>
@@ -569,7 +595,7 @@
       });
 
       document.getElementById('postCount').textContent = state.filteredPosts.length;
-      document.getElementById('filterIndicator').innerHTML = `Kategori: <strong class="text-ink">${escapeHtml(state.activeCategory || 'Semua')}</strong>`;
+      document.getElementById('filterIndicator').innerHTML = `Kategori: <strong class="text-slate-900">${escapeHtml(state.activeCategory || 'Semua')}</strong>`;
       renderCards();
     }
 
@@ -580,24 +606,24 @@
       if (state.filteredPosts.length === 0) {
         if (state.loadError && state.posts.length === 0) {
           container.innerHTML = `
-            <div class="col-span-full bg-paper border border-rule rounded-lg p-8 sm:p-12 text-center space-y-4">
-              <div class="w-12 h-12 rounded-md bg-ochre-soft text-ochre-ink border border-[#D97706] mx-auto flex items-center justify-center">
+            <div class="animate-panel-swap col-span-full bg-white border border-slate-200 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-xs">
+              <div class="w-12 h-12 rounded-xl bg-accent-soft text-accent-ink border border-amber-300 mx-auto flex items-center justify-center">
                 <span class="material-symbols-outlined text-2xl" aria-hidden="true">cloud_off</span>
               </div>
               <div class="space-y-1">
-                <h2 class="font-display text-lg font-semibold text-ink">Gagal Memuat Data Praktik Baik</h2>
-                <p class="text-sm text-ink-muted max-w-md mx-auto">
+                <h2 class="text-lg font-extrabold text-slate-900">Gagal Memuat Data Praktik Baik</h2>
+                <p class="text-sm text-slate-600 max-w-md mx-auto">
                   Koneksi ke layanan arsip sekolah terputus. Periksa jaringan internet Anda lalu coba muat ulang.
                 </p>
               </div>
               <div class="flex flex-wrap justify-center gap-3 pt-1">
                 <button id="btnRetryLoad" type="button"
-                  class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-primary text-white text-sm font-bold hover:bg-[#001F70] transition-colors">
+                  class="inline-flex items-center gap-1.5 min-h-[44px] px-5 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary-mid active:scale-[0.98] transition-all">
                   <span class="material-symbols-outlined text-[18px]" aria-hidden="true">refresh</span>
                   <span>Muat Ulang Data</span>
                 </button>
                 <a href="/"
-                  class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-ground border border-rule text-sm font-semibold text-ink hover:border-primary">
+                  class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-xl bg-canvas border border-slate-200 text-sm font-bold text-slate-800 hover:border-primary/40">
                   Kembali ke Beranda
                 </a>
               </div>
@@ -609,26 +635,26 @@
 
         const isSearchOrFilter = Boolean(state.searchQuery || state.activeCategory);
         container.innerHTML = `
-          <div class="col-span-full bg-paper border border-rule rounded-lg p-8 sm:p-12 text-center space-y-4">
-            <div class="w-12 h-12 rounded-md bg-ochre-soft text-ochre-ink border border-[#D97706] mx-auto flex items-center justify-center">
+          <div class="animate-panel-swap col-span-full bg-white border border-slate-200 rounded-2xl p-8 sm:p-12 text-center space-y-4 shadow-xs">
+            <div class="w-12 h-12 rounded-xl bg-accent-soft text-accent-ink border border-amber-300 mx-auto flex items-center justify-center">
               <span class="material-symbols-outlined text-2xl" aria-hidden="true">${isSearchOrFilter ? 'search_off' : 'auto_stories'}</span>
             </div>
             <div class="space-y-1">
-              <h2 class="font-display text-lg font-semibold text-ink">
+              <h2 class="text-lg font-extrabold text-slate-900">
                 ${isSearchOrFilter ? 'Tidak Ada Tulisan yang Cocok' : 'Belum Ada Publikasi Praktik Baik'}
               </h2>
-              <p class="text-sm text-ink-muted max-w-md mx-auto">
+              <p class="text-sm text-slate-600 max-w-md mx-auto">
                 ${isSearchOrFilter ? 'Ubah kata kunci pencarian atau tampilkan kembali semua kategori.' : 'Saat ini belum ada artikel praktik baik yang diterbitkan dari panel admin sekolah.'}
               </p>
             </div>
             ${isSearchOrFilter ? `
               <button id="btnResetFilters" type="button"
-                class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-primary text-white text-sm font-bold hover:bg-[#001F70] transition-colors">
+                class="inline-flex items-center gap-1.5 min-h-[44px] px-5 rounded-xl bg-primary text-white text-sm font-bold hover:bg-primary-mid active:scale-[0.98] transition-all">
                 <span>Tampilkan Semua Kategori</span>
               </button>
             ` : `
               <a href="/"
-                class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-md bg-ground border border-rule text-sm font-semibold text-ink hover:border-primary">
+                class="inline-flex items-center gap-1.5 min-h-[44px] px-4 rounded-xl bg-canvas border border-slate-200 text-sm font-bold text-slate-800 hover:border-primary/40">
                 Kembali ke Beranda
               </a>
             `}
@@ -646,37 +672,37 @@
         return;
       }
 
-      container.innerHTML = state.filteredPosts.map(post => {
+      container.innerHTML = state.filteredPosts.map((post, idx) => {
         const hasVideo = Boolean(post.videoUrl);
         const hasExternal = Boolean(post.externalUrl);
 
-        let badgeColor = 'bg-[#EFF6FF] text-[#00288E] border-[#BFDBFE]';
+        let badgeColor = 'bg-[#EFF6FF] text-[#00288E] border-blue-200';
         if (post.category === 'Praktik Baik') {
-          badgeColor = 'bg-[#FEF3C7] text-[#78350F] border-[#D97706]';
+          badgeColor = 'bg-accent-soft text-accent-ink border-amber-300';
         } else if (post.category === 'Pembelajaran') {
-          badgeColor = 'bg-[#ECFDF5] text-[#047857] border-[#A7F3D0]';
+          badgeColor = 'bg-emerald-50 text-[#047857] border-emerald-200';
         } else if (post.category === 'Video') {
-          badgeColor = 'bg-[#F1F5F9] text-[#1E293B] border-[#CBD5E1]';
+          badgeColor = 'bg-slate-100 text-slate-800 border-slate-200';
         }
 
         const ytId = hasVideo ? getYouTubeVideoId(post.videoUrl) : '';
         const displayImage = post.coverImageBase64 || (ytId ? `https://img.youtube.com/vi/${ytId}/hqdefault.jpg` : '');
 
         return `
-          <article class="group bg-paper rounded-lg overflow-hidden border border-rule hover:border-primary transition-colors flex flex-col justify-between">
+          <article class="spotlight-card reveal-item group bg-white rounded-2xl overflow-hidden border border-slate-200 shadow-xs hover:shadow-lg hover:border-primary/40 hover:-translate-y-1 transition-all duration-300 flex flex-col justify-between">
             <div>
-              <div class="relative w-full aspect-[16/10] bg-paper-muted overflow-hidden border-b border-rule flex items-center justify-center">
+              <div class="relative w-full aspect-[16/10] bg-slate-100 overflow-hidden flex items-center justify-center">
                 ${displayImage
-            ? `<img src="${escapeHtml(displayImage)}" alt="${escapeHtml(post.title)}" width="480" height="300" loading="lazy" decoding="async" class="w-full h-full object-cover">`
-            : `<div class="w-full h-full bg-ground flex flex-col items-center justify-center text-primary/60 p-4">
+            ? `<img src="${escapeHtml(displayImage)}" alt="${escapeHtml(post.title)}" width="480" height="300" loading="lazy" decoding="async" class="w-full h-full object-cover group-hover:scale-[1.04] transition-transform duration-500">`
+            : `<div class="w-full h-full bg-slate-100 flex flex-col items-center justify-center text-primary/50 p-4">
                  <span class="material-symbols-outlined text-4xl" aria-hidden="true">auto_stories</span>
-                 <span class="text-xs font-semibold mt-1 text-ink-muted">SD Inpres Lelingluan</span>
+                 <span class="text-xs font-bold mt-1 text-slate-500">SD Inpres Lelingluan</span>
                </div>`
           }
 
                 ${hasVideo ? `
                   <div class="absolute inset-0 flex items-center justify-center pointer-events-none">
-                    <div class="w-12 h-12 rounded-md bg-ink/85 text-white border border-white/40 flex items-center justify-center">
+                    <div class="idle-breath w-12 h-12 rounded-xl bg-slate-900/85 text-white border border-white/30 shadow-md flex items-center justify-center group-hover:scale-110 transition-transform duration-300">
                       <span class="material-symbols-outlined text-2xl material-symbols-fill" aria-hidden="true">play_arrow</span>
                     </div>
                   </div>
@@ -686,40 +712,40 @@
               <div class="p-5 space-y-2.5">
                 <div class="flex flex-wrap items-center justify-between gap-2">
                   <div class="flex flex-wrap items-center gap-1.5">
-                    <span class="px-2 py-0.5 rounded-xs text-[11px] font-bold uppercase tracking-wider border ${badgeColor}">
+                    <span class="px-2.5 py-0.5 rounded-md text-[11px] font-bold uppercase tracking-wider border ${badgeColor}">
                       ${escapeHtml(post.category || 'Praktik Baik')}
                     </span>
-                    ${hasVideo ? `<span class="px-2 py-0.5 rounded-xs text-[11px] font-semibold bg-ground text-ink border border-rule">Video</span>` : ''}
-                    ${hasExternal ? `<span class="px-2 py-0.5 rounded-xs text-[11px] font-semibold bg-ground text-ink border border-rule">Dokumen</span>` : ''}
+                    ${hasVideo ? `<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">Video</span>` : ''}
+                    ${hasExternal ? `<span class="px-2 py-0.5 rounded-md text-[11px] font-semibold bg-slate-100 text-slate-700 border border-slate-200">Dokumen</span>` : ''}
                   </div>
-                  <span class="inline-flex items-center gap-1 text-xs font-semibold text-primary tabular-nums" title="Jumlah dilihat">
+                  <span class="inline-flex items-center gap-1 text-xs font-bold text-primary tabular-nums" title="Jumlah dilihat">
                     <span class="material-symbols-outlined text-[15px]" aria-hidden="true">visibility</span>
                     <span class="post-view-count" data-post-id="${escapeHtml(post.id)}">${formatViewCount(post.views)}</span>
                   </span>
                 </div>
 
-                <div class="flex items-center gap-1.5 text-xs text-ink-muted">
+                <div class="flex items-center gap-1.5 text-xs font-medium text-slate-500">
                   <span class="tabular-nums">${escapeHtml(post.date || 'Terbaru')}</span>
                   <span aria-hidden="true">&middot;</span>
                   <span class="truncate">${escapeHtml(post.author || 'Admin')}</span>
                 </div>
 
-                <h2 class="font-display text-lg leading-snug text-ink font-semibold group-hover:text-primary transition-colors line-clamp-2">
+                <h2 class="text-lg font-extrabold tracking-tight leading-snug text-slate-900 group-hover:text-primary transition-colors line-clamp-2">
                   ${escapeHtml(post.title)}
                 </h2>
 
-                <p class="text-xs sm:text-sm text-ink-muted line-clamp-2 leading-relaxed">
+                <p class="text-xs sm:text-sm text-slate-600 line-clamp-2 leading-relaxed">
                   ${escapeHtml(post.summary || post.content || '')}
                 </p>
               </div>
             </div>
 
-            <div class="px-5 py-3 bg-ground border-t border-rule">
+            <div class="px-5 py-3 bg-slate-50/80 border-t border-slate-100">
               <button type="button"
                 class="open-post-btn w-full min-h-[44px] flex items-center justify-between text-xs sm:text-sm font-bold text-primary hover:underline text-left"
                 data-id="${escapeHtml(post.id)}">
                 <span>Buka praktik baik ini<span class="visually-hidden">: ${escapeHtml(post.title)}</span></span>
-                <span class="material-symbols-outlined text-[17px]" aria-hidden="true">arrow_forward</span>
+                <span class="material-symbols-outlined text-[17px] group-hover:translate-x-1 transition-transform" aria-hidden="true">arrow_forward</span>
               </button>
             </div>
           </article>
@@ -733,6 +759,9 @@
           if (post) openReader(post);
         });
       });
+
+      bindSpotlightCards();
+      window.refreshLiveReveal?.();
     }
 
     function openReader(post, updateUrl = true) {
@@ -930,12 +959,14 @@
       const slug = post.slug || post.id;
       const shareUrl = getCanonicalShareUrl(slug);
       const labelEl = document.getElementById('copyBtnLabel');
+      const iconEl = document.getElementById('copyBtnIcon');
 
       const showCopied = () => {
-        if (!labelEl) return;
-        labelEl.textContent = 'Tautan Tersalin';
+        if (labelEl) labelEl.textContent = 'Tautan Tersalin';
+        if (iconEl) iconEl.textContent = 'check';
         setTimeout(() => {
-          labelEl.textContent = 'Salin Tautan';
+          if (labelEl) labelEl.textContent = 'Salin Tautan';
+          if (iconEl) iconEl.textContent = 'content_copy';
         }, 2500);
       };
 
@@ -949,6 +980,7 @@
     }
 
     window.addEventListener('DOMContentLoaded', () => {
+      initScrollProgress();
       loadData();
 
       const searchInput = document.getElementById('searchInput');
@@ -982,7 +1014,6 @@
           cleanupOnClose(!skipUpdate);
         });
 
-        // Safari closedby="any" backdrop pointer fallback
         if (!('closedBy' in HTMLDialogElement.prototype)) {
           let pointerStartedOnBackdrop = false;
           modal.addEventListener('pointerdown', (e) => {
@@ -1008,6 +1039,8 @@
       });
     });
   </script>
+  <script defer src="live-motion.js"></script>
+  <script defer src="cursor.js"></script>
 </body>
 
 </html>

@@ -11,7 +11,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,600;9..144,700&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700&amp;display=swap"
+    href="https://fonts.googleapis.com/css2?family=Instrument+Serif:ital@1&amp;family=Plus+Jakarta+Sans:wght@400;500;600;700;800&amp;display=swap"
     rel="stylesheet">
   <script>
     // Routing otomatis URL slug postingan: /post/:slug -> /praktik-baik.html?slug=:slug
@@ -37,32 +37,56 @@
       min-height: 100vh;
       display: grid;
       place-items: center;
-      padding: 1.5rem;
-      background-color: #FAF8F3;
-      color: #111827;
+      padding: 1.25rem;
+      background-color: #F8FAFC;
+      color: #0F172A;
       font-family: 'Plus Jakarta Sans', system-ui, -apple-system, sans-serif;
       -webkit-font-smoothing: antialiased;
+    }
+
+    @media (pointer: fine) {
+      html,
+      body {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cpath d='M4 3L22.5 11.4L14.2 14.3L11.2 22.6Z' fill='%2300288E' stroke='%23FFFFFF' stroke-width='2' stroke-linejoin='round'/%3E%3Ccircle cx='20.5' cy='20' r='3' fill='%23D97706' stroke='%23FFFFFF' stroke-width='1.5'/%3E%3C/svg%3E") 4 3, auto;
+      }
+
+      a,
+      button {
+        cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Ccircle cx='5' cy='4' r='3.2' fill='none' stroke='%2300288E' stroke-width='1.5' opacity='0.75'/%3E%3Cpath d='M5 4L23.5 12.4L15.2 15.3L12.2 23.6Z' fill='%23D97706' stroke='%23FFFFFF' stroke-width='2' stroke-linejoin='round'/%3E%3C/svg%3E") 5 4, pointer;
+      }
     }
 
     .card {
       width: 100%;
       max-width: 34rem;
       background-color: #FFFFFF;
-      border: 1px solid #D8D3C8;
-      border-top: 3px solid #00288E;
-      border-radius: 0.5rem;
-      padding: 2rem;
-      position: relative;
+      border: 1px solid #E2E8F0;
+      border-radius: 1rem;
+      padding: 1.75rem;
+      box-shadow: 0 20px 44px -16px rgba(0, 40, 142, 0.16);
     }
 
-    .card::before {
-      content: '';
-      position: absolute;
-      top: -3px;
-      left: 0;
-      width: 3.5rem;
-      height: 3px;
-      background-color: #B45309;
+    @media (min-width: 640px) {
+      .card {
+        padding: 2.25rem;
+      }
+    }
+
+    @keyframes cardEnter {
+      from {
+        opacity: 0;
+        transform: translate3d(0, 16px, 0) scale(0.985);
+      }
+      to {
+        opacity: 1;
+        transform: translate3d(0, 0, 0) scale(1);
+      }
+    }
+
+    @media (prefers-reduced-motion: no-preference) {
+      .card {
+        animation: cardEnter 480ms cubic-bezier(0.16, 1, 0.3, 1) both;
+      }
     }
 
     .brand {
@@ -71,7 +95,7 @@
       gap: 0.75rem;
       margin-bottom: 1.5rem;
       padding-bottom: 1rem;
-      border-bottom: 1px solid #EFECE4;
+      border-bottom: 1px solid #F1F5F9;
     }
 
     .brand img {
@@ -81,49 +105,54 @@
     }
 
     .brand-title {
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 700;
-      font-size: 1rem;
+      font-weight: 800;
+      font-size: 0.9375rem;
+      letter-spacing: -0.02em;
       margin: 0;
-      color: #111827;
+      color: #0F172A;
     }
 
     .brand-sub {
       font-size: 0.75rem;
-      color: #475569;
+      color: #64748B;
       margin: 0.125rem 0 0;
-      letter-spacing: 0.04em;
-      text-transform: uppercase;
       font-weight: 600;
     }
 
     .code-tag {
       display: inline-block;
-      padding: 0.25rem 0.5rem;
-      border-radius: 0.125rem;
+      padding: 0.25rem 0.625rem;
+      border-radius: 0.375rem;
       background-color: #FEF3C7;
       color: #78350F;
-      border: 1px solid #D97706;
+      border: 1px solid #FCD34D;
       font-size: 0.75rem;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-weight: 800;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       font-variant-numeric: tabular-nums;
     }
 
     h1 {
-      font-family: 'Fraunces', Georgia, serif;
-      font-weight: 600;
-      font-size: clamp(1.5rem, 3vw, 2rem);
-      line-height: 1.2;
+      font-weight: 800;
+      letter-spacing: -0.03em;
+      font-size: clamp(1.5rem, 3.2vw, 2.125rem);
+      line-height: 1.15;
       margin: 0.875rem 0 0.625rem;
       text-wrap: balance;
+    }
+
+    h1 em {
+      font-family: 'Instrument Serif', Georgia, serif;
+      font-style: italic;
+      font-weight: 400;
+      color: #00288E;
     }
 
     p.desc {
       margin: 0;
       font-size: 0.9375rem;
-      line-height: 1.6;
+      line-height: 1.65;
       color: #475569;
       max-width: 60ch;
       text-wrap: pretty;
@@ -131,39 +160,52 @@
 
     .actions {
       display: flex;
-      flex-wrap: wrap;
+      flex-direction: column;
       gap: 0.75rem;
       margin-top: 1.75rem;
+    }
+
+    @media (min-width: 480px) {
+      .actions {
+        flex-direction: row;
+        flex-wrap: wrap;
+      }
     }
 
     a.btn {
       display: inline-flex;
       align-items: center;
       justify-content: center;
-      min-height: 44px;
-      padding: 0.625rem 1.125rem;
-      border-radius: 0.375rem;
+      min-height: 46px;
+      padding: 0.625rem 1.25rem;
+      border-radius: 0.75rem;
       font-size: 0.875rem;
       font-weight: 700;
       text-decoration: none;
       cursor: pointer;
-      transition: background-color 150ms ease, border-color 150ms ease, color 150ms ease;
+      transition: transform 160ms ease, background-color 160ms ease, border-color 160ms ease, box-shadow 160ms ease;
+    }
+
+    a.btn:active {
+      transform: scale(0.98);
     }
 
     a.btn-primary {
       background-color: #00288E;
       color: #FFFFFF;
       border: 1px solid #00288E;
+      box-shadow: 0 10px 24px -8px rgba(0, 40, 142, 0.36);
     }
 
     a.btn-primary:hover {
-      background-color: #001F70;
+      background-color: #1E40AF;
+      transform: translateY(-1px);
     }
 
     a.btn-secondary {
-      background-color: #FAF8F3;
-      color: #111827;
-      border: 1px solid #D8D3C8;
+      background-color: #FFFFFF;
+      color: #0F172A;
+      border: 1px solid #E2E8F0;
     }
 
     a.btn-secondary:hover {
@@ -189,9 +231,9 @@
     </div>
 
     <span class="code-tag">Galat 404</span>
-    <h1>Halaman yang Anda cari tidak tersedia</h1>
+    <h1>Halaman yang Anda cari <em>tidak tersedia</em></h1>
     <p class="desc">
-      Tautan mungkin sudah dipindahkan, berubah alamat, atau artikel belum diterbitkan. Gunakan pintasan di bawah ini untuk kembali ke layanan resmi sekolah.
+      Tautan mungkin sudah dipindahkan, berubah alamat, atau artikel belum diterbitkan. Gunakan tombol di bawah ini untuk kembali ke layanan resmi sekolah.
     </p>
 
     <div class="actions">
